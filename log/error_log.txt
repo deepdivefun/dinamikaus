@@ -43,3 +43,4 @@
 30/09/2024 15:30:25 Error: [2] Undefined array key "TeamPhoto" in E:\xampp\htdocs\dinamikaus\admin\3000.Team\3030.TeamUpdate.php on line 32
 30/09/2024 15:31:55 Error: [2] Undefined variable $TeamPhoto in E:\xampp\htdocs\dinamikaus\admin\3000.Team\3030.TeamUpdate.php on line 32
 30/09/2024 15:33:15 Error: [2] Undefined variable $TeamPhoto in E:\xampp\htdocs\dinamikaus\admin\3000.Team\3030.TeamUpdate.php on line 32
+30/09/2024 20:18:54 Error: [2] Undefined array key "UserID" in E:\xampp\htdocs\dinamikaus\admin\includes\component\Topbar.php on line 32

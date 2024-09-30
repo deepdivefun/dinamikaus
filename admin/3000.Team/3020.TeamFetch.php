@@ -69,10 +69,10 @@ try {
             }
 
             if ($StatusID == 1) {
-                $Button = "<button type='button' class='btn btn-outline-warning rounded-5 mx-1 editTeam' title='EDIT' TeamID='$TeamID' StatusID='$StatusID' FullName='$FullName' Position='$Position' Linkedin='$Linkedin' Instagram='$Instagram' TeamPhoto='$TeamPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editTeam' title='EDIT' TeamID='$TeamID' StatusID='$StatusID' FullName='$FullName' Position='$Position' Linkedin='$Linkedin' Instagram='$Instagram' TeamPhoto='$TeamPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteTeam' title='DELETE' TeamID='$TeamID'><i class='fa-solid fa-trash'></i></button>";
                 if ($_SESSION['RoleID'] == 4) {
-                    $Button = "<button type='button' class='btn btn-outline-warning rounded-5 mx-1 editTeam' title='EDIT' TeamID='$TeamID' StatusID='$StatusID' FullName='$FullName' Position='$Position' Linkedin='$Linkedin' Instagram='$Instagram' TeamPhoto='$TeamPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editTeam' title='EDIT' TeamID='$TeamID' StatusID='$StatusID' FullName='$FullName' Position='$Position' Linkedin='$Linkedin' Instagram='$Instagram' TeamPhoto='$TeamPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteTeam' title='DELETE' TeamID='$TeamID'><i class='fa-solid fa-trash'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugTeam' title='DEBUG' TeamID='$TeamID'><i class='fa-solid fa-eye'></i></button>";
                 }

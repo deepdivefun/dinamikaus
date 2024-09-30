@@ -97,6 +97,146 @@ async function createProductCategory() {
   });
 }
 
+$(document).on("click", ".editProductCategory", function () {
+  var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
+  var STATUSID = $(this).attr("StatusID");
+  var PRODUCTCATEGORYNAME = $(this).attr("ProductCategoryName");
+
+  document.getElementById("EditProductCategoryID").value = PRODUCTCATEGORYID;
+  document.getElementById("EditStatusID").value = STATUSID;
+  document.getElementById("EditProductCategoryName").value =
+    PRODUCTCATEGORYNAME;
+
+  $("#editProductCategory").modal("show");
+});
+
+async function updateProductCategory() {
+  var PRODUCTCATEGORYID = document.getElementById(
+    "EditProductCategoryID"
+  ).value;
+  var STATUSID = document.getElementById("EditStatusID").value;
+  var PRODUCTCATEGORYNAME = document.getElementById(
+    "EditProductCategoryName"
+  ).value;
+  var UPDATEBY = document.getElementById("UpdateBy").value;
+  var GTOKEN = document.getElementById("GToken").value;
+
+  if (PRODUCTCATEGORYID == "") {
+    alert("ProductCategoryID Undefined");
+    return;
+  }
+
+  if (STATUSID == "") {
+    alert("Please select Status");
+    return;
+  }
+
+  if (PRODUCTCATEGORYNAME === "") {
+    alert("Please input Product Category Name");
+    return;
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "4030.ProductCategoryUpdate.php?id=" + Math.random(),
+    data: {
+      ProductCategoryID: PRODUCTCATEGORYID,
+      StatusID: STATUSID,
+      ProductCategoryName: PRODUCTCATEGORYNAME,
+      UpdateBy: UPDATEBY,
+      GToken: GTOKEN,
+    },
+    success: function (data) {
+      try {
+        data = data.trim();
+        if (data.includes("SWD_OK")) {
+          alert("Update Success");
+        } else {
+          alert(data);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+      fetch_data();
+      $("#editUser").modal("hide");
+      location.reload();
+    },
+    error: function () {
+      alert("Error");
+    },
+  });
+}
+
+$(document).on("click", ".deleteProductCategory", function () {
+  var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
+
+  let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
+
+  if (confirmDelete !== "DELETE") {
+    alert("Delete Cancel");
+    return;
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "4040.ProductCategoryDelete.php?id=" + Math.random(),
+      data: {
+        ProductCategoryID: PRODUCTCATEGORYID,
+      },
+      success: function (data) {
+        try {
+          data = data.trim();
+          if (data.includes("SWD_OK")) {
+            alert("Delete Success");
+          } else {
+            alert(data);
+          }
+        } catch (err) {
+          alert(err.message);
+        }
+        fetch_data();
+      },
+      error: function () {
+        alert("Error");
+      },
+    });
+  }
+});
+
+$(document).on("click", ".activeProductCategory", function () {
+  var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
+
+  let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
+
+  if (confirmActive !== "ACTIVE") {
+    alert("Active Cancel");
+    return;
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "4050.ProductCategoryActive.php?id=" + Math.random(),
+      data: {
+        ProductCategoryID: PRODUCTCATEGORYID,
+      },
+      success: function (data) {
+        try {
+          data = data.trim();
+          if (data.includes("SWD_OK")) {
+            alert("Activate Success");
+          } else {
+            alert(data);
+          }
+        } catch (err) {
+          alert(err.message);
+        }
+        fetch_data();
+      },
+      error: function () {
+        alert("Error");
+      },
+    });
+  }
+});
+
 $(document).on("click", ".debugProductCategory", function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   alert("DEBUG INFO\n\rProductCategoryID : " + PRODUCTCATEGORYID);

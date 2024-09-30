@@ -76,10 +76,10 @@ try {
             }
 
             if ($StatusID == 1) {
-                $Button = "<button type='button' class='btn btn-outline-warning rounded-5 mx-1 editProductCategory' title='EDIT' ProductCategoryID='$ProductCategoryID' StatusID='$StatusID' ProductCategoryName='$ProductCategoryName' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProductCategory' title='EDIT' ProductCategoryID='$ProductCategoryID' StatusID='$StatusID' ProductCategoryName='$ProductCategoryName' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProductCategory' title='DELETE' ProductCategoryID='$ProductCategoryID'><i class='fa-solid fa-trash'></i></button>";
                 if ($_SESSION['RoleID'] == 4) {
-                    $Button = "<button type='button' class='btn btn-outline-warning rounded-5 mx-1 editProductCategory' title='EDIT' ProductCategoryID='$ProductCategoryID' StatusID='$StatusID' ProductCategoryName='$ProductCategoryName' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProductCategory' title='EDIT' ProductCategoryID='$ProductCategoryID' StatusID='$StatusID' ProductCategoryName='$ProductCategoryName' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProductCategory' title='DELETE' ProductCategoryID='$ProductCategoryID'><i class='fa-solid fa-trash'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugProductCategory' title='DEBUG' ProductCategoryID='$ProductCategoryID'><i class='fa-solid fa-eye'></i></button>";
                 }
