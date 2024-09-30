@@ -1,0 +1,42 @@
+28/09/2024 22:06:21 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\7000.OurClient\7000.OurClient.php on line 56
+28/09/2024 22:28:41 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 51
+28/09/2024 22:29:38 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 51
+28/09/2024 22:31:58 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 247
+28/09/2024 22:32:03 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 247
+28/09/2024 22:32:33 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 445
+28/09/2024 22:32:35 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 445
+28/09/2024 23:20:15 Error: [2] Undefined array key "FleetPhoto" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11010.TeamCreate.php on line 27
+28/09/2024 23:23:20 Error: [2] Undefined variable $Crew in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11020.TeamFetch.php on line 66
+28/09/2024 23:23:21 Error: [2] Undefined variable $Crew in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11020.TeamFetch.php on line 66
+28/09/2024 23:23:33 Error: [2] Undefined variable $Crew in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11020.TeamFetch.php on line 66
+28/09/2024 23:24:37 Error: [2] Undefined variable $Crew in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11020.TeamFetch.php on line 66
+28/09/2024 23:25:17 Error: [2] Undefined variable $Crew in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11020.TeamFetch.php on line 66
+29/09/2024 00:01:25 Error: [2] Undefined array key "TeamPhoto" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 26
+29/09/2024 00:04:24 Error: [2] Undefined array key "TeamPhoto" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 26
+29/09/2024 00:15:53 Error: [2] Undefined variable $TeamPhoto in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 26
+29/09/2024 00:16:49 Error: [2] Undefined variable $TeamPhoto in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 26
+29/09/2024 00:20:07 Error: [2] Undefined array key "TeamPhoto" in E:\xampp\htdocs\dinamikaus\admin\includes\class\TeamClass.php on line 85
+29/09/2024 00:22:02 Error: [2] Undefined array key "TeamPhoto" in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 28
+29/09/2024 00:22:44 Error: [8192] move_uploaded_file(): Passing null to parameter #1 ($from) of type string is deprecated in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 30
+29/09/2024 00:23:26 Error: [8192] move_uploaded_file(): Passing null to parameter #1 ($from) of type string is deprecated in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11030.TeamUpdate.php on line 30
+29/09/2024 17:11:26 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\17000.TheHistory\17000.TheHistory.php on line 47
+29/09/2024 17:11:32 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\13000.Meta\13000.Meta.php on line 55
+29/09/2024 17:11:35 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\9000.Settings\9000.Settings.php on line 51
+29/09/2024 17:29:37 Error: [2] Undefined variable $SystemLogPage in E:\xampp\htdocs\dinamikaus\admin\15000.EventLog\15000.EventLog.php on line 21
+29/09/2024 17:31:14 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\5000.Testimonials\5000.Testimonials.php on line 103
+29/09/2024 17:48:28 Error: [2] Undefined array key "AUTH_TYPE" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 60
+29/09/2024 17:51:44 Error: [2] Undefined array key "HTTPS" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 62
+29/09/2024 17:51:54 Error: [2] Undefined array key "PATH_INFO" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 62
+29/09/2024 17:51:57 Error: [2] Undefined array key "PATH_INFO" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 62
+29/09/2024 17:51:59 Error: [2] Undefined array key "PATH_INFO" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 62
+29/09/2024 17:52:57 Error: [2] Undefined array key "REMOTE_HOST" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 63
+29/09/2024 17:58:30 Error: [2] Undefined array key "ORIG_PATH_INFO" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 65
+29/09/2024 17:58:57 Error: [2] Undefined array key "HTTPS" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 65
+29/09/2024 18:04:30 Error: [2] Undefined array key "Cookies" in E:\xampp\htdocs\dinamikaus\admin\14000.DebugTools\14000.DebugTools.php on line 70
+29/09/2024 19:02:19 Error: [2] require_once(E:\xampp\htdocs\dinamikaus\admin\includes\helpers\SystemLog.php): Failed to open stream: No such file or directory in E:\xampp\htdocs\dinamikaus\admin\11000.Team\11000.Team.php on line 17
+29/09/2024 19:02:50 Error: [2] require_once(E:\xampp\htdocs\dinamikaus\admin\includes\helpers\SystemLog.php): Failed to open stream: No such file or directory in E:\xampp\htdocs\dinamikaus\admin\1000.Home\1000.Home.php on line 18
+29/09/2024 19:02:52 Error: [2] require_once(E:\xampp\htdocs\dinamikaus\admin\includes\helpers\SystemLog.php): Failed to open stream: No such file or directory in E:\xampp\htdocs\dinamikaus\admin\1000.Home\1000.Home.php on line 18
+29/09/2024 19:02:53 Error: [2] require_once(E:\xampp\htdocs\dinamikaus\admin\includes\helpers\SystemLog.php): Failed to open stream: No such file or directory in E:\xampp\htdocs\dinamikaus\admin\1000.Home\1000.Home.php on line 18
+30/09/2024 14:17:47 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\9000.Settings\9000.Settings.php on line 51
+30/09/2024 14:18:04 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\13000.Meta\13000.Meta.php on line 55
+30/09/2024 14:50:21 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\4000.FleetTeam\4000.FleetTeam.php on line 56
