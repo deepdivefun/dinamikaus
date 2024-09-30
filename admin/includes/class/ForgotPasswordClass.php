@@ -22,7 +22,6 @@ class ForgotPassword
     public function sendEmailForgotPasswordAppAdminTools($Email)
     {
         global $conn;
-        global $_SESSION;
 
         $mail   = new PHPMailer();
 
@@ -41,6 +40,21 @@ class ForgotPassword
                 $stmt   = $conn->prepare($query);
                 $stmt->bind_param("sss", $ResetTokenHash, $ResetTokenExpired, $Email);
                 $stmt->execute();
+
+                $query  = "SELECT Email FROM tbl_user WHERE Email = ? LIMIT 1";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("s", $Email);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($Email);
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $result[] = [
+                        'Email'  => $Email
+                    ];
+                }
 
                 if ($stmt->affected_rows > 0) {
                     try {
@@ -120,6 +134,21 @@ class ForgotPassword
                 $stmt   = $conn->prepare($query);
                 $stmt->bind_param("sss", $ResetTokenHash, $ResetTokenExpired, $Email);
                 $stmt->execute();
+
+                $query  = "SELECT Email FROM tbl_user WHERE Email = ? LIMIT 1";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("s", $Email);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($Email);
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $result[] = [
+                        'Email'  => $Email
+                    ];
+                }
 
                 if ($stmt->affected_rows > 0) {
                     try {

@@ -9,6 +9,7 @@ async function fetch_data() {
 
   var STATUSID = document.getElementById("FilterStatusID").value;
   var FULLNAME = document.getElementById("FillterFullName").value;
+  var POSITION = document.getElementById("FilterPosition").value;
   var GTOKEN = document.getElementById("GToken").value;
 
   $.ajax({
@@ -17,6 +18,7 @@ async function fetch_data() {
     data: {
       StatusID: STATUSID,
       FullName: FULLNAME,
+      Position: POSITION,
       GToken: GTOKEN,
     },
     success: function (data) {
@@ -187,6 +189,10 @@ async function updateTeam() {
 
   if (POSITION === "") {
     alert("Please input Position");
+  }
+
+  if (TEAMPHOTO === "") {
+    alert("Please insert Team Photo");
   }
 
   $.ajax({

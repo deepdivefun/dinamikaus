@@ -1,6 +1,8 @@
 <?php
 $Title = 'Reset Password';
 $WebRootPath = realpath('../../admin');
+require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
+set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/ForgotPasswordClass.php');
@@ -12,19 +14,10 @@ if (isset($_POST['ForgotPasswordReset'])) {
     $ResetTokenHash     = $_POST['Token'];
     $Password           = filter_input(INPUT_POST, 'Password');
     $ConfirmPassword    = filter_input(INPUT_POST, 'ConfirmPassword');
-    $GToken             = filter_input(INPUT_POST, 'GToken');
 
-    if ($GToken == !null) {
-        $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
-        $Token      = $GToken;
-        $IP         = $_SERVER['REMOTE_ADDR'];
-        $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
-
-        $Request    = file_get_contents($URL);
-        $Response   = json_decode($Request);
-
-        if ($Response->success === 0) {
-            echo    "You are spammer ! Get the @$%K out";
+    try {
+        if (empty($ResetTokenHash) and empty($Password) and empty($ConfirmPassword)) {
+            throw new Exception("Error Processing Request");
         } else {
             $ForgotPassword = new ForgotPassword();
             $ForgotPassword->getEmailForgotPassword(
@@ -33,6 +26,8 @@ if (isset($_POST['ForgotPasswordReset'])) {
                 $ConfirmPassword
             );
         }
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
 }
 ?>

@@ -290,7 +290,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
                             </small>
 
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="EditUserID" id="EditUserID">
+                                <input type="hidden" class="form-control" name="EditUserID" id="EditUserID" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
@@ -311,7 +311,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
     <div class="container-xl">
         <div class="row row-deck row-cards">
             <div class="col-12">
-                <div class="card rounded-5">
+                <div class="card shadow-lg rounded-5">
                     <div class="card-body">
                         <form method="POST">
                             <div class="row">
@@ -362,8 +362,8 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
             </div>
 
             <div class="col-12">
-                <div class="card rounded-5">
-                    <div class="card-body border-bottom py-3">
+                <div class="card shadow-lg rounded-5">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>

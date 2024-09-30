@@ -15,8 +15,14 @@ if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
     die;
 }
 
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    echo    "You don't have access rights to this page";
+    die;
+}
+
 $StatusID       = filter_input(INPUT_POST, 'StatusID');
 $FullName       = filter_input(INPUT_POST, 'FullName');
+$Position       = filter_input(INPUT_POST, 'Position');
 $GToken         = filter_input(INPUT_POST, 'GToken');
 
 if ($GToken == !null) {
@@ -44,9 +50,9 @@ try {
                     a.Instagram, a.TeamPhoto, a.CreateBy, a.CreateTime, a.UpdateBy, a.UpdateTime 
                     FROM tbl_team a 
                     LEFT OUTER JOIN tbl_status b ON a.StatusID=b.StatusID 
-                    WHERE a.StatusID = ? AND a.FullName LIKE CONCAT('%', ?, '%')";
+                    WHERE a.StatusID = ? AND a.FullName LIKE CONCAT('%', ?, '%') AND a.Position LIKE CONCAT('%', ?, '%')";
         $stmt   = $conn->prepare($query);
-        $stmt->bind_param("is", $StatusID, $FullName);
+        $stmt->bind_param("iss", $StatusID, $FullName, $Position);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($TeamID, $StatusID, $StatusName, $FullName, $Position, $Linkedin, $Instagram, $TeamPhoto, $CreateBy, $CreateTime, $UpdateBy, $UpdateTime);
@@ -84,7 +90,7 @@ try {
         }
 
         if ($JSONData == null) {
-            $JSONData = ["", "", "", ""];
+            $JSONData = ["", "", "", "", ""];
             echo "[" . json_encode($JSONData) . "]";
         } else {
             $conn->commit();

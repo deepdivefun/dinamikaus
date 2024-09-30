@@ -15,7 +15,7 @@ if (strpos($_SERVER['HTTP_REFERER'], '13000.Meta.php') === FALSE) {
     die;
 }
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 1) {
+if ($_SESSION['RoleID'] !== 4) {
     echo    "You don't have access rights to this page";
     die;
 }

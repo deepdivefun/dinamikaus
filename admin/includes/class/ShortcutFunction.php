@@ -24,79 +24,91 @@ function ShortcutUser()
                         </div>
                     </a>
                 </div>';
-    };
+    }
 }
 
 function ShortcutTeam()
 {
-    return '<div class="col-sm-6 col-lg-3">
-                <a href="' . WebRootPath() . '3000.Team/3000.Team.php">
-                    <div class="card card-sm rounded-5">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="btn btn-outline-primary avatar rounded-5">
-                                        <i class="fa-solid fa-users"></i>
-                                    </span>
-                                </div>
-                                <div class="col">
-                                    <div class="fw-bold text-wrap">
-                                        Team
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '3000.Team/3000.Team.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-users"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Team
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>';
-}
-
-function ShortcutProduct()
-{
-    return '<div class="col-sm-6 col-lg-3">
-                <a href="' . WebRootPath() . '">
-                    <div class="card card-sm rounded-5">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="btn btn-outline-primary avatar rounded-5">
-                                        <i class="fa-solid fa-box"></i>
-                                    </span>
-                                </div>
-                                <div class="col">
-                                    <div class="fw-bold text-wrap">
-                                        Product
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>';
+                    </a>
+                </div>';
+    }
 }
 
 function ShortcutProductCategory()
 {
-    return '<div class="col-sm-6 col-lg-3">
-                <a href="' . WebRootPath() . '">
-                    <div class="card card-sm rounded-5">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="btn btn-outline-primary avatar rounded-5"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                                        <i class="fa-solid fa-box"></i>
-                                    </span>
-                                </div>
-                                <div class="col">
-                                    <div class="fw-bold text-wrap">
-                                        Product Categpry
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '4000.ProductCategory/4000.ProductCategory.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-box"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Product Categpry
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>';
+                    </a>
+                </div>';
+    }
+}
+
+function ShortcutProduct()
+{
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '5000.Product/5000.Product.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-box"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Product
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    }
 }
 
 function ShortcutTestimonials()
@@ -124,36 +136,40 @@ function ShortcutTestimonials()
                         </div>
                     </a>
                 </div>';
-    };
+    }
 }
 
 function ShortcutMessages()
 {
-    return '<div class="col-sm-6 col-lg-3">
-                <a href="' . WebRootPath() . '">
-                    <div class="card card-sm rounded-5">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="btn btn-outline-primary avatar rounded-5">
-                                        <i class="fa-solid fa-message"></i>
-                                    </span>
-                                </div>
-                                <div class="col">
-                                    <div class="fw-bold text-wrap">
-                                        Message
+    if ($_SESSION['RoleID'] !== 4) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-message"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Message
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>';
+                    </a>
+                </div>';
+    }
 }
 
 function ShortcutEventLog()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -176,7 +192,7 @@ function ShortcutEventLog()
                         </div>
                     </a>
                 </div>';
-    };
+    }
 }
 
 function ShortcutDebutTools()
@@ -209,7 +225,7 @@ function ShortcutDebutTools()
 
 function ShortcutResetPasswordTools()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 1) {
+    if ($_SESSION['RoleID'] !== 4) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -232,7 +248,7 @@ function ShortcutResetPasswordTools()
                         </div>
                     </a>
                 </div>';
-    };
+    }
 }
 
 function ShortcutSettings()
@@ -266,7 +282,7 @@ function ShortcutSettings()
 
 function ShortcutMetaTagSEO()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 1) {
+    if ($_SESSION['RoleID'] !== 4) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">

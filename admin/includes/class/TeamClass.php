@@ -50,34 +50,9 @@ class Team
         global $conn;
 
         try {
-            if (empty($TeamID) and empty($StatusID) and empty($FullName) and empty($Position) and empty($UpdateBy)) {
+            if (empty($TeamID) and empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoConvert) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
-            } elseif (empty($TeamPhotoConvert)) {
-                $conn->begin_transaction();
-
-                $query  = "UPDATE tbl_team SET 
-                            StatusID = ?,
-                            FullName = ?,
-                            Position = ?,
-                            Linkedin = ?,
-                            Instagram = ?,
-                            UpdateBy = ?,
-                            UpdateTime = NOW() 
-                            WHERE TeamID = ?";
-                $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isssssi", $StatusID, $FullName, $Position, $Linkedin, $Instagram, $UpdateBy, $TeamID);
-                $stmt->execute();
-
-                if ($stmt->affected_rows > 0) {
-                    $conn->commit();
-                    echo    "Team has been updated";
-                } else {
-                    echo    "Failed to update team";
-                }
-
-                $stmt->close();
             } else {
-
                 $conn->begin_transaction();
 
                 $query  = "UPDATE tbl_team SET 
@@ -100,9 +75,8 @@ class Team
                 } else {
                     echo    "Failed to update team";
                 }
-
-                $stmt->close();
             }
+            $stmt->close();
         } catch (Exception $e) {
             $conn->rollback();
             echo 'Message: ' . $e->getMessage();

@@ -1,6 +1,8 @@
 <?php
 $Title = 'Forgot Password';
 $WebRootPath = realpath('../../admin');
+require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
+set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/ForgotPasswordClass.php');
@@ -21,10 +23,18 @@ if (isset($_POST['ForgotPassword'])) {
 
         if ($Response->success === 0) {
             echo    "You are spammer ! Get the @$%K out";
+        }
+    }
+
+    try {
+        if (empty($Email)) {
+            throw new Exception("Error Processing Request");
         } else {
             $ForgotPassword = new ForgotPassword();
             $ForgotPassword->sendEmailForgotPassword($Email);
         }
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
 }
 ?>

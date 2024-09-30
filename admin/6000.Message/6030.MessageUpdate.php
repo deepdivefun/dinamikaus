@@ -15,6 +15,11 @@ if (strpos($_SERVER['HTTP_REFERER'], '6000.Message.php') === FALSE) {
     die;
 }
 
+if ($_SESSION['RoleID'] !== 4) {
+    echo    "You don't have access rights to this page";
+    die;
+}
+
 $MessageID          = filter_input(INPUT_POST, "MessageID");
 $StatusMessageID    = filter_input(INPUT_POST, "StatusMessageID");
 $GToken             = filter_input(INPUT_POST, "GToken");

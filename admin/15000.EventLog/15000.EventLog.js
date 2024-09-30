@@ -37,6 +37,7 @@ async function fetch_data() {
             ],
             autoWidth: true,
             responsive: true,
+            order: [[0, "desc"]],
           });
         }
       } catch (err) {
