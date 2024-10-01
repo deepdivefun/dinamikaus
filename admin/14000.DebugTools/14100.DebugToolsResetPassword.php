@@ -36,7 +36,7 @@ if ($_SESSION['RoleID'] !== 4) {
     <div class="container-xl">
         <div class="row row-deck row-cards">
             <div class="col-12">
-                <div class="card card-md rounded-5 shadow-lg">
+                <div class="card card-md shadow-lg rounded-5">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <h3 class="text-primary">Reset Password Tools&nbsp;:</h3>

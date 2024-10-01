@@ -20,7 +20,7 @@ if ($_SESSION['RoleID'] !== 4) {
     die;
 }
 
-$TableName  = 'tbl_systemlog';
+$TableName  = 'tbl_product_category';
 $GToken     = filter_input(INPUT_POST, 'GToken');
 
 if ($GToken == !null) {

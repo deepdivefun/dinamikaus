@@ -5,38 +5,29 @@ require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
-require_once($WebRootPath . '/includes/class/TeamClass.php');
+require_once($WebRootPath . '/includes/class/ProductCategoryClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
 
-if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
+if (strpos($_SERVER['HTTP_REFERER'], '4000.ProductCategory.php') === FALSE) {
     echo    "<script>
                 alert('Invalid Caller');
-                document.location.href = '3000.Team.php';
+                document.location.href = '4000.ProductCategory.php';
             </script>";
     die;
 }
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
     echo    "You don't have access rights to this page";
     die;
 }
 
-$StatusID           = filter_input(INPUT_POST, 'StatusID');
-$FullName           = filter_input(INPUT_POST, 'FullName');
-$Position           = filter_input(INPUT_POST, 'Position');
-$Linkedin           = filter_input(INPUT_POST, 'Linkedin');
-$Instagram          = filter_input(INPUT_POST, 'Instagram');
-
-$TeamPhoto          = $_FILES['TeamPhoto']['name'];
-$Dir                = "../assets/img/teamphoto/";
-$File               = $_FILES['TeamPhoto']['tmp_name'];
-$TeamPhotoConvert   = uniqid() . "-" . date('Y-m-d') . "-" . $TeamPhoto;
-move_uploaded_file($File, $Dir . $TeamPhotoConvert);
-
-$CreateBy           = filter_input(INPUT_POST, 'CreateBy');
-$EventLogUser       = $CreateBy;
-$EventLogData       = 'Create Team ' . $FullName;
-$GToken             = filter_input(INPUT_POST, 'GToken');
+$ProductCategoryID      = filter_input(INPUT_POST, 'ProductCategoryID');
+$StatusID               = filter_input(INPUT_POST, 'StatusID');
+$ProductCategoryName    = filter_input(INPUT_POST, 'ProductCategoryName');
+$UpdateBy               = filter_input(INPUT_POST, 'UpdateBy');
+$EventLogUser           = $UpdateBy;
+$EventLogData           = 'Update Product Category ' . $ProductCategoryName;
+$GToken                 = filter_input(INPUT_POST, 'GToken');
 
 if ($GToken == !null) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
@@ -54,7 +45,7 @@ if ($GToken == !null) {
 }
 
 try {
-    if (empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoConvert) and empty($CreateBy)) {
+    if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductCategoryName) and empty($UpdateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();
@@ -63,15 +54,12 @@ try {
             $EventLogData
         );
 
-        $Team = new Team();
-        $Team->createTeam(
+        $ProductCategory = new ProductCategory();
+        $ProductCategory->updateProductCategory(
+            $ProductCategoryID,
             $StatusID,
-            $FullName,
-            $Position,
-            $Linkedin,
-            $Instagram,
-            $TeamPhotoConvert,
-            $CreateBy
+            $ProductCategoryName,
+            $UpdateBy
         );
     }
 } catch (Exception $e) {

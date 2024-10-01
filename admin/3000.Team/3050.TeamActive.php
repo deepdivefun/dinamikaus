@@ -16,6 +16,11 @@ if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
     die;
 }
 
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    echo    "You don't have access rights to this page";
+    die;
+}
+
 $TeamID     = filter_input(INPUT_POST, 'TeamID');
 
 $query      = "SELECT FullName FROM tbl_team WHERE TeamID = ? LIMIT 1";

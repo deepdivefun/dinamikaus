@@ -1,9 +1,10 @@
 <?php
 require_once('ConnectionClass.php');
 
-class Team
+class ProductCategory
 {
-    public $TeamID, $StatusID, $FullName, $Position, $Linkedin, $Instagram, $TeamPhoto;
+    public $ProductCategoryID, $StatusID, $ProductCategoryName, $CreateBy, $CreateTime, $UpdateBy,
+        $UpdateTime;
 
     private $conn;
 
@@ -15,27 +16,27 @@ class Team
         return $this->conn;
     }
 
-    public function createTeam($StatusID, $FullName, $Position, $Linkedin, $Instagram, $TeamPhotoConvert, $CreateBy)
+    public function createProductCategory($StatusID, $ProductCategoryName, $CreateBy)
     {
         global $conn;
 
         try {
-            if (empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoConvert) and empty($CreateBy)) {
+            if (empty($StatusID) and empty($ProductCategoryName) and empty($CreateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
-                $query  = "INSERT INTO tbl_team (StatusID, FullName, Position, Linkedin, Instagram, TeamPhoto, CreateBy) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $query  = "INSERT INTO tbl_product_category (StatusID, ProductCategoryName, CreateBy) 
+                            VALUES (?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("issssss", $StatusID, $FullName, $Position, $Linkedin, $Instagram, $TeamPhotoConvert, $CreateBy);
+                $stmt->bind_param("iss", $StatusID, $ProductCategoryName, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo    "Team created successfully";
+                    echo    "Product Category created successfully";
                 } else {
-                    echo    "Failed to create team";
+                    echo    "Failed to create product category";
                 }
             }
             $stmt->close();
@@ -45,35 +46,31 @@ class Team
         }
     }
 
-    public function updateTeam($TeamID, $StatusID, $FullName, $Position, $Linkedin, $Instagram, $TeamPhotoConvert, $UpdateBy)
+    public function updateProductCategory($ProductCategoryID, $StatusID, $ProductCategoryName, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($TeamID) and empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoConvert) and empty($UpdateBy)) {
+            if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductCategoryName) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
-                $query  = "UPDATE tbl_team SET 
+                $query  = "UPDATE tbl_product_category SET 
                             StatusID = ?,
-                            FullName = ?,
-                            Position = ?,
-                            Linkedin = ?,
-                            Instagram = ?,
-                            TeamPhoto = ?,
+                            ProductCategoryName = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW() 
-                            WHERE TeamID = ?";
+                            WHERE ProductCategoryID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("issssssi", $StatusID, $FullName, $Position, $Linkedin, $Instagram, $TeamPhotoConvert, $UpdateBy, $TeamID);
+                $stmt->bind_param("issi", $StatusID, $ProductCategoryName, $UpdateBy, $ProductCategoryID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo    "Team has been updated";
+                    echo    "Product Category has been updated";
                 } else {
-                    echo    "Failed to update team";
+                    echo    "Failed to update product category";
                 }
             }
             $stmt->close();
@@ -83,30 +80,30 @@ class Team
         }
     }
 
-    public function deleteTeam($TeamID, $StatusID, $UpdateBy)
+    public function deleteProductCategory($ProductCategoryID, $StatusID, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($TeamID) and empty($StatusID) and empty($UpdateBy)) {
+            if (empty($ProductCategoryID) and empty($StatusID) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
-                $query  = "UPDATE tbl_team SET
+                $query  = "UPDATE tbl_product_category SET
                             StatusID = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW()
-                            WHERE TeamID = ?";
+                            WHERE ProductCategoryID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isi", $StatusID, $UpdateBy, $TeamID);
+                $stmt->bind_param("isi", $StatusID, $UpdateBy, $ProductCategoryID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo    "Team has been deactivated";
+                    echo    "Product Category has been deactivated";
                 } else {
-                    echo    "Team failed to deactivate";
+                    echo    "Product Category failed to deactivate";
                 }
             }
             $stmt->close();
@@ -116,30 +113,30 @@ class Team
         }
     }
 
-    public function activeAccount($TeamID, $StatusID, $UpdateBy)
+    public function activeProductCategory($ProductCategoryID, $StatusID, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($TeamID) and empty($StatusID) and empty($UpdateBy)) {
+            if (empty($ProductCategoryID) and empty($StatusID) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
-                $query  = "UPDATE tbl_team SET
+                $query  = "UPDATE tbl_product_category SET
                         StatusID = ?,
                         UpdateBy = ?,
                         UpdateTime = NOW()
-                        WHERE TeamID = ?";
+                        WHERE ProductCategoryID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isi", $StatusID, $UpdateBy, $TeamID);
+                $stmt->bind_param("isi", $StatusID, $UpdateBy, $ProductCategoryID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo    "Team has been activated";
+                    echo    "Product Categpry has been activated";
                 } else {
-                    echo    "Team failed to activate";
+                    echo    "Product Categpry failed to activate";
                 }
             }
             $stmt->close();

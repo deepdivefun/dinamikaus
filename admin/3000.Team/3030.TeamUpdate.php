@@ -16,6 +16,11 @@ if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
     die;
 }
 
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    echo    "You don't have access rights to this page";
+    die;
+}
+
 $TeamID                     = filter_input(INPUT_POST, 'TeamID');
 
 $TeamPhotoBeforeConvert     = filter_input(INPUT_POST, 'TeamPhotoBeforeConvert');
@@ -56,7 +61,7 @@ if ($GToken == !null) {
 }
 
 try {
-    if (empty($TeamID) and empty($StatusID) and empty($FullName) and empty($Position) and empty($UpdateBy)) {
+    if (empty($TeamID) and empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoBeforeConvert) and empty($UpdateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();

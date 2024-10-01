@@ -1,6 +1,8 @@
 <?php
 $Title = 'Reset Password';
 $WebRootPath = realpath('../../admin');
+require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
+set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/ForgotPasswordClass.php');
@@ -25,6 +27,12 @@ if (isset($_POST['ForgotPasswordReset'])) {
 
         if ($Response->success === 0) {
             echo    "You are spammer ! Get the @$%K out";
+        }
+    }
+
+    try {
+        if (empty($ResetTokenHash) and empty($Password) and empty($ConfirmPassword)) {
+            throw new Exception("Error Processing Request");
         } else {
             $ForgotPassword = new ForgotPassword();
             $ForgotPassword->getEmailForgotPassword(
@@ -33,6 +41,8 @@ if (isset($_POST['ForgotPasswordReset'])) {
                 $ConfirmPassword
             );
         }
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
 }
 ?>
