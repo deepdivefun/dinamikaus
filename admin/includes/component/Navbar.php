@@ -24,8 +24,8 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <?= Product(); ?>
                                     <?= ProductCategory(); ?>
+                                    <?= Product(); ?>
                                 </div>
                             </div>
                         </div>

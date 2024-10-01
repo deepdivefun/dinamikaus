@@ -40,3 +40,7 @@
 30/09/2024 14:17:47 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\9000.Settings\9000.Settings.php on line 51
 30/09/2024 14:18:04 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\13000.Meta\13000.Meta.php on line 55
 30/09/2024 14:50:21 Error: [2] Undefined array key "Status" in E:\xampp\htdocs\dinamikaus\admin\4000.FleetTeam\4000.FleetTeam.php on line 56
+30/09/2024 15:30:25 Error: [2] Undefined array key "TeamPhoto" in E:\xampp\htdocs\dinamikaus\admin\3000.Team\3030.TeamUpdate.php on line 32
+30/09/2024 15:31:55 Error: [2] Undefined variable $TeamPhoto in E:\xampp\htdocs\dinamikaus\admin\3000.Team\3030.TeamUpdate.php on line 32
+30/09/2024 15:33:15 Error: [2] Undefined variable $TeamPhoto in E:\xampp\htdocs\dinamikaus\admin\3000.Team\3030.TeamUpdate.php on line 32
+30/09/2024 20:18:54 Error: [2] Undefined array key "UserID" in E:\xampp\htdocs\dinamikaus\admin\includes\component\Topbar.php on line 32

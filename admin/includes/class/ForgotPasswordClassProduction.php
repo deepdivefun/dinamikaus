@@ -22,7 +22,6 @@ class ForgotPassword
     public function sendEmailForgotPasswordAppAdminTools($Email)
     {
         global $conn;
-        global $_SESSION;
 
         $mail   = new PHPMailer();
 
@@ -42,21 +41,20 @@ class ForgotPassword
                 $stmt->bind_param("sss", $ResetTokenHash, $ResetTokenExpired, $Email);
                 $stmt->execute();
 
-                $query      = "SELECT a.UserID, a.FullName, b.Email FROM tbl_profile a 
-                                LEFT OUTER JOIN tbl_user b ON a.UserID = b.UserID 
-                                WHERE b.Email = '$Email'";
-                $sql        = mysqli_query($conn, $query);
-                $result     = mysqli_fetch_array($sql);
-
-                $UserID     = $result['UserID'];
-                $FullName   = $result['FullName'];
-                $Email      = $result['Email'];
-
-                $query  = "INSERT INTO tbl_eventlog (EventLogTimeStamp, EventLogUser, EventLogData) 
-                                VALUES (NOW(), ?, 'Helping reset password')";
+                $query  = "SELECT Email FROM tbl_user WHERE Email = ? LIMIT 1";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("s", $FullName);
+                $stmt->bind_param("s", $Email);
                 $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($Email);
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $result[] = [
+                        'Email'  => $Email
+                    ];
+                }
 
                 if ($stmt->affected_rows > 0) {
                     try {
@@ -133,26 +131,25 @@ class ForgotPassword
                 $stmt->bind_param("sss", $ResetTokenHash, $ResetTokenExpired, $Email);
                 $stmt->execute();
 
-                $query      = "SELECT a.UserID, a.FullName, b.Email FROM tbl_profile a 
-                                LEFT OUTER JOIN tbl_user b ON a.UserID = b.UserID 
-                                WHERE b.Email = '$Email'";
-                $sql        = mysqli_query($conn, $query);
-                $result     = mysqli_fetch_array($sql);
-
-                $UserID     = $result['UserID'];
-                $FullName   = $result['FullName'];
-                $Email      = $result['Email'];
-
-                $query  = "INSERT INTO tbl_eventlog (EventLogTimeStamp, EventLogUser, EventLogData) 
-                                VALUES (NOW(), ?, '" . $FullName . " Request Reset Password')";
+                $query  = "SELECT Email FROM tbl_user WHERE Email = ? LIMIT 1";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("s", $FullName);
+                $stmt->bind_param("s", $Email);
                 $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($Email);
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $result[] = [
+                        'Email'  => $Email
+                    ];
+                }
 
                 if ($stmt->affected_rows > 0) {
                     try {
                         //Server settings
-                        // $mail->SMTPDebug    = SMTP::DEBUG_SERVER;                    // Enable verbose debug output
+                        // $mail->SMTPDebug    = SMTP::DEBUG_SERVER;                       // Enable verbose debug output
                         $mail->isSMTP();                                                // Send using SMTP
                         $mail->Host         = 'mail.dinamikaus.com';                    // Set the SMTP server to send through
                         $mail->SMTPAuth     = true;                                     // Enable SMTP authentication
@@ -172,7 +169,7 @@ class ForgotPassword
             
                         Please click the following link to reset your password
                         <br>
-                        <button class="btn btn-primary rounded-5"><a href="https://dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash" class="btn btn-primary">https://dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash</a></button>
+                        <button class="btn btn-primary rounded-5"><a href="https://dev.dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash" class="btn btn-primary">https://dev.dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash</a></button>
                         <br>
                         <br>
                         Do not give this information to anyone.
@@ -251,22 +248,6 @@ class ForgotPassword
                                 WHERE UserID = ?";
                 $stmt       = $conn->prepare($query);
                 $stmt->bind_param("si", $Password, $row['UserID']);
-                $stmt->execute();
-
-                $query      = "SELECT a.UserID, a.FullName, b.Email FROM tbl_profile a 
-                                LEFT OUTER JOIN tbl_user b ON a.UserID = b.UserID 
-                                WHERE a.UserID = '$row[UserID]'";
-                $sql        = mysqli_query($conn, $query);
-                $result     = mysqli_fetch_array($sql);
-
-                $UserID     = $result['UserID'];
-                $FullName   = $result['FullName'];
-                $Email      = $result['Email'];
-
-                $query  = "INSERT INTO tbl_eventlog (EventLogTimeStamp, EventLogUser, EventLogData) 
-                                VALUES (NOW(), ?, '" . $FullName . " Successfully reset password')";
-                $stmt   = $conn->prepare($query);
-                $stmt->bind_param("s", $FullName);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {

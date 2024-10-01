@@ -36,7 +36,7 @@ if ($_SESSION['RoleID'] !== 4) {
     <div class="container-xl">
         <div class="row row-deck row-cards">
             <div class="col-12">
-                <div class="card card-md rounded-5 shadow-lg">
+                <div class="card card-md shadow-lg rounded-5">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <h3 class="text-primary">Debug Tools&nbsp;:</h3>
@@ -49,7 +49,7 @@ if ($_SESSION['RoleID'] !== 4) {
                                                     <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger rounded-5 w-100" onclick="truncateEventLog();"><i class="fa-solid fa-gear"></i>&nbsp;Truncate Table Event Log</button>
+                                                    <button type="button" class="btn btn-outline-danger rounded-5 w-100" onclick="truncateEventLog();"><i class="fa-solid fa-gear"></i>&nbsp;Truncate Tbl Event Log</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -59,7 +59,7 @@ if ($_SESSION['RoleID'] !== 4) {
                                                     <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger rounded-5 w-100" onclick="truncateSystemLog();"><i class="fa-solid fa-gear"></i>&nbsp;Truncate Table System Log</button>
+                                                    <button type="button" class="btn btn-outline-danger rounded-5 w-100" onclick="truncateSystemLog();"><i class="fa-solid fa-gear"></i>&nbsp;Truncate Tbl Product Category</button>
                                                 </div>
                                             </form>
                                         </div>

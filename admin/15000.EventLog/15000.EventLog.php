@@ -15,7 +15,7 @@ require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/StatusClass.php');
 $Status = new Status();
 
-if ($_SESSION['RoleID'] !== 4) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
     echo    "You don't have access rights to this page";
     die;
 }
@@ -39,10 +39,9 @@ if ($_SESSION['RoleID'] !== 4) {
     <div class="container-xl">
         <div class="row row-deck row-cards">
             <div class="col-12">
-                <div class="card rounded-5">
+                <div class="card shadow-lg rounded-5">
                     <div class="card-body">
                         <form method="POST" autocomplete="off">
-
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group mb-4">
@@ -71,8 +70,8 @@ if ($_SESSION['RoleID'] !== 4) {
             </div>
 
             <div class="col-12">
-                <div class="card rounded-5">
-                    <div class="card-body border-bottom py-3">
+                <div class="card shadow-lg rounded-5">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>

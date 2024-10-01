@@ -22,8 +22,8 @@ class TruncateTable
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
-
-                $query  = "TRUNCATE TABLE $TableName";
+                
+                $query  = " TRUNCATE TABLE $TableName";
                 $stmt   = $conn->prepare($query);
                 $stmt->execute();
 

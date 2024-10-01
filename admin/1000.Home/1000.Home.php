@@ -46,8 +46,8 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                     <div class="row row-cards">
                                         <?= ShortcutUser(); ?>
                                         <?= ShortcutTeam(); ?>
-                                        <?= ShortcutProduct(); ?>
                                         <?= ShortcutProductCategory(); ?>
+                                        <?= ShortcutProduct(); ?>
                                     </div>
                                 </div>
 

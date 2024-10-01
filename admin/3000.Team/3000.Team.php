@@ -14,6 +14,11 @@ require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/StatusClass.php');
 $Status = new Status();
+
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    echo    "You don't have access rights to this page";
+    die;
+}
 ?>
 
 <!-- Page header -->
@@ -165,13 +170,14 @@ $Status = new Status();
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditTeamPhoto">Team Photo</label>
-                                <input type="file" class="form-control" name="EditTeamPhoto" id="EditTeamPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
-                                <input type="text" class="form-control" name="EditTeamPhotoBeforeConvert" id="EditTeamPhotoBeforeConvert" readonly required>
+                                <input type="file" class="form-control" name="EditTeamPhoto" id="EditTeamPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="hidden" class="form-control" name="EditTeamPhotoBeforeConvert" id="EditTeamPhotoBeforeConvert" readonly required>
                             </div>
 
                             <small class="text-danger">
                                 <ul>
                                     <li>Photo size must be 500 x 400 pixels</li>
+                                    <li>If you edit the data, re-enter the image.</li>
                                 </ul>
                             </small>
 
@@ -201,11 +207,11 @@ $Status = new Status();
     <div class="container-xl">
         <div class="row row-deck row-cards">
             <div class="col-12">
-                <div class="card rounded-5">
+                <div class="card shadow-lg rounded-5">
                     <div class="card-body">
                         <form method="POST">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="FilterStatusID">Status</label>
                                         <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID">
@@ -215,10 +221,16 @@ $Status = new Status();
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="FillterFullName">Full Name</label>
                                         <input type="text" class="form-control" name="FillterFullName" id="FillterFullName">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label" for="FilterPosition">Position</label>
+                                        <input type="text" class="form-control" name="FilterPosition" id="FilterPosition">
                                     </div>
                                 </div>
                             </div>
@@ -236,8 +248,8 @@ $Status = new Status();
             </div>
 
             <div class="col-12">
-                <div class="card rounded-5">
-                    <div class="card-body border-bottom py-3">
+                <div class="card shadow-lg rounded-5">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>

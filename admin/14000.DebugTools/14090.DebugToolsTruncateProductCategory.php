@@ -5,12 +5,12 @@ require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
-require_once($WebRootPath . '/includes/class/MetaClass.php');
+require_once($WebRootPath . '/includes/class/TruncateTableDatabseClass.php');
 
-if (strpos($_SERVER['HTTP_REFERER'], '13000.Meta.php') === FALSE) {
+if (strpos($_SERVER['HTTP_REFERER'], '14000.DebugTools.php') === FALSE) {
     echo    "<script>
                 alert('Invalid Caller');
-                document.location.href = '13000.Meta.php';
+                document.location.href = '14000.DebugTools.php';
             </script>";
     die;
 }
@@ -20,15 +20,11 @@ if ($_SESSION['RoleID'] !== 4) {
     die;
 }
 
-$MetaID     = filter_input(INPUT_POST, 'MetaID');
-$StatusID   = filter_input(INPUT_POST, 'StatusID');
-$Name       = filter_input(INPUT_POST, 'Name');
-$Content    = filter_input(INPUT_POST, 'Content');
+$TableName  = 'tbl_product_category';
 $GToken     = filter_input(INPUT_POST, 'GToken');
-$UpdateBy   = filter_input(INPUT_POST, 'UpdateBy');
 
 if ($GToken == !null) {
-    $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
+    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
@@ -43,11 +39,11 @@ if ($GToken == !null) {
 }
 
 try {
-    if (empty($MetaID) and empty($StatusID) and empty($CreateBy)) {
+    if (empty($TableName)) {
         throw new Exception("Error Processing Request");
     } else {
-        $Meta = new Meta();
-        $Meta->updateMeta($MetaID, $StatusID, $Name, $Content, $UpdateBy);
+        $TruncateTable = new TruncateTable();
+        $TruncateTable->truncateTable($TableName);
     }
 } catch (Exception $e) {
     echo 'Message: ' . $e->getMessage();

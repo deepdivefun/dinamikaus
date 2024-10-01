@@ -14,6 +14,11 @@ require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/MessageClass.php');
 $Message = new Message();
+
+if ($_SESSION['RoleID'] !== 4) {
+    echo    "You don't have access rights to this page";
+    die;
+}
 ?>
 
 <!-- Page header -->

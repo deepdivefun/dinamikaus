@@ -15,7 +15,7 @@ if (strpos($_SERVER['HTTP_REFERER'], '15000.EventLog.php') === FALSE) {
     die;
 }
 
-if ($_SESSION['RoleID'] !== 4) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
     echo    "You don't have access rights to this page";
     die;
 }

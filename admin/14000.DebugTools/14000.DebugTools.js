@@ -39,17 +39,17 @@ async function truncateSystemLog() {
   var GTOKEN = document.getElementById("GToken").value;
 
   let confirmDelete = prompt(
-    "Please input 'DELETE SYSTEM LOG' to confirm delete",
+    "Please input 'DELETE PRODUCT CATEGORY' to confirm delete",
     ""
   );
 
-  if (confirmDelete !== "DELETE SYSTEM LOG") {
+  if (confirmDelete !== "DELETE PRODUCT CATEGORY") {
     alert("Delete Cancel");
     return;
   } else {
     $.ajax({
       type: "POST",
-      url: "14090.DebugToolsTruncateSystemLog.php?id=" + Math.random(),
+      url: "14090.DebugToolsTruncateProductCategory.php?id=" + Math.random(),
       data: {
         GToken: GTOKEN,
       },

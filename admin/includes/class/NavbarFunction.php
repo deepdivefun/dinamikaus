@@ -14,7 +14,7 @@ function Home()
 
 function Management()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 1 and $_SESSION['RoleID'] !== 2) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
         echo '';
     } else {
         echo '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -41,7 +41,7 @@ function User()
 
 function Team()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '3000.Team/3000.Team.php">
@@ -53,28 +53,40 @@ function Team()
 
 function ProductManagement()
 {
-    return '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <i class="fa-solid fa-box"></i>
-                </span>
-                <span class="nav-link-title">
-                    Product Management
-                </span>
-            </a>';
-}
-
-function Product()
-{
-    return '<a class=" dropdown-item" href="' . WebRootPath() . '">
-                Product
-            </a>';
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <i class="fa-solid fa-box"></i>
+                    </span>
+                    <span class="nav-link-title">
+                        Product Management
+                    </span>
+                </a>';
+    }
 }
 
 function ProductCategory()
 {
-    return '<a class=" dropdown-item" href="' . WebRootPath() . '">
-                Product
-            </a>';
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<a class=" dropdown-item" href="' . WebRootPath() . '4000.ProductCategory/4000.ProductCategory.php">
+                    Product Category
+                </a>';
+    }
+}
+
+function Product()
+{
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<a class=" dropdown-item" href="' . WebRootPath() . '5000.Product/5000.Product.php">
+                    Product
+                </a>';
+    }
 }
 
 function Testimonials()
@@ -95,14 +107,18 @@ function Testimonials()
 
 function Messages()
 {
-    return '<a class="nav-link" href="' . WebRootPath() . '">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <i class="fa-solid fa-message"></i>
-                </span>
-                <span class="nav-link-title">
-                    Messages
-                </span>
-            </a>';
+    if ($_SESSION['RoleID'] !== 4) {
+        echo    '';
+    } else {
+        echo    '<a class="nav-link" href="' . WebRootPath() . '">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <i class="fa-solid fa-message"></i>
+                    </span>
+                    <span class="nav-link-title">
+                        Messages
+                    </span>
+                </a>';
+    }
 }
 
 function Tools()
@@ -167,7 +183,7 @@ function Settings()
 
 function MetaTagSEO()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if ($_SESSION['RoleID'] !== 4) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '13000.Meta/13000.Meta.php">

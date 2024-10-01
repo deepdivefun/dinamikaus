@@ -5,46 +5,46 @@ require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
-require_once($WebRootPath . '/includes/class/TeamClass.php');
+require_once($WebRootPath . '/includes/class/ProductCategoryClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
 
-if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
+if (strpos($_SERVER['HTTP_REFERER'], '4000.ProductCategory.php') === FALSE) {
     echo    "<script>
                 alert('Invalid Caller');
-                document.location.href = '3000.Team.php';
+                document.location.href = '4000.ProductCategory.php';
             </script>";
     die;
 }
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
     echo    "You don't have access rights to this page";
     die;
 }
 
-$TeamID     = filter_input(INPUT_POST, 'TeamID');
+$ProductCategoryID  = filter_input(INPUT_POST, 'ProductCategoryID');
 
-$query      = "SELECT FullName FROM tbl_team WHERE TeamID = ? LIMIT 1";
-$stmt       = $conn->prepare($query);
-$stmt->bind_param("i", $TeamID);
+$query              = "SELECT ProductCategoryName FROM tbl_product_category WHERE ProductCategoryID = ? LIMIT 1";
+$stmt               = $conn->prepare($query);
+$stmt->bind_param("i", $ProductCategoryID);
 $stmt->execute();
 $stmt->store_result();
-$stmt->bind_result($FullName);
+$stmt->bind_result($ProductCategoryName);
 
 $result = [];
 
 while ($stmt->fetch()) {
     $result[] = [
-        'FullName'  => $FullName
+        'ProductCategoryName'  => $ProductCategoryName
     ];
 }
 
 $StatusID       = 2;
 $UpdateBy       = $_SESSION['Username'];
 $EventLogUser   = $UpdateBy;
-$EventLogData   = 'Delete Team ' . $FullName;
+$EventLogData   = 'Delete Product Category ' . $ProductCategoryName;
 
 try {
-    if (empty($TeamID) and empty($StatusID) and empty($UpdateBy)) {
+    if (empty($ProductCategoryID) and empty($StatusID) and empty($UpdateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();
@@ -53,9 +53,9 @@ try {
             $EventLogData
         );
 
-        $Team = new Team();
-        $Team->deleteTeam(
-            $TeamID,
+        $ProductCategory = new ProductCategory();
+        $ProductCategory->deleteProductCategory(
+            $ProductCategoryID,
             $StatusID,
             $UpdateBy
         );
