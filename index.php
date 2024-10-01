@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 class='text-sm'>Hello Dinamika US</h1>
-</body>
-=======
 
 <head>
     <meta charset="UTF-8">
@@ -40,5 +30,4 @@
     <script src="assets/js/main.js"></script>
 </body>
 
->>>>>>> 8bd2297d9986ab3888a0661cbd9de2a642e9a8ce
 </html>
