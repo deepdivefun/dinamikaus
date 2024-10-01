@@ -51,7 +51,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                         <form method="POST">
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="ProductCategoryID">Product Category Name</label>
+                                <label class="form-label" for="ProductCategoryID">Product Category</label>
                                 <select class="form-control form-select" name="ProductCategoryID" id="ProductCategoryID" required>
                                     <option disabled selected value>Select Product Category</option>
                                     <?php foreach ($ProductCategory->fetchProductCategory() as $row) : ?>
@@ -80,19 +80,9 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                                 <textarea class="form-control" name="ProductDescription" id="ProductDescription" rows="8" required></textarea>
                             </div>
 
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="ProductPhoto">Product Photo</label>
-                                        <input type="file" class="form-control" name="ProductPhoto" id="ProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="ProductCatalog">Product Catalog</label>
-                                        <input type="file" class="form-control" name="ProductCatalog" id="ProductCatalog" accept=".pdf" required>
-                                    </div>
-                                </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="ProductPhoto">Product Photo</label>
+                                <input type="file" class="form-control" name="ProductPhoto" id="ProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
                             </div>
 
                             <small class="text-danger">
