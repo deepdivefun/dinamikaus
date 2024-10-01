@@ -46,7 +46,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="StatusID">Status</label>
@@ -61,6 +61,11 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ProductCategoryName">Product Category Name</label>
                                 <input type="text" class="form-control" name="ProductCategoryName" id="ProductCategoryName" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="ProductCategoryCatalog">Product Category Catalog</label>
+                                <input type="file" class="form-control" name="ProductCategoryCatalog" id="ProductCategoryCatalog" accept=".pdf" required>
                             </div>
 
                             <div class="form-group">
@@ -166,6 +171,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                                 <thead>
                                     <tr>
                                         <th>Product Category Name</th>
+                                        <th>Product Category Catalog</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

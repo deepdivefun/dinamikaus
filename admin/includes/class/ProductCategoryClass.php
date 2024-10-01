@@ -3,8 +3,8 @@ require_once('ConnectionClass.php');
 
 class ProductCategory
 {
-    public $ProductCategoryID, $StatusID, $ProductCategoryName, $CreateBy, $CreateTime, $UpdateBy,
-        $UpdateTime;
+    public $ProductCategoryID, $StatusID, $ProductCategoryName, $ProductCategoryCatalog, $CreateBy,
+        $CreateTime, $UpdateBy, $UpdateTime;
 
     private $conn;
 
