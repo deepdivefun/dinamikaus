@@ -107,6 +107,12 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                                 <input type="text" class="form-control" name="EditProductCategoryName" id="EditProductCategoryName" required>
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditProductCategoryCatalog">Product Category Catalog</label>
+                                <input type="file" class="form-control" name="EditProductCategoryCatalog" id="EditProductCategoryCatalog" accept=".pdf" required>
+                                <input type="hidden" class="form-control" name="EditProductCategoryCatalogBeforeConvert" id="EditProductCategoryCatalogBeforeConvert" readonly required>
+                            </div>
+
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="EditProductCategoryID" id="EditProductCategoryID" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
@@ -118,6 +124,35 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                                 <button type="button" class="btn btn-outline-primary rounded-5" onclick="updateProductCategory();">Save</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Modal -->
+        <div class="modal fade" id="viewPDF" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="staticBackdropLabel">View PDF Product Category</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">PDF Product Category</label>
+                            <div id="ReadPDFProductCategory"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="ReadProductCategoryID" id="ReadProductCategoryID" readonly required>
+                            <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger rounded-5" data-bs-dismiss="modal">Close</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
