@@ -43,7 +43,7 @@ class ProductCategory
         $conn->close();
     }
 
-    public function createProductCategory($StatusID, $ProductCategoryName, $CreateBy)
+    public function createProductCategory($StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $CreateBy)
     {
         global $conn;
 
@@ -53,10 +53,10 @@ class ProductCategory
             } else {
                 $conn->begin_transaction();
 
-                $query  = "INSERT INTO tbl_product_category (StatusID, ProductCategoryName, CreateBy) 
-                            VALUES (?, ?, ?)";
+                $query  = "INSERT INTO tbl_product_category (StatusID, ProductCategoryName, ProductCategoryCatalog, CreateBy) 
+                            VALUES (?, ?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("iss", $StatusID, $ProductCategoryName, $CreateBy);
+                $stmt->bind_param("isss", $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
@@ -73,7 +73,7 @@ class ProductCategory
         }
     }
 
-    public function updateProductCategory($ProductCategoryID, $StatusID, $ProductCategoryName, $UpdateBy)
+    public function updateProductCategory($ProductCategoryID, $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $UpdateBy)
     {
         global $conn;
 
@@ -86,11 +86,12 @@ class ProductCategory
                 $query  = "UPDATE tbl_product_category SET 
                             StatusID = ?,
                             ProductCategoryName = ?,
+                            ProductCategoryCatalog = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW() 
                             WHERE ProductCategoryID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("issi", $StatusID, $ProductCategoryName, $UpdateBy, $ProductCategoryID);
+                $stmt->bind_param("isssi", $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $UpdateBy, $ProductCategoryID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {

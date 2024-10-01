@@ -21,15 +21,26 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
     die;
 }
 
-$ProductCategoryID      = filter_input(INPUT_POST, 'ProductCategoryID');
-$StatusID               = filter_input(INPUT_POST, 'StatusID');
-$ProductCategoryName    = filter_input(INPUT_POST, 'ProductCategoryName');
-$UpdateBy               = filter_input(INPUT_POST, 'UpdateBy');
-$EventLogUser           = $UpdateBy;
-$EventLogData           = 'Update Product Category ' . $ProductCategoryName;
-$GToken                 = filter_input(INPUT_POST, 'GToken');
+$ProductCategoryID                      = filter_input(INPUT_POST, 'ProductCategoryID');
+$ProductCategoryCatalogBeforeConvert    = filter_input(INPUT_POST, 'ProductCategoryCatalogBeforeConvert');
+if (file_exists("../assets/file/productcatalog/$ProductCategoryCatalogBeforeConvert")) {
+    unlink("../assets/file/productcatalog/$ProductCategoryCatalogBeforeConvert");
+}
+$StatusID                               = filter_input(INPUT_POST, 'StatusID');
+$ProductCategoryName                    = filter_input(INPUT_POST, 'ProductCategoryName');
 
-if ($GToken == !null) {
+$ProductCategoryCatalog                 = $_FILES['ProductCategoryCatalog']['name'];
+$Dir                                    = "../assets/file/productcatalog/";
+$File                                   = $_FILES['ProductCategoryCatalog']['tmp_name'];
+$ProductCategoryCatalogConvert          =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryCatalog;
+move_uploaded_file($File, $Dir . $ProductCategoryCatalogConvert);
+
+$UpdateBy                               = filter_input(INPUT_POST, 'UpdateBy');
+$EventLogUser                           = $UpdateBy;
+$EventLogData                           = 'Update Product Category ' . $ProductCategoryName;
+$GToken                                 = filter_input(INPUT_POST, 'GToken');
+
+if ($GToken != null) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
@@ -38,7 +49,7 @@ if ($GToken == !null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success === 0) {
+    if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
         die;
     }
@@ -59,6 +70,7 @@ try {
             $ProductCategoryID,
             $StatusID,
             $ProductCategoryName,
+            $ProductCategoryCatalogConvert,
             $UpdateBy
         );
     }
