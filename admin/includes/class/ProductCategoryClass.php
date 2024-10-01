@@ -16,6 +16,33 @@ class ProductCategory
         return $this->conn;
     }
 
+    public function fetchProductCategory($StatusID = 1)
+    {
+        global $conn;
+
+        $query  = "SELECT ProductCategoryID, StatusID, ProductCategoryName FROM tbl_product_category 
+                    WHERE StatusID = ?";
+        $stmt   = $conn->prepare($query);
+        $stmt->bind_param("i", $StatusID);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($ProductCategoryID, $StatusID, $ProductCategoryName);
+        $result = [];
+
+        while ($stmt->fetch()) {
+            $conn->commit();
+            $result[] = [
+                'ProductCategoryID'     => $ProductCategoryID,
+                'StatusID'              => $StatusID,
+                'ProductCategoryName'   => $ProductCategoryName
+            ];
+        }
+
+        return $result;
+        $stmt->close();
+        $conn->close();
+    }
+
     public function createProductCategory($StatusID, $ProductCategoryName, $CreateBy)
     {
         global $conn;
