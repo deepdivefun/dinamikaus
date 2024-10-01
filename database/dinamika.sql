@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2024 at 08:24 AM
+-- Generation Time: Oct 01, 2024 at 01:40 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,26 +34,6 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_eventlog`
---
-
-INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
-(1, '2024-09-30 11:47:27', 'kevinarlo', 'kevinarlo is logged in'),
-(2, '2024-09-30 11:47:45', 'kevinarlo', 'kevinarlo has logged out'),
-(3, '2024-09-30 12:20:08', 'kevinarlo', 'kevinarlo is logged in'),
-(4, '2024-09-30 12:39:07', 'kevinarlo', 'kevinarlo has logged out'),
-(5, '2024-09-30 12:48:00', 'kevinarlo', 'kevinarlo is logged in'),
-(6, '2024-09-30 13:21:22', 'kevinarlo', 'kevinarlo is logged in'),
-(7, '2024-09-30 13:21:30', 'kevinarlo', 'Create Product Category Test Category'),
-(8, '2024-09-30 13:34:21', 'kevinarlo', 'Update Product Category Test'),
-(9, '2024-09-30 13:34:50', 'kevinarlo', 'Update Product Category Test'),
-(10, '2024-09-30 13:37:00', 'kevinarlo', 'Create Product Category Test Category'),
-(11, '2024-09-30 13:49:41', 'kevinarlo', 'Delete Product Category Test Category'),
-(12, '2024-09-30 13:49:50', 'kevinarlo', 'Active Product Category Test Category'),
-(13, '2024-09-30 14:20:16', 'kevinarlo', 'kevinarlo has logged out'),
-(14, '2024-10-01 05:52:14', 'kevinarlo', 'kevinarlo is logged in');
-
 -- --------------------------------------------------------
 
 --
@@ -67,12 +47,18 @@ CREATE TABLE `tbl_product` (
   `ProductName` text NOT NULL,
   `ProductDescription` text DEFAULT NULL,
   `ProductPhoto` varchar(255) NOT NULL,
-  `ProductCatalog` varchar(255) NOT NULL,
   `CreateBy` varchar(20) DEFAULT NULL,
   `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`ProductID`, `ProductCategoryID`, `StatusID`, `ProductName`, `ProductDescription`, `ProductPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 2, 1, 'Asus', 'TEST\r\nTEST\r\nTEST\r\nTEST\r\nTEST', '66fbdb3555483-2024-10-01-logo.png', 'kevinarlo', '2024-10-01 11:21:25', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -84,6 +70,7 @@ CREATE TABLE `tbl_product_category` (
   `ProductCategoryID` int(11) NOT NULL,
   `StatusID` int(11) NOT NULL,
   `ProductCategoryName` text NOT NULL,
+  `ProductCategoryCatalog` varchar(255) DEFAULT NULL,
   `CreateBy` varchar(20) DEFAULT NULL,
   `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdateBy` varchar(20) DEFAULT NULL,
@@ -94,8 +81,9 @@ CREATE TABLE `tbl_product_category` (
 -- Dumping data for table `tbl_product_category`
 --
 
-INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Test Category', 'kevinarlo', '2024-09-30 13:37:00', 'kevinarlo', '2024-09-30 13:49:50');
+INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `ProductCategoryCatalog`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Test Category', NULL, 'kevinarlo', '2024-09-30 13:37:00', 'kevinarlo', '2024-09-30 13:49:50'),
+(2, 1, 'Computer', '66fbcc24ece33-2024-10-01-petunjuk.pdf', 'kevinarlo', '2024-10-01 09:58:53', 'kevinarlo', '2024-10-01 11:05:38');
 
 -- --------------------------------------------------------
 
@@ -224,7 +212,7 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`UserID`, `RoleID`, `StatusID`, `Username`, `Password`, `Email`, `FullName`, `ResetTokenHash`, `ResetTokenExpired`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 4, 1, 'kevinarlo', '$2y$10$bcpx4sFLRiYLouYH5DU6LeAWHEjuDm76JoA8j.a3SB57Gca5I9Y/q', 'kevinarlo29@gmail.com', 'Kevin Arlo', NULL, NULL, 'kevinarlo', '2024-03-12 17:40:23', 'kevinarlo', '2024-09-28 09:14:36'),
-(2, 3, 1, 'bestian', '$2y$10$XxTEiAQLio3L9Dq3faUPQuity9alJ4vxbfMTGhKU1Q/VsuPP4ZahG', 'appadmin@gmail.com', 'Bestian', NULL, NULL, 'kevinarlo', '2024-03-14 14:57:30', 'kevinarlo', '2024-09-30 09:50:48'),
+(2, 3, 1, 'bestian', '$2y$10$5Wa/NTbMdqKdxirFlhbZL.sUqtPMhTKB5u8d0xpI2Ik0ZrDX/B3p2', 'bestian@dinamikaus.com', 'Bestian', NULL, NULL, 'kevinarlo', '2024-03-14 14:57:30', 'kevinarlo', '2024-10-01 11:39:01'),
 (3, 1, 1, 'staff', '$2y$10$W9sc3kX3V9VEcGC8yjGuxeyfgbMBVobHTLgbSenN25D9jS8hDnt8u', 'staff@gmail.com', 'Staff', NULL, NULL, 'kevinarlo', '2024-09-28 14:59:28', 'kevinarlo', '2024-09-28 15:02:14');
 
 --
@@ -300,19 +288,19 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_category`
 --
 ALTER TABLE `tbl_product_category`
-  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`
