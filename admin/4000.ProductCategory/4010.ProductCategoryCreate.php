@@ -21,14 +21,21 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
     die;
 }
 
-$StatusID               = filter_input(INPUT_POST, 'StatusID');
-$ProductCategoryName    = filter_input(INPUT_POST, 'ProductCategoryName');
-$CreateBy               = filter_input(INPUT_POST, 'CreateBy');
-$EventLogUser           = $CreateBy;
-$EventLogData           = 'Create Product Category ' . $ProductCategoryName;
-$GToken                 = filter_input(INPUT_POST, 'GToken');
+$StatusID                       = filter_input(INPUT_POST, 'StatusID');
+$ProductCategoryName            = filter_input(INPUT_POST, 'ProductCategoryName');
 
-if ($GToken == !null) {
+$ProductCategoryCatalog         = $_FILES['ProductCategoryCatalog']['name'];
+$Dir                            = "../assets/file/productcatalog/";
+$File                           = $_FILES['ProductCategoryCatalog']['tmp_name'];
+$ProductCategoryCatalogConvert  =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryCatalog;
+move_uploaded_file($File, $Dir . $ProductCategoryCatalogConvert);
+
+$CreateBy                       = filter_input(INPUT_POST, 'CreateBy');
+$EventLogUser                   = $CreateBy;
+$EventLogData                   = 'Create Product Category ' . $ProductCategoryName;
+$GToken                         = filter_input(INPUT_POST, 'GToken');
+
+if ($GToken != null) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
@@ -37,7 +44,7 @@ if ($GToken == !null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success === 0) {
+    if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
         die;
     }
@@ -57,6 +64,7 @@ try {
         $ProductCategory->createProductCategory(
             $StatusID,
             $ProductCategoryName,
+            $ProductCategoryCatalogConvert,
             $CreateBy
         );
     }

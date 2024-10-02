@@ -50,12 +50,19 @@ async function fetch_data() {
 }
 
 async function createProductCategory() {
-  var STATUSID = document.getElementById("StatusID").value;
-  var PRODUCTCATEGORYNAME = document.getElementById(
-    "ProductCategoryName"
-  ).value;
-  var CREATEBY = document.getElementById("CreateBy").value;
-  var GTOKEN = document.getElementById("GToken").value;
+  var FD = new FormData();
+
+  var STATUSID = $("#StatusID").val();
+  var PRODUCTCATEGORYNAME = $("#ProductCategoryName").val();
+  var PRODUCTCATEGORYCATALOG = $("#ProductCategoryCatalog")[0].files[0];
+  var CREATEBY = $("#CreateBy").val();
+  var GTOKEN = $("#GToken").val();
+
+  FD.append("StatusID", STATUSID);
+  FD.append("ProductCategoryName", PRODUCTCATEGORYNAME);
+  FD.append("ProductCategoryCatalog", PRODUCTCATEGORYCATALOG);
+  FD.append("CreateBy", CREATEBY);
+  FD.append("GToken", GTOKEN);
 
   if (STATUSID == "") {
     alert("Please select Status");
@@ -70,12 +77,9 @@ async function createProductCategory() {
   $.ajax({
     type: "POST",
     url: "4010.ProductCategoryCreate.php?id=" + Math.random(),
-    data: {
-      StatusID: STATUSID,
-      ProductCategoryName: PRODUCTCATEGORYNAME,
-      CreateBy: CREATEBY,
-      GToken: GTOKEN,
-    },
+    data: FD,
+    contentType: false,
+    processData: false,
     success: function (data) {
       try {
         data = data.trim();
@@ -101,25 +105,39 @@ $(document).on("click", ".editProductCategory", function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   var STATUSID = $(this).attr("StatusID");
   var PRODUCTCATEGORYNAME = $(this).attr("ProductCategoryName");
+  var PRODUCTCATEGORYCATALOG = $(this).attr("ProductCategoryCatalog");
 
-  document.getElementById("EditProductCategoryID").value = PRODUCTCATEGORYID;
-  document.getElementById("EditStatusID").value = STATUSID;
-  document.getElementById("EditProductCategoryName").value =
-    PRODUCTCATEGORYNAME;
+  $("#EditProductCategoryID").val(PRODUCTCATEGORYID);
+  $("#EditStatusID").val(STATUSID);
+  $("#EditProductCategoryName").val(PRODUCTCATEGORYNAME);
+  $("#EditProductCategoryCatalogBeforeConvert").val(PRODUCTCATEGORYCATALOG);
 
   $("#editProductCategory").modal("show");
 });
 
 async function updateProductCategory() {
-  var PRODUCTCATEGORYID = document.getElementById(
-    "EditProductCategoryID"
-  ).value;
-  var STATUSID = document.getElementById("EditStatusID").value;
-  var PRODUCTCATEGORYNAME = document.getElementById(
-    "EditProductCategoryName"
-  ).value;
-  var UPDATEBY = document.getElementById("UpdateBy").value;
-  var GTOKEN = document.getElementById("GToken").value;
+  var FD = new FormData();
+
+  var PRODUCTCATEGORYID = $("#EditProductCategoryID").val();
+  var STATUSID = $("#EditStatusID").val();
+  var PRODUCTCATEGORYNAME = $("#EditProductCategoryName").val();
+  var PRODUCTCATEGORYCATALOG = $("#EditProductCategoryCatalog")[0].files[0];
+  var PRODUCTCATEGORYCATALOGBEFORECONVERT = $(
+    "#EditProductCategoryCatalogBeforeConvert"
+  ).val();
+  var UPDATEBY = $("#UpdateBy").val();
+  var GTOKEN = $("#GToken").val();
+
+  FD.append("ProductCategoryID", PRODUCTCATEGORYID);
+  FD.append("StatusID", STATUSID);
+  FD.append("ProductCategoryName", PRODUCTCATEGORYNAME);
+  FD.append("ProductCategoryCatalog", PRODUCTCATEGORYCATALOG);
+  FD.append(
+    "ProductCategoryCatalogBeforeConvert",
+    PRODUCTCATEGORYCATALOGBEFORECONVERT
+  );
+  FD.append("UpdateBy", UPDATEBY);
+  FD.append("GToken", GTOKEN);
 
   if (PRODUCTCATEGORYID == "") {
     alert("ProductCategoryID Undefined");
@@ -139,13 +157,9 @@ async function updateProductCategory() {
   $.ajax({
     type: "POST",
     url: "4030.ProductCategoryUpdate.php?id=" + Math.random(),
-    data: {
-      ProductCategoryID: PRODUCTCATEGORYID,
-      StatusID: STATUSID,
-      ProductCategoryName: PRODUCTCATEGORYNAME,
-      UpdateBy: UPDATEBY,
-      GToken: GTOKEN,
-    },
+    data: FD,
+    contentType: false,
+    processData: false,
     success: function (data) {
       try {
         data = data.trim();
@@ -158,7 +172,7 @@ async function updateProductCategory() {
         alert(err.message);
       }
       fetch_data();
-      $("#editUser").modal("hide");
+      $("#editProductCategory").modal("hide");
       location.reload();
     },
     error: function () {
@@ -235,6 +249,24 @@ $(document).on("click", ".activeProductCategory", function () {
       },
     });
   }
+});
+
+$(document).on("click", ".viewPDF", function () {
+  var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
+  var PRODUCTCATEGORYCATALOG = $(this).attr("ProductCategoryCatalog");
+
+  document.getElementById("ReadProductCategoryID").value = PRODUCTCATEGORYID;
+  document.getElementById("ReadPDFProductCategory");
+
+  const ReadPDFProductCategory = document.getElementById(
+    "ReadPDFProductCategory"
+  );
+  ReadPDFProductCategory.innerHTML =
+    "<iframe src='../assets/file/productcatalog/" +
+    PRODUCTCATEGORYCATALOG +
+    "'style='width:100%;height:100%;text-align:center;'>";
+
+  $("#viewPDF").modal("show");
 });
 
 $(document).on("click", ".debugProductCategory", function () {

@@ -77,11 +77,13 @@ try {
                 $StatusName = "<span ProductCategoryID='$ProductCategoryID' StatusID='$StatusID' class='badge rounded-pill text-bg-danger mx-1'>$StatusName</span>";
             }
 
-            // if ($ProductCategoryCatalog != null) {
-            //     $ProductCategoryCatalog = "<span ProductCategoryID='$ProductCategoryID' ProductCategoryCatalog='$ProductCategoryCatalog' class='badge rounded-pill text-bg-success'><i class='fa-solid fa-circle-check'></i></span>";
-            // } else {
-            //     $ProductCategoryCatalog = "<span ProductCategoryID='$ProductCategoryID' ProductCategoryCatalog='$ProductCategoryCatalog' class='badge rounded-pill text-bg-danger'><i class='fa-solid fa-circle-xmark'></i></span>";
-            // }
+            $ProductCategoryCatalogIcon = $ProductCategoryCatalog;
+
+            if ($ProductCategoryCatalogIcon != null) {
+                $ProductCategoryCatalogIcon = "<span ProductCategoryID='$ProductCategoryID' class='badge rounded-pill text-bg-success viewPDF' title='PDF Found' ProductCategoryCatalog='$ProductCategoryCatalog'><i class='fa-solid fa-file-pdf'></i></span>";
+            } else {
+                $ProductCategoryCatalogIcon = "<span ProductCategoryID='$ProductCategoryID' class='badge rounded-pill text-bg-danger' title='PDF Not Found'><i class='fa-solid fa-file-pdf'></i></span>";
+            }
 
             if ($StatusID == 1) {
                 $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProductCategory' title='EDIT' ProductCategoryID='$ProductCategoryID' StatusID='$StatusID' ProductCategoryName='$ProductCategoryName' ProductCategoryCatalog='$ProductCategoryCatalog' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
@@ -99,7 +101,7 @@ try {
                 }
             }
 
-            $JSONData .= '["' . $ProductCategoryName . '", "' . $ProductCategoryCatalog . '", "' . $StatusName . '", "' . $Button . '"]';
+            $JSONData .= '["' . $ProductCategoryName . '", "' . $ProductCategoryCatalogIcon . '", "' . $StatusName . '", "' . $Button . '"]';
         }
 
         if ($JSONData == null) {
