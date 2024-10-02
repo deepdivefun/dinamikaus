@@ -5,17 +5,18 @@ require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
-require_once($WebRootPath . '/includes/class/TestimonialsClass.php');
+require_once($WebRootPath . '/includes/class/TestimonialClass.php');
+require_once($WebRootPath . '/includes/class/EventLogClass.php');
 
-if (strpos($_SERVER['HTTP_REFERER'], '5000.Testimonials.php') === FALSE) {
+if (strpos($_SERVER['HTTP_REFERER'], '6000.Testimonial.php') === FALSE) {
     echo    "<script>
                 alert('Invalid Caller');
-                document.location.href = '5000.Testimonials.php';
+                document.location.href = '6000.Testimonial.php';
             </script>";
     die;
 }
 
-if ($_SESSION['RoleID'] !== 4) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
     echo    "You don't have access rights to this page";
     die;
 }
@@ -27,8 +28,8 @@ $TestimonialsRatings    = filter_input(INPUT_POST, 'TestimonialsRatings');
 $GToken                 = filter_input(INPUT_POST, 'GToken');
 $CreateBy               = filter_input(INPUT_POST, 'CreateBy');
 
-if ($GToken == !null) {
-    $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
+if ($GToken != null) {
+    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
@@ -36,7 +37,7 @@ if ($GToken == !null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success === 0) {
+    if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
         die;
     }

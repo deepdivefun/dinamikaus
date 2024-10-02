@@ -111,13 +111,13 @@ function ShortcutProduct()
     }
 }
 
-function ShortcutTestimonials()
+function ShortcutTestimonial()
 {
     if ($_SESSION['RoleID'] !== 4) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '">
+                    <a href="' . WebRootPath() . '6000.Testimonial/6000.Testimonial.php">
                         <div class="card card-sm rounded-5">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -128,7 +128,7 @@ function ShortcutTestimonials()
                                     </div>
                                     <div class="col">
                                         <div class="fw-bold text-wrap">
-                                            Testimonials
+                                            Testimonial
                                         </div>
                                     </div>
                                 </div>

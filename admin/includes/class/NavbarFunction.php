@@ -89,17 +89,17 @@ function Product()
     }
 }
 
-function Testimonials()
+function Testimonial()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
         echo    '';
     } else {
-        echo    '<a class="nav-link" href="' . WebRootPath() . '">
+        echo    '<a class="nav-link" href="' . WebRootPath() . '6000.Testimonial/6000.Testimonial.php">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <i class="fas fa-star"></i>
                     </span>
                     <span class="nav-link-title">
-                        Testimonials
+                        Testimonial
                     </span>
                 </a>';
     };
@@ -161,7 +161,7 @@ function DebugTools()
 
 function ResetPasswordTools()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '14000.DebugTools/14100.DebugToolsResetPassword.php">
