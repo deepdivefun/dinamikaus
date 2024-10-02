@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2024 at 12:42 PM
+-- Generation Time: Oct 02, 2024 at 02:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,23 +34,37 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tbl_eventlog`
+-- Table structure for table `tbl_meta`
 --
 
-INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
-(1, '2024-10-02 09:37:32', 'kevinarlo', 'kevinarlo is logged in'),
-(2, '2024-10-02 09:38:01', 'kevinarlo', 'Create Product ASUS'),
-(3, '2024-10-02 10:16:19', 'kevinarlo', 'Update Product ASUS'),
-(4, '2024-10-02 10:21:21', 'kevinarlo', 'Create Product ASUS'),
-(5, '2024-10-02 10:21:40', 'kevinarlo', 'Create Product ACER'),
-(6, '2024-10-02 10:23:19', 'kevinarlo', 'Update Product ASUS'),
-(7, '2024-10-02 10:24:01', 'kevinarlo', 'Update Product ASUS'),
-(8, '2024-10-02 10:25:25', 'kevinarlo', 'Update Product ASUS'),
-(9, '2024-10-02 10:35:50', 'kevinarlo', 'Delete Product ACER'),
-(10, '2024-10-02 10:38:14', 'kevinarlo', 'Active Product ACER'),
-(11, '2024-10-02 10:38:35', 'kevinarlo', 'Delete Product ACER'),
-(12, '2024-10-02 10:38:42', 'kevinarlo', 'Active Product ACER');
+CREATE TABLE `tbl_meta` (
+  `MetaID` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `Name` text DEFAULT NULL,
+  `Content` text DEFAULT NULL,
+  `CreateBy` varchar(20) DEFAULT NULL,
+  `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdateBy` varchar(20) DEFAULT NULL,
+  `UpdateTime` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_meta`
+--
+
+INSERT INTO `tbl_meta` (`MetaID`, `StatusID`, `Name`, `Content`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'author', 'Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:33:09', NULL, NULL),
+(2, 1, 'description', '', 'kevinarlo', '2024-10-02 11:35:48', NULL, NULL),
+(3, 1, 'robots', 'index, follow', 'kevinarlo', '2024-10-02 11:36:13', NULL, NULL),
+(4, 1, 'googlebot', 'index, follow', 'kevinarlo', '2024-10-02 11:36:37', NULL, NULL),
+(5, 1, 'googlebot-news', 'nosnippet', 'kevinarlo', '2024-10-02 11:36:58', NULL, NULL),
+(6, 1, 'google-site-verification', '', 'kevinarlo', '2024-10-02 11:37:13', NULL, NULL),
+(7, 1, 'keywords', '', 'kevinarlo', '2024-10-02 11:37:25', NULL, NULL),
+(8, 1, 'Title Tags', 'Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:37:49', NULL, NULL),
+(9, 1, 'viewport', 'width=device-width, initial-scale=1.0', 'kevinarlo', '2024-10-02 11:38:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -87,14 +101,6 @@ CREATE TABLE `tbl_product_category` (
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_product_category`
---
-
-INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `ProductCategoryCatalog`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Test Category', NULL, 'kevinarlo', '2024-09-30 13:37:00', 'kevinarlo', '2024-09-30 13:49:50'),
-(2, 1, 'Computer', '66fbcc24ece33-2024-10-01-petunjuk.pdf', 'kevinarlo', '2024-10-01 09:58:53', 'kevinarlo', '2024-10-01 11:05:38');
 
 -- --------------------------------------------------------
 
@@ -237,6 +243,13 @@ ALTER TABLE `tbl_eventlog`
   ADD PRIMARY KEY (`EventLogID`);
 
 --
+-- Indexes for table `tbl_meta`
+--
+ALTER TABLE `tbl_meta`
+  ADD PRIMARY KEY (`MetaID`),
+  ADD KEY `StatusID` (`StatusID`);
+
+--
 -- Indexes for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
@@ -299,7 +312,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_meta`
+--
+ALTER TABLE `tbl_meta`
+  MODIFY `MetaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
@@ -311,7 +330,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT for table `tbl_product_category`
 --
 ALTER TABLE `tbl_product_category`
-  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`
@@ -352,6 +371,12 @@ ALTER TABLE `tbl_user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tbl_meta`
+--
+ALTER TABLE `tbl_meta`
+  ADD CONSTRAINT `tbl_meta_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
 
 --
 -- Constraints for table `tbl_product`
