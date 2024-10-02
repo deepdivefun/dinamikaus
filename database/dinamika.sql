@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2024 at 01:40 PM
+-- Generation Time: Oct 02, 2024 at 12:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,24 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_eventlog`
+--
+
+INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
+(1, '2024-10-02 09:37:32', 'kevinarlo', 'kevinarlo is logged in'),
+(2, '2024-10-02 09:38:01', 'kevinarlo', 'Create Product ASUS'),
+(3, '2024-10-02 10:16:19', 'kevinarlo', 'Update Product ASUS'),
+(4, '2024-10-02 10:21:21', 'kevinarlo', 'Create Product ASUS'),
+(5, '2024-10-02 10:21:40', 'kevinarlo', 'Create Product ACER'),
+(6, '2024-10-02 10:23:19', 'kevinarlo', 'Update Product ASUS'),
+(7, '2024-10-02 10:24:01', 'kevinarlo', 'Update Product ASUS'),
+(8, '2024-10-02 10:25:25', 'kevinarlo', 'Update Product ASUS'),
+(9, '2024-10-02 10:35:50', 'kevinarlo', 'Delete Product ACER'),
+(10, '2024-10-02 10:38:14', 'kevinarlo', 'Active Product ACER'),
+(11, '2024-10-02 10:38:35', 'kevinarlo', 'Delete Product ACER'),
+(12, '2024-10-02 10:38:42', 'kevinarlo', 'Active Product ACER');
+
 -- --------------------------------------------------------
 
 --
@@ -52,13 +70,6 @@ CREATE TABLE `tbl_product` (
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_product`
---
-
-INSERT INTO `tbl_product` (`ProductID`, `ProductCategoryID`, `StatusID`, `ProductName`, `ProductDescription`, `ProductPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 2, 1, 'Asus', 'TEST\r\nTEST\r\nTEST\r\nTEST\r\nTEST', '66fbdb3555483-2024-10-01-logo.png', 'kevinarlo', '2024-10-01 11:21:25', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -288,13 +299,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_category`

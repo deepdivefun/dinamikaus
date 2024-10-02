@@ -44,18 +44,106 @@ class Product
         }
     }
 
-    public function updateProduct()
+    public function updateProduct($ProductID, $ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhotoConvert, $UpdateBy)
     {
         global $conn;
+
+        try {
+            if (empty($ProductID) and empty($ProductCategoryID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($UpdateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "UPDATE tbl_product SET 
+                            ProductCategoryID = ?,
+                            StatusID = ?,
+                            ProductName = ?,
+                            ProductDescription = ?,
+                            ProductPhoto = ?,
+                            UpdateBy = ?,
+                            UpdateTime = NOW() 
+                            WHERE ProductID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("iissssi", $ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhotoConvert, $UpdateBy, $ProductID);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "Product has been updated";
+                } else {
+                    echo    "Failed to update product";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
     }
 
-    public function deleteProduct()
+    public function deleteProduct($ProductID, $StatusID, $UpdateBy)
     {
         global $conn;
+
+        try {
+            if (empty($ProductID) and empty($StatusID) and empty($UpdateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "UPDATE tbl_product SET 
+                            StatusID = ?,
+                            UpdateBy = ?,
+                            UpdateTime = NOW() 
+                            WHERE ProductID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("isi", $StatusID, $UpdateBy, $ProductID);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "Product has been deactivated";
+                } else {
+                    echo    "Product failed to deactivate";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
     }
 
-    public function activeProduct()
+    public function activeProduct($ProductID, $StatusID, $UpdateBy)
     {
         global $conn;
+
+        try {
+            if (empty($ProductID) and empty($StatusID) and empty($UpdateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "UPDATE tbl_product SET 
+                            StatusID = ?,
+                            UpdateBy = ?,
+                            UpdateTime = NOW() 
+                            WHERE ProductID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("isi", $StatusID, $UpdateBy, $ProductID);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "Product has been activated";
+                } else {
+                    echo    "Product failed to activate";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
     }
 }

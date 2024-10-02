@@ -113,6 +113,12 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                                 <input type="hidden" class="form-control" name="EditProductCategoryCatalogBeforeConvert" id="EditProductCategoryCatalogBeforeConvert" readonly required>
                             </div>
 
+                            <small class="text-danger">
+                                <ul>
+                                    <li>If you edit the data, re-enter the catalog.</li>
+                                </ul>
+                            </small>
+
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="EditProductCategoryID" id="EditProductCategoryID" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
