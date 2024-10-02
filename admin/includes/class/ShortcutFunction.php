@@ -280,9 +280,9 @@ function ShortcutSettings()
 }
 
 
-function ShortcutMetaTagSEO()
+function ShortcutMetaTag()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -297,7 +297,7 @@ function ShortcutMetaTagSEO()
                                     </div>
                                     <div class="col">
                                         <div class="fw-bold text-wrap">
-                                            Meta Tag SEO Tools
+                                            Meta Tag
                                         </div>
                                     </div>
                                 </div>

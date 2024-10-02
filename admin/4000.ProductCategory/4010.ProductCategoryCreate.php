@@ -25,7 +25,7 @@ $StatusID                       = filter_input(INPUT_POST, 'StatusID');
 $ProductCategoryName            = filter_input(INPUT_POST, 'ProductCategoryName');
 
 $ProductCategoryCatalog         = $_FILES['ProductCategoryCatalog']['name'];
-$Dir                            = "../assets/file/productcatalog/";
+$Dir                            = "../assets/catalog/";
 $File                           = $_FILES['ProductCategoryCatalog']['tmp_name'];
 $ProductCategoryCatalogConvert  =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryCatalog;
 move_uploaded_file($File, $Dir . $ProductCategoryCatalogConvert);

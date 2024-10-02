@@ -20,13 +20,13 @@ $EventLogUser       = filter_input(INPUT_POST, 'EventLogUser');
 $GToken             = filter_input(INPUT_POST, 'GToken');
 
 if ($GToken != null) {
-    $SecretKey      = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
-    $Token          = $GToken;
-    $IP             = $_SERVER['REMOTE_ADDR'];
-    $URL            = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
+    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
+    $Token      = $GToken;
+    $IP         = $_SERVER['REMOTE_ADDR'];
+    $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
 
-    $Request        = file_get_contents($URL);
-    $Response       = json_decode($Request);
+    $Request    = file_get_contents($URL);
+    $Response   = json_decode($Request);
 
     if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";

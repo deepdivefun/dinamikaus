@@ -23,14 +23,14 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
 
 $ProductCategoryID                      = filter_input(INPUT_POST, 'ProductCategoryID');
 $ProductCategoryCatalogBeforeConvert    = filter_input(INPUT_POST, 'ProductCategoryCatalogBeforeConvert');
-if (file_exists("../assets/file/productcatalog/$ProductCategoryCatalogBeforeConvert")) {
-    unlink("../assets/file/productcatalog/$ProductCategoryCatalogBeforeConvert");
+if (file_exists("../assets/catalog/$ProductCategoryCatalogBeforeConvert")) {
+    unlink("../assets/catalog/$ProductCategoryCatalogBeforeConvert");
 }
 $StatusID                               = filter_input(INPUT_POST, 'StatusID');
 $ProductCategoryName                    = filter_input(INPUT_POST, 'ProductCategoryName');
 
 $ProductCategoryCatalog                 = $_FILES['ProductCategoryCatalog']['name'];
-$Dir                                    = "../assets/file/productcatalog/";
+$Dir                                    = "../assets/catalog/";
 $File                                   = $_FILES['ProductCategoryCatalog']['tmp_name'];
 $ProductCategoryCatalogConvert          =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryCatalog;
 move_uploaded_file($File, $Dir . $ProductCategoryCatalogConvert);

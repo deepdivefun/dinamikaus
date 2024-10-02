@@ -262,7 +262,7 @@ $(document).on("click", ".viewPDF", function () {
     "ReadPDFProductCategory"
   );
   ReadPDFProductCategory.innerHTML =
-    "<iframe src='../assets/file/productcatalog/" +
+    "<iframe src='../assets/catalog/" +
     PRODUCTCATEGORYCATALOG +
     "'style='width:100%;height:100%;text-align:center;'>";
 
