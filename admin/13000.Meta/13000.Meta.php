@@ -15,7 +15,7 @@ require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/StatusClass.php');
 $Status = new Status();
 
-if ($_SESSION['RoleID'] !== 4) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
     echo    "You don't have access rights to this page";
     die;
 }
@@ -39,7 +39,7 @@ if ($_SESSION['RoleID'] !== 4) {
 
         <!-- Add Modal -->
         <div class="modal fade" id="addMeta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title" id="staticBackdropLabel">Add Meta</h1>
@@ -52,19 +52,19 @@ if ($_SESSION['RoleID'] !== 4) {
                                 <select class="form-control form-select" name="StatusID" id="StatusID" required>
                                     <option disabled selected value>Select Status</option>
                                     <?php foreach ($Status->fetchStatus() as $row) : ?>
-                                        <option value="<?= $row['StatusID']; ?>"><?= $row['Status']; ?></option>
+                                        <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="Name">Name</label>
-                                <textarea class="form-control" name="Name" id="Name"></textarea>
+                                <textarea class="form-control" name="Name" id="Name" rows="8"></textarea>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="Content">Content</label>
-                                <textarea class="form-control" name="Content" id="Content"></textarea>
+                                <textarea class="form-control" name="Content" id="Content" rows="8"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -84,7 +84,7 @@ if ($_SESSION['RoleID'] !== 4) {
 
         <!-- Edit Modal -->
         <div class="modal fade" id="editMeta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title" id="staticBackdropLabel">Edit Services Category</h1>
@@ -95,27 +95,26 @@ if ($_SESSION['RoleID'] !== 4) {
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditStatusID">Status</label>
                                 <select class="form-control form-select" name="EditStatusID" id="EditStatusID" required>
-                                    <option disabled selected value>Select Status</option>
                                     <?php foreach ($Status->fetchStatus() as $row) : ?>
-                                        <option value="<?= $row['StatusID']; ?>"><?= $row['Status']; ?></option>
+                                        <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditName">Name</label>
-                                <textarea class="form-control" name="EditName" id="EditName"></textarea>
+                                <textarea class="form-control" name="EditName" id="EditName" rows="8"></textarea>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditContent">Content</label>
-                                <textarea class="form-control" name="EditContent" id="EditContent"></textarea>
+                                <textarea class="form-control" name="EditContent" id="EditContent" rows="8"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="EditMetaID" id="EditMetaID" readonly required>
-                                <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
+                                <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
 
                             <div class="modal-footer">
@@ -143,7 +142,7 @@ if ($_SESSION['RoleID'] !== 4) {
                                         <label class="form-label" for="FilterStatusID">Status Meta</label>
                                         <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID">
                                             <?php foreach ($Status->fetchStatus() as $row) : ?>
-                                                <option value="<?= $row['StatusID']; ?>"><?= $row['Status']; ?></option>
+                                                <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

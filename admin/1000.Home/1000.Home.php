@@ -69,7 +69,7 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                         <?= ShortcutEventLog(); ?>
                                         <?= ShortcutDebutTools(); ?>
                                         <?= ShortcutResetPasswordTools(); ?>
-                                        <!-- <?= ShortcutMetaTagSEO(); ?> -->
+                                        <?= ShortcutMetaTag(); ?>
                                     </div>
                                 </div>
                             </div>

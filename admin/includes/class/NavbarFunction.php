@@ -181,13 +181,13 @@ function Settings()
     };
 }
 
-function MetaTagSEO()
+function MetaTag()
 {
     if ($_SESSION['RoleID'] !== 4) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '13000.Meta/13000.Meta.php">
-                    Meta Tag SEO Tools
+                    Meta Tag
                 </a>';
     }
 }

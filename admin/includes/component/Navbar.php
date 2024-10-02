@@ -48,7 +48,7 @@
                                     <?= DebugTools(); ?>
                                     <?= ResetPasswordTools(); ?>
                                     <!-- <?= Settings(); ?> -->
-                                    <!-- <?= MetaTagSEO(); ?> -->
+                                    <?= MetaTag(); ?>
                                 </div>
                             </div>
                         </div>

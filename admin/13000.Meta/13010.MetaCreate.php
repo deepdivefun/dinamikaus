@@ -15,7 +15,7 @@ if (strpos($_SERVER['HTTP_REFERER'], '13000.Meta.php') === FALSE) {
     die;
 }
 
-if ($_SESSION['RoleID'] !== 4) {
+if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
     echo    "You don't have access rights to this page";
     die;
 }
@@ -26,8 +26,8 @@ $Content    = filter_input(INPUT_POST, 'Content');
 $GToken     = filter_input(INPUT_POST, 'GToken');
 $CreateBy   = filter_input(INPUT_POST, 'CreateBy');
 
-if ($GToken == !null) {
-    $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
+if ($GToken != null) {
+    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
@@ -35,7 +35,7 @@ if ($GToken == !null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success === 0) {
+    if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
         die;
     }
