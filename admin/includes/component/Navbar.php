@@ -31,9 +31,9 @@
                         </div>
                     </li>
 
-                    <!-- <li class="nav-item">
-                        <?= Testimonials(); ?>
-                    </li> -->
+                    <li class="nav-item">
+                        <?= Testimonial(); ?>
+                    </li>
 
                     <!-- <li class="nav-item">
                         <?= Messages(); ?>

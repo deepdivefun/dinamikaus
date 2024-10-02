@@ -7,16 +7,18 @@ async function showButtonTestimonialsData() {
 async function fetch_data() {
   $("#dataTable").DataTable().clear().destroy();
 
+  var TESTIMONIALSTATUSID = document.getElementById(
+    "FilterTestimonialStatusID"
+  ).value;
   var FULLNAME = document.getElementById("FilterFullName").value;
-  var STATUSID = document.getElementById("FilterStatusID").value;
   var GTOKEN = document.getElementById("GToken").value;
 
   $.ajax({
     type: "POST",
-    url: "5020.TestimonialsFetch.php?id=" + Math.random(),
+    url: "6020.TestimonialFetch.php?id=" + Math.random(),
     data: {
+      TestimonialStatusID: TESTIMONIALSTATUSID,
       FullName: FULLNAME,
-      StatusID: STATUSID,
       GTOKEN: GTOKEN,
     },
     success: function (data) {
@@ -85,23 +87,37 @@ async function createTestimonials() {
   });
 }
 
-$(document).on("click", ".approveTestimonials", function () {
-  var TESTIMONIALSID = $(this).attr("TestimonialsID");
+$(document).on("click", ".reviewTestimonial", function () {
+  var TESTIMONIALID = $(this).attr("TestimonialID");
+  var FULLNAME = $(this).attr("FullName");
+  var COMPANY = $(this).attr("Company");
+  var TESTIMONIALDESCRIPTION = $(this).attr("TestimonialDescription");
+
+  $("#ReadTestimonialID").val(TESTIMONIALID);
+  $("#ReadFullName").val(FULLNAME);
+  $("#ReadCompany").val(COMPANY);
+  $("#ReadTestimonialDescription").val(TESTIMONIALDESCRIPTION);
+
+  $("#reviewTestimonial").modal("show");
+});
+
+$(document).on("click", ".approveTestimonial", function () {
+  var TESTIMONIALID = $(this).attr("TestimonialID");
 
   let confirmApprove = prompt(
-    "Please input 'APPROVE' to confirm approve this Testimonials",
+    "Please input 'APPROVE' to confirm approve this Testimonial",
     ""
   );
 
   if (confirmApprove !== "APPROVE") {
-    alert("Delete Cancel");
+    alert("Approve Cancel");
     return;
   } else {
     $.ajax({
       type: "POST",
-      url: "5060.TestimonialsApprove.php?id=" + Math.random(),
+      url: "6060.TestimonialsApprove.php?id=" + Math.random(),
       data: {
-        TestimonialsID: TESTIMONIALSID,
+        TestimonialID: TESTIMONIALID,
       },
       success: function (data) {
         try {
@@ -161,7 +177,7 @@ $(document).on("click", ".reviewTestimonials", function () {
   }
 });
 
-$(document).on("click", ".debugTestimonials", function () {
-  var TESTIMONIALSID = $(this).attr("TestimonialsID");
-  alert("DEBUG INFO\n\rTestimonialsID : " + TESTIMONIALSID);
+$(document).on("click", ".debugTestimonial", function () {
+  var TESTIMONIALID = $(this).attr("TestimonialID");
+  alert("DEBUG INFO\n\rTestimonialID : " + TESTIMONIALID);
 });
