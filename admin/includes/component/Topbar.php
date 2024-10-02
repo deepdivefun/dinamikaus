@@ -55,6 +55,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <a href="<?= WebRootPath(); ?>2000.Account/2100.Profile.php?UserID=<?= $_SESSION['UserID']; ?>" class="dropdown-item">Profile</a>
+                    <a href="<?= WebRootPath(); ?>15000.EventLog/15100.ActivityLog.php" class="dropdown-item">Activity Log</a>
                     <!-- <div class="dropdown-divider"></div> -->
                     <a href="<?= WebRootPath(); ?>99999.Logout/99999.Logout.php" class="dropdown-item">Logout</a>
                 </div>
