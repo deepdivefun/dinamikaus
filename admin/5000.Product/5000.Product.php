@@ -48,7 +48,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ProductCategoryID">Product Category</label>
@@ -111,15 +111,25 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
         </div>
 
         <!-- Edit Modal -->
-        <div class="modal fade" id="editProductCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title" id="staticBackdropLabel">Edit Product Category</h1>
+                        <h1 class="modal-title" id="staticBackdropLabel">Edit Product</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditProductCategoryID">Product Category</label>
+                                <select class="form-control form-select" name="EditProductCategoryID" id="EditProductCategoryID" required>
+                                    <?php foreach ($ProductCategory->fetchProductCategory() as $row) : ?>
+                                        <option value="<?= $row['ProductCategoryID']; ?>"><?= $row['ProductCategoryName']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditStatusID">Status</label>
                                 <select class="form-control form-select" name="EditStatusID" id="EditStatusID" required>
@@ -130,19 +140,41 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="EditProductCategoryName">Product Category Name</label>
-                                <input type="text" class="form-control" name="EditProductCategoryName" id="EditProductCategoryName" required>
+                                <label class="form-label" for="EditProductName">Product Name</label>
+                                <input type="text" class="form-control" name="EditProductName" id="EditProductName" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditProductDescription">Product Description</label>
+                                <textarea class="form-control" name="EditProductDescription" id="EditProductDescription" rows="8" required></textarea>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditProductPhoto">Product Photo</label>
+                                <input type="file" class="form-control" name="EditProductPhoto" id="EditProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="hidden" class="form-control" name="EditProductPhotoBeforeConvert" id="EditProductPhotoBeforeConvert" readonly required>
+                            </div>
+
+                            <small class="text-danger">
+                                <ul>
+                                    <li>Photo size must be 500 x 400 pixels</li>
+                                    <li>If you edit the data, re-enter the image.</li>
+                                </ul>
+                            </small>
+
+                            <div class="form-group mb-3">
+                                <img src="#" id="PreviewEditProductPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
 
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="EditProductCategoryID" id="EditProductCategoryID" readonly required>
+                                <input type="hidden" class="form-control" name="EditProductID" id="EditProductID" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger rounded-5" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="updateProductCategory();">Save</button>
+                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="updateProduct();">Save</button>
                             </div>
                         </form>
                     </div>

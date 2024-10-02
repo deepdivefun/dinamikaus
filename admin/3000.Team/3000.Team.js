@@ -142,7 +142,7 @@ $(document).on("click", ".editTeam", function () {
   $("#editTeam").modal("show");
 });
 
-// Before Create
+// Before Update
 EditTeamPhoto.onchange = (evt) => {
   const [file] = EditTeamPhoto.files;
   if (file) {
