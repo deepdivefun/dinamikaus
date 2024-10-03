@@ -1,26 +1,27 @@
 <?php
-$Title = 'Team';
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$Title          = 'Team';
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
-$User = new Account();
+$User           = new Account();
 require_once($WebRootPath . '/includes/component/Topbar.php');
 require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/StatusClass.php');
-$Status = new Status();
+$Status         = new Status();
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+if (!SYSAdmin() and !AppAdmin() and !Admin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 ?>
-
 <!-- Page header -->
 <div class="page-header d-print-none">
     <div class="container-xl">
@@ -32,6 +33,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                 </h2>
             </div>
         </div>
+
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-outline-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addTeam">
             Create Team
@@ -212,7 +214,7 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                         <form method="POST">
                             <div class="row">
                                 <div class="col-4">
-                                    <div class="form-group mb-4">
+                                    <div class="form-group mb-3">
                                         <label class="form-label" for="FilterStatusID">Status</label>
                                         <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID">
                                             <?php foreach ($Status->fetchStatus() as $row) : ?>
@@ -222,34 +224,25 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleI
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="form-group mb-4">
+                                    <div class="form-group mb-3">
                                         <label class="form-label" for="FillterFullName">Full Name</label>
                                         <input type="text" class="form-control" name="FillterFullName" id="FillterFullName">
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="form-group mb-4">
+                                    <div class="form-group mb-3">
                                         <label class="form-label" for="FilterPosition">Position</label>
                                         <input type="text" class="form-control" name="FilterPosition" id="FilterPosition">
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
-
-                            <div class="modal-footer">
+                            <div class="modal-footer mb-3">
                                 <button type="button" class="btn btn-outline-info w-100 rounded-5" onclick="showButtonTeamData();">Show Data</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="card shadow-lg rounded-5">
-                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>

@@ -1,21 +1,23 @@
 <?php
-$Title = 'Debug Tools';
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$Title          = 'Debug Tools';
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
-$User       = new Account();
+$User           = new Account();
 require_once($WebRootPath . '/includes/component/Topbar.php');
 require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
 
-if ($_SESSION['RoleID'] !== 4) {
+if (!SYSAdmin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 ?>
 <!-- Page header -->
@@ -50,16 +52,6 @@ if ($_SESSION['RoleID'] !== 4) {
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger rounded-5 w-100" onclick="truncateEventLog();"><i class="fa-solid fa-gear"></i>&nbsp;Truncate Tbl Event Log</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-3">
-                                            <form method="POST">
-                                                <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger rounded-5 w-100" onclick="truncateSystemLog();"><i class="fa-solid fa-gear"></i>&nbsp;Truncate Tbl Product Category</button>
                                                 </div>
                                             </form>
                                         </div>

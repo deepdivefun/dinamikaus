@@ -1,8 +1,11 @@
 <?php
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$WebRootPath    = realpath('../');
+
+require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
+set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
 
 $EventLogUser   = $_SESSION['Username'];

@@ -1,14 +1,16 @@
 <?php
-$Title = 'Activity Log';
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$Title          = 'Activity Log';
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
-$User = new Account();
+$User           = new Account();
 require_once($WebRootPath . '/includes/component/Topbar.php');
 require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
@@ -38,25 +40,17 @@ require_once($WebRootPath . '/includes/component/Navbar.php');
                                 <label class="form-label" for="FilterEventLogTimeStamp">Date</label>
                                 <input type="date" class="form-control" name="FilterEventLogTimeStamp" id="FilterEventLogTimeStamp">
                             </div>
-
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="FilterEventLogUser" id="FilterEventLogUser" value="<?= $_SESSION['Username']; ?>" readonly required>
                             </div>
-
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
 
-                            <div class="modal-footer">
+                            <div class="modal-footer mb-3">
                                 <button type="button" class="btn btn-outline-info w-100 rounded-5" onclick="showButtonActivityLogData();">Show Data</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="card shadow-lg rounded-5">
-                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>

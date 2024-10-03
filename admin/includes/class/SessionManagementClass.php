@@ -152,3 +152,107 @@ class SessionManagement
         }
     }
 }
+
+function SYSAdmin()
+{
+    global $conn;
+    global $_SESSION;
+
+    if ($_SESSION['RoleID'] == 4) {
+        $query  = "SELECT RoleID FROM tbl_user WHERE RoleID = ?";
+        $stmt   = $conn->prepare($query);
+        $stmt->bind_param("i", $_SESSION['RoleID']);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($RoleID);
+        $result = [];
+
+        while ($stmt->fetch()) {
+            $conn->commit();
+            $result[] = [
+                'RoleID'      => $RoleID,
+            ];
+        }
+
+        return $result;
+        $stmt->close();
+    }
+}
+
+function AppAdmin()
+{
+    global $conn;
+    global $_SESSION;
+
+    if ($_SESSION['RoleID'] == 3) {
+        $query  = "SELECT RoleID FROM tbl_user WHERE RoleID = ?";
+        $stmt   = $conn->prepare($query);
+        $stmt->bind_param("i", $_SESSION['RoleID']);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($RoleID);
+        $result = [];
+
+        while ($stmt->fetch()) {
+            $conn->commit();
+            $result[] = [
+                'RoleID'      => $RoleID,
+            ];
+        }
+
+        return $result;
+        $stmt->close();
+    }
+}
+
+function Admin()
+{
+    global $conn;
+    global $_SESSION;
+
+    if ($_SESSION['RoleID'] == 2) {
+        $query  = "SELECT RoleID FROM tbl_user WHERE RoleID = ?";
+        $stmt   = $conn->prepare($query);
+        $stmt->bind_param("i", $_SESSION['RoleID']);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($RoleID);
+        $result = [];
+
+        while ($stmt->fetch()) {
+            $conn->commit();
+            $result[] = [
+                'RoleID'      => $RoleID,
+            ];
+        }
+
+        return $result;
+        $stmt->close();
+    }
+}
+
+function Staff()
+{
+    global $conn;
+    global $_SESSION;
+
+    if ($_SESSION['RoleID'] == 1) {
+        $query  = "SELECT RoleID FROM tbl_user WHERE RoleID = ?";
+        $stmt   = $conn->prepare($query);
+        $stmt->bind_param("i", $_SESSION['RoleID']);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($RoleID);
+        $result = [];
+
+        while ($stmt->fetch()) {
+            $conn->commit();
+            $result[] = [
+                'RoleID'      => $RoleID,
+            ];
+        }
+
+        return $result;
+        $stmt->close();
+    }
+}

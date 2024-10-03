@@ -1,7 +1,7 @@
 <?php
 function ShortcutUser()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -29,7 +29,7 @@ function ShortcutUser()
 
 function ShortcutTeam()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -57,7 +57,7 @@ function ShortcutTeam()
 
 function ShortcutOurClient()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -85,7 +85,7 @@ function ShortcutOurClient()
 
 function ShortcutProductCategory()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -113,7 +113,7 @@ function ShortcutProductCategory()
 
 function ShortcutProduct()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -141,7 +141,7 @@ function ShortcutProduct()
 
 function ShortcutTestimonial()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -169,7 +169,7 @@ function ShortcutTestimonial()
 
 function ShortcutMessages()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -197,7 +197,7 @@ function ShortcutMessages()
 
 function ShortcutEventLog()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -225,7 +225,7 @@ function ShortcutEventLog()
 
 function ShortcutDebutTools()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -253,7 +253,7 @@ function ShortcutDebutTools()
 
 function ShortcutResetPasswordTools()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -281,7 +281,7 @@ function ShortcutResetPasswordTools()
 
 function ShortcutSettings()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -310,7 +310,7 @@ function ShortcutSettings()
 
 function ShortcutMetaTag()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
@@ -326,34 +326,6 @@ function ShortcutMetaTag()
                                     <div class="col">
                                         <div class="fw-bold text-wrap">
                                             Meta Tag
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>';
-    };
-}
-
-function ShortcutTheHistory()
-{
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 1) {
-        echo    '';
-    } else {
-        echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '17000.TheHistory/17000.TheHistory.php">
-                        <div class="card card-sm rounded-5">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="btn btn-outline-primary avatar rounded-5">
-                                            <i class="fa-solid fa-gear"></i>
-                                        </span>
-                                    </div>
-                                    <div class="col">
-                                        <div class="fw-bold text-wrap">
-                                            The History
                                         </div>
                                     </div>
                                 </div>

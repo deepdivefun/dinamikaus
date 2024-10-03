@@ -1,25 +1,27 @@
 <?php
-$Title = 'User';
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$Title          = 'User';
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
-$User       = new Account();
+$User           = new Account();
 require_once($WebRootPath . '/includes/component/Topbar.php');
 require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/RoleClass.php');
-$Role       = new Role();
+$Role           = new Role();
 require_once($WebRootPath . '/includes/class/StatusClass.php');
-$Status     = new Status();
+$Status         = new Status();
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+if (!SYSAdmin() and !AppAdmin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 ?>
 
@@ -353,17 +355,10 @@ if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer mb-3">
                                 <button type="button" class="btn btn-outline-info w-100 rounded-5" onclick="showButtonUserData();">Show Data</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="card shadow-lg rounded-5">
-                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>

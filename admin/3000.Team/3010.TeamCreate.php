@@ -1,24 +1,23 @@
 <?php
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/TeamClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
-    echo    "<script>
-                alert('Invalid Caller');
-                document.location.href = '3000.Team.php';
-            </script>";
-    die;
+    echo    "Invalid Caller";
+    die();
 }
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+if (!SYSAdmin() and !AppAdmin() and !Admin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 
 $StatusID           = filter_input(INPUT_POST, 'StatusID');
@@ -49,7 +48,7 @@ if ($GToken != null) {
 
     if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
-        die;
+        die();
     }
 }
 
