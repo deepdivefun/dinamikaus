@@ -1,14 +1,16 @@
 <?php
-$Title = 'Dashboard';
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$Title          = 'Dashboard';
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
-$User       = new Account();
+$User           = new Account();
 require_once($WebRootPath . '/includes/component/Topbar.php');
 require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');

@@ -1,23 +1,22 @@
 <?php
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/ConnectionClass.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '15000.EventLog.php') === FALSE) {
-    echo    "<script>
-                alert('Invalid Caller');
-                document.location.href = '15000.EventLog.php';
-            </script>";
-    die;
+    echo    "Invalid Caller";
+    die();
 }
 
-if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+if (!SYSAdmin() and !AppAdmin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 
 $EventLogTimeStamp  = filter_input(INPUT_POST, 'EventLogTimeStamp');
@@ -35,7 +34,7 @@ if ($GToken != null) {
 
     if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
-        die;
+        die();
     }
 }
 

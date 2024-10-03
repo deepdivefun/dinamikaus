@@ -14,7 +14,7 @@ function Home()
 
 function Management()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo '';
     } else {
         echo '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -30,7 +30,7 @@ function Management()
 
 function User()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '2000.Account/2000.User.php">
@@ -41,7 +41,7 @@ function User()
 
 function Team()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '3000.Team/3000.Team.php">
@@ -52,7 +52,7 @@ function Team()
 
 function OurClient()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '7000.OurClient/7000.OurClient.php">
@@ -64,7 +64,7 @@ function OurClient()
 
 function ProductManagement()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -80,7 +80,7 @@ function ProductManagement()
 
 function ProductCategory()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<a class=" dropdown-item" href="' . WebRootPath() . '4000.ProductCategory/4000.ProductCategory.php">
@@ -91,7 +91,7 @@ function ProductCategory()
 
 function Product()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         echo    '';
     } else {
         echo    '<a class=" dropdown-item" href="' . WebRootPath() . '5000.Product/5000.Product.php">
@@ -102,7 +102,7 @@ function Product()
 
 function Testimonial()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
         echo    '';
     } else {
         echo    '<a class="nav-link" href="' . WebRootPath() . '6000.Testimonial/6000.Testimonial.php">
@@ -118,7 +118,7 @@ function Testimonial()
 
 function Messages()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<a class="nav-link" href="' . WebRootPath() . '">
@@ -134,7 +134,7 @@ function Messages()
 
 function Tools()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo '';
     } else {
         echo    '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -150,7 +150,7 @@ function Tools()
 
 function EventLog()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '15000.EventLog/15000.EventLog.php">
@@ -161,7 +161,7 @@ function EventLog()
 
 function DebugTools()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '14000.DebugTools/14000.DebugTools.php">
@@ -172,7 +172,7 @@ function DebugTools()
 
 function ResetPasswordTools()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '14000.DebugTools/14100.DebugToolsResetPassword.php">
@@ -183,7 +183,7 @@ function ResetPasswordTools()
 
 function Settings()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '9000.Settings/9000.Settings.php">
@@ -194,7 +194,7 @@ function Settings()
 
 function MetaTag()
 {
-    if ($_SESSION['RoleID'] !== 4) {
+    if (!SYSAdmin() and !AppAdmin()) {
         echo    '';
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '13000.Meta/13000.Meta.php">

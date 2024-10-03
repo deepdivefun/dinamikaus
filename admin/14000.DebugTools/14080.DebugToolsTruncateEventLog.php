@@ -1,23 +1,22 @@
 <?php
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/TruncateTableDatabseClass.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '14000.DebugTools.php') === FALSE) {
-    echo    "<script>
-                alert('Invalid Caller');
-                document.location.href = '14000.DebugTools.php';
-            </script>";
-    die;
+    echo    "Invalid Caller";
+    die();
 }
 
-if ($_SESSION['RoleID'] !== 4) {
+if (!SYSAdmin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 
 $TableName  = 'tbl_eventlog';
@@ -34,7 +33,7 @@ if ($GToken != null) {
 
     if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
-        die;
+        die();
     }
 }
 
