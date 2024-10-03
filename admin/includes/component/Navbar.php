@@ -14,6 +14,7 @@
                                 <div class="dropdown-menu-column">
                                     <?= User(); ?>
                                     <?= Team(); ?>
+                                    <?= OurClient(); ?>
                                 </div>
                             </div>
                         </div>

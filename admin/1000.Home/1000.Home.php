@@ -46,6 +46,12 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                     <div class="row row-cards">
                                         <?= ShortcutUser(); ?>
                                         <?= ShortcutTeam(); ?>
+                                        <?= ShortcutOurClient(); ?>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    <div class="row row-cards">
                                         <?= ShortcutProductCategory(); ?>
                                         <?= ShortcutProduct(); ?>
                                     </div>
@@ -53,13 +59,8 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
 
                                 <div class="col-12 mb-4">
                                     <div class="row row-cards">
-                                        <!-- <?= ShortcutMessages(); ?> -->
                                         <?= ShortcutTestimonial(); ?>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 mb-4">
-                                    <div class="row row-cards">
+                                        <!-- <?= ShortcutMessages(); ?> -->
                                         <!-- <?= ShortcutSettings(); ?> -->
                                     </div>
                                 </div>

@@ -14,7 +14,7 @@ function Home()
 
 function Management()
 {
-    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2) {
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
         echo '';
     } else {
         echo '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -46,6 +46,17 @@ function Team()
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '3000.Team/3000.Team.php">
                     Team
+                </a>';
+    }
+}
+
+function OurClient()
+{
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '7000.OurClient/7000.OurClient.php">
+                    Our Client
                 </a>';
     }
 }

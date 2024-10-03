@@ -139,6 +139,44 @@ $(document).on("click", ".approveTestimonial", function () {
   }
 });
 
+$(document).on("click", ".notApproveTestimonial", function () {
+  var TESTIMONIALID = $(this).attr("TestimonialID");
+
+  let confirmApprove = prompt(
+    "Please input 'NOT APPROVE' to confirm not approve this Testimonial",
+    ""
+  );
+
+  if (confirmApprove !== "NOT APPROVE") {
+    alert("Not Approve Cancel");
+    return;
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "6070.TestimonialNotApprove.php?id=" + Math.random(),
+      data: {
+        TestimonialID: TESTIMONIALID,
+      },
+      success: function (data) {
+        try {
+          data = data.trim();
+          if (data.includes("SWD_OK")) {
+            alert("Not Approve Success");
+          } else {
+            alert(data);
+          }
+        } catch (err) {
+          alert(err.message);
+        }
+        fetch_data();
+      },
+      error: function () {
+        alert("Error");
+      },
+    });
+  }
+});
+
 $(document).on("click", ".reviewTestimonials", function () {
   var TESTIMONIALSID = $(this).attr("TestimonialsID");
 

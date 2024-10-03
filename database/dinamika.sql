@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2024 at 02:09 PM
+-- Generation Time: Oct 03, 2024 at 12:34 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,6 +65,23 @@ INSERT INTO `tbl_meta` (`MetaID`, `StatusID`, `Name`, `Content`, `CreateBy`, `Cr
 (7, 1, 'keywords', '', 'kevinarlo', '2024-10-02 11:37:25', NULL, NULL),
 (8, 1, 'Title Tags', 'Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:37:49', NULL, NULL),
 (9, 1, 'viewport', 'width=device-width, initial-scale=1.0', 'kevinarlo', '2024-10-02 11:38:10', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_ourclient`
+--
+
+CREATE TABLE `tbl_ourclient` (
+  `OurClientID` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `OurClientName` text NOT NULL,
+  `OurClientPhoto` varchar(255) NOT NULL,
+  `CreateBy` varchar(20) DEFAULT NULL,
+  `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdateBy` varchar(20) DEFAULT NULL,
+  `UpdateTime` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -181,6 +198,13 @@ CREATE TABLE `tbl_testimonial` (
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_testimonial`
+--
+
+INSERT INTO `tbl_testimonial` (`TestimonialID`, `TestimonialStatusID`, `FullName`, `Company`, `TestimonialRating`, `TestimonialDescription`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 2, 'Kevin Arlo', 'Sheds Web Developer', '5', 'Test', 'Kevin Arlo', '2024-10-02 14:47:12', 'kevinarlo', '2024-10-03 07:42:53');
+
 -- --------------------------------------------------------
 
 --
@@ -247,6 +271,13 @@ ALTER TABLE `tbl_eventlog`
 --
 ALTER TABLE `tbl_meta`
   ADD PRIMARY KEY (`MetaID`),
+  ADD KEY `StatusID` (`StatusID`);
+
+--
+-- Indexes for table `tbl_ourclient`
+--
+ALTER TABLE `tbl_ourclient`
+  ADD PRIMARY KEY (`OurClientID`),
   ADD KEY `StatusID` (`StatusID`);
 
 --
@@ -321,6 +352,12 @@ ALTER TABLE `tbl_meta`
   MODIFY `MetaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tbl_ourclient`
+--
+ALTER TABLE `tbl_ourclient`
+  MODIFY `OurClientID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
@@ -354,7 +391,7 @@ ALTER TABLE `tbl_team`
 -- AUTO_INCREMENT for table `tbl_testimonial`
 --
 ALTER TABLE `tbl_testimonial`
-  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_testimonial_status`
@@ -377,6 +414,12 @@ ALTER TABLE `tbl_user`
 --
 ALTER TABLE `tbl_meta`
   ADD CONSTRAINT `tbl_meta_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
+
+--
+-- Constraints for table `tbl_ourclient`
+--
+ALTER TABLE `tbl_ourclient`
+  ADD CONSTRAINT `tbl_ourclient_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
 
 --
 -- Constraints for table `tbl_product`

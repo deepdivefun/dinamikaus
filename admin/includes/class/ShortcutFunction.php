@@ -55,6 +55,34 @@ function ShortcutTeam()
     }
 }
 
+function ShortcutOurClient()
+{
+    if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '7000.OurClient/7000.OurClient.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-users"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Our Client
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    }
+}
+
 function ShortcutProductCategory()
 {
     if ($_SESSION['RoleID'] !== 4 and $_SESSION['RoleID'] !== 3 and $_SESSION['RoleID'] !== 2 and $_SESSION['RoleID'] !== 1) {
