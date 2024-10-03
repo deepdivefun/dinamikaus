@@ -49,8 +49,36 @@ class Testimonial
         }
     }
 
-    public function notApproveTestimonial()
+    public function notApproveTestimonial($TestimonialID, $TestimonialStatusID, $UpdateBy)
     {
         global $conn;
+
+        try {
+            if (empty($TestimonialID) and empty($TestimonialStatusID) and empty($UpdateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "UPDATE tbl_testimonial SET 
+                            TestimonialStatusID = ?, 
+                            UpdateBy = ?,
+                            UpdateTime = NOW()
+                            WHERE TestimonialID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('isi', $TestimonialStatusID, $UpdateBy, $TestimonialID);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "Testimonial successfully not approved";
+                } else {
+                    echo    "Testimonial failed to not approve";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
     }
 }
