@@ -1,36 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php 
+require_once'includes/helpers/WebRootPath.php';
+require_once'includes/component/Header.php';
+require_once'includes/component/Navbar.php';
+require_once'includes/component/Hero.php';
+require_once'includes/component/Category.php';
+?>
 
-    <title>Document</title>
+<section class='contact-us mt-6  ' >
+    <div class='min-h-[300px] bg-slate-100 grid justify-items-center' >
+        <h1 class='mt-12'>Are You Looking For Professional Advice</h1>
+        <a class='button bg-white p-3' href="">Contact Us</a>
+    </div>
+</section>
 
-    <link rel="preconnect" href="https://www.google.com" />
-    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+<section>
+    <h1>Our Client</h1>
+</section>
 
-    <!-- Google Recaptcha V3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lco2AAjAAAAADY72bwy6ijVK9JYWkr_c6TmfRGC"></script>
+<section>
+    <h1>Testis</h1>
+</section>
 
-    <!-- CSS files -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+<?php   
+require_once'includes/component/Footer.php';
+require_once'includes/component/Script.php';
+require_once'includes/component/EndFooter.php';
+?>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/4.0.0-alpha.24/lib.min.js" integrity="sha512-z/dvZbFZhHCi5/4UoyNwhidEOFbiN93Um+DWoaMZsH6zqifGGo0zA4bUwdf1SgV7KIPMQgiGs+05PNl8ytxweQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-</head>
 
-<body>
-    <?php include 'includes/component/Header.php'; ?>
-    <?php include 'includes/component/Hero.php'; ?>
 
-    <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- Main JS -->
-    <?php include 'includes/component/Footer.php'; ?>
-    <script src="assets/js/main.js"></script>
-</body>
-
-</html>

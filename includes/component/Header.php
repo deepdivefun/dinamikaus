@@ -1,20 +1,23 @@
-<div class='min-h-[94px] border-b-2' >
-    <div class='mx-6'>
-        <div class='flex place-content-between my-[36px]'>
-            <div>LOGO</div>
-            <div>search</div>
-            <div>Toko</div>
-            <div>Login dan Keranjang</div>
-        </div>
-        <ul class='flex place-content-between text-normal font-normal mb-[36px]'>
-            <li class='cursor-pointer'><span class='hover:underline underline-offset-1' >Mac</span></li>
-            <li>iPad</li>
-            <li>iPhone</li>
-            <li>Watch</li>
-            <li>Music</li>
-            <li>Aksesoris</li>
-            <li>Layanan</li>
-            <li>Event Promo</li>
-        </ul>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+
+    <!-- Google Recaptcha V3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lco2AAjAAAAADY72bwy6ijVK9JYWkr_c6TmfRGC"></script>
+
+    <!-- CSS files -->
+    <link href="<?= WebRootPath(); ?>assets/css/style.css" rel="stylesheet" />s
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/4.0.0-alpha.24/lib.min.js" integrity="sha512-z/dvZbFZhHCi5/4UoyNwhidEOFbiN93Um+DWoaMZsH6zqifGGo0zA4bUwdf1SgV7KIPMQgiGs+05PNl8ytxweQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+</head>
+
+<body>
