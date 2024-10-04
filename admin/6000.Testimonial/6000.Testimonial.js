@@ -49,21 +49,49 @@ async function fetch_data() {
   });
 }
 
-async function createTestimonials() {
+async function createTestimonial() {
+  var TESTIMONIALSTATUSID = document.getElementById(
+    "TestimonialStatusID"
+  ).value;
   var FULLNAME = document.getElementById("FullName").value;
-  var TESTIMONIALS = document.getElementById("Testimonials").value;
-  var TESTIMONIALSRATING = document.getElementById("TestimonialsRatings").value;
-  var GTOKEN = document.getElementById("GToken").value;
+  var COMPANY = document.getElementById("Company").value;
+  var TESTIMONIALRATING = document.getElementById("TestimonialRating").value;
+  var TESTIMONIALDESCRIPTION = document.getElementById(
+    "TestimonialDescription"
+  ).value;
   var CREATEBY = document.getElementById("CreateBy").value;
+  var GTOKEN = document.getElementById("GToken").value;
+
+  if (TESTIMONIALSTATUSID == "") {
+    alert("Please select TestimonialStatusID");
+    return;
+  }
+
+  if (FULLNAME === "") {
+    alert("Please input Full Name");
+    return;
+  }
+
+  if (TESTIMONIALRATING == "") {
+    alert("Please input Testimonial Rating");
+    return;
+  }
+
+  if (TESTIMONIALDESCRIPTION === "") {
+    alert("Please input Testimonial Description");
+    return;
+  }
 
   $.ajax({
     type: "POST",
-    url: "5010.TestimonialsCreate.php?id=" + Math.random(),
+    url: "6010.TestimonialCreate.php?id=" + Math.random(),
     data: {
+      TestimonialStatusID: TESTIMONIALSTATUSID,
       FullName: FULLNAME,
-      Testimonials: TESTIMONIALS,
-      TestimonialsRatings: TESTIMONIALSRATING,
-      GTOKEN: GTOKEN,
+      Company: COMPANY,
+      TestimonialRating: TESTIMONIALRATING,
+      TestimonialDescription: TESTIMONIALDESCRIPTION,
+      GToken: GTOKEN,
       CreateBy: CREATEBY,
     },
     success: function (data) {
@@ -78,7 +106,7 @@ async function createTestimonials() {
         alert(err.message);
       }
       fetch_data();
-      $("#addTestimonials").modal("hide");
+      $("#addTestimonial").modal("hide");
       location.reload();
     },
     error: function () {

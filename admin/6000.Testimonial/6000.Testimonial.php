@@ -34,9 +34,15 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
             </div>
         </div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addTestimonial">
-            Create Testimonial
-        </button>
+        <?php
+        if (!SYSAdmin() and !AppAdmin()) {
+            echo    '';
+        } else {
+            echo    '<button type="button" class="btn btn-outline-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addTestimonial">
+                        Create Testimonial
+                    </button>';
+        }
+        ?>
 
         <!-- Add Modal -->
         <div class="modal fade" id="addTestimonial" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -49,18 +55,32 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                     <div class="modal-body">
                         <form method="POST">
                             <div class="form-group mb-3">
-                                <label class="form-label" for="FullName">Full Name</label>
-                                <input type="text" class="form-control" name="FullName" id="FullName" required>
+                                <label class="form-label" for="TestimonialStatusID">Status Testimonials</label>
+                                <select class="form-control form-select" name="TestimonialStatusID" id="TestimonialStatusID" required>
+                                    <?php foreach ($TestimonialStatus->fetchStatusTestimonial() as $row) : ?>
+                                        <option value="<?= $row['TestimonialStatusID']; ?>"><?= $row['TestimonialStatusName']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="FullName">Full Name</label>
+                                        <input type="text" class="form-control" name="FullName" id="FullName" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="Company">Company</label>
+                                        <input type="text" class="form-control" name="Company" id="Company">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="Testimonials">Testimonials</label>
-                                <textarea class="form-control" name="Testimonials" id="Testimonials" rows="8" required></textarea>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="TestimonialsRatings">Ratings</label>
-                                <input type="number" class="form-control" name="TestimonialsRatings" id="TestimonialsRatings" min="1" max="5" maxlength="1" required>
+                                <label class="form-label" for="TestimonialRating">Testimonial Rating</label>
+                                <input type="number" class="form-control" name="TestimonialRating" id="TestimonialRating" min="1" max="5" maxlength="1" required>
                             </div>
 
                             <small class="text-danger">
@@ -69,14 +89,19 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                                 </ul>
                             </small>
 
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="TestimonialDescription">Testimonial Description</label>
+                                <textarea class="form-control" name="TestimonialDescription" id="TestimonialDescription" rows="8" required></textarea>
+                            </div>
+
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                                 <input type="hidden" class="form-control" name="CreateBy" id="CreateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
+                                <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger rounded-5" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-outline-primary rounded-5" onclick="createTestimonials();">Save</button>
+                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="createTestimonial();">Save</button>
                             </div>
                         </form>
                     </div>
@@ -140,7 +165,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                                 <div class="col-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label" for="FilterTestimonialStatusID">Status Testimonials</label>
-                                        <select class="form-control form-select" name="FilterTestimonialStatusID" id="FilterTestimonialStatusID">
+                                        <select class="form-control form-select" name="FilterTestimonialStatusID" id="FilterTestimonialStatusID" required>
                                             <?php foreach ($TestimonialStatus->fetchStatusTestimonial() as $row) : ?>
                                                 <option value="<?= $row['TestimonialStatusID']; ?>"><?= $row['TestimonialStatusName']; ?></option>
                                             <?php endforeach; ?>

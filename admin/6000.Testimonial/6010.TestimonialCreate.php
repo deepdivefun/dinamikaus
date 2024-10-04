@@ -20,12 +20,15 @@ if (!SYSAdmin() and !AppAdmin()) {
     die();
 }
 
-$StatusID               = 2;
+$TestimonialStatusID    = filter_input(INPUT_POST, 'TestimonialStatusID');
 $FullName               = filter_input(INPUT_POST, 'FullName');
-$Testimonials           = filter_input(INPUT_POST, 'Testimonials');
-$TestimonialsRatings    = filter_input(INPUT_POST, 'TestimonialsRatings');
-$GToken                 = filter_input(INPUT_POST, 'GToken');
+$Company                = filter_input(INPUT_POST, 'Company');
+$TestimonialRating      = filter_input(INPUT_POST, 'TestimonialRating');
+$TestimonialDescription = filter_input(INPUT_POST, 'TestimonialDescription');
 $CreateBy               = filter_input(INPUT_POST, 'CreateBy');
+$EventLogUser           = $CreateBy;
+$EventLogData           = 'Create Testimonial from ' . $FullName;
+$GToken                 = filter_input(INPUT_POST, 'GToken');
 
 if ($GToken != null) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
@@ -43,26 +46,25 @@ if ($GToken != null) {
 }
 
 try {
-    if (empty($StatusID) and empty($FullName) and empty($Testimonials) and empty($TestimonialsRatings) and empty($CreateBy)) {
+    if (empty($TestimonialStatusID) and empty($FullName) and empty($TestimonialRating) and empty($TestimonialDescription) and empty($CreateBy)) {
         throw new Exception("Error Processing Request");
     } else {
-        $conn->begin_transaction();
+        $EventLog = new EventLog();
+        $EventLog->createEventLog(
+            $EventLogUser,
+            $EventLogData
+        );
 
-        $query  = "INSERT INTO tbl_testimonials (StatusID, FullName, Testimonials, TestimonialsRatings, CreateBy) 
-                            VALUES (?,?,?,?,?)";
-        $stmt   = $conn->prepare($query);
-        $stmt->bind_param('issss', $StatusID, $FullName, $Testimonials, $TestimonialsRatings, $CreateBy);
-        $stmt->execute();
-
-        if ($stmt->affected_rows > 0) {
-            $conn->commit();
-            echo    "Testimonials successfully created";
-        } else {
-            echo    "Testimonials failed to create";
-        }
+        $Testimonial = new Testimonial();
+        $Testimonial->createTestimonial(
+            $TestimonialStatusID,
+            $FullName,
+            $Company,
+            $TestimonialRating,
+            $TestimonialDescription,
+            $CreateBy
+        );
     }
-
-    $stmt->close();
 } catch (Exception $e) {
     $conn->rollback();
     echo 'Message: ' . $e->getMessage();
