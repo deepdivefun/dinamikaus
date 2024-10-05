@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2024 at 12:34 PM
+-- Generation Time: Oct 05, 2024 at 04:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,26 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogUser` text NOT NULL,
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_eventlog`
+--
+
+INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
+(1, '2024-10-03 10:42:42', 'kevinarlo', 'kevinarlo is logged in'),
+(2, '2024-10-03 11:48:17', 'kevinarlo', 'kevinarlo has logged out'),
+(3, '2024-10-03 11:48:30', 'staff', 'staff is logged in'),
+(4, '2024-10-03 11:53:28', 'staff', 'staff has logged out'),
+(5, '2024-10-03 11:53:40', 'bestian', 'bestian is logged in'),
+(6, '2024-10-03 11:54:23', 'bestian', 'bestian has logged out'),
+(7, '2024-10-04 13:05:28', 'kevinarlo', 'kevinarlo is logged in'),
+(8, '2024-10-04 13:06:06', 'kevinarlo', 'kevinarlo is logged in'),
+(9, '2024-10-04 13:38:53', 'kevinarlo', 'Create Testimonial from Kevin Arlo'),
+(10, '2024-10-04 13:39:28', 'kevinarlo', 'Approve Testimonial from Kevin Arlo'),
+(11, '2024-10-04 13:39:49', 'kevinarlo', 'Not Approve Testimonial from Kevin Arlo'),
+(12, '2024-10-05 13:41:24', 'kevinarlo', 'kevinarlo is logged in'),
+(13, '2024-10-05 13:44:06', 'kevinarlo', 'Create Our Client Test'),
+(14, '2024-10-05 14:01:01', 'kevinarlo', 'Create Our Client Test');
 
 -- --------------------------------------------------------
 
@@ -82,6 +102,13 @@ CREATE TABLE `tbl_ourclient` (
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_ourclient`
+--
+
+INSERT INTO `tbl_ourclient` (`OurClientID`, `StatusID`, `OurClientName`, `OurClientPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Test', '6701469caaa98-2024-10-05-IMG_4461.PNG', 'kevinarlo', '2024-10-05 14:01:01', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -197,13 +224,6 @@ CREATE TABLE `tbl_testimonial` (
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_testimonial`
---
-
-INSERT INTO `tbl_testimonial` (`TestimonialID`, `TestimonialStatusID`, `FullName`, `Company`, `TestimonialRating`, `TestimonialDescription`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 2, 'Kevin Arlo', 'Sheds Web Developer', '5', 'Test', 'Kevin Arlo', '2024-10-02 14:47:12', 'kevinarlo', '2024-10-03 07:42:53');
 
 -- --------------------------------------------------------
 
@@ -343,7 +363,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -355,7 +375,7 @@ ALTER TABLE `tbl_meta`
 -- AUTO_INCREMENT for table `tbl_ourclient`
 --
 ALTER TABLE `tbl_ourclient`
-  MODIFY `OurClientID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OurClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
@@ -391,7 +411,7 @@ ALTER TABLE `tbl_team`
 -- AUTO_INCREMENT for table `tbl_testimonial`
 --
 ALTER TABLE `tbl_testimonial`
-  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_testimonial_status`
