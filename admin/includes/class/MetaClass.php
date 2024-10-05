@@ -32,13 +32,12 @@ class Meta
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo "Meta Created Successfully";
+                    echo "Meta created successfully";
                 } else {
                     $conn->rollback();
-                    echo "Meta Creation Failed";
+                    echo "Failed to create meta";
                 }
             }
-
             $stmt->close();
         } catch (Exception $e) {
             $conn->rollback();
@@ -70,13 +69,11 @@ class Meta
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo "Meta Updated Successfully";
+                    echo    "Meta has been updated";
                 } else {
-                    $conn->rollback();
-                    echo "Meta Update Failed";
+                    echo    "Failed to update meta";
                 }
             }
-
             $stmt->close();
         } catch (Exception $e) {
             $conn->rollback();
@@ -106,10 +103,9 @@ class Meta
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo "Meta Deleted Successfully";
+                    echo    "Meta has been deactivated";
                 } else {
-                    $conn->rollback();
-                    echo "Meta Deletion Failed";
+                    echo    "Meta failed to deactivate";
                 }
             }
 
@@ -142,10 +138,9 @@ class Meta
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo "Meta Activated Successfully";
+                    echo    "Meta has been activated";
                 } else {
-                    $conn->rollback();
-                    echo "Meta Activation Failed";
+                    echo    "Meta failed to activate";
                 }
             }
 

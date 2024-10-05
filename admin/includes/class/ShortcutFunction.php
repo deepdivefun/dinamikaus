@@ -100,7 +100,7 @@ function ShortcutProductCategory()
                                     </div>
                                     <div class="col">
                                         <div class="fw-bold text-wrap">
-                                            Product Categpry
+                                            Product Category
                                         </div>
                                     </div>
                                 </div>

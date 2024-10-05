@@ -34,12 +34,12 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
             </div>
         </div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addProduct">
+        <button type="button" class="btn btn-outline-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addOurClient">
             Create Our Client
         </button>
 
         <!-- Add Modal -->
-        <div class="modal fade" id="addProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="addOurClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -48,7 +48,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                     </div>
                     <div class="modal-body">
                         <form method="POST" enctype="multipart/form-data">
-
                             <div class="form-group mb-3">
                                 <label class="form-label" for="StatusID">Status</label>
                                 <select class="form-control form-select" name="StatusID" id="StatusID" required>
@@ -60,18 +59,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="ProductName">Product Name</label>
-                                <input type="text" class="form-control" name="ProductName" id="ProductName" required>
+                                <label class="form-label" for="OurClientName">Our Client Name</label>
+                                <input type="text" class="form-control" name="OurClientName" id="OurClientName" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="ProductDescription">Product Description</label>
-                                <textarea class="form-control" name="ProductDescription" id="ProductDescription" rows="8" required></textarea>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="ProductPhoto">Product Photo</label>
-                                <input type="file" class="form-control" name="ProductPhoto" id="ProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <label class="form-label" for="OurClientPhoto">Our Client Photo</label>
+                                <input type="file" class="form-control" name="OurClientPhoto" id="OurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
                             </div>
 
                             <small class="text-danger">
@@ -81,7 +75,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                             </small>
 
                             <div class="form-group mb-3">
-                                <img src="#" id="PreviewProductPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
+                                <img src="#" id="PreviewOurClientPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
 
                             <div class="form-group">
@@ -91,7 +85,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger rounded-5" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="createProduct();">Save</button>
+                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="createOurClient();">Save</button>
                             </div>
                         </form>
                     </div>
@@ -100,11 +94,11 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
         </div>
 
         <!-- Edit Modal -->
-        <div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="editOurClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title" id="staticBackdropLabel">Edit Product</h1>
+                        <h1 class="modal-title" id="staticBackdropLabel">Edit Our Client</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -120,19 +114,14 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="EditProductName">Product Name</label>
-                                <input type="text" class="form-control" name="EditProductName" id="EditProductName" required>
+                                <label class="form-label" for="EditOurClientName">Our Client Name</label>
+                                <input type="text" class="form-control" name="EditOurClientName" id="EditOurClientName" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="EditProductDescription">Product Description</label>
-                                <textarea class="form-control" name="EditProductDescription" id="EditProductDescription" rows="8" required></textarea>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="EditProductPhoto">Product Photo</label>
-                                <input type="file" class="form-control" name="EditProductPhoto" id="EditProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
-                                <input type="hidden" class="form-control" name="EditProductPhotoBeforeConvert" id="EditProductPhotoBeforeConvert" readonly required>
+                                <label class="form-label" for="EditOurClientPhoto">Our Client Photo</label>
+                                <input type="file" class="form-control" name="EditOurClientPhoto" id="EditOurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="hidden" class="form-control" name="EditOurClientPhotoBeforeConvert" id="EditOurClientPhotoBeforeConvert" readonly required>
                             </div>
 
                             <small class="text-danger">
@@ -143,11 +132,11 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                             </small>
 
                             <div class="form-group mb-3">
-                                <img src="#" id="PreviewEditProductPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
+                                <img src="#" id="PreviewEditOurClientPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
 
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="EditProductID" id="EditProductID" readonly required>
+                                <input type="hidden" class="form-control" name="EditOurClientID" id="EditOurClientID" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
