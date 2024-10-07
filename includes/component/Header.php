@@ -13,7 +13,7 @@
     <script src="https://www.google.com/recaptcha/api.js?render=6Lco2AAjAAAAADY72bwy6ijVK9JYWkr_c6TmfRGC"></script>
 
     <!-- CSS files -->
-    <link href="<?= WebRootPath(); ?>assets/css/style.css" rel="stylesheet" />s
+    <link href="<?= WebRootPath(); ?>assets/css/style.css" rel="stylesheet" />
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>

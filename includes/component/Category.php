@@ -1,4 +1,4 @@
-<div class='mt-8' >
+<div class='mt-8 mx-6' >
     <h2 class='font-semibold text-2xl text-center' >Telusuri Kategori Populer</h2>
     <div class='flex mt-6 ' >
         <div>
