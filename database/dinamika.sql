@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2024 at 04:46 PM
+-- Generation Time: Oct 09, 2024 at 11:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_contact`
+--
+
+CREATE TABLE `tbl_contact` (
+  `ContactID` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `ContactNameArea` text NOT NULL,
+  `ContactAddress` text DEFAULT NULL,
+  `ContactLinkGmaps` text DEFAULT NULL,
+  `ContactNumber` varchar(15) NOT NULL,
+  `CreateBy` varchar(20) DEFAULT NULL,
+  `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdateBy` varchar(20) DEFAULT NULL,
+  `UpdateTime` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_contact`
+--
+
+INSERT INTO `tbl_contact` (`ContactID`, `StatusID`, `ContactNameArea`, `ContactAddress`, `ContactLinkGmaps`, `ContactNumber`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Menteng', '', '', '087878671111', 'kevinarlo', '2024-10-09 06:47:22', 'kevinarlo', '2024-10-09 08:20:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_eventlog`
 --
 
@@ -33,26 +59,6 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogUser` text NOT NULL,
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_eventlog`
---
-
-INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
-(1, '2024-10-03 10:42:42', 'kevinarlo', 'kevinarlo is logged in'),
-(2, '2024-10-03 11:48:17', 'kevinarlo', 'kevinarlo has logged out'),
-(3, '2024-10-03 11:48:30', 'staff', 'staff is logged in'),
-(4, '2024-10-03 11:53:28', 'staff', 'staff has logged out'),
-(5, '2024-10-03 11:53:40', 'bestian', 'bestian is logged in'),
-(6, '2024-10-03 11:54:23', 'bestian', 'bestian has logged out'),
-(7, '2024-10-04 13:05:28', 'kevinarlo', 'kevinarlo is logged in'),
-(8, '2024-10-04 13:06:06', 'kevinarlo', 'kevinarlo is logged in'),
-(9, '2024-10-04 13:38:53', 'kevinarlo', 'Create Testimonial from Kevin Arlo'),
-(10, '2024-10-04 13:39:28', 'kevinarlo', 'Approve Testimonial from Kevin Arlo'),
-(11, '2024-10-04 13:39:49', 'kevinarlo', 'Not Approve Testimonial from Kevin Arlo'),
-(12, '2024-10-05 13:41:24', 'kevinarlo', 'kevinarlo is logged in'),
-(13, '2024-10-05 13:44:06', 'kevinarlo', 'Create Our Client Test'),
-(14, '2024-10-05 14:01:01', 'kevinarlo', 'Create Our Client Test');
 
 -- --------------------------------------------------------
 
@@ -108,7 +114,7 @@ CREATE TABLE `tbl_ourclient` (
 --
 
 INSERT INTO `tbl_ourclient` (`OurClientID`, `StatusID`, `OurClientName`, `OurClientPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Test', '6701469caaa98-2024-10-05-IMG_4461.PNG', 'kevinarlo', '2024-10-05 14:01:01', NULL, NULL);
+(1, 1, 'Test edit', '6705fb5360ecb-2024-10-09-logo.png', 'kevinarlo', '2024-10-05 14:01:01', 'kevinarlo', '2024-10-09 04:11:12');
 
 -- --------------------------------------------------------
 
@@ -166,6 +172,30 @@ INSERT INTO `tbl_role` (`RoleID`, `RoleName`) VALUES
 (2, 'Admin'),
 (3, 'App Admin'),
 (4, 'SYS Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_settings`
+--
+
+CREATE TABLE `tbl_settings` (
+  `SettingsID` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `SettingsName` text NOT NULL,
+  `SettingsValue` text NOT NULL,
+  `UpdateBy` varchar(20) DEFAULT NULL,
+  `UpdateTime` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_settings`
+--
+
+INSERT INTO `tbl_settings` (`SettingsID`, `StatusID`, `SettingsName`, `SettingsValue`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'About Us', 'TEST\nTEST\nTEST', 'kevinarlo', '2024-10-09 09:31:44'),
+(2, 1, 'Phone Number', '0213160118', 'kevinarlo', '2024-10-09 09:35:57'),
+(3, 1, 'Whatsapp Number', '6281389055595', 'kevinarlo', '2024-10-09 09:38:25');
 
 -- --------------------------------------------------------
 
@@ -274,11 +304,18 @@ CREATE TABLE `tbl_user` (
 INSERT INTO `tbl_user` (`UserID`, `RoleID`, `StatusID`, `Username`, `Password`, `Email`, `FullName`, `ResetTokenHash`, `ResetTokenExpired`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 4, 1, 'kevinarlo', '$2y$10$bcpx4sFLRiYLouYH5DU6LeAWHEjuDm76JoA8j.a3SB57Gca5I9Y/q', 'kevinarlo29@gmail.com', 'Kevin Arlo', NULL, NULL, 'kevinarlo', '2024-03-12 17:40:23', 'kevinarlo', '2024-09-28 09:14:36'),
 (2, 3, 1, 'bestian', '$2y$10$5Wa/NTbMdqKdxirFlhbZL.sUqtPMhTKB5u8d0xpI2Ik0ZrDX/B3p2', 'bestian@dinamikaus.com', 'Bestian', NULL, NULL, 'kevinarlo', '2024-03-14 14:57:30', 'kevinarlo', '2024-10-01 11:39:01'),
-(3, 1, 1, 'staff', '$2y$10$W9sc3kX3V9VEcGC8yjGuxeyfgbMBVobHTLgbSenN25D9jS8hDnt8u', 'staff@gmail.com', 'Staff', NULL, NULL, 'kevinarlo', '2024-09-28 14:59:28', 'kevinarlo', '2024-09-28 15:02:14');
+(3, 1, 1, 'staff', '$2y$10$W9sc3kX3V9VEcGC8yjGuxeyfgbMBVobHTLgbSenN25D9jS8hDnt8u', 'staff@gmail.com', 'Staff', NULL, NULL, 'kevinarlo', '2024-09-28 14:59:28', 'kevinarlo', '2024-10-09 03:28:00');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbl_contact`
+--
+ALTER TABLE `tbl_contact`
+  ADD PRIMARY KEY (`ContactID`),
+  ADD KEY `StatusID` (`StatusID`);
 
 --
 -- Indexes for table `tbl_eventlog`
@@ -322,6 +359,13 @@ ALTER TABLE `tbl_role`
   ADD PRIMARY KEY (`RoleID`);
 
 --
+-- Indexes for table `tbl_settings`
+--
+ALTER TABLE `tbl_settings`
+  ADD PRIMARY KEY (`SettingsID`),
+  ADD KEY `StatusID` (`StatusID`);
+
+--
 -- Indexes for table `tbl_status`
 --
 ALTER TABLE `tbl_status`
@@ -360,10 +404,16 @@ ALTER TABLE `tbl_user`
 --
 
 --
+-- AUTO_INCREMENT for table `tbl_contact`
+--
+ALTER TABLE `tbl_contact`
+  MODIFY `ContactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -394,6 +444,12 @@ ALTER TABLE `tbl_product_category`
 --
 ALTER TABLE `tbl_role`
   MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_settings`
+--
+ALTER TABLE `tbl_settings`
+  MODIFY `SettingsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_status`
@@ -430,6 +486,12 @@ ALTER TABLE `tbl_user`
 --
 
 --
+-- Constraints for table `tbl_contact`
+--
+ALTER TABLE `tbl_contact`
+  ADD CONSTRAINT `tbl_contact_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
+
+--
 -- Constraints for table `tbl_meta`
 --
 ALTER TABLE `tbl_meta`
@@ -453,6 +515,12 @@ ALTER TABLE `tbl_product`
 --
 ALTER TABLE `tbl_product_category`
   ADD CONSTRAINT `tbl_product_category_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
+
+--
+-- Constraints for table `tbl_settings`
+--
+ALTER TABLE `tbl_settings`
+  ADD CONSTRAINT `tbl_settings_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
 
 --
 -- Constraints for table `tbl_team`

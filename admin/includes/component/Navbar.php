@@ -36,10 +36,6 @@
                         <?= Testimonial(); ?>
                     </li>
 
-                    <!-- <li class="nav-item">
-                        <?= Messages(); ?>
-                    </li> -->
-
                     <li class="nav-item dropdown">
                         <?= Tools(); ?>
                         <div class="dropdown-menu">
@@ -56,10 +52,10 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
+                                    <?= SettingsApplication(); ?>
                                     <?= EventLog(); ?>
                                     <?= ResetPasswordTools(); ?>
                                     <?= MetaTag(); ?>
-                                    <!-- <?= Settings(); ?> -->
                                 </div>
                             </div>
                         </div>

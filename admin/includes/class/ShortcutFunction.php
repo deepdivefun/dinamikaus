@@ -195,6 +195,34 @@ function ShortcutContact()
     }
 }
 
+function ShortcutSettingsApplication()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '9000.Settings/9000.Settings.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Settings Application
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    };
+}
+
 function ShortcutEventLog()
 {
     if (!SYSAdmin() and !AppAdmin()) {
@@ -305,60 +333,4 @@ function ShortcutDebutTools()
                     </a>
                 </div>';
     };
-}
-
-function ShortcutSettings()
-{
-    if (!SYSAdmin()) {
-        echo    '';
-    } else {
-        echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '9000.Settings/9000.Settings.php">
-                        <div class="card card-sm rounded-5">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="btn btn-outline-primary avatar rounded-5">
-                                            <i class="fa-solid fa-gear"></i>
-                                        </span>
-                                    </div>
-                                    <div class="col">
-                                        <div class="fw-bold text-wrap">
-                                            Settings
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>';
-    };
-}
-
-function ShortcutMessages()
-{
-    if (!SYSAdmin()) {
-        echo    '';
-    } else {
-        echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '">
-                        <div class="card card-sm rounded-5">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="btn btn-outline-primary avatar rounded-5">
-                                            <i class="fa-solid fa-message"></i>
-                                        </span>
-                                    </div>
-                                    <div class="col">
-                                        <div class="fw-bold text-wrap">
-                                            Message
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>';
-    }
 }
