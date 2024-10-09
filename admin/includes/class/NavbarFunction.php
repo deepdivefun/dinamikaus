@@ -134,7 +134,7 @@ function Messages()
 
 function Tools()
 {
-    if (!SYSAdmin() and !AppAdmin()) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
         echo '';
     } else {
         echo    '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -143,6 +143,33 @@ function Tools()
                     </span>
                     <span class="nav-link-title">
                         Tools
+                    </span>
+                </a>';
+    }
+}
+
+function Contact()
+{
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '8000.Contact/8000.Contact.php">
+                    Contact
+                </a>';
+    }
+}
+
+function AppAdminTools()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo '';
+    } else {
+        echo    '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <i class="fa-solid fa-gear"></i>
+                    </span>
+                    <span class="nav-link-title">
+                        AppAdmin Tools
                     </span>
                 </a>';
     }
@@ -159,17 +186,6 @@ function EventLog()
     }
 }
 
-function DebugTools()
-{
-    if (!SYSAdmin()) {
-        echo    '';
-    } else {
-        echo    '<a class="dropdown-item" href="' . WebRootPath() . '14000.DebugTools/14000.DebugTools.php">
-                    Debug Tools
-                </a>';
-    }
-}
-
 function ResetPasswordTools()
 {
     if (!SYSAdmin() and !AppAdmin()) {
@@ -177,6 +193,44 @@ function ResetPasswordTools()
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '14000.DebugTools/14100.DebugToolsResetPassword.php">
                     Reset Password Tools
+                </a>';
+    }
+}
+
+function MetaTag()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '13000.Meta/13000.Meta.php">
+                    Meta Tag
+                </a>';
+    }
+}
+
+function SYSAdminTools()
+{
+    if (!SYSAdmin()) {
+        echo '';
+    } else {
+        echo    '<a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <i class="fa-solid fa-gear"></i>
+                    </span>
+                    <span class="nav-link-title">
+                        SYSAdmin Tools
+                    </span>
+                </a>';
+    }
+}
+
+function DebugTools()
+{
+    if (!SYSAdmin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '14000.DebugTools/14000.DebugTools.php">
+                    Debug Tools
                 </a>';
     }
 }
@@ -190,15 +244,4 @@ function Settings()
                     Settings
                 </a>';
     };
-}
-
-function MetaTag()
-{
-    if (!SYSAdmin() and !AppAdmin()) {
-        echo    '';
-    } else {
-        echo    '<a class="dropdown-item" href="' . WebRootPath() . '13000.Meta/13000.Meta.php">
-                    Meta Tag
-                </a>';
-    }
 }

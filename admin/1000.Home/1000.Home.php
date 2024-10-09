@@ -62,17 +62,26 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                 <div class="col-12 mb-4">
                                     <div class="row row-cards">
                                         <?= ShortcutTestimonial(); ?>
-                                        <!-- <?= ShortcutMessages(); ?> -->
-                                        <!-- <?= ShortcutSettings(); ?> -->
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    <div class="row row-cards">
+                                        <?= ShortcutContact(); ?>
                                     </div>
                                 </div>
 
                                 <div class="col-12 mb-4">
                                     <div class="row row-cards">
                                         <?= ShortcutEventLog(); ?>
-                                        <?= ShortcutDebutTools(); ?>
                                         <?= ShortcutResetPasswordTools(); ?>
                                         <?= ShortcutMetaTag(); ?>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    <div class="row row-cards">
+                                        <?= ShortcutDebutTools(); ?>
                                     </div>
                                 </div>
                             </div>

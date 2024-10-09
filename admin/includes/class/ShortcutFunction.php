@@ -167,24 +167,24 @@ function ShortcutTestimonial()
     }
 }
 
-function ShortcutMessages()
+function ShortcutContact()
 {
-    if (!SYSAdmin()) {
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '">
+                    <a href="' . WebRootPath() . '8000.Contact/8000.Contact.php">
                         <div class="card card-sm rounded-5">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <span class="btn btn-outline-primary avatar rounded-5">
-                                            <i class="fa-solid fa-message"></i>
+                                            <i class="fa-solid fa-gear"></i>
                                         </span>
                                     </div>
                                     <div class="col">
                                         <div class="fw-bold text-wrap">
-                                            Message
+                                            Contact
                                         </div>
                                     </div>
                                 </div>
@@ -223,34 +223,6 @@ function ShortcutEventLog()
     }
 }
 
-function ShortcutDebutTools()
-{
-    if (!SYSAdmin()) {
-        echo    '';
-    } else {
-        echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '14000.DebugTools/14000.DebugTools.php">
-                        <div class="card card-sm rounded-5">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <span class="btn btn-outline-primary avatar rounded-5">
-                                            <i class="fa-solid fa-gear"></i>
-                                        </span>
-                                    </div>
-                                    <div class="col">
-                                        <div class="fw-bold text-wrap">
-                                            Debug Tools
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>';
-    };
-}
-
 function ShortcutResetPasswordTools()
 {
     if (!SYSAdmin() and !AppAdmin()) {
@@ -277,6 +249,62 @@ function ShortcutResetPasswordTools()
                     </a>
                 </div>';
     }
+}
+
+function ShortcutMetaTag()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '13000.Meta/13000.Meta.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Meta Tag
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    };
+}
+
+function ShortcutDebutTools()
+{
+    if (!SYSAdmin()) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '14000.DebugTools/14000.DebugTools.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Debug Tools
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    };
 }
 
 function ShortcutSettings()
@@ -307,25 +335,24 @@ function ShortcutSettings()
     };
 }
 
-
-function ShortcutMetaTag()
+function ShortcutMessages()
 {
-    if (!SYSAdmin() and !AppAdmin()) {
+    if (!SYSAdmin()) {
         echo    '';
     } else {
         echo    '<div class="col-sm-6 col-lg-3">
-                    <a href="' . WebRootPath() . '13000.Meta/13000.Meta.php">
+                    <a href="' . WebRootPath() . '">
                         <div class="card card-sm rounded-5">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <span class="btn btn-outline-primary avatar rounded-5">
-                                            <i class="fa-solid fa-gear"></i>
+                                            <i class="fa-solid fa-message"></i>
                                         </span>
                                     </div>
                                     <div class="col">
                                         <div class="fw-bold text-wrap">
-                                            Meta Tag
+                                            Message
                                         </div>
                                     </div>
                                 </div>
@@ -333,5 +360,5 @@ function ShortcutMetaTag()
                         </div>
                     </a>
                 </div>';
-    };
+    }
 }

@@ -45,11 +45,32 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
+                                    <?= Contact(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <?= AppAdminTools(); ?>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
                                     <?= EventLog(); ?>
-                                    <?= DebugTools(); ?>
                                     <?= ResetPasswordTools(); ?>
-                                    <!-- <?= Settings(); ?> -->
                                     <?= MetaTag(); ?>
+                                    <!-- <?= Settings(); ?> -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <?= SYSAdminTools(); ?>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <?= DebugTools(); ?>
                                 </div>
                             </div>
                         </div>

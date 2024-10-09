@@ -63,7 +63,7 @@ async function createTestimonial() {
   var GTOKEN = document.getElementById("GToken").value;
 
   if (TESTIMONIALSTATUSID == "") {
-    alert("Please select TestimonialStatusID");
+    alert("Please select Testimonial Status");
     return;
   }
 
