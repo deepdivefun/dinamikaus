@@ -72,14 +72,17 @@ async function createOurClient() {
 
   if (STATUSID == "") {
     alert("Please select Status");
+    return;
   }
 
   if (OURCLIENTNAME === "") {
     alert("Please enter Our Client Name");
+    return;
   }
 
   if (OURCLIENTPHOTO === "") {
     alert("Please insert Our Client Photo");
+    return;
   }
 
   $.ajax({
@@ -131,3 +134,145 @@ EditOurClientPhoto.onchange = (evt) => {
     PreviewEditOurClientPhoto.src = URL.createObjectURL(file);
   }
 };
+
+async function updateOurClient() {
+  var FD = new FormData();
+
+  var OURCLIENTID = $("#EditOurClientID").val();
+  var STATUSID = $("#EditStatusID").val();
+  var OURCLIENTNAME = $("#EditOurClientName").val();
+  var OURCLIENTPHOTO = $("#EditOurClientPhoto")[0].files[0];
+  var OURCLIENTPHOTOBEFORECONVERT = $("#EditOurClientPhotoBeforeConvert").val();
+  var UPDATEBY = $("#UpdateBy").val();
+  var GTOKEN = $("#GToken").val();
+
+  FD.append("OurClientID", OURCLIENTID);
+  FD.append("StatusID", STATUSID);
+  FD.append("OurClientName", OURCLIENTNAME);
+  FD.append("OurClientPhoto", OURCLIENTPHOTO);
+  FD.append("OurClientPhotoBeforeConvert", OURCLIENTPHOTOBEFORECONVERT);
+  FD.append("UpdateBy", UPDATEBY);
+  FD.append("GToken", GTOKEN);
+
+  if (OURCLIENTID == "") {
+    alert("OurClientID Undefined");
+    return;
+  }
+
+  if (STATUSID == "") {
+    alert("Please select Status");
+    return;
+  }
+
+  if (OURCLIENTNAME === "") {
+    alert("Please enter Our Client Name");
+    return;
+  }
+
+  if (OURCLIENTPHOTO === "") {
+    alert("Please insert Our Client Photo");
+    return;
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "7030.OurClientUpdate.php?id=" + Math.random(),
+    data: FD,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      try {
+        data = data.trim();
+        if (data.includes("SWD_OK")) {
+          alert("Update Success");
+          fetch_data();
+        } else {
+          alert(data);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+      fetch_data();
+      $("#editOurClient").modal("hide");
+      location.reload();
+    },
+    error: function () {
+      alert("Error");
+    },
+  });
+}
+
+$(document).on("click", ".deleteOurClient", function () {
+  var OURCLIENTID = $(this).attr("OurClientID");
+
+  let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
+
+  if (confirmDelete !== "DELETE") {
+    alert("Delete Cancel");
+    return;
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "7040.OurClientDelete.php?id=" + Math.random(),
+      data: {
+        OurClientID: OURCLIENTID,
+      },
+      success: function (data) {
+        try {
+          data = data.trim();
+          if (data.includes("SWD_OK")) {
+            alert("Delete Success");
+          } else {
+            alert(data);
+          }
+        } catch (err) {
+          alert(err.message);
+        }
+        fetch_data();
+      },
+      error: function () {
+        alert("Error");
+      },
+    });
+  }
+});
+
+$(document).on("click", ".activeOurClient", function () {
+  var OURCLIENTID = $(this).attr("OurClientID");
+
+  let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
+
+  if (confirmActive !== "ACTIVE") {
+    alert("Active Cancel");
+    return;
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "7050.OurClientActive.php?id=" + Math.random(),
+      data: {
+        OurClientID: OURCLIENTID,
+      },
+      success: function (data) {
+        try {
+          data = data.trim();
+          if (data.includes("SWD_OK")) {
+            alert("Activate Success");
+          } else {
+            alert(data);
+          }
+        } catch (err) {
+          alert(err.message);
+        }
+        fetch_data();
+      },
+      error: function () {
+        alert("Error");
+      },
+    });
+  }
+});
+
+$(document).on("click", ".debugOurClient", function () {
+  var OURCLIENTID = $(this).attr("OurClientID");
+  alert("DEBUG INFO\n\rOurClientID : " + OURCLIENTID);
+});

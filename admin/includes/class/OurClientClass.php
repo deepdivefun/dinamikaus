@@ -78,4 +78,70 @@ class OurClient
             echo 'Message: ' . $e->getMessage();
         }
     }
+
+    public function deleteOurClient($OurClientID, $StatusID, $UpdateBy)
+    {
+        global $conn;
+
+        try {
+            if (empty($OurClientID) and empty($StatusID) and empty($UpdateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "UPDATE tbl_ourclient SET 
+                            StatusID = ?,
+                            UpdateBy = ?,
+                            UpdateTime = NOW() 
+                            WHERE OurClientID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("isi", $StatusID, $UpdateBy, $OurClientID);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "Our Client has been deactivated";
+                } else {
+                    echo    "Our Client failed to deactivate";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+    }
+
+    public function activeOurClient($OurClientID, $StatusID, $UpdateBy)
+    {
+        global $conn;
+
+        try {
+            if (empty($OurClientID) and empty($StatusID) and empty($UpdateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "UPDATE tbl_ourclient SET 
+                            StatusID = ?,
+                            UpdateBy = ?,
+                            UpdateTime = NOW() 
+                            WHERE OurClientID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("isi", $StatusID, $UpdateBy, $OurClientID);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "Our Client has been activated";
+                } else {
+                    echo    "Our Client failed to activate";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+    }
 }
