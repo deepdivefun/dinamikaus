@@ -143,7 +143,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger rounded-5" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="updateProduct();">Save</button>
+                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="updateOurClient();">Save</button>
                             </div>
                         </form>
                     </div>
