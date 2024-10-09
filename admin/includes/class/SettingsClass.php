@@ -13,29 +13,30 @@ class Settings
         return $this->conn;
     }
 
-    public function updateSettings($SettingsID, $StatusID, $SettingsContents, $UpdateBy)
+    public function updateSettings($SettingsID, $StatusID, $SettingsName, $SettingsValue, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($SettingsID) and empty($StatusID) and empty($SettingsContents) and empty($UpdateBy)) {
+            if (empty($SettingsID) and empty($StatusID) and empty($SettingsValue) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $query  = "UPDATE tbl_settings SET 
                             StatusID = ?, 
-                            SettingsContents = ?, 
+                            SettingsName = ?, 
+                            SettingsValue = ?, 
                             UpdateBy = ?, 
                             UpdateTime = NOW() 
                             WHERE SettingsID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("issi", $StatusID, $SettingsContents, $UpdateBy, $SettingsID);
+                $stmt->bind_param("isssi", $StatusID, $SettingsName, $SettingsValue, $UpdateBy, $SettingsID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
                     $conn->commit();
-                    echo    "Settings successfully updated";
+                    echo    "Settings has been updated";
                 } else {
-                    echo    "Settings failed to update";
+                    echo    "Failed to update settings";
                 }
             }
             $stmt->close();

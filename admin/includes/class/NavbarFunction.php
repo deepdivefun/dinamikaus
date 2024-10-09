@@ -116,22 +116,6 @@ function Testimonial()
     };
 }
 
-function Messages()
-{
-    if (!SYSAdmin()) {
-        echo    '';
-    } else {
-        echo    '<a class="nav-link" href="' . WebRootPath() . '">
-                    <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <i class="fa-solid fa-message"></i>
-                    </span>
-                    <span class="nav-link-title">
-                        Messages
-                    </span>
-                </a>';
-    }
-}
-
 function Tools()
 {
     if (!SYSAdmin() and !AppAdmin() and !Admin()) {
@@ -173,6 +157,17 @@ function AppAdminTools()
                     </span>
                 </a>';
     }
+}
+
+function SettingsApplication()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '9000.Settings/9000.Settings.php">
+                    Settings Application
+                </a>';
+    };
 }
 
 function EventLog()
@@ -233,15 +228,4 @@ function DebugTools()
                     Debug Tools
                 </a>';
     }
-}
-
-function Settings()
-{
-    if (!SYSAdmin()) {
-        echo    '';
-    } else {
-        echo    '<a class="dropdown-item" href="' . WebRootPath() . '9000.Settings/9000.Settings.php">
-                    Settings
-                </a>';
-    };
 }

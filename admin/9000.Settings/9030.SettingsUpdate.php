@@ -1,33 +1,36 @@
 <?php
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/SettingsClass.php');
+require_once($WebRootPath . '/includes/class/EventLogClass.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '9000.Settings.php') === FALSE) {
-    echo    "<script>
-                alert('Invalid Caller');
-                document.location.href = '9000.Settings.php';
-            </script>";
-    die;
+    echo    "Invalid Caller";
+    die();
 }
 
-if ($_SESSION['RoleID'] !== 4) {
+if (!SYSAdmin() and !AppAdmin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 
 $SettingsID         = filter_input(INPUT_POST, "SettingsID");
 $StatusID           = filter_input(INPUT_POST, "StatusID");
-$SettingsContents   = filter_input(INPUT_POST, "SettingsContents");
-$GToken             = filter_input(INPUT_POST, "GToken");
-$UpdateBy           = filter_input(INPUT_POST, "UpdateBy");
+$SettingsName       = filter_input(INPUT_POST, "SettingsName");
+$SettingsValue      = filter_input(INPUT_POST, "SettingsValue");
+$UpdateBy           = filter_input(INPUT_POST, 'UpdateBy');
+$EventLogUser       = $UpdateBy;
+$EventLogData       = 'Update Settings ' . $SettingsName;
+$GToken             = filter_input(INPUT_POST, 'GToken');
 
-if ($GToken == !null) {
-    $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
+if ($GToken != null) {
+    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
@@ -35,18 +38,30 @@ if ($GToken == !null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success === 0) {
+    if ($Response->success == 0) {
         echo    "You are spammer ! Get the @$%K out";
-        die;
+        die();
     }
 }
 
 try {
-    if (empty($SettingsID) and empty($StatusID) and empty($SettingsContents) and empty($UpdateBy)) {
+    if (empty($SettingsID) and empty($StatusID) and empty($SettingsValue) and empty($UpdateBy)) {
         throw new Exception("Error Processing Request");
     } else {
+        $EventLog = new EventLog();
+        $EventLog->createEventLog(
+            $EventLogUser,
+            $EventLogData
+        );
+
         $Settings = new Settings();
-        $Settings->updateSettings($SettingsID, $StatusID, $SettingsContents, $UpdateBy);
+        $Settings->updateSettings(
+            $SettingsID,
+            $StatusID,
+            $SettingsName,
+            $SettingsValue,
+            $UpdateBy
+        );
     }
 } catch (Exception $e) {
     echo 'Message: ' . $e->getMessage();

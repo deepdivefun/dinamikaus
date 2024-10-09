@@ -51,12 +51,12 @@ $(document).on("click", ".editSettings", function () {
   var SETTINGSID = $(this).attr("SettingsID");
   var STATUSID = $(this).attr("StatusID");
   var SETTINGSNAME = $(this).attr("SettingsName");
-  var SETTINGSCONTENTS = $(this).attr("SettingsContents");
+  var SETTINGSVALUE = $(this).attr("SettingsValue");
 
   document.getElementById("SettingsID").value = SETTINGSID;
   document.getElementById("StatusID").value = STATUSID;
   document.getElementById("SettingsName").value = SETTINGSNAME;
-  document.getElementById("SettingsContents").value = SETTINGSCONTENTS;
+  document.getElementById("SettingsValue").value = SETTINGSVALUE;
 
   $("#editSettings").modal("show");
 });
@@ -64,9 +64,10 @@ $(document).on("click", ".editSettings", function () {
 async function updateSettings() {
   var SETTINGSID = document.getElementById("SettingsID").value;
   var STATUSID = document.getElementById("StatusID").value;
-  var SETTINGSCONTENTS = document.getElementById("SettingsContents").value;
-  var GTOKEN = document.getElementById("GToken").value;
+  var SETTINGSNAME = document.getElementById("SettingsName").value;
+  var SETTINGSVALUE = document.getElementById("SettingsValue").value;
   var UpdateBy = document.getElementById("UpdateBy").value;
+  var GTOKEN = document.getElementById("GToken").value;
 
   $.ajax({
     type: "POST",
@@ -74,7 +75,8 @@ async function updateSettings() {
     data: {
       SettingsID: SETTINGSID,
       StatusID: STATUSID,
-      SettingsContents: SETTINGSCONTENTS,
+      SettingsName: SETTINGSNAME,
+      SettingsValue: SETTINGSVALUE,
       GToken: GTOKEN,
       UpdateBy: UpdateBy,
     },
@@ -99,3 +101,8 @@ async function updateSettings() {
     },
   });
 }
+
+$(document).on("click", ".debugSettings", function () {
+  var SETTINGSID = $(this).attr("SettingsID");
+  alert("DEBUG INFO\n\rSettingsID : " + SETTINGSID);
+});

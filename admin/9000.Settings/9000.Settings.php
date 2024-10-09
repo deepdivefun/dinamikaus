@@ -1,23 +1,25 @@
 <?php
-$Title = 'Settings';
-$WebRootPath = realpath('../');
-require_once($WebRootPath . '/includes/component/HeaderCSP.php');
+$Title          = 'Settings Application';
+$WebRootPath    = realpath('../');
+
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/helpers/Session.php');
+require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
+require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
-$User = new Account();
+$User           = new Account();
 require_once($WebRootPath . '/includes/component/Topbar.php');
 require_once($WebRootPath . '/includes/class/NavbarFunction.php');
 require_once($WebRootPath . '/includes/component/Navbar.php');
 require_once($WebRootPath . '/includes/class/StatusClass.php');
-$Status = new Status();
+$Status         = new Status();
 
-if ($_SESSION['RoleID'] !== 4) {
+if (!SYSAdmin() and !AppAdmin()) {
     echo    "You don't have access rights to this page";
-    die;
+    die();
 }
 ?>
 
@@ -45,28 +47,28 @@ if ($_SESSION['RoleID'] !== 4) {
                         <form method="POST" autocomplete="off">
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="StatusID">Status Settings</label>
-                                <select class="form-control form-select" name="StatusID" id="StatusID">
+                                <label class="form-label" for="StatusID">Status</label>
+                                <select class="form-control form-select" name="StatusID" id="StatusID" required>
                                     <?php foreach ($Status->fetchStatus() as $row) : ?>
-                                        <option value="<?= $row['StatusID']; ?>"><?= $row['Status']; ?></option>
+                                        <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="SettingsName">Settings Name</label>
-                                <input type="text" class="form-control" name="SettingsName" id="SettingsName" readonly disabled>
+                                <input type="text" class="form-control" name="SettingsName" id="SettingsName" readonly>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="SettingsContents">Settings Contents</label>
-                                <textarea class="form-control" name="SettingsContents" id="SettingsContents" rows="8"></textarea>
+                                <label class="form-label" for="SettingsValue">Settings Value</label>
+                                <textarea class="form-control" name="SettingsValue" id="SettingsValue" rows="8"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="SettingsID" id="SettingsID" readonly required>
-                                <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
+                                <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
 
                             <div class="modal-footer">
@@ -86,16 +88,16 @@ if ($_SESSION['RoleID'] !== 4) {
     <div class="container-xl">
         <div class="row row-deck row-cards">
             <div class="col-12">
-                <div class="card rounded-5">
+                <div class="card shadow-lg rounded-5">
                     <div class="card-body">
                         <form method="POST" autocomplete="off">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group mb-3">
-                                        <label class="form-label" for="FilterStatusID">Status Settings</label>
-                                        <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID">
+                                        <label class="form-label" for="FilterStatusID">Status</label>
+                                        <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID" disabled>
                                             <?php foreach ($Status->fetchStatus() as $row) : ?>
-                                                <option value="<?= $row['StatusID']; ?>"><?= $row['Status']; ?></option>
+                                                <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -116,19 +118,12 @@ if ($_SESSION['RoleID'] !== 4) {
                                 <button type="button" class="btn btn-outline-info w-100 rounded-5" onclick="showButtonSettingsData();">Show Data</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="card rounded-5">
-                    <div class="card-body border-bottom py-3">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>Settings Name</th>
-                                        <th>Settings Contents</th>
+                                        <th>Settings Value</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
