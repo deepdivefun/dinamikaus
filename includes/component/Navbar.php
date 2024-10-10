@@ -8,7 +8,9 @@
             <li>
                 <a href="http://localhost/dinamikaus_BE/about.php">About</a>
             </li>
-            <li>Contact Us</li>
+            <li>
+                 <a href="http://localhost/dinamikaus_BE/contact.php">Contact</a>
+            </li>
         </ul>
     </div>
 </div>
