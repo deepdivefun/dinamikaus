@@ -116,16 +116,26 @@ async function createProductCategory() {
   });
 }
 
+// After Create
+EditProductCategoryPhoto.onchange = (evt) => {
+  const [file] = EditProductCategoryPhoto.files;
+  if (file) {
+    PreviewEditProductCategoryPhoto.src = URL.createObjectURL(file);
+  }
+};
+
 $(document).on("click", ".editProductCategory", function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   var STATUSID = $(this).attr("StatusID");
   var PRODUCTCATEGORYNAME = $(this).attr("ProductCategoryName");
   var PRODUCTCATEGORYCATALOG = $(this).attr("ProductCategoryCatalog");
+  var PRODUCTCATEGORYPHOTO = $(this).attr("ProductCategoryPhoto");
 
   $("#EditProductCategoryID").val(PRODUCTCATEGORYID);
   $("#EditStatusID").val(STATUSID);
   $("#EditProductCategoryName").val(PRODUCTCATEGORYNAME);
   $("#EditProductCategoryCatalogBeforeConvert").val(PRODUCTCATEGORYCATALOG);
+  $("#EditProductCategoryPhotoBeforeConvert").val(PRODUCTCATEGORYPHOTO);
 
   $("#editProductCategory").modal("show");
 });
@@ -140,6 +150,10 @@ async function updateProductCategory() {
   var PRODUCTCATEGORYCATALOGBEFORECONVERT = $(
     "#EditProductCategoryCatalogBeforeConvert"
   ).val();
+  var PRODUCTCATEGORYPHOTO = $("#EditProductCategoryPhoto")[0].files[0];
+  var PRODUCTCATEGORYPHOTOBEFORECONVERT = $(
+    "#EditProductCategoryPhotoBeforeConvert"
+  ).val();
   var UPDATEBY = $("#UpdateBy").val();
   var GTOKEN = $("#GToken").val();
 
@@ -150,6 +164,11 @@ async function updateProductCategory() {
   FD.append(
     "ProductCategoryCatalogBeforeConvert",
     PRODUCTCATEGORYCATALOGBEFORECONVERT
+  );
+  FD.append("ProductCategoryPhoto", PRODUCTCATEGORYPHOTO);
+  FD.append(
+    "ProductCategoryPhotoBeforeConvert",
+    PRODUCTCATEGORYPHOTOBEFORECONVERT
   );
   FD.append("UpdateBy", UPDATEBY);
   FD.append("GToken", GTOKEN);
@@ -166,6 +185,11 @@ async function updateProductCategory() {
 
   if (PRODUCTCATEGORYNAME === "") {
     alert("Please input Product Category Name");
+    return;
+  }
+
+  if (PRODUCTCATEGORYPHOTO === "") {
+    alert("Please insert Product Category Photo");
     return;
   }
 

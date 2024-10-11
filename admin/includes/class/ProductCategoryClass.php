@@ -73,12 +73,12 @@ class ProductCategory
         }
     }
 
-    public function updateProductCategory($ProductCategoryID, $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $UpdateBy)
+    public function updateProductCategory($ProductCategoryID, $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $ProductCategoryPhotoConvert, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductCategoryName) and empty($UpdateBy)) {
+            if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductCategoryName) and empty($ProductCategoryPhotoConvert) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
@@ -87,11 +87,12 @@ class ProductCategory
                             StatusID = ?,
                             ProductCategoryName = ?,
                             ProductCategoryCatalog = ?,
+                            ProductCategoryPhoto = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW() 
                             WHERE ProductCategoryID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isssi", $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $UpdateBy, $ProductCategoryID);
+                $stmt->bind_param("issssi", $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $ProductCategoryPhotoConvert, $UpdateBy, $ProductCategoryID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
