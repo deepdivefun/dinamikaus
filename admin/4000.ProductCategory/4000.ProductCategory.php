@@ -130,11 +130,22 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 <input type="hidden" class="form-control" name="EditProductCategoryCatalogBeforeConvert" id="EditProductCategoryCatalogBeforeConvert" readonly required>
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditProductCategoryPhoto">Product Category Photo</label>
+                                <input type="file" class="form-control" name="EditProductCategoryPhoto" id="EditProductCategoryPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="hidden" class="form-control" name="EditProductCategoryPhotoBeforeConvert" id="EditProductCategoryPhotoBeforeConvert" readonly required>
+                            </div>
+
                             <small class="text-danger">
                                 <ul>
-                                    <li>If you edit the data, re-enter the catalog.</li>
+                                    <li>Photo size must be 500 x 400 pixels</li>
+                                    <li>If you edit the data, re-enter the catalog and photo.</li>
                                 </ul>
                             </small>
+
+                            <div class="form-group mb-3">
+                                <img src="#" id="PreviewEditProductCategoryPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
+                            </div>
 
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="EditProductCategoryID" id="EditProductCategoryID" readonly required>

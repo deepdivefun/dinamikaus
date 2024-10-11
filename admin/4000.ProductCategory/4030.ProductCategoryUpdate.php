@@ -21,10 +21,17 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 }
 
 $ProductCategoryID                      = filter_input(INPUT_POST, 'ProductCategoryID');
+
 $ProductCategoryCatalogBeforeConvert    = filter_input(INPUT_POST, 'ProductCategoryCatalogBeforeConvert');
 if (file_exists("../assets/catalog/$ProductCategoryCatalogBeforeConvert")) {
     unlink("../assets/catalog/$ProductCategoryCatalogBeforeConvert");
 }
+
+$ProductCategoryPhotoBeforeConvert    = filter_input(INPUT_POST, 'ProductCategoryPhotoBeforeConvert');
+if (file_exists("../assets/img/productcategoryphoto/$ProductCategoryPhotoBeforeConvert")) {
+    unlink("../assets/img/productcategoryphoto/$ProductCategoryPhotoBeforeConvert");
+}
+
 $StatusID                               = filter_input(INPUT_POST, 'StatusID');
 $ProductCategoryName                    = filter_input(INPUT_POST, 'ProductCategoryName');
 
@@ -33,6 +40,12 @@ $Dir                                    = "../assets/catalog/";
 $File                                   = $_FILES['ProductCategoryCatalog']['tmp_name'];
 $ProductCategoryCatalogConvert          =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryCatalog;
 move_uploaded_file($File, $Dir . $ProductCategoryCatalogConvert);
+
+$ProductCategoryPhoto                   = $_FILES['ProductCategoryPhoto']['name'];
+$Dir                                    = "../assets/img/productcategoryphoto/";
+$File                                   = $_FILES['ProductCategoryPhoto']['tmp_name'];
+$ProductCategoryPhotoConvert            = uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryPhoto;
+move_uploaded_file($File, $Dir . $ProductCategoryPhotoConvert);
 
 $UpdateBy                               = filter_input(INPUT_POST, 'UpdateBy');
 $EventLogUser                           = $UpdateBy;
@@ -55,7 +68,7 @@ if ($GToken != null) {
 }
 
 try {
-    if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductCategoryName) and empty($UpdateBy)) {
+    if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductCategoryName) and empty($ProductCategoryPhotoConvert) and empty($UpdateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();
@@ -70,6 +83,7 @@ try {
             $StatusID,
             $ProductCategoryName,
             $ProductCategoryCatalogConvert,
+            $ProductCategoryPhotoConvert,
             $UpdateBy
         );
     }
