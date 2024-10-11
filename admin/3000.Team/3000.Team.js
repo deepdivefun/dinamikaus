@@ -80,18 +80,22 @@ async function createTeam() {
 
   if (STATUSID == "") {
     alert("Please select Status");
+    return;
   }
 
   if (FULLNAME === "") {
     alert("Please enter Full Name");
+    return;
   }
 
   if (POSITION === "") {
     alert("Please input Position");
+    return;
   }
 
   if (TEAMPHOTO === "") {
     alert("Please insert Team Photo");
+    return;
   }
 
   $.ajax({
@@ -177,22 +181,27 @@ async function updateTeam() {
 
   if (TEAMID == "") {
     alert("TeamID undefined");
+    return;
   }
 
   if (STATUSID == "") {
     alert("Please select Status");
+    return;
   }
 
   if (FULLNAME === "") {
     alert("Please enter Full Name");
+    return;
   }
 
   if (POSITION === "") {
     alert("Please input Position");
+    return;
   }
 
   if (TEAMPHOTO === "") {
     alert("Please insert Team Photo");
+    return;
   }
 
   $.ajax({

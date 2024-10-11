@@ -70,6 +70,21 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 <input type="file" class="form-control" name="ProductCategoryCatalog" id="ProductCategoryCatalog" accept=".pdf" required>
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="ProductCategoryPhoto">Product Category Photo</label>
+                                <input type="file" class="form-control" name="ProductCategoryPhoto" id="ProductCategoryPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                            </div>
+
+                            <small class="text-danger">
+                                <ul>
+                                    <li>Photo size must be 500 x 400 pixels</li>
+                                </ul>
+                            </small>
+
+                            <div class="form-group mb-3">
+                                <img src="#" id="PreviewProductCategoryPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
+                            </div>
+
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="CreateBy" id="CreateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>

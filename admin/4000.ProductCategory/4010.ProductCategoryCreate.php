@@ -29,6 +29,12 @@ $File                           = $_FILES['ProductCategoryCatalog']['tmp_name'];
 $ProductCategoryCatalogConvert  =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryCatalog;
 move_uploaded_file($File, $Dir . $ProductCategoryCatalogConvert);
 
+$ProductCategoryPhoto           = $_FILES['ProductCategoryPhoto']['name'];
+$Dir                            = "../assets/img/productcategoryphoto/";
+$File                           = $_FILES['ProductCategoryPhoto']['tmp_name'];
+$ProductCategoryPhotoConvert    = uniqid() . "-" . date('Y-m-d') . "-" . $ProductCategoryPhoto;
+move_uploaded_file($File, $Dir . $ProductCategoryPhotoConvert);
+
 $CreateBy                       = filter_input(INPUT_POST, 'CreateBy');
 $EventLogUser                   = $CreateBy;
 $EventLogData                   = 'Create Product Category ' . $ProductCategoryName;
@@ -50,7 +56,7 @@ if ($GToken != null) {
 }
 
 try {
-    if (empty($StatusID) and empty($ProductCategoryName) and empty($CreateBy)) {
+    if (empty($StatusID) and empty($ProductCategoryName) and empty($ProductCategoryPhotoConvert) and empty($CreateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();
@@ -64,6 +70,7 @@ try {
             $StatusID,
             $ProductCategoryName,
             $ProductCategoryCatalogConvert,
+            $ProductCategoryPhotoConvert,
             $CreateBy
         );
     }

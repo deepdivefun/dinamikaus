@@ -43,20 +43,20 @@ class ProductCategory
         $conn->close();
     }
 
-    public function createProductCategory($StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $CreateBy)
+    public function createProductCategory($StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $ProductCategoryPhotoConvert, $CreateBy)
     {
         global $conn;
 
         try {
-            if (empty($StatusID) and empty($ProductCategoryName) and empty($CreateBy)) {
+            if (empty($StatusID) and empty($ProductCategoryName) and empty($ProductCategoryPhotoConvert) and empty($CreateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
-                $query  = "INSERT INTO tbl_product_category (StatusID, ProductCategoryName, ProductCategoryCatalog, CreateBy) 
-                            VALUES (?, ?, ?, ?)";
+                $query  = "INSERT INTO tbl_product_category (StatusID, ProductCategoryName, ProductCategoryCatalog, ProductCategoryPhoto, CreateBy) 
+                            VALUES (?, ?, ?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isss", $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $CreateBy);
+                $stmt->bind_param("issss", $StatusID, $ProductCategoryName, $ProductCategoryCatalogConvert, $ProductCategoryPhotoConvert, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
