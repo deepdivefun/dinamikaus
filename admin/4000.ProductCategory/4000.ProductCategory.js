@@ -49,18 +49,28 @@ async function fetch_data() {
   });
 }
 
+// Before Create
+ProductCategoryPhoto.onchange = (evt) => {
+  const [file] = ProductCategoryPhoto.files;
+  if (file) {
+    PreviewProductCategoryPhoto.src = URL.createObjectURL(file);
+  }
+};
+
 async function createProductCategory() {
   var FD = new FormData();
 
   var STATUSID = $("#StatusID").val();
   var PRODUCTCATEGORYNAME = $("#ProductCategoryName").val();
   var PRODUCTCATEGORYCATALOG = $("#ProductCategoryCatalog")[0].files[0];
+  var PRODUCTCATEGORYPHOTO = $("#ProductCategoryPhoto")[0].files[0];
   var CREATEBY = $("#CreateBy").val();
   var GTOKEN = $("#GToken").val();
 
   FD.append("StatusID", STATUSID);
   FD.append("ProductCategoryName", PRODUCTCATEGORYNAME);
   FD.append("ProductCategoryCatalog", PRODUCTCATEGORYCATALOG);
+  FD.append("ProductCategoryPhoto", PRODUCTCATEGORYPHOTO);
   FD.append("CreateBy", CREATEBY);
   FD.append("GToken", GTOKEN);
 
@@ -71,6 +81,11 @@ async function createProductCategory() {
 
   if (PRODUCTCATEGORYNAME === "") {
     alert("Please input Product Category Name");
+    return;
+  }
+
+  if (PRODUCTCATEGORYPHOTO === "") {
+    alert("Please insert Product Category Photo");
     return;
   }
 
