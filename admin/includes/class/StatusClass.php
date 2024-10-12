@@ -17,6 +17,8 @@ class Status
     {
         global $conn;
 
+        $conn->begin_transaction();
+
         $query  = "SELECT StatusID, StatusName FROM tbl_status";
         $stmt   = $conn->prepare($query);
         $stmt->execute();
