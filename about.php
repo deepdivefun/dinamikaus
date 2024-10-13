@@ -8,8 +8,6 @@ require_once'includes/component/Navbar.php';
         <li>Home /</li>
         <li>Contact</li>
     </ul>
-
-
     <div class='mt-6 mx-12 mb-12' >
         <h2 class='font-bold text-xl' >Tentang Dinamika US</h2>
         <div class='w-8/12' >
