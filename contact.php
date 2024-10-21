@@ -10,7 +10,7 @@ require_once'includes/component/Navbar.php';
         <li>Contact</li>
     </ul>
     
-    <h3 class='my-3 font-semibold' > BALI & NUSA TENGGARA </h3>
+    <h3 class='mt-6 mb-3 font-semibold' > BALI & NUSA TENGGARA </h3>
 
     <div>
         <div class="grid grid-cols-3 justify-items-start gap-4">

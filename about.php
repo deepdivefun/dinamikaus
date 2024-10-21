@@ -6,7 +6,7 @@ require_once'includes/component/Navbar.php';
 <div class='mx-8 mt-6' >
     <ul class='flex gap-3'>
         <li>Home /</li>
-        <li>Contact</li>
+        <li>About</li>
     </ul>
     <div class='mt-6 mx-12 mb-12' >
         <h2 class='font-bold text-xl' >Tentang Dinamika US</h2>

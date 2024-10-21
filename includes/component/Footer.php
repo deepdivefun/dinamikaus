@@ -3,7 +3,7 @@
         <h3>Tentang Kami</h3>
         <a class='button border p-3 mt-3 rounded-md' href="">Selengkapnya</a>
     </div>
-    <div class='columns-4 gap-3 bg-zinc-800 text-white mt-12 px-6 py-8' >
+    <div class='grid lg:grid-cols-4 grid-cols-2 lg:gap-3 gap-1 bg-zinc-800 text-white mt-12 lg:px-6 px-3 py-8' >
         <div class=''>
             <div class='flex  gap-3' >
                 <i class="fa fa-shield text-3xl" aria-hidden="true"></i>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class='grid grid-cols-4 gap-4 px-6 py-6' >
+    <div class='grid lg:grid-cols-4 grid-cols-1 gap-4 px-6 py-6' >
          <div class=''>
             <div class='grid justify-items-center' >
                 <!-- <span>Dinamika</span> -->
