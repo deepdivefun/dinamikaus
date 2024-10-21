@@ -1,0 +1,1 @@
+<input type="hidden" name="GToken" id="GToken" readonly required>

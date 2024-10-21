@@ -3,3 +3,14 @@
 
     <!-- Main JS -->
     <script src="<?= WebRootPath(); ?>assets/js/main.js"></script>
+
+    <!-- Google Recaptcha V3 -->
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute("6Lco2AAjAAAAADY72bwy6ijVK9JYWkr_c6TmfRGC", {
+                action: "submit"
+            }).then(function(GToken) {
+                document.getElementById("GToken").value = GToken;
+            })
+        });
+    </script>
