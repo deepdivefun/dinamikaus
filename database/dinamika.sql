@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2024 at 01:41 PM
+-- Generation Time: Oct 24, 2024 at 03:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -94,7 +94,11 @@ INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `
 (21, '2024-10-24 07:08:52', 'kevinarlo', 'Update Contact For Area Bali'),
 (22, '2024-10-24 08:05:08', 'kevinarlo', 'Create Product Product Computer'),
 (23, '2024-10-24 08:06:24', 'kevinarlo', 'Create Product Product Computer 2'),
-(24, '2024-10-24 08:53:02', 'kevinarlo', 'kevinarlo has logged out');
+(24, '2024-10-24 08:53:02', 'kevinarlo', 'kevinarlo has logged out'),
+(25, '2024-10-24 12:00:45', 'kevinarlo', 'kevinarlo is logged in'),
+(26, '2024-10-24 13:10:06', 'kevinarlo', 'kevinarlo has logged out'),
+(27, '2024-10-24 13:26:28', 'kevinarlo', 'kevinarlo is logged in'),
+(28, '2024-10-24 13:27:02', 'kevinarlo', 'kevinarlo has logged out');
 
 -- --------------------------------------------------------
 
@@ -151,6 +155,23 @@ CREATE TABLE `tbl_ourclient` (
 
 INSERT INTO `tbl_ourclient` (`OurClientID`, `StatusID`, `OurClientName`, `OurClientPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 1, 'Test edit', '6705fb5360ecb-2024-10-09-logo.png', 'kevinarlo', '2024-10-05 14:01:01', 'kevinarlo', '2024-10-09 04:11:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_payment`
+--
+
+CREATE TABLE `tbl_payment` (
+  `PaymentID` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `PaymentName` varchar(50) NOT NULL,
+  `PaymentPhoto` varchar(255) NOT NULL,
+  `CreateBy` varchar(20) DEFAULT NULL,
+  `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdateBy` varchar(20) DEFAULT NULL,
+  `UpdateTime` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -390,6 +411,13 @@ ALTER TABLE `tbl_ourclient`
   ADD KEY `StatusID` (`StatusID`);
 
 --
+-- Indexes for table `tbl_payment`
+--
+ALTER TABLE `tbl_payment`
+  ADD PRIMARY KEY (`PaymentID`),
+  ADD KEY `StatusID` (`StatusID`);
+
+--
 -- Indexes for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
@@ -465,7 +493,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -478,6 +506,12 @@ ALTER TABLE `tbl_meta`
 --
 ALTER TABLE `tbl_ourclient`
   MODIFY `OurClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tbl_payment`
+--
+ALTER TABLE `tbl_payment`
+  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
@@ -554,6 +588,12 @@ ALTER TABLE `tbl_meta`
 --
 ALTER TABLE `tbl_ourclient`
   ADD CONSTRAINT `tbl_ourclient_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
+
+--
+-- Constraints for table `tbl_payment`
+--
+ALTER TABLE `tbl_payment`
+  ADD CONSTRAINT `tbl_payment_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
 
 --
 -- Constraints for table `tbl_product`
