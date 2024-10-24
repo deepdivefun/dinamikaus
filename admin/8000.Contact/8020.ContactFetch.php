@@ -23,7 +23,7 @@ $StatusID           = filter_input(INPUT_POST, 'StatusID');
 $ContactNameArea    = filter_input(INPUT_POST, 'ContactNameArea');
 $GToken             = filter_input(INPUT_POST, 'GToken');
 
-if ($GToken != null) {
+if (!empty($GToken)) {
     $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
@@ -32,7 +32,7 @@ if ($GToken != null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success == 0) {
+    if ($Response->success === 0) {
         echo    "You are spammer ! Get the @$%K out";
         die();
     }
@@ -45,7 +45,7 @@ try {
         $conn->begin_transaction();
 
         $query  = "SELECT a.ContactID, b.StatusID, b.StatusName, a.ContactNameArea, a.ContactAddress, 
-                    a.ContactLinkGmaps, a.ContactNumber, a.CreateBy, a.CreateTime, a.UpdateBy, 
+                    a.ContactLinkGmaps, a.ContactNumber, a.ContactEmail, a.CreateBy, a.CreateTime, a.UpdateBy, 
                     a.UpdateTime FROM tbl_contact a 
                     LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
                     WHERE a.StatusID = ? AND a.ContactNameArea LIKE CONCAT('%', ?, '%')";
@@ -61,6 +61,7 @@ try {
             $ContactAddress,
             $ContactLinkGmaps,
             $ContactNumber,
+            $ContactEmail,
             $CreateBy,
             $CreateTime,
             $UpdateBy,
@@ -79,26 +80,26 @@ try {
             }
 
             if ($StatusID == 1) {
-                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' ContactEmail='$ContactEmail' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteContact' title='DELETE' ContactID='$ContactID'><i class='fa-solid fa-trash'></i></button>";
-                if ($_SESSION['RoleID'] == 4) {
-                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                if (SYSAdmin()) {
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' ContactEmail='$ContactEmail' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteContact' title='DELETE' ContactID='$ContactID'><i class='fa-solid fa-trash'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugContact' title='DEBUG' ContactID='$ContactID'><i class='fa-solid fa-eye'></i></button>";
                 }
             } else {
                 $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeContact' title='ACTIVATE' ContactID='$ContactID'><i class='fa-solid fa-check'></i></button>";
-                if ($_SESSION['RoleID'] == 4) {
+                if (SYSAdmin()) {
                     $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeContact' title='ACTIVATE' ContactID='$ContactID'><i class='fa-solid fa-check'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugContact' title='DEBUG' ContactID='$ContactID'><i class='fa-solid fa-eye'></i></button>";
                 }
             }
 
-            $JSONData .= '["' . $ContactNameArea . '", "' . $ContactAddress . '", "' . $ContactNumber . '", "' . $StatusName . '", "' . $Button . '"]';
+            $JSONData .= '["' . $ContactNameArea . '", "' . $ContactAddress . '", "' . $ContactNumber . '", "' . $ContactEmail . '", "' . $StatusName . '", "' . $Button . '"]';
         }
 
         if ($JSONData == null) {
-            $JSONData = ["", "", "", "", ""];
+            $JSONData = ["", "", "", "", "", ""];
             echo "[" . json_encode($JSONData) . "]";
         } else {
             $conn->commit();

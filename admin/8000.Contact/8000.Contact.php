@@ -65,7 +65,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ContactAddress">Address</label>
-                                <input type="text" class="form-control" name="ContactAddress" id="ContactAddress">
+                                <textarea class="form-control" name="ContactAddress" id="ContactAddress" rows="8"></textarea>
                             </div>
 
                             <div class="form-group mb-3">
@@ -75,7 +75,12 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ContactNumber">Contact Number</label>
-                                <input type="number" class="form-control" name="ContactNumber" id="ContactNumber" maxlength="13" required>
+                                <input type="number" class="form-control" name="ContactNumber" id="ContactNumber" maxlength="13">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="ContactEmail">Contact Email</label>
+                                <input type="email" class="form-control" name="ContactEmail" id="ContactEmail" required>
                             </div>
 
                             <div class="form-group">
@@ -119,7 +124,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditContactAddress">Address</label>
-                                <input type="text" class="form-control" name="EditContactAddress" id="EditContactAddress">
+                                <textarea class="form-control" name="EditContactAddress" id="EditContactAddress" rows="8"></textarea>
                             </div>
 
                             <div class="form-group mb-3">
@@ -129,7 +134,12 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditContactNumber">Contact Number</label>
-                                <input type="number" class="form-control" name="EditContactNumber" id="EditContactNumber" maxlength="13" required>
+                                <input type="number" class="form-control" name="EditContactNumber" id="EditContactNumber" maxlength="13">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditContactEmail">Contact Email</label>
+                                <input type="email" class="form-control" name="EditContactEmail" id="EditContactEmail" required>
                             </div>
 
                             <div class="form-group">
@@ -191,6 +201,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                                         <th>Name Area</th>
                                         <th>Address</th>
                                         <th>Contact Number</th>
+                                        <th>Contact Email</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

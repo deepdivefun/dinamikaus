@@ -53,6 +53,7 @@ async function createContact() {
   var CONTACTADDRESS = document.getElementById("ContactAddress").value;
   var CONTACTLINKGMAPS = document.getElementById("ContactLinkGmaps").value;
   var CONTACTNUMBER = document.getElementById("ContactNumber").value;
+  var CONTACTEMAIL = document.getElementById("ContactEmail").value;
   var CREATEBY = document.getElementById("CreateBy").value;
   var GTOKEN = document.getElementById("GToken").value;
 
@@ -66,8 +67,8 @@ async function createContact() {
     return;
   }
 
-  if (CONTACTNUMBER === "") {
-    alert("Please input Contact Number");
+  if (CONTACTEMAIL === "") {
+    alert("Please input Contact Email");
     return;
   }
 
@@ -80,6 +81,7 @@ async function createContact() {
       ContactAddress: CONTACTADDRESS,
       ContactLinkGmaps: CONTACTLINKGMAPS,
       ContactNumber: CONTACTNUMBER,
+      ContactEmail: CONTACTEMAIL,
       CreateBy: CREATEBY,
       GToken: GTOKEN,
     },
@@ -111,6 +113,7 @@ $(document).on("click", ".editContact", function () {
   var CONTACTADRESS = $(this).attr("ContactAddress");
   var CONTACTLINKGMAPS = $(this).attr("ContactLinkGmaps");
   var CONTACTNUMBER = $(this).attr("ContactNumber");
+  var CONTACTEMAIL = $(this).attr("ContactEmail");
 
   $("#EditContactID").val(CONTACTID);
   $("#EditStatusID").val(STATUSID);
@@ -118,6 +121,7 @@ $(document).on("click", ".editContact", function () {
   $("#EditContactAddress").val(CONTACTADRESS);
   $("#EditContactLinkGmaps").val(CONTACTLINKGMAPS);
   $("#EditContactNumber").val(CONTACTNUMBER);
+  $("#EditContactEmail").val(CONTACTEMAIL);
 
   $("#editContact").modal("show");
 });
@@ -129,6 +133,7 @@ async function updateContact() {
   var CONTACTADDRESS = document.getElementById("EditContactAddress").value;
   var CONTACTLINKGMAPS = document.getElementById("EditContactLinkGmaps").value;
   var CONTACTNUMBER = document.getElementById("EditContactNumber").value;
+  var CONTACTEMAIL = document.getElementById("EditContactEmail").value;
   var UPDATEBY = document.getElementById("UpdateBy").value;
   var GTOKEN = document.getElementById("GToken").value;
 
@@ -147,8 +152,8 @@ async function updateContact() {
     return;
   }
 
-  if (CONTACTNUMBER === "") {
-    alert("Please input Contact Number");
+  if (CONTACTEMAIL === "") {
+    alert("Please input Contact Email");
     return;
   }
 
@@ -162,6 +167,7 @@ async function updateContact() {
       ContactAddress: CONTACTADDRESS,
       ContactLinkGmaps: CONTACTLINKGMAPS,
       ContactNumber: CONTACTNUMBER,
+      ContactEmail: CONTACTEMAIL,
       UpdateBy: UPDATEBY,
       GToken: GTOKEN,
     },

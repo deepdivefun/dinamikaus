@@ -23,7 +23,7 @@ $StatusID               = filter_input(INPUT_POST, 'StatusID');
 $ProductCategoryName    = filter_input(INPUT_POST, 'ProductCategoryName');
 $GToken                 = filter_input(INPUT_POST, 'GToken');
 
-if ($GToken == !null) {
+if (!empty($GToken)) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];

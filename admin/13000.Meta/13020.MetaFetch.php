@@ -24,7 +24,7 @@ $Name       = filter_input(INPUT_POST, 'Name');
 $Content    = filter_input(INPUT_POST, 'Content');
 $GToken     = filter_input(INPUT_POST, 'GToken');
 
-if ($GToken != null) {
+if (!empty($GToken)) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
@@ -33,7 +33,7 @@ if ($GToken != null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success == 0) {
+    if ($Response->success === 0) {
         echo    "You are spammer ! Get the @$%K out";
         die();
     }
@@ -70,14 +70,14 @@ try {
             if ($StatusID == 1) {
                 $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editMeta' title='EDIT' MetaID='$MetaID' StatusID='$StatusID' Name='$Name' Content='$Content' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteMeta' title='DELETE' MetaID='$MetaID'><i class='fa-solid fa-trash'></i></button>";
-                if ($_SESSION['RoleID'] == 4) {
+                if (SYSAdmin()) {
                     $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editMeta' title='EDIT' MetaID='$MetaID' StatusID='$StatusID' Name='$Name' Content='$Content' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteMeta' title='DELETE' MetaID='$MetaID'><i class='fa-solid fa-trash'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugMeta' title='DEBUG' MetaID='$MetaID'><i class='fa-solid fa-eye'></i></button>";
                 }
             } else {
                 $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeMeta' title='ACTIVATE' MetaID='$MetaID'><i class='fa-solid fa-check'></i></button>";
-                if ($_SESSION['RoleID'] == 4) {
+                if (SYSAdmin()) {
                     $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeMeta' title='ACTIVATE' MetaID='$MetaID'><i class='fa-solid fa-check'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugMeta' title='DEBUG' MetaID='$MetaID'><i class='fa-solid fa-eye'></i></button>";
                 }

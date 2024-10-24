@@ -23,8 +23,8 @@ $TestimonialStatusID    = filter_input(INPUT_POST, 'TestimonialStatusID');
 $FullName               = filter_input(INPUT_POST, 'FullName');
 $GToken                 = filter_input(INPUT_POST, 'GToken');
 
-if ($GToken != null) {
-    $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
+if (!empty($GToken)) {
+    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
@@ -32,7 +32,7 @@ if ($GToken != null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success == 0) {
+    if ($Response->success === 0) {
         echo    "You are spammer ! Get the @$%K out";
         die();
     }
@@ -84,7 +84,7 @@ try {
                 $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 reviewTestimonial' title='REVIEW' TestimonialID='$TestimonialID' TestimonialStatusID='$TestimonialStatusID' FullName='$FullName' Company='$Company' TestimonialDescription='$TestimonialDescription' CreateBy='$CreateBy' CreateTime='$CreateBy' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-eye'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 approveTestimonial' title='APPROVE' TestimonialID='$TestimonialID'><i class='fa-solid fa-check'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 notApproveTestimonial' title='NOT APPROVE' TestimonialID='$TestimonialID'><i class='fa-solid fa-x'></i></button>";
-                if ($_SESSION['RoleID'] == 4) {
+                if (SYSAdmin()) {
                     $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 reviewTestimonial' title='REVIEW' TestimonialID='$TestimonialID' TestimonialStatusID='$TestimonialStatusID' FullName='$FullName' Company='$Company' TestimonialDescription='$TestimonialDescription' CreateBy='$CreateBy' CreateTime='$CreateBy' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-eye'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 approveTestimonial' title='APPROVE' TestimonialID='$TestimonialID'><i class='fa-solid fa-check'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 notApproveTestimonial' title='NOT APPROVE' TestimonialID='$TestimonialID'><i class='fa-solid fa-x'></i></button>";
@@ -93,7 +93,7 @@ try {
             } elseif ($TestimonialStatusID == 2) {
                 $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 reviewTestimonial' title='REVIEW' TestimonialID='$TestimonialID' TestimonialStatusID='$TestimonialStatusID' FullName='$FullName' Company='$Company' TestimonialDescription='$TestimonialDescription' CreateBy='$CreateBy' CreateTime='$CreateBy' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-eye'></i></button>";
                 $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 notApproveTestimonial' title='NOT APPROVE' TestimonialID='$TestimonialID'><i class='fa-solid fa-x'></i></button>";
-                if ($_SESSION['RoleID'] == 4) {
+                if (SYSAdmin()) {
                     $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 reviewTestimonial' title='REVIEW' TestimonialID='$TestimonialID' TestimonialStatusID='$TestimonialStatusID' FullName='$FullName' Company='$Company' TestimonialDescription='$TestimonialDescription' CreateBy='$CreateBy' CreateTime='$CreateBy' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-eye'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 notApproveTestimonial' title='NOT APPROVE' TestimonialID='$TestimonialID'><i class='fa-solid fa-x'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugTestimonial' title='DEBUG' TestimonialID='$TestimonialID'><i class='fa-solid fa-eye'></i></button>";
