@@ -25,12 +25,13 @@ $ContactNameArea    = filter_input(INPUT_POST, 'ContactNameArea');
 $ContactAddress     = filter_input(INPUT_POST, 'ContactAddress');
 $ContactLinkGmaps   = filter_input(INPUT_POST, 'ContactLinkGmaps');
 $ContactNumber      = filter_input(INPUT_POST, 'ContactNumber');
+$ContactEmail       = filter_input(INPUT_POST, 'ContactEmail');
 $CreateBy           = filter_input(INPUT_POST, 'CreateBy');
 $EventLogUser       = $CreateBy;
 $EventLogData       = 'Create Contact For Area ' . $ContactNameArea;
 $GToken             = filter_input(INPUT_POST, 'GToken');
 
-if ($GToken != null) {
+if (!empty($GToken)) {
     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
     $Token      = $GToken;
     $IP         = $_SERVER['REMOTE_ADDR'];
@@ -39,14 +40,14 @@ if ($GToken != null) {
     $Request    = file_get_contents($URL);
     $Response   = json_decode($Request);
 
-    if ($Response->success == 0) {
+    if ($Response->success === 0) {
         echo    "You are spammer ! Get the @$%K out";
         die();
     }
 }
 
 try {
-    if (empty($StatusID) and empty($ContactNameArea) and empty($ContactNumber) and empty($CreateBy)) {
+    if (empty($StatusID) and empty($ContactNameArea) and empty($ContactEmail) and empty($CreateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();
@@ -62,6 +63,7 @@ try {
             $ContactAddress,
             $ContactLinkGmaps,
             $ContactNumber,
+            $ContactEmail,
             $CreateBy
         );
     }

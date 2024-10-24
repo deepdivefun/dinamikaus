@@ -4,7 +4,7 @@ require_once('ConnectionClass.php');
 class Contact
 {
     public $ContactID, $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber,
-        $CreateBy, $CreateTime, $UpdateBy, $UpdateTime;
+        $ContactEmail, $CreateBy, $CreateTime, $UpdateBy, $UpdateTime;
 
     private $conn;
 
@@ -16,20 +16,20 @@ class Contact
         return $this->conn;
     }
 
-    public function createContact($StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $CreateBy)
+    public function createContact($StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $CreateBy)
     {
         global $conn;
 
         try {
-            if (empty($StatusID) and empty($ContactNameArea) and empty($ContactNumber) and empty($CreateBy)) {
+            if (empty($StatusID) and empty($ContactNameArea) and empty($ContactEmail) and empty($CreateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
-                $query  = "INSERT INTO tbl_contact (StatusID, ContactNameArea, ContactAddress, ContactLinkGmaps, ContactNumber, CreateBy) 
-                            VALUES (?, ?, ?, ?, ?, ?)";
+                $query  = "INSERT INTO tbl_contact (StatusID, ContactNameArea, ContactAddress, ContactLinkGmaps, ContactNumber, ContactEmail, CreateBy) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isssss", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $CreateBy);
+                $stmt->bind_param("issssss", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
@@ -46,12 +46,12 @@ class Contact
         }
     }
 
-    public function updateContact($ContactID, $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $UpdateBy)
+    public function updateContact($ContactID, $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($ContactID) and empty($StatusID) and empty($ContactNameArea) and empty($ContactNumber) and empty($UpdateBy)) {
+            if (empty($ContactID) and empty($StatusID) and empty($ContactNameArea) and empty($ContactEmail) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
@@ -62,11 +62,12 @@ class Contact
                             ContactAddress = ?,
                             ContactLinkGmaps = ?,
                             ContactNumber = ?,
+                            ContactEmail = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW() 
                             WHERE ContactID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("isssssi", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $UpdateBy, $ContactID);
+                $stmt->bind_param("issssssi", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $UpdateBy, $ContactID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
