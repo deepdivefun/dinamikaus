@@ -9,18 +9,14 @@
                     <a href="<?= WebRootPath(); ?>products.php">Product</a>
                     <div class="dropdown-content" id="dropdown-content">
                         <div class="dropdown-content-div">
-                            <div class='grid'>
-                                <a href="#"> <img class='w-32 h-32' src="<?= WebRootPath(); ?>assets/img/ibox_logo.jpg" alt=""> </a>
-                                <a class='text-sm' href="#">Produk Terbaru</a>
-                            </div>
-                            <div class='grid'>
-                                <a href="#"> <img class='w-32 h-32' src="<?= WebRootPath(); ?>assets/img/image1.jpg" alt=""> </a>
-                                <a class='text-sm' href="#">Ipad</a>
-                            </div>
-                            <div class='grid'>
-                                <a href="#"> <img class='w-32 h-32' src="<?= WebRootPath(); ?>assets/img/sundar_pichay.jpg" alt=""> </a>
-                                <a class='text-sm' href="#">Orang</a>
-                            </div>
+                            <?php foreach ($Product->fetchProductNavbar() as $row) : ?>
+                                <div class='grid'>
+                                    <a href="<?= WebRootPath(); ?>products.php?id=<?= $row['ProductCategoryID']; ?>">
+                                        <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                                        <p class="text-sm mt-5"><?= $row['ProductCategoryName']; ?></p>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </button></li>

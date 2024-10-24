@@ -19,8 +19,8 @@ class Product
     {
         global $conn;
 
-        $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.StatusID, 
-                    c.StatusName FROM tbl_product a 
+        $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, b.ProductCategoryPhoto, 
+                    c.StatusID, c.StatusName FROM tbl_product a 
                     LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
                     LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
                     WHERE c.StatusName = ? GROUP BY a.ProductCategoryID ORDER BY a.ProductCategoryID ASC";
@@ -32,6 +32,7 @@ class Product
             $ProductID,
             $ProductCategoryID,
             $ProductCategoryName,
+            $ProductCategoryPhoto,
             $StatusID,
             $StatusName
         );
@@ -43,6 +44,7 @@ class Product
                 'ProductID'             => $ProductID,
                 'ProductCategoryID'     => $ProductCategoryID,
                 'ProductCategoryName'   => $ProductCategoryName,
+                'ProductCategoryPhoto'  => $ProductCategoryPhoto,
                 'StatusID'              => $StatusID,
                 'StatusName'            => $StatusName
             ];

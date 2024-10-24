@@ -2,6 +2,8 @@
 $Title  = "Product";
 require_once('includes/helpers/WebRootPath.php');
 require_once('includes/component/Header.php');
+require_once('includes/class/ProductClass.php');
+$Product    = new Product();
 require_once('includes/component/Navbar.php');
 ?>
 
