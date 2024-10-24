@@ -6,10 +6,8 @@
             <!-- <li class='cursor-pointer'><span class='hover:underline underline-offset-1' >Mac</span></li> -->
             <li><a href="<?= WebRootPath(); ?>index.php">Home</a></li>
             <li><button onmouseover="mouseOver()" onmouseout="mouseOut()">
-
                     <a href="<?= WebRootPath(); ?>products.php">Product</a>
-
-                    <div class="dropdown-content" id="dropdown-content ">
+                    <div class="dropdown-content" id="dropdown-content">
                         <div class="dropdown-content-div">
                             <div class='grid'>
                                 <a href="#"> <img class='w-32 h-32' src="<?= WebRootPath(); ?>assets/img/ibox_logo.jpg" alt=""> </a>
@@ -26,12 +24,8 @@
                         </div>
                     </div>
                 </button></li>
-            <li>
-                <a href="<?= WebRootPath(); ?>about.php">About</a>
-            </li>
-            <li>
-                <a href="<?= WebRootPath(); ?>contact.php">Contact</a>
-            </li>
+            <li><a href="<?= WebRootPath(); ?>about.php">About</a></li>
+            <li><a href="<?= WebRootPath(); ?>contact.php">Contact</a></li>
         </ul>
     </div>
 </div>

@@ -7,7 +7,6 @@ function mouseOut() {
 }
 
 // Slider
-
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.getElementById("slider");
   const next = document.getElementById("next");

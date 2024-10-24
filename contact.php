@@ -3,6 +3,8 @@ $Title  = "Contact";
 require_once('includes/helpers/WebRootPath.php');
 require_once('includes/component/Header.php');
 require_once('includes/component/Navbar.php');
+require_once('includes/class/ContactClass.php');
+$Contact    = new Contact();
 ?>
 
 <div class='mx-8 my-6'>
@@ -11,34 +13,24 @@ require_once('includes/component/Navbar.php');
         <li>Contact</li>
     </ul>
 
-    <h3 class='mt-6 mb-3 font-semibold'> BALI & NUSA TENGGARA </h3>
+    <h3 class='mt-6 mb-3 font-semibold'> Contact Us </h3>
 
     <div>
         <div class="grid grid-cols-3 justify-items-start gap-4">
-            <div class='p-6'>
-                <h4 class='font-semibold mb-3'>Galaxy</h4>
-                <p>Grand Galaxy Park</p>
-            </div>
-            <div class='p-6'>
-                <h4 class='font-semibold mb-3'>Galaxy</h4>
-                <p>Grand Galaxy Park</p>
-            </div>
-            <div class='p-6'>
-                <h4 class='font-semibold mb-3'>Galaxy</h4>
-                <p>Grand Galaxy Park</p>
-            </div>
-            <div class='p-6'>
-                <h4 class='font-semibold mb-3'>Galaxy</h4>
-                <p>Grand Galaxy Park</p>
-            </div>
-            <div class='p-6'>
-                <h4 class='font-semibold mb-3'>Galaxy</h4>
-                <p>Grand Galaxy Park</p>
-            </div>
-            <div class='p-6'>
-                <h4 class='font-semibold mb-3'>Galaxy</h4>
-                <p>Grand Galaxy Park</p>
-            </div>
+            <?php foreach ($Contact->fetchContact() as $row) : ?>
+                <div class='p-6'>
+                    <h4 class='font-semibold mb-3'><?= $row['ContactNameArea']; ?></h4>
+                    <a href="<?= $row['ContactLinkGmaps']; ?>" target="_blank" rel="nofollow">
+                        <p><?= $row['ContactAddress']; ?></p>
+                    </a>
+                    <a href="mailto:<?= $row['ContactEmail']; ?>" target="_blank" rel="nofollow">
+                        <p class="font-semibold"><?= $row['ContactEmail']; ?></p>
+                    </a>
+                    <a href="tel:<?= $row['ContactNumber']; ?>" target="_blank" rel="nofollow">
+                        <p class="font-semibold"><?= $row['ContactNumber']; ?></p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
