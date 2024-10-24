@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2024 at 11:48 AM
+-- Generation Time: Oct 24, 2024 at 01:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,7 +33,8 @@ CREATE TABLE `tbl_contact` (
   `ContactNameArea` text NOT NULL,
   `ContactAddress` text DEFAULT NULL,
   `ContactLinkGmaps` text DEFAULT NULL,
-  `ContactNumber` varchar(15) NOT NULL,
+  `ContactEmail` text NOT NULL,
+  `ContactNumber` varchar(15) DEFAULT NULL,
   `CreateBy` varchar(20) DEFAULT NULL,
   `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdateBy` varchar(20) DEFAULT NULL,
@@ -44,8 +45,13 @@ CREATE TABLE `tbl_contact` (
 -- Dumping data for table `tbl_contact`
 --
 
-INSERT INTO `tbl_contact` (`ContactID`, `StatusID`, `ContactNameArea`, `ContactAddress`, `ContactLinkGmaps`, `ContactNumber`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Menteng', '', '', '087878671111', 'kevinarlo', '2024-10-09 06:47:22', 'kevinarlo', '2024-10-09 08:20:09');
+INSERT INTO `tbl_contact` (`ContactID`, `StatusID`, `ContactNameArea`, `ContactAddress`, `ContactLinkGmaps`, `ContactEmail`, `ContactNumber`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Jakarta', 'Jl. Dr. Kusuma Atmaja, S.H No.83 Menteng. Jakarta Pusat', 'https://maps.app.goo.gl/DT8LEBGE8UTdE4C97', 'jakarta@dinamikaus.com', '0213160118', 'kevinarlo', '2024-10-09 06:47:22', 'kevinarlo', '2024-10-24 07:06:58'),
+(2, 1, 'Bogor', 'Jl. Dalurung Raya No. 23 Bogor Utara. Kota Bogor', 'https://maps.app.goo.gl/TZyRXAGY8RctqwDi9', 'bogor@dinamikaus.com', '', 'kevinarlo', '2024-10-12 11:33:30', 'kevinarlo', '2024-10-24 07:07:29'),
+(3, 1, ' Depok', 'Jl. Swadaya Raya Beji. Kota Depok', 'https://maps.app.goo.gl/8sNfXD881drRguao7', 'depok@dinamikaus.com', '', 'kevinarlo', '2024-10-12 11:36:33', 'kevinarlo', '2024-10-24 07:07:48'),
+(4, 1, 'Bekasi', 'Jl. Cipete Raya No.83 Mustika Jaya. Kota Bekasi', 'https://maps.app.goo.gl/yptFYLWjEorzU7xH6', 'bekasi@dinamikaus.com', '', 'kevinarlo', '2024-10-12 11:39:55', 'kevinarlo', '2024-10-24 07:08:12'),
+(5, 1, 'Semarang', 'Jl. Tamansari 1 No. 21-22 Sekaran, Gunung Pati. Kota Semarang', 'https://maps.app.goo.gl/QoJo1QUWSuz2doWA7', 'semarang@dinamikaus.com', '', 'kevinarlo', '2024-10-12 11:45:15', 'kevinarlo', '2024-10-24 07:08:33'),
+(6, 1, 'Bali', 'Jl. Pulau Galang No.50 Pemogan. Denpasar Selatan', 'https://maps.app.goo.gl/vWrcgAWSXW5Ru8PY8', 'bali@dinamikaus.com', '', 'kevinarlo', '2024-10-12 11:48:09', 'kevinarlo', '2024-10-24 07:08:52');
 
 -- --------------------------------------------------------
 
@@ -59,6 +65,36 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogUser` text NOT NULL,
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_eventlog`
+--
+
+INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
+(1, '2024-10-09 10:23:05', 'kevinarlo', 'kevinarlo has logged out'),
+(2, '2024-10-11 03:49:48', 'kevinarlo', 'kevinarlo is logged in'),
+(3, '2024-10-11 04:12:45', 'kevinarlo', 'Create Product Category Computer'),
+(4, '2024-10-11 04:14:58', 'kevinarlo', 'Create Product Category Computer'),
+(5, '2024-10-11 04:38:32', 'kevinarlo', 'Update Product Category Computer'),
+(6, '2024-10-12 10:37:52', 'kevinarlo', 'kevinarlo is logged in'),
+(7, '2024-10-12 10:43:07', 'kevinarlo', 'kevinarlo has logged out'),
+(8, '2024-10-12 11:25:51', 'kevinarlo', 'kevinarlo is logged in'),
+(9, '2024-10-12 11:30:11', 'kevinarlo', 'Update Contact For Area Jakarta'),
+(10, '2024-10-12 11:33:30', 'kevinarlo', 'Create Contact For Area Bogor'),
+(11, '2024-10-12 11:36:33', 'kevinarlo', 'Create Contact For Area  Depok'),
+(12, '2024-10-12 11:39:55', 'kevinarlo', 'Create Contact For Area Bekasi'),
+(13, '2024-10-12 11:45:15', 'kevinarlo', 'Create Contact For Area Semarang'),
+(14, '2024-10-12 11:48:09', 'kevinarlo', 'Create Contact For Area Bali'),
+(15, '2024-10-24 06:50:45', 'kevinarlo', 'kevinarlo is logged in'),
+(16, '2024-10-24 07:06:57', 'kevinarlo', 'Update Contact For Area Jakarta'),
+(17, '2024-10-24 07:07:29', 'kevinarlo', 'Update Contact For Area Bogor'),
+(18, '2024-10-24 07:07:48', 'kevinarlo', 'Update Contact For Area  Depok'),
+(19, '2024-10-24 07:08:12', 'kevinarlo', 'Update Contact For Area Bekasi'),
+(20, '2024-10-24 07:08:33', 'kevinarlo', 'Update Contact For Area Semarang'),
+(21, '2024-10-24 07:08:52', 'kevinarlo', 'Update Contact For Area Bali'),
+(22, '2024-10-24 08:05:08', 'kevinarlo', 'Create Product Product Computer'),
+(23, '2024-10-24 08:06:24', 'kevinarlo', 'Create Product Product Computer 2'),
+(24, '2024-10-24 08:53:02', 'kevinarlo', 'kevinarlo has logged out');
 
 -- --------------------------------------------------------
 
@@ -135,6 +171,14 @@ CREATE TABLE `tbl_product` (
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`ProductID`, `ProductCategoryID`, `StatusID`, `ProductName`, `ProductDescription`, `ProductPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 1, 'Product Computer', 'Product Computer', '6719ffb3c1be1-2024-10-24-logo.png', 'kevinarlo', '2024-10-24 08:05:08', NULL, NULL),
+(2, 1, 1, 'Product Computer 2', 'Product Computer 2', '671a00002bf62-2024-10-24-logo.png', 'kevinarlo', '2024-10-24 08:06:24', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -145,12 +189,20 @@ CREATE TABLE `tbl_product_category` (
   `ProductCategoryID` int(11) NOT NULL,
   `StatusID` int(11) NOT NULL,
   `ProductCategoryName` text NOT NULL,
-  `ProductCategoryCatalog` varchar(255) DEFAULT NULL,
+  `ProductCategoryCatalog` varchar(255) NOT NULL,
+  `ProductCategoryPhoto` varchar(255) NOT NULL,
   `CreateBy` varchar(20) DEFAULT NULL,
   `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_product_category`
+--
+
+INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `ProductCategoryCatalog`, `ProductCategoryPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Computer', '6708abc86be1e-2024-10-11-Test.pdf', '6708abc86beb8-2024-10-11-IMG_4461.PNG', 'kevinarlo', '2024-10-11 04:14:59', 'kevinarlo', '2024-10-11 04:38:34');
 
 -- --------------------------------------------------------
 
@@ -302,7 +354,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`UserID`, `RoleID`, `StatusID`, `Username`, `Password`, `Email`, `FullName`, `ResetTokenHash`, `ResetTokenExpired`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 4, 1, 'kevinarlo', '$2y$10$bcpx4sFLRiYLouYH5DU6LeAWHEjuDm76JoA8j.a3SB57Gca5I9Y/q', 'kevinarlo29@gmail.com', 'Kevin Arlo', NULL, NULL, 'kevinarlo', '2024-03-12 17:40:23', 'kevinarlo', '2024-09-28 09:14:36'),
+(1, 4, 1, 'kevinarlo', '$2y$10$bcpx4sFLRiYLouYH5DU6LeAWHEjuDm76JoA8j.a3SB57Gca5I9Y/q', 'kevinarlo29@gmail.com', 'Kevin Arlo', '3964e9b52707a7ad5328ccfad66906735533ad05e07457c01d06e51962ea83b0', '2024-10-23 09:56:06', 'kevinarlo', '2024-03-12 17:40:23', 'kevinarlo', '2024-09-28 09:14:36'),
 (2, 3, 1, 'bestian', '$2y$10$5Wa/NTbMdqKdxirFlhbZL.sUqtPMhTKB5u8d0xpI2Ik0ZrDX/B3p2', 'bestian@dinamikaus.com', 'Bestian', NULL, NULL, 'kevinarlo', '2024-03-14 14:57:30', 'kevinarlo', '2024-10-01 11:39:01'),
 (3, 1, 1, 'staff', '$2y$10$W9sc3kX3V9VEcGC8yjGuxeyfgbMBVobHTLgbSenN25D9jS8hDnt8u', 'staff@gmail.com', 'Staff', NULL, NULL, 'kevinarlo', '2024-09-28 14:59:28', 'kevinarlo', '2024-10-09 03:28:00');
 
@@ -407,13 +459,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_contact`
 --
 ALTER TABLE `tbl_contact`
-  MODIFY `ContactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ContactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -431,13 +483,13 @@ ALTER TABLE `tbl_ourclient`
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_category`
 --
 ALTER TABLE `tbl_product_category`
-  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`
