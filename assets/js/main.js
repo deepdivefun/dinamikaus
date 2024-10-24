@@ -1,9 +1,9 @@
 function mouseOver() {
-  document.getElementById("dropdown-content ").style.display = "block";
+  document.getElementById("dropdown-content").style.display = "block";
 }
 
 function mouseOut() {
-  document.getElementById("dropdown-content ").style.display = "none";
+  document.getElementById("dropdown-content").style.display = "none";
 }
 
 // Slider

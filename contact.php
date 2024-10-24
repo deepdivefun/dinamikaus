@@ -16,7 +16,7 @@ $Contact    = new Contact();
     <h3 class='mt-6 mb-3 font-semibold'> Contact Us </h3>
 
     <div>
-        <div class="grid grid-cols-3 justify-items-start gap-4">
+        <div class="grid lg:grid-cols-3 grid-cols-1 justify-items-start gap-4">
             <?php foreach ($Contact->fetchContact() as $row) : ?>
                 <div class='p-6'>
                     <h4 class='font-semibold mb-3'><?= $row['ContactNameArea']; ?></h4>

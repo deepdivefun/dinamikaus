@@ -10,7 +10,7 @@ require_once('includes/component/Navbar.php');
         <li>Home /</li>
         <li>Product</li>
     </ul>
-    <div class='grid grid-cols-4 gap-6 my-6'>
+    <div class='grid lg:grid-cols-4 grid-cols-2 gap-6 my-6'>
         <div class="flex flex-col gap-6 items-center justify-center text-center">
             <img class="w-32 h-32" src="<?= WebRootPath(); ?>assets/img/image1.jpg" alt="">
             <h2>PREDATOR X34</h2>

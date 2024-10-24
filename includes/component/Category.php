@@ -5,7 +5,7 @@
       &#10094;
     </button>
     <div class="overflow-hidden">
-      <div id="slider" class='slider flex space-x-4 overflow-x-auto scroll-smooth'>
+      <div id="slider" style="overflow:hidden;" class='slider slider-custom flex space-x-4 overflow-x-auto scroll-smooth'>
         <div class='w-32 h-32 flex-shrink-0'>
           <img class='w-full h-full' src="<?= WebRootPath(); ?>assets/img/image1.jpg" alt="">
         </div>
@@ -46,26 +46,3 @@
     </div>
   </div>
 </div>
-
-<!-- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.getElementById('slider');
-    const next = document.getElementById('next');
-    const prev = document.getElementById('prev');
-
-    next.addEventListener('click', () => {
-      slider.scrollBy({ left: 100, behavior: 'smooth' });
-    });
-
-
-    prev.addEventListener('click', () => {
-      slider.scrollBy({ left: -100, behavior: 'smooth' });
-    });
-  });
-</script> -->
-
-<!-- <style>
-    .slider {
-    overflow: hidden; 
-}
-</style> -->
