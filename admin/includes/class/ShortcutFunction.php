@@ -195,6 +195,34 @@ function ShortcutContact()
     }
 }
 
+function ShortcutPaymentLogo()
+{
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '10000.PaymentLogo/10000.PaymentLogo.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Payment Logo
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    }
+}
+
 function ShortcutSettingsApplication()
 {
     if (!SYSAdmin() and !AppAdmin()) {

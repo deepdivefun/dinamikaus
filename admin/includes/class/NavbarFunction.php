@@ -61,7 +61,6 @@ function OurClient()
     }
 }
 
-
 function ProductManagement()
 {
     if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
@@ -139,6 +138,17 @@ function Contact()
     } else {
         echo    '<a class="dropdown-item" href="' . WebRootPath() . '8000.Contact/8000.Contact.php">
                     Contact
+                </a>';
+    }
+}
+
+function PaymentLogo()
+{
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '10000.PaymentLogo/10000.PaymentLogo.php">
+                    Payment Logo
                 </a>';
     }
 }
