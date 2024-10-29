@@ -91,7 +91,7 @@ try {
                 }
             }
 
-            $PaymentPhoto = "<img src='" . WebRootPath() . "assets/img/paymentphoto/" . $PaymentPhoto . "' class='img-fluid h-50 w-auto rounded-5' alt='" . $PaymentPhoto . "'>";
+            $PaymentPhoto = "<img src='" . WebRootPath() . "assets/img/paymentlogo/" . $PaymentPhoto . "' class='img-fluid h-50 w-auto rounded-5' alt='" . $PaymentPhoto . "'>";
 
             $JSONData .= '["' . $PaymentName . '", "' . $PaymentPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
         }

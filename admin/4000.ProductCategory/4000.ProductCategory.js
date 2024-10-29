@@ -84,11 +84,6 @@ async function createProductCategory() {
     return;
   }
 
-  if (PRODUCTCATEGORYPHOTO === "") {
-    alert("Please insert Product Category Photo");
-    return;
-  }
-
   $.ajax({
     type: "POST",
     url: "4010.ProductCategoryCreate.php?id=" + Math.random(),
@@ -185,11 +180,6 @@ async function updateProductCategory() {
 
   if (PRODUCTCATEGORYNAME === "") {
     alert("Please input Product Category Name");
-    return;
-  }
-
-  if (PRODUCTCATEGORYPHOTO === "") {
-    alert("Please insert Product Category Photo");
     return;
   }
 

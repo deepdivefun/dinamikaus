@@ -79,7 +79,7 @@ class ForgotPassword
             
                         Please click the following link to reset your password
                         <br>
-                        <button class="btn btn-primary rounded-5"><a href="https://dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash" class="btn btn-primary">https://dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash</a></button>
+                        <button class="btn btn-primary rounded-5"><a href="https://dev.dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash" class="btn btn-primary">https://dev.dinamikaus.com/utilities/10000.ForgotPassword/10100.ForgotPasswordReset.php?Token=$ResetTokenHash</a></button>
                         <br>
                         <br>
                         Do not give this information to anyone.

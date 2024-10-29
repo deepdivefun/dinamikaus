@@ -80,11 +80,6 @@ async function createOurClient() {
     return;
   }
 
-  if (OURCLIENTPHOTO === "") {
-    alert("Please insert Our Client Photo");
-    return;
-  }
-
   $.ajax({
     type: "POST",
     url: "7010.OurClientCreate.php?id=" + Math.random(),
@@ -166,11 +161,6 @@ async function updateOurClient() {
 
   if (OURCLIENTNAME === "") {
     alert("Please enter Our Client Name");
-    return;
-  }
-
-  if (OURCLIENTPHOTO === "") {
-    alert("Please insert Our Client Photo");
     return;
   }
 

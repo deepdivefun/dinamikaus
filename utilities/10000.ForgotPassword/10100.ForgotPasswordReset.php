@@ -16,7 +16,7 @@ if (isset($_POST['ForgotPasswordReset'])) {
     $ConfirmPassword    = filter_input(INPUT_POST, 'ConfirmPassword');
     $GToken             = filter_input(INPUT_POST, 'GToken');
 
-    if ($GToken == !null) {
+    if (!empty($GToken)) {
         $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
         $Token      = $GToken;
         $IP         = $_SERVER['REMOTE_ADDR'];
@@ -27,6 +27,7 @@ if (isset($_POST['ForgotPasswordReset'])) {
 
         if ($Response->success === 0) {
             echo    "You are spammer ! Get the @$%K out";
+            die();
         }
     }
 

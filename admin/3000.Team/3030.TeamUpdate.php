@@ -23,8 +23,23 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 $TeamID                     = filter_input(INPUT_POST, 'TeamID');
 
 $TeamPhotoBeforeConvert     = filter_input(INPUT_POST, 'TeamPhotoBeforeConvert');
-if (file_exists("../assets/img/teamphoto/$TeamPhotoBeforeConvert")) {
-    unlink("../assets/img/teamphoto/$TeamPhotoBeforeConvert");
+
+
+if (isset($_FILES['TeamPhoto']) != null) {
+
+    if ($TeamPhotoBeforeConvert != null) {
+        if (file_exists("../assets/img/teamphoto/$TeamPhotoBeforeConvert")) {
+            unlink("../assets/img/teamphoto/$TeamPhotoBeforeConvert");
+        }
+    }
+
+    $TeamPhoto                  = $_FILES['TeamPhoto']['name'];
+    $Dir                        = "../assets/img/teamphoto/";
+    $File                       = $_FILES['TeamPhoto']['tmp_name'];
+    $TeamPhotoConvert           = uniqid() . "-" . date('Y-m-d') . "-" . $TeamPhoto;
+    move_uploaded_file($File, $Dir . $TeamPhotoConvert);
+} else {
+    $TeamPhotoConvert           = $TeamPhotoBeforeConvert;
 }
 
 $StatusID                   = filter_input(INPUT_POST, 'StatusID');
@@ -32,13 +47,6 @@ $FullName                   = filter_input(INPUT_POST, 'FullName');
 $Position                   = filter_input(INPUT_POST, 'Position');
 $Linkedin                   = filter_input(INPUT_POST, 'Linkedin');
 $Instagram                  = filter_input(INPUT_POST, 'Instagram');
-
-$TeamPhoto                  = $_FILES['TeamPhoto']['name'];
-$Dir                        = "../assets/img/teamphoto/";
-$File                       = $_FILES['TeamPhoto']['tmp_name'];
-$TeamPhotoConvert           = uniqid() . "-" . date('Y-m-d') . "-" . $TeamPhoto;
-move_uploaded_file($File, $Dir . $TeamPhotoConvert);
-
 $UpdateBy                   = filter_input(INPUT_POST, 'UpdateBy');
 $EventLogUser               = $UpdateBy;
 $EventLogData               = 'Update Team ' . $FullName;

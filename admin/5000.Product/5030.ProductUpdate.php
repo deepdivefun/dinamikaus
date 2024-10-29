@@ -23,20 +23,29 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 $ProductID                  = filter_input(INPUT_POST, 'ProductID');
 
 $ProductPhotoBeforeConvert  = filter_input(INPUT_POST, 'ProductPhotoBeforeConvert');
-if (file_exists("../assets/img/productphoto/$ProductPhotoBeforeConvert")) {
-    unlink("../assets/img/productphoto/$ProductPhotoBeforeConvert");
+
+
+if (isset($_FILES['ProductPhoto']) != null) {
+
+    if ($ProductPhotoBeforeConvert != null) {
+        if (file_exists("../assets/img/productphoto/$ProductPhotoBeforeConvert")) {
+            unlink("../assets/img/productphoto/$ProductPhotoBeforeConvert");
+        }
+    }
+
+    $ProductPhoto               = $_FILES['ProductPhoto']['name'];
+    $Dir                        = "../assets/img/productphoto/";
+    $File                       = $_FILES['ProductPhoto']['tmp_name'];
+    $ProductPhotoConvert        =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductPhoto;
+    move_uploaded_file($File, $Dir . $ProductPhotoConvert);
+} else {
+    $ProductPhotoConvert        = $ProductPhotoBeforeConvert;
 }
+
 $ProductCategoryID          = filter_input(INPUT_POST, 'ProductCategoryID');
 $StatusID                   = filter_input(INPUT_POST, 'StatusID');
 $ProductName                = filter_input(INPUT_POST, 'ProductName');
 $ProductDescription         = filter_input(INPUT_POST, 'ProductDescription');
-
-$ProductPhoto               = $_FILES['ProductPhoto']['name'];
-$Dir                        = "../assets/img/productphoto/";
-$File                       = $_FILES['ProductPhoto']['tmp_name'];
-$ProductPhotoConvert        =  uniqid() . "-" . date('Y-m-d') . "-" . $ProductPhoto;
-move_uploaded_file($File, $Dir . $ProductPhotoConvert);
-
 $UpdateBy                   = filter_input(INPUT_POST, 'UpdateBy');
 $EventLogUser               = $UpdateBy;
 $EventLogData               = 'Update Product ' . $ProductName;

@@ -42,9 +42,10 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                             <?php endforeach; ?>
                             <hr>
 
-                            <h3 class="text-primary">Shortcut&nbsp;:</h3>
+                            <h2 class="text-primary">Shortcut&nbsp;:</h2>
                             <div class="col-md-12">
                                 <div class="col-12 mb-4">
+                                    <p class="fw-bold">Management</p>
                                     <div class="row row-cards">
                                         <?= ShortcutUser(); ?>
                                         <?= ShortcutTeam(); ?>
@@ -53,6 +54,7 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                 </div>
 
                                 <div class="col-12 mb-4">
+                                    <p class="fw-bold">Product Management</p>
                                     <div class="row row-cards">
                                         <?= ShortcutProductCategory(); ?>
                                         <?= ShortcutProduct(); ?>
@@ -60,12 +62,14 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                 </div>
 
                                 <div class="col-12 mb-4">
+                                    <p class="fw-bold">Testimonial</p>
                                     <div class="row row-cards">
                                         <?= ShortcutTestimonial(); ?>
                                     </div>
                                 </div>
 
                                 <div class="col-12 mb-4">
+                                    <p class="fw-bold">Tools</p>
                                     <div class="row row-cards">
                                         <?= ShortcutContact(); ?>
                                         <?= ShortcutPaymentLogo(); ?>
@@ -73,8 +77,10 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                 </div>
 
                                 <div class="col-12 mb-4">
+                                    <p class="fw-bold">AppAdmin Tools</p>
                                     <div class="row row-cards">
                                         <?= ShortcutSettingsApplication(); ?>
+                                        <?= ShortcutSettingsLogo(); ?>
                                         <?= ShortcutEventLog(); ?>
                                         <?= ShortcutResetPasswordTools(); ?>
                                         <?= ShortcutMetaTag(); ?>
@@ -82,6 +88,7 @@ require_once($WebRootPath . '/includes/class/ShortcutFunction.php');
                                 </div>
 
                                 <div class="col-12 mb-4">
+                                    <p class="fw-bold">SYSAdmin Tools</p>
                                     <div class="row row-cards">
                                         <?= ShortcutDebutTools(); ?>
                                     </div>

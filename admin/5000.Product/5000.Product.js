@@ -90,10 +90,6 @@ async function createProduct() {
     alert("Please enter Product Name");
   }
 
-  if (PRODUCTPHOTO === "") {
-    alert("Please insert Product Photo");
-  }
-
   $.ajax({
     type: "POST",
     url: "5010.ProductCreate.php?id=" + Math.random(),
@@ -189,10 +185,6 @@ async function updateProduct() {
   if (PRODUCTNAME === "") {
     alert("Please input Product Name");
     return;
-  }
-
-  if (PRODUCTPHOTO === "") {
-    alert("Please insert Product Photo");
   }
 
   $.ajax({

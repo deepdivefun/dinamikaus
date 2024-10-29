@@ -65,12 +65,12 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="PaymentPhoto">Payment Photo</label>
-                                <input type="file" class="form-control" name="PaymentPhoto" id="PaymentPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="file" class="form-control" name="PaymentPhoto" id="PaymentPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
                             <small class="text-danger">
                                 <ul>
-                                    <li>Photo size must be 300 x 150 pixels</li>
+                                    <li>Photo size must be 150 x 150 pixels</li>
                                 </ul>
                             </small>
 
@@ -113,39 +113,35 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="EditContactNameArea">Name Area</label>
-                                <input type="text" class="form-control" name="EditContactNameArea" id="EditContactNameArea" required>
+                                <label class="form-label" for="EditPaymentName">Payment Name</label>
+                                <input type="text" class="form-control" name="EditPaymentName" id="EditPaymentName" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="EditContactAddress">Address</label>
-                                <textarea class="form-control" name="EditContactAddress" id="EditContactAddress" rows="8"></textarea>
+                                <label class="form-label" for="EditPaymentPhoto">Payment Photo</label>
+                                <input type="file" class="form-control" name="EditPaymentPhoto" id="EditPaymentPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
+                                <input type="hidden" class="form-control" name="EditPaymentPhotoBeforeConvert" id="EditPaymentPhotoBeforeConvert" readonly>
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="EditContactLinkGmaps">Link Gmaps</label>
-                                <input type="text" class="form-control" name="EditContactLinkGmaps" id="EditContactLinkGmaps">
-                            </div>
+                            <small class="text-danger">
+                                <ul>
+                                    <li>Photo size must be 150 x 150 pixels</li>
+                                </ul>
+                            </small>
 
                             <div class="form-group mb-3">
-                                <label class="form-label" for="EditContactNumber">Contact Number</label>
-                                <input type="number" class="form-control" name="EditContactNumber" id="EditContactNumber" maxlength="13">
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="EditContactEmail">Contact Email</label>
-                                <input type="email" class="form-control" name="EditContactEmail" id="EditContactEmail" required>
+                                <img src="#" id="PreviewEditPaymentPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
 
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="EditContactID" id="EditContactID" readonly required>
+                                <input type="hidden" class="form-control" name="EditPaymentID" id="EditPaymentID" readonly required>
                                 <input type="hidden" class="form-control" name="UpdateBy" id="UpdateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger rounded-5" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="updateContact();">Save</button>
+                                <button type="button" class="btn btn-outline-primary rounded-5" onclick="updatePaymentLogo();">Save</button>
                             </div>
                         </form>
                     </div>

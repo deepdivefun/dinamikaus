@@ -65,7 +65,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="OurClientPhoto">Our Client Photo</label>
-                                <input type="file" class="form-control" name="OurClientPhoto" id="OurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="file" class="form-control" name="OurClientPhoto" id="OurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
                             <small class="text-danger">
@@ -120,14 +120,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditOurClientPhoto">Our Client Photo</label>
-                                <input type="file" class="form-control" name="EditOurClientPhoto" id="EditOurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
-                                <input type="hidden" class="form-control" name="EditOurClientPhotoBeforeConvert" id="EditOurClientPhotoBeforeConvert" readonly required>
+                                <input type="file" class="form-control" name="EditOurClientPhoto" id="EditOurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
+                                <input type="hidden" class="form-control" name="EditOurClientPhotoBeforeConvert" id="EditOurClientPhotoBeforeConvert" readonly>
                             </div>
 
                             <small class="text-danger">
                                 <ul>
                                     <li>Photo size must be 500 x 400 pixels</li>
-                                    <li>If you edit the data, re-enter the image.</li>
                                 </ul>
                             </small>
 

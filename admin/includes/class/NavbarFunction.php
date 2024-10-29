@@ -180,6 +180,17 @@ function SettingsApplication()
     };
 }
 
+function SettingsLogo()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '9000.Settings/9100.SettingsLogo.php">
+                    Settings Logo
+                </a>';
+    };
+}
+
 function EventLog()
 {
     if (!SYSAdmin() and !AppAdmin()) {

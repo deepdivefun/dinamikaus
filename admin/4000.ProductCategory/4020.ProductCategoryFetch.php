@@ -103,11 +103,11 @@ try {
 
             $ProductCategoryPhoto = "<img src='" . WebRootPath() . "assets/img/productcategoryphoto/" . $ProductCategoryPhoto . "' class='img-fluid h-50 w-auto rounded-5' alt='" . $ProductCategoryPhoto . "'>";
 
-            $JSONData .= '["' . $ProductCategoryName . '", "' . $ProductCategoryCatalogIcon . '", "' . $StatusName . '", "' . $Button . '"]';
+            $JSONData .= '["' . $ProductCategoryName . '", "' . $ProductCategoryCatalogIcon . '", "' . $ProductCategoryPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
         }
 
         if ($JSONData == null) {
-            $JSONData = ["", "", "", ""];
+            $JSONData = ["", "", "", "", ""];
             echo "[" . json_encode($JSONData) . "]";
         } else {
             $conn->commit();

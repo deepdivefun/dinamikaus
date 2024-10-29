@@ -23,11 +23,15 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 $StatusID               = filter_input(INPUT_POST, 'StatusID');
 $OurClientName          = filter_input(INPUT_POST, 'OurClientName');
 
-$OurClientPhoto         = $_FILES['OurClientPhoto']['name'];
-$Dir                    = "../assets/img/ourclientphoto/";
-$File                   = $_FILES['OurClientPhoto']['tmp_name'];
-$OurClientPhotoConvert  =  uniqid() . "-" . date('Y-m-d') . "-" . $OurClientPhoto;
-move_uploaded_file($File, $Dir . $OurClientPhotoConvert);
+if (isset($_FILES['OurClientPhoto']) != null) {
+    $OurClientPhoto         = $_FILES['OurClientPhoto']['name'];
+    $Dir                    = "../assets/img/ourclientphoto/";
+    $File                   = $_FILES['OurClientPhoto']['tmp_name'];
+    $OurClientPhotoConvert  =  uniqid() . "-" . date('Y-m-d') . "-" . $OurClientPhoto;
+    move_uploaded_file($File, $Dir . $OurClientPhotoConvert);
+} else {
+    $OurClientPhotoConvert  = null;
+}
 
 $CreateBy               = filter_input(INPUT_POST, 'CreateBy');
 $EventLogUser           = $CreateBy;

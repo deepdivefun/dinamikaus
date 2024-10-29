@@ -26,11 +26,15 @@ $Position           = filter_input(INPUT_POST, 'Position');
 $Linkedin           = filter_input(INPUT_POST, 'Linkedin');
 $Instagram          = filter_input(INPUT_POST, 'Instagram');
 
-$TeamPhoto          = $_FILES['TeamPhoto']['name'];
-$Dir                = "../assets/img/teamphoto/";
-$File               = $_FILES['TeamPhoto']['tmp_name'];
-$TeamPhotoConvert   = uniqid() . "-" . date('Y-m-d') . "-" . $TeamPhoto;
-move_uploaded_file($File, $Dir . $TeamPhotoConvert);
+if (isset($_FILES['TeamPhoto']) != null) {
+    $TeamPhoto          = $_FILES['TeamPhoto']['name'];
+    $Dir                = "../assets/img/teamphoto/";
+    $File               = $_FILES['TeamPhoto']['tmp_name'];
+    $TeamPhotoConvert   = uniqid() . "-" . date('Y-m-d') . "-" . $TeamPhoto;
+    move_uploaded_file($File, $Dir . $TeamPhotoConvert);
+} else {
+    $TeamPhotoConvert   = null;
+}
 
 $CreateBy           = filter_input(INPUT_POST, 'CreateBy');
 $EventLogUser       = $CreateBy;
