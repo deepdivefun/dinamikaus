@@ -93,11 +93,6 @@ async function createTeam() {
     return;
   }
 
-  if (TEAMPHOTO === "") {
-    alert("Please insert Team Photo");
-    return;
-  }
-
   $.ajax({
     type: "POST",
     url: "3010.TeamCreate.php?id=" + Math.random(),
@@ -196,11 +191,6 @@ async function updateTeam() {
 
   if (POSITION === "") {
     alert("Please input Position");
-    return;
-  }
-
-  if (TEAMPHOTO === "") {
-    alert("Please insert Team Photo");
     return;
   }
 

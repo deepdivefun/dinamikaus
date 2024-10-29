@@ -251,6 +251,34 @@ function ShortcutSettingsApplication()
     };
 }
 
+function ShortcutSettingsLogo()
+{
+    if (!SYSAdmin() and !AppAdmin()) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '9000.Settings/9100.SettingsLogo.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Settings Logo
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    };
+}
+
 function ShortcutEventLog()
 {
     if (!SYSAdmin() and !AppAdmin()) {

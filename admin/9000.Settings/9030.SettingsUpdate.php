@@ -45,7 +45,7 @@ if (!empty($GToken)) {
 }
 
 try {
-    if (empty($SettingsID) and empty($StatusID) and empty($SettingsValue) and empty($UpdateBy)) {
+    if (empty($SettingsID) and empty($StatusID) and empty($SettingsName) and empty($SettingsValue) and empty($UpdateBy)) {
         throw new Exception("Error Processing Request");
     } else {
         $EventLog = new EventLog();

@@ -23,19 +23,28 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 $OurClientID                    = filter_input(INPUT_POST, 'OurClientID');
 
 $OurClientPhotoBeforeConvert    = filter_input(INPUT_POST, 'OurClientPhotoBeforeConvert');
-if (file_exists("../assets/img/ourclientphoto/$OurClientPhotoBeforeConvert")) {
-    unlink("../assets/img/ourclientphoto/$OurClientPhotoBeforeConvert");
+
+
+if (isset($_FILES['OurClientPhoto']) != null) {
+
+    if ($OurClientPhotoBeforeConvert != null) {
+        if (file_exists("../assets/img/ourclientphoto/$OurClientPhotoBeforeConvert")) {
+            unlink("../assets/img/ourclientphoto/$OurClientPhotoBeforeConvert");
+        }
+    }
+
+    $OurClientPhoto                 = $_FILES['OurClientPhoto']['name'];
+    $Dir                            = "../assets/img/ourclientphoto/";
+    $File                           = $_FILES['OurClientPhoto']['tmp_name'];
+    $OurClientPhotoConvert          =  uniqid() . "-" . date('Y-m-d') . "-" . $OurClientPhoto;
+    move_uploaded_file($File, $Dir . $OurClientPhotoConvert);
+} else {
+    $OurClientPhotoConvert          = $OurClientPhotoBeforeConvert;
 }
+
 
 $StatusID                       = filter_input(INPUT_POST, 'StatusID');
 $OurClientName                  = filter_input(INPUT_POST, 'OurClientName');
-
-$OurClientPhoto                 = $_FILES['OurClientPhoto']['name'];
-$Dir                            = "../assets/img/ourclientphoto/";
-$File                           = $_FILES['OurClientPhoto']['tmp_name'];
-$OurClientPhotoConvert          =  uniqid() . "-" . date('Y-m-d') . "-" . $OurClientPhoto;
-move_uploaded_file($File, $Dir . $OurClientPhotoConvert);
-
 $UpdateBy                       = filter_input(INPUT_POST, 'UpdateBy');
 $EventLogUser                   = $UpdateBy;
 $EventLogData                   = 'Update Our Client ' . $OurClientName;

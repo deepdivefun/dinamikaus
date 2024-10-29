@@ -45,7 +45,7 @@ try {
         $conn->begin_transaction();
 
         $query  = "SELECT a.SettingsID, b.StatusID, b.StatusName, a.SettingsName, a.SettingsValue, 
-                    a.UpdateBy, a.UpdateTime FROM tbl_settings a
+                    a.CreateBy, a.CreateTime, a.UpdateBy, a.UpdateTime FROM tbl_settings a
                     LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID
                     WHERE a.StatusID = ? AND a.SettingsName LIKE CONCAT('%', ?, '%')";
         $stmt   = $conn->prepare($query);
@@ -58,6 +58,8 @@ try {
             $StatusName,
             $SettingsName,
             $SettingsValue,
+            $CreateBy,
+            $CreateTime,
             $UpdateBy,
             $UpdateTime
         );
@@ -76,18 +78,18 @@ try {
             $SettingsValueConvert = trim(preg_replace('/\s+/', ' ', $SettingsValue));
 
             if ($StatusID == 1) {
-                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editSettings' title='EDIT' SettingsID='$SettingsID' StatusID='$StatusID' SettingsName='$SettingsName' SettingsValue='$SettingsValueConvert' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editSettings' title='EDIT' SettingsID='$SettingsID' StatusID='$StatusID' SettingsName='$SettingsName' SettingsValue='$SettingsValueConvert' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                 if (SYSAdmin()) {
-                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editSettings' title='EDIT' SettingsID='$SettingsID' StatusID='$StatusID' SettingsName='$SettingsName' SettingsValue='$SettingsValueConvert' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editSettings' title='EDIT' SettingsID='$SettingsID' StatusID='$StatusID' SettingsName='$SettingsName' SettingsValue='$SettingsValueConvert' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugSettings' title='DEBUG' SettingsID='$SettingsID'><i class='fa-solid fa-eye'></i></button>";
                 }
             }
 
-            $JSONData .= '["' . $SettingsName . '","' . $SettingsValueConvert . '","' . $StatusName . '","' . $Button . '"]';
+            $JSONData .= '["' . $SettingsName . '","' . $SettingsValueConvert . '","' . $Button . '"]';
         }
 
         if ($JSONData == null) {
-            $JSONData = ["", "", "", ""];
+            $JSONData = ["", "", ""];
             echo "[" . json_encode($JSONData) . "]";
         } else {
             $conn->commit();

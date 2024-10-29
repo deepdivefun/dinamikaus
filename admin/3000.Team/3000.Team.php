@@ -92,7 +92,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="TeamPhoto">Team Photo</label>
-                                <input type="file" class="form-control" name="TeamPhoto" id="TeamPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="file" class="form-control" name="TeamPhoto" id="TeamPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
                             <small class="text-danger">
@@ -172,14 +172,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditTeamPhoto">Team Photo</label>
-                                <input type="file" class="form-control" name="EditTeamPhoto" id="EditTeamPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
-                                <input type="hidden" class="form-control" name="EditTeamPhotoBeforeConvert" id="EditTeamPhotoBeforeConvert" readonly required>
+                                <input type="file" class="form-control" name="EditTeamPhoto" id="EditTeamPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
+                                <input type="hidden" class="form-control" name="EditTeamPhotoBeforeConvert" id="EditTeamPhotoBeforeConvert" readonly>
                             </div>
 
                             <small class="text-danger">
                                 <ul>
                                     <li>Photo size must be 500 x 400 pixels</li>
-                                    <li>If you edit the data, re-enter the image.</li>
                                 </ul>
                             </small>
 

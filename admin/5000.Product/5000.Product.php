@@ -82,7 +82,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ProductPhoto">Product Photo</label>
-                                <input type="file" class="form-control" name="ProductPhoto" id="ProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="file" class="form-control" name="ProductPhoto" id="ProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
                             <small class="text-danger">
@@ -151,14 +151,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditProductPhoto">Product Photo</label>
-                                <input type="file" class="form-control" name="EditProductPhoto" id="EditProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
-                                <input type="hidden" class="form-control" name="EditProductPhotoBeforeConvert" id="EditProductPhotoBeforeConvert" readonly required>
+                                <input type="file" class="form-control" name="EditProductPhoto" id="EditProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
+                                <input type="hidden" class="form-control" name="EditProductPhotoBeforeConvert" id="EditProductPhotoBeforeConvert" readonly>
                             </div>
 
                             <small class="text-danger">
                                 <ul>
                                     <li>Photo size must be 500 x 400 pixels</li>
-                                    <li>If you edit the data, re-enter the image.</li>
                                 </ul>
                             </small>
 
@@ -206,6 +205,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                     <div class="form-group mb-3">
                                         <label class="form-label" for="FilterProductCategoryID">Product Category</label>
                                         <select class="form-control form-select" name="FilterProductCategoryID" id="FilterProductCategoryID">
+                                            <option value="">&nbsp;</option>
                                             <?php foreach ($ProductCategory->fetchProductCategory() as $row) : ?>
                                                 <option value="<?= $row['ProductCategoryID']; ?>"><?= $row['ProductCategoryName']; ?></option>
                                             <?php endforeach; ?>

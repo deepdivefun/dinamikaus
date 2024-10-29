@@ -67,12 +67,12 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ProductCategoryCatalog">Product Category Catalog</label>
-                                <input type="file" class="form-control" name="ProductCategoryCatalog" id="ProductCategoryCatalog" accept=".pdf" required>
+                                <input type="file" class="form-control" name="ProductCategoryCatalog" id="ProductCategoryCatalog" accept=".pdf">
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="ProductCategoryPhoto">Product Category Photo</label>
-                                <input type="file" class="form-control" name="ProductCategoryPhoto" id="ProductCategoryPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+                                <input type="file" class="form-control" name="ProductCategoryPhoto" id="ProductCategoryPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
                             <small class="text-danger">
@@ -126,20 +126,19 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditProductCategoryCatalog">Product Category Catalog</label>
-                                <input type="file" class="form-control" name="EditProductCategoryCatalog" id="EditProductCategoryCatalog" accept=".pdf" required>
-                                <input type="hidden" class="form-control" name="EditProductCategoryCatalogBeforeConvert" id="EditProductCategoryCatalogBeforeConvert" readonly required>
+                                <input type="file" class="form-control" name="EditProductCategoryCatalog" id="EditProductCategoryCatalog" accept=".pdf">
+                                <input type="hidden" class="form-control" name="EditProductCategoryCatalogBeforeConvert" id="EditProductCategoryCatalogBeforeConvert" readonly>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditProductCategoryPhoto">Product Category Photo</label>
-                                <input type="file" class="form-control" name="EditProductCategoryPhoto" id="EditProductCategoryPhoto" accept="image/png, image/jpeg, image/jpg, image/webp" required>
-                                <input type="hidden" class="form-control" name="EditProductCategoryPhotoBeforeConvert" id="EditProductCategoryPhotoBeforeConvert" readonly required>
+                                <input type="file" class="form-control" name="EditProductCategoryPhoto" id="EditProductCategoryPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
+                                <input type="hidden" class="form-control" name="EditProductCategoryPhotoBeforeConvert" id="EditProductCategoryPhotoBeforeConvert" readonly>
                             </div>
 
                             <small class="text-danger">
                                 <ul>
                                     <li>Photo size must be 500 x 400 pixels</li>
-                                    <li>If you edit the data, re-enter the catalog and photo.</li>
                                 </ul>
                             </small>
 
@@ -232,6 +231,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                     <tr>
                                         <th>Product Category Name</th>
                                         <th>Product Category Catalog</th>
+                                        <th>Product Category Photo</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
