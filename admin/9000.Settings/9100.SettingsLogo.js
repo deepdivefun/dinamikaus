@@ -82,11 +82,6 @@ async function createSettingsLogo() {
     return;
   }
 
-  if (SETTINGSLOGOVALUE === "") {
-    alert("Please insert Our Settings Logo Value");
-    return;
-  }
-
   $.ajax({
     type: "POST",
     url: "9110.SettingsLogoCreate.php?id=" + Math.random(),

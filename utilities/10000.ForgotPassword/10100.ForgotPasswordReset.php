@@ -1,11 +1,13 @@
 <?php
-$Title = 'Reset Password';
-$WebRootPath = realpath('../../admin');
+$Title          = 'Reset Password';
+$WebRootPath    = realpath('../../admin');
 require_once($WebRootPath . '/includes/class/ErrorHandlingFunction.php');
 set_error_handler('errorHandling');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/ForgotPasswordClass.php');
+require_once('../../includes/class/SettingsClass.php');
+$SettingsLogo   = new Settings();
 
 $Token          = $_GET['Token'];
 
@@ -50,7 +52,9 @@ if (isset($_POST['ForgotPasswordReset'])) {
 <div class="container container-tight py-4">
     <div class="text-center">
         <a href="10100.ForgotPasswordReset.php" class="navbar-brand navbar-brand-autodark">
-            <img src="<?= WebRootPath(); ?>assets/img/logo/logo.png" height="150" alt="Logo">
+            <?php foreach ($SettingsLogo->fetchLogoLoginPage() as $row) : ?>
+                <img src="<?= WebRootPath(); ?>assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" height="150" alt="<?= $row['SettingsLogoValue']; ?>">
+            <?php endforeach; ?>
         </a>
     </div>
     <div class="card card-md rounded-5">

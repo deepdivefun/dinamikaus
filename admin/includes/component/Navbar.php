@@ -43,6 +43,7 @@
                                 <div class="dropdown-menu-column">
                                     <?= Contact(); ?>
                                     <?= PaymentLogo(); ?>
+                                    <?= ShippingLogo(); ?>
                                 </div>
                             </div>
                         </div>

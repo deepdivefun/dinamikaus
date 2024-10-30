@@ -65,8 +65,8 @@ if (!SYSAdmin() and !AppAdmin()) {
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label class="form-label" for="SettingsLogoValue">Settings Value</label>
-                                            <input type="file" class="form-control" name="SettingsLogoValue" id="SettingsLogoValue" required>
+                                            <label class="form-label" for="SettingsLogoValue">Settings Logo Value</label>
+                                            <input type="file" class="form-control" name="SettingsLogoValue" id="SettingsLogoValue" accept="image/png, image/jpeg, image/jpg, image/webp">
                                         </div>
 
                                         <div class="form-group mb-3">
@@ -112,7 +112,7 @@ if (!SYSAdmin() and !AppAdmin()) {
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditSettingsLogoValue">Settings Value</label>
-                                <input type="file" class="form-control" name="EditSettingsLogoValue" id="EditSettingsLogoValue">
+                                <input type="file" class="form-control" name="EditSettingsLogoValue" id="EditSettingsLogoValue" accept="image/png, image/jpeg, image/jpg, image/webp">
                                 <input type="hidden" class="form-control" name="EditSettingsLogoValueBeforeConvert" id="EditSettingsLogoValueBeforeConvert" readonly>
                             </div>
 
