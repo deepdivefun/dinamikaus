@@ -153,6 +153,17 @@ function PaymentLogo()
     }
 }
 
+function ShippingLogo()
+{
+    if (!SYSAdmin() and !AppAdmin() and !Admin()) {
+        echo    '';
+    } else {
+        echo    '<a class="dropdown-item" href="' . WebRootPath() . '11000.ShippingLogo/11000.ShippingLogo.php">
+                    Shipping Logo
+                </a>';
+    }
+}
+
 function AppAdminTools()
 {
     if (!SYSAdmin() and !AppAdmin()) {

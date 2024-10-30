@@ -24,6 +24,7 @@ $SettingsLogoID                 = filter_input(INPUT_POST, "SettingsLogoID");
 $SettingsLogoValueBeforeConvert = filter_input(INPUT_POST, "SettingsLogoValueBeforeConvert");
 
 if (isset($_FILES['SettingsLogoValue']) != null) {
+
     if ($SettingsLogoValueBeforeConvert != null) {
         if (file_exists("../assets/img/settingslogo/$SettingsLogoValueBeforeConvert")) {
             unlink("../assets/img/settingslogo/$SettingsLogoValueBeforeConvert");

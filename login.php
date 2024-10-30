@@ -1,11 +1,14 @@
 <?php
-$Title = 'Login';
-$WebRootPath = realpath('admin');
+$Title          = 'Login';
+$WebRootPath    = realpath('admin');
 require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
+require_once($WebRootPath . '/includes/class/EventLogClass.php');
+require_once('includes/class/SettingsClass.php');
+$SettingsLogo   = new Settings();
 
 if (isset($_POST['Login'])) {
 
@@ -15,7 +18,7 @@ if (isset($_POST['Login'])) {
     $EventLogData   = $Username . ' is logged in';
     $GToken         = filter_input(INPUT_POST, 'GToken');
 
-    if ($GToken == !null) {
+    if (!empty($GToken)) {
         $SecretKey  = '6Le0EGkpAAAAAB-9Mv73FGP_1p5rUCO8jpesJIqP';
         $Token      = $GToken;
         $IP         = $_SERVER['REMOTE_ADDR'];
@@ -26,7 +29,7 @@ if (isset($_POST['Login'])) {
 
         if ($Response->success === 0) {
             echo    "You are spammer ! Get the @$%K out";
-            die;
+            die();
         } else {
             $EventLog = new EventLog();
             $EventLog->createEventLog(
@@ -46,7 +49,9 @@ if (isset($_POST['Login'])) {
 <div class="container container-tight py-4">
     <div class="text-center">
         <a href="index.php" class="navbar-brand navbar-brand-autodark">
-            <img src="<?= WebRootPath(); ?>assets/img/logo/logo.png" height="150" alt="Logo">
+            <?php foreach ($SettingsLogo->fetchLogoLoginPage() as $row) : ?>
+                <img src="<?= WebRootPath(); ?>assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" height="150" alt="<?= $row['SettingsLogoValue']; ?>">
+            <?php endforeach; ?>
         </a>
     </div>
     <div class="card card-md shadow-lg rounded-5">
