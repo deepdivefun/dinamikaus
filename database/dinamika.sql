@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2024 at 11:46 AM
+-- Generation Time: Oct 30, 2024 at 03:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -239,7 +239,7 @@ CREATE TABLE `tbl_settings_logo` (
   `SettingsLogoID` int(11) NOT NULL,
   `StatusID` int(11) NOT NULL,
   `SettingsLogoName` varchar(255) NOT NULL,
-  `SettingsLogoValue` varchar(255) NOT NULL,
+  `SettingsLogoValue` varchar(255) DEFAULT NULL,
   `CreateBy` varchar(20) DEFAULT NULL,
   `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdateBy` varchar(20) DEFAULT NULL,
@@ -252,7 +252,36 @@ CREATE TABLE `tbl_settings_logo` (
 
 INSERT INTO `tbl_settings_logo` (`SettingsLogoID`, `StatusID`, `SettingsLogoName`, `SettingsLogoValue`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 1, 'Logo Header or Navbar', '6720bb6b1c4d9-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 09:16:40', 'kevinarlo', '2024-10-29 10:39:40'),
-(2, 1, 'Logo Footer', '6720bb7930d63-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 10:20:19', 'kevinarlo', '2024-10-29 10:39:53');
+(2, 1, 'Logo Footer', '6720bb7930d63-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 10:20:19', 'kevinarlo', '2024-10-29 10:39:53'),
+(3, 1, 'Logo Login Page', '67222c78b36f9-2024-10-30-logo.png', 'kevinarlo', '2024-10-30 12:54:17', NULL, NULL),
+(4, 1, 'Carousel Photo', NULL, 'kevinarlo', '2024-10-30 13:20:33', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_shipping`
+--
+
+CREATE TABLE `tbl_shipping` (
+  `ShippingID` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
+  `ShippingName` varchar(50) NOT NULL,
+  `ShippingPhoto` varchar(255) DEFAULT NULL,
+  `CreateBy` varchar(20) DEFAULT NULL,
+  `CreateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdateBy` varchar(20) DEFAULT NULL,
+  `UpdateTime` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_shipping`
+--
+
+INSERT INTO `tbl_shipping` (`ShippingID`, `StatusID`, `ShippingName`, `ShippingPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'JNE Express', '672238b94bc11-2024-10-30-logo-jne-express.png', 'kevinarlo', '2024-10-30 13:46:33', NULL, NULL),
+(2, 1, 'Gosend', '672239087fa0c-2024-10-30-logo-gosend.png', 'kevinarlo', '2024-10-30 13:47:54', NULL, NULL),
+(3, 1, 'Grab Express', '6722396402663-2024-10-30-logo-grab-express.png', 'kevinarlo', '2024-10-30 13:48:10', 'kevinarlo', '2024-10-30 13:49:24'),
+(4, 1, 'J&T Express', '672239261de0f-2024-10-30-logo-jnt-express.png', 'kevinarlo', '2024-10-30 13:48:22', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -359,7 +388,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`UserID`, `RoleID`, `StatusID`, `Username`, `Password`, `Email`, `FullName`, `ResetTokenHash`, `ResetTokenExpired`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 4, 1, 'kevinarlo', '$2y$10$bcpx4sFLRiYLouYH5DU6LeAWHEjuDm76JoA8j.a3SB57Gca5I9Y/q', 'kevinarlo29@gmail.com', 'Kevin Arlo', '3964e9b52707a7ad5328ccfad66906735533ad05e07457c01d06e51962ea83b0', '2024-10-23 09:56:06', 'kevinarlo', '2024-03-12 17:40:23', 'kevinarlo', '2024-09-28 09:14:36'),
+(1, 4, 1, 'kevinarlo', '$2y$10$IS1i7R8gUuwks9oTchmM2e97vr.1cdMrVNYYMJfdzcDpDhq1L83fy', 'kevinarlo29@gmail.com', 'Kevin Arlo', NULL, NULL, 'kevinarlo', '2024-03-12 17:40:23', 'kevinarlo', '2024-09-28 09:14:36'),
 (2, 3, 1, 'bestian', '$2y$10$5Wa/NTbMdqKdxirFlhbZL.sUqtPMhTKB5u8d0xpI2Ik0ZrDX/B3p2', 'bestian@dinamikaus.com', 'Bestian', NULL, NULL, 'kevinarlo', '2024-03-14 14:57:30', 'kevinarlo', '2024-10-01 11:39:01'),
 (3, 1, 1, 'staff', '$2y$10$W9sc3kX3V9VEcGC8yjGuxeyfgbMBVobHTLgbSenN25D9jS8hDnt8u', 'staff@gmail.com', 'Staff', NULL, NULL, 'kevinarlo', '2024-09-28 14:59:28', 'kevinarlo', '2024-10-09 03:28:00');
 
@@ -434,6 +463,13 @@ ALTER TABLE `tbl_settings`
 --
 ALTER TABLE `tbl_settings_logo`
   ADD PRIMARY KEY (`SettingsLogoID`),
+  ADD KEY `StatusID` (`StatusID`);
+
+--
+-- Indexes for table `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  ADD PRIMARY KEY (`ShippingID`),
   ADD KEY `StatusID` (`StatusID`);
 
 --
@@ -532,7 +568,13 @@ ALTER TABLE `tbl_settings`
 -- AUTO_INCREMENT for table `tbl_settings_logo`
 --
 ALTER TABLE `tbl_settings_logo`
-  MODIFY `SettingsLogoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `SettingsLogoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  MODIFY `ShippingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_status`
@@ -616,6 +658,12 @@ ALTER TABLE `tbl_settings`
 --
 ALTER TABLE `tbl_settings_logo`
   ADD CONSTRAINT `tbl_settings_logo_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
+
+--
+-- Constraints for table `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  ADD CONSTRAINT `tbl_shipping_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `tbl_status` (`StatusID`);
 
 --
 -- Constraints for table `tbl_team`
