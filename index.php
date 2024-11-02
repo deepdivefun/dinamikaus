@@ -5,6 +5,7 @@ require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
 $Product    = new Product();
 require_once('includes/component/Navbar.php');
+require_once('includes/component/SidebarMenu.php');
 require_once('includes/component/Hero.php');
 require_once('includes/component/Category.php');
 ?>

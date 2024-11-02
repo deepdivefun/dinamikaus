@@ -9,6 +9,10 @@
   margin-bottom: 16px;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .dropdown-content-div {
   display: flex;
   flex-wrap: nowrap;
