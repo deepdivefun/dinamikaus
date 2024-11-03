@@ -8,6 +8,7 @@ require_once($WebRootPath . '/includes/helpers/Session.php');
 require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
 require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/ForgotPasswordClass.php');
+require_once($WebRootPath . '/includes/class/VerifyRecaptchaTokenFunction.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '14100.DebugToolsResetPassword.php') === FALSE) {
     echo    "Invalid Caller";
@@ -23,39 +24,41 @@ $Email          = filter_input(INPUT_POST, 'Email');
 $ConfirmEmail   = filter_input(INPUT_POST, 'ConfirmEmail');
 $GToken         = filter_input(INPUT_POST, 'GToken');
 
-if (!empty($GToken)) {
-    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
-    $Token      = $GToken;
-    $IP         = $_SERVER['REMOTE_ADDR'];
-    $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
-
-    $Request    = file_get_contents($URL);
-    $Response   = json_decode($Request);
-
-    if ($Response->success === 0) {
-        echo    "You are spammer ! Get the @$%K out";
-        die();
-    }
-}
-
 if ($Email !== $ConfirmEmail) {
-    echo    "<script>
-                alert('Email and Confirm Email not match');
-                document.location.href = '14100.DebugToolsResetPassword.php';
-            </script>";
-    die;
+    echo    "Email and Confirm Email not match";
+    die();
 }
 
-try {
-    if (empty($Email)) {
-        throw new Exception("Error Processing Request");
-    } else {
-        $ForgotPassword = new ForgotPassword();
-        $ForgotPassword->sendEmailForgotPasswordAppAdminTools(
-            $Email
-        );
+if (VerifyRecaptchaToken($GToken) == null) {
+    echo    "You are spammer! Get out";
+    die();
+} else {
+    try {
+        if (empty($Email)) {
+            throw new Exception("Error Processing Request");
+        } else {
+            $ForgotPassword = new ForgotPassword();
+            $ForgotPassword->sendEmailForgotPasswordAppAdminTools(
+                $Email
+            );
+        }
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
-} catch (Exception $e) {
-    echo 'Message: ' . $e->getMessage();
+    $conn->close();
 }
-$conn->close();
+
+// if (!empty($GToken)) {
+//     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
+//     $Token      = $GToken;
+//     $IP         = $_SERVER['REMOTE_ADDR'];
+//     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
+
+//     $Request    = file_get_contents($URL);
+//     $Response   = json_decode($Request);
+
+//     if ($Response->success === 0) {
+//         echo    "You are spammer ! Get the @$%K out";
+//         die();
+//     }
+// }
