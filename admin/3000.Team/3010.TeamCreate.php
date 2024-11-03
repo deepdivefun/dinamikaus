@@ -9,6 +9,7 @@ require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
 require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/TeamClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
+require_once($WebRootPath . '/includes/class/VerifyRecaptchaTokenFunction.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '3000.Team.php') === FALSE) {
     echo    "Invalid Caller";
@@ -41,43 +42,48 @@ $EventLogUser       = $CreateBy;
 $EventLogData       = 'Create Team ' . $FullName;
 $GToken             = filter_input(INPUT_POST, 'GToken');
 
-if (!empty($GToken)) {
-    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
-    $Token      = $GToken;
-    $IP         = $_SERVER['REMOTE_ADDR'];
-    $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
+if (VerifyRecaptchaToken($GToken) == null) {
+    echo    "You are spammer! Get out";
+    die();
+} else {
+    try {
+        if (empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoConvert) and empty($CreateBy)) {
+            throw new Exception("Error Processing Request");
+        } else {
+            $EventLog = new EventLog();
+            $EventLog->createEventLog(
+                $EventLogUser,
+                $EventLogData
+            );
 
-    $Request    = file_get_contents($URL);
-    $Response   = json_decode($Request);
-
-    if ($Response->success === 0) {
-        echo    "You are spammer ! Get the @$%K out";
-        die();
+            $Team = new Team();
+            $Team->createTeam(
+                $StatusID,
+                $FullName,
+                $Position,
+                $Linkedin,
+                $Instagram,
+                $TeamPhotoConvert,
+                $CreateBy
+            );
+        }
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
+    $conn->close();
 }
 
-try {
-    if (empty($StatusID) and empty($FullName) and empty($Position) and empty($TeamPhotoConvert) and empty($CreateBy)) {
-        throw new Exception("Error Processing Request");
-    } else {
-        $EventLog = new EventLog();
-        $EventLog->createEventLog(
-            $EventLogUser,
-            $EventLogData
-        );
+// if (!empty($GToken)) {
+//     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
+//     $Token      = $GToken;
+//     $IP         = $_SERVER['REMOTE_ADDR'];
+//     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
 
-        $Team = new Team();
-        $Team->createTeam(
-            $StatusID,
-            $FullName,
-            $Position,
-            $Linkedin,
-            $Instagram,
-            $TeamPhotoConvert,
-            $CreateBy
-        );
-    }
-} catch (Exception $e) {
-    echo 'Message: ' . $e->getMessage();
-}
-$conn->close();
+//     $Request    = file_get_contents($URL);
+//     $Response   = json_decode($Request);
+
+//     if ($Response->success === 0) {
+//         echo    "You are spammer ! Get the @$%K out";
+//         die();
+//     }
+// }

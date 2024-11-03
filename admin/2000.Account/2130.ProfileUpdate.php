@@ -8,6 +8,7 @@ require_once($WebRootPath . '/includes/helpers/Session.php');
 require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/AccountClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
+require_once($WebRootPath . '/includes/class/VerifyRecaptchaTokenFunction.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '2100.Profile.php') === FALSE) {
     echo    "Invalid Caller";
@@ -25,44 +26,49 @@ $EventLogUser       = $UpdateBy;
 $EventLogData       = $FullName . ' Updated Profile';
 $GToken             = filter_input(INPUT_POST, 'GToken');
 
-if (!empty($GToken)) {
-    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
-    $Token      = $GToken;
-    $IP         = $_SERVER['REMOTE_ADDR'];
-    $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
+if (VerifyRecaptchaToken($GToken) == null) {
+    echo    "You are spammer! Get out";
+    die();
+} else {
+    try {
+        if (empty($UserID) and empty($Username) and empty($Email) and empty($FullName) and empty($UpdateBy)) {
+            throw new Exception("Error Processing Request");
+        } else {
 
-    $Request    = file_get_contents($URL);
-    $Response   = json_decode($Request);
+            $EventLog = new EventLog();
+            $EventLog->createEventLog(
+                $EventLogUser,
+                $EventLogData
+            );
 
-    if ($Response->success === 0) {
-        echo    "You are spammer ! Get the @$%K out";
-        die();
+            $User = new Account();
+            $User->updateAccountByID(
+                $UserID,
+                $Username,
+                $Password,
+                $ConfirmPassword,
+                $Email,
+                $FullName,
+                $UpdateBy
+            );
+        }
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
+    $conn->close();
 }
 
-try {
-    if (empty($UserID) and empty($Username) and empty($Email) and empty($FullName) and empty($UpdateBy)) {
-        throw new Exception("Error Processing Request");
-    } else {
+// if (!empty($GToken)) {
+//     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
+//     $Token      = $GToken;
+//     $IP         = $_SERVER['REMOTE_ADDR'];
+//     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
 
-        $EventLog = new EventLog();
-        $EventLog->createEventLog(
-            $EventLogUser,
-            $EventLogData
-        );
+//     $Request    = file_get_contents($URL);
+//     $Response   = json_decode($Request);
 
-        $User = new Account();
-        $User->updateAccountByID(
-            $UserID,
-            $Username,
-            $Password,
-            $ConfirmPassword,
-            $Email,
-            $FullName,
-            $UpdateBy
-        );
-    }
-} catch (Exception $e) {
-    echo 'Message: ' . $e->getMessage();
-}
-$conn->close();
+//     if ($Response->success === 0) {
+//         echo    "You are spammer ! Get the @$%K out";
+//         die();
+//     }
+// }

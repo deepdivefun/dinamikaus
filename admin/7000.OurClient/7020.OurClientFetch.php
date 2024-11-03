@@ -8,6 +8,7 @@ require_once($WebRootPath . '/includes/helpers/Session.php');
 require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
 require_once($WebRootPath . '/includes/component/HeaderCSP.php');
 require_once($WebRootPath . '/includes/class/ConnectionClass.php');
+require_once($WebRootPath . '/includes/class/VerifyRecaptchaTokenFunction.php');
 
 if (strpos($_SERVER['HTTP_REFERER'], '7000.OurClient.php') === FALSE) {
     echo    "Invalid Caller";
@@ -23,91 +24,96 @@ $StatusID       = filter_input(INPUT_POST, 'StatusID');
 $OurClientName  = filter_input(INPUT_POST, 'OurClientName');
 $GToken         = filter_input(INPUT_POST, 'GToken');
 
-if (!empty($GToken)) {
-    $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
-    $Token      = $GToken;
-    $IP         = $_SERVER['REMOTE_ADDR'];
-    $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
+if (VerifyRecaptchaToken($GToken) == null) {
+    echo    "You are spammer! Get out";
+    die();
+} else {
+    try {
+        if (empty($StatusID)) {
+            throw new Exception("Error Processing Request");
+        } else {
+            $conn->begin_transaction();
 
-    $Request    = file_get_contents($URL);
-    $Response   = json_decode($Request);
+            $query  = "SELECT a.OurClientID, b.StatusID, b.StatusName, a.OurClientName, a.OurClientPhoto, 
+                        a.CreateBy, a.CreateTime, a.UpdateBy, a.UpdateTime FROM tbl_ourclient a 
+                        LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                        WHERE a.StatusID = ? AND a.OurClientName LIKE CONCAT('%', ?, '%')";
+            $stmt   = $conn->prepare($query);
+            $stmt->bind_param("is", $StatusID, $OurClientName);
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result(
+                $OurClientID,
+                $StatusID,
+                $StatusName,
+                $OurClientName,
+                $OurClientPhoto,
+                $CreateBy,
+                $CreateTime,
+                $UpdateBy,
+                $UpdateTime
+            );
 
-    if ($Response->success === 0) {
-        echo    "You are spammer ! Get the @$%K out";
-        die();
-    }
-}
+            $JSONData   = "";
 
-try {
-    if (empty($StatusID)) {
-        throw new Exception("Error Processing Request");
-    } else {
-        $conn->begin_transaction();
+            while ($stmt->fetch()) {
+                if ($JSONData !== "") $JSONData .= ",";
 
-        $query  = "SELECT a.OurClientID, b.StatusID, b.StatusName, a.OurClientName, a.OurClientPhoto, 
-                    a.CreateBy, a.CreateTime, a.UpdateBy, a.UpdateTime FROM tbl_ourclient a 
-                    LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
-                    WHERE a.StatusID = ? AND a.OurClientName LIKE CONCAT('%', ?, '%')";
-        $stmt   = $conn->prepare($query);
-        $stmt->bind_param("is", $StatusID, $OurClientName);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result(
-            $OurClientID,
-            $StatusID,
-            $StatusName,
-            $OurClientName,
-            $OurClientPhoto,
-            $CreateBy,
-            $CreateTime,
-            $UpdateBy,
-            $UpdateTime
-        );
+                if ($StatusID == 1) {
+                    $StatusName = "<span StatusID='$StatusID' class='badge rounded-pill text-bg-success mx-1'>$StatusName</span>";
+                } else {
+                    $StatusName = "<span StatusID='$StatusID' class='badge rounded-pill text-bg-danger mx-1'>$StatusName</span>";
+                }
 
-        $JSONData   = "";
-
-        while ($stmt->fetch()) {
-            if ($JSONData !== "") $JSONData .= ",";
-
-            if ($StatusID == 1) {
-                $StatusName = "<span StatusID='$StatusID' class='badge rounded-pill text-bg-success mx-1'>$StatusName</span>";
-            } else {
-                $StatusName = "<span StatusID='$StatusID' class='badge rounded-pill text-bg-danger mx-1'>$StatusName</span>";
-            }
-
-            if ($StatusID == 1) {
-                $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editOurClient' title='EDIT' OurClientID='$OurClientID' StatusID='$StatusID' OurClientName='$OurClientName' OurClientPhoto='$OurClientPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
-                $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteOurClient' title='DELETE' OurClientID='$OurClientID'><i class='fa-solid fa-trash'></i></button>";
-                if (SYSAdmin()) {
+                if ($StatusID == 1) {
                     $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editOurClient' title='EDIT' OurClientID='$OurClientID' StatusID='$StatusID' OurClientName='$OurClientName' OurClientPhoto='$OurClientPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteOurClient' title='DELETE' OurClientID='$OurClientID'><i class='fa-solid fa-trash'></i></button>";
-                    $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugOurClient' title='DEBUG' OurClientID='$OurClientID'><i class='fa-solid fa-eye'></i></button>";
-                }
-            } else {
-                $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeOurClient' title='ACTIVATE' OurClientID='$OurClientID'><i class='fa-solid fa-check'></i></button>";
-                if (SYSAdmin()) {
+                    if (SYSAdmin()) {
+                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editOurClient' title='EDIT' OurClientID='$OurClientID' StatusID='$StatusID' OurClientName='$OurClientName' OurClientPhoto='$OurClientPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                        $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteOurClient' title='DELETE' OurClientID='$OurClientID'><i class='fa-solid fa-trash'></i></button>";
+                        $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugOurClient' title='DEBUG' OurClientID='$OurClientID'><i class='fa-solid fa-eye'></i></button>";
+                    }
+                } else {
                     $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeOurClient' title='ACTIVATE' OurClientID='$OurClientID'><i class='fa-solid fa-check'></i></button>";
-                    $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugOurClient' title='DEBUG' OurClientID='$OurClientID'><i class='fa-solid fa-eye'></i></button>";
+                    if (SYSAdmin()) {
+                        $Button = "<button type='button' class='btn btn-outline-success rounded-5 mx-1 activeOurClient' title='ACTIVATE' OurClientID='$OurClientID'><i class='fa-solid fa-check'></i></button>";
+                        $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugOurClient' title='DEBUG' OurClientID='$OurClientID'><i class='fa-solid fa-eye'></i></button>";
+                    }
                 }
+
+                $OurClientPhoto = "<img src='" . WebRootPath() . "assets/img/ourclientphoto/" . $OurClientPhoto . "' class='img-fluid h-25 w-25 rounded-5' alt='" . $OurClientPhoto . "'>";
+
+                $JSONData .= '["' . $OurClientName . '", "' . $OurClientPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
             }
 
-            $OurClientPhoto = "<img src='" . WebRootPath() . "assets/img/ourclientphoto/" . $OurClientPhoto . "' class='img-fluid h-25 w-25 rounded-5' alt='" . $OurClientPhoto . "'>";
+            if ($JSONData == null) {
+                $JSONData = ["", "", "", ""];
+                echo "[" . json_encode($JSONData) . "]";
+            } else {
+                $conn->commit();
+                echo "[" . $JSONData . "]";
+            }
 
-            $JSONData .= '["' . $OurClientName . '", "' . $OurClientPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
+            $stmt->close();
         }
-
-        if ($JSONData == null) {
-            $JSONData = ["", "", "", ""];
-            echo "[" . json_encode($JSONData) . "]";
-        } else {
-            $conn->commit();
-            echo "[" . $JSONData . "]";
-        }
-
-        $stmt->close();
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo 'Message: ' . $e->getMessage();
     }
-} catch (Exception $e) {
-    $conn->rollback();
-    echo 'Message: ' . $e->getMessage();
+    $conn->close();
 }
-$conn->close();
+
+// if (!empty($GToken)) {
+//     $SecretKey  = '6Lco2AAjAAAAACZSJFoBUebx-xmcGVjemLtJjEk1';
+//     $Token      = $GToken;
+//     $IP         = $_SERVER['REMOTE_ADDR'];
+//     $URL        = "https://www.google.com/recaptcha/api/siteverify?secret=" . $SecretKey . "&response=" . $Token . "&remoteip=" . $IP;
+
+//     $Request    = file_get_contents($URL);
+//     $Response   = json_decode($Request);
+
+//     if ($Response->success === 0) {
+//         echo    "You are spammer ! Get the @$%K out";
+//         die();
+//     }
+// }
