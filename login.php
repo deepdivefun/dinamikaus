@@ -6,7 +6,6 @@ require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/component/Header.php');
 require_once($WebRootPath . '/includes/class/SessionManagementClass.php');
 require_once($WebRootPath . '/includes/class/EventLogClass.php');
-require_once($WebRootPath . '/includes/class/EventLogClass.php');
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 
