@@ -99,6 +99,54 @@ class Product
         $conn->close();
     }
 
+    // Telusuri Kategory Populer
+    public function fetchProductCategory($StatusName = 'Active')
+    {
+        global $conn;
+
+        try {
+            if (empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.ProductCategoryID, b.StatusID, b.StatusName, a.ProductCategoryPhoto 
+                            FROM tbl_product_category a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('s', $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $ProductCategoryID,
+                    $StatusID,
+                    $StatusName,
+                    $ProductCategoryPhoto
+                );
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'ProductCategoryID'     => $ProductCategoryID,
+                        'StatusID'              => $StatusID,
+                        'StatusName'            => $StatusName,
+                        'ProductCategoryPhoto'  => $ProductCategoryPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
     public function fetchProductByID($ProductID, $StatusName = 'Active')
     {
         global $conn;

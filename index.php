@@ -6,9 +6,33 @@ require_once('includes/class/ProductClass.php');
 $Product    = new Product();
 require_once('includes/component/Navbar.php');
 require_once('includes/component/SidebarMenu.php');
+require_once('includes/class/SettingsClass.php');
+$SettingsLogo   = new Settings();
 require_once('includes/component/Hero.php');
-require_once('includes/component/Category.php');
 ?>
+
+<section>
+    <div class='mt-8 mx-6'>
+        <h2 class='font-semibold text-2xl text-center'>Explore Popular Categories</h2>
+        <div class='mt-6 relative'>
+            <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 text-black p-2">
+                &#10094;
+            </button>
+            <div class="overflow-hidden">
+                <div id="slider" style="overflow:hidden;" class='slider slider-custom flex space-x-4 overflow-x-auto scroll-smooth'>
+                    <?php foreach ($Product->fetchProductCategory() as $row) : ?>
+                        <div class='w-32 h-32 flex-shrink-0'>
+                            <img class='w-full h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 text-black p-2">
+                    &#10095;
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class='mt-6'>
     <div class='min-h-[300px] bg-slate-100 grid place-items-center'>
