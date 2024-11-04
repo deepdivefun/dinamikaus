@@ -145,6 +145,11 @@ if (!SYSAdmin() and !AppAdmin()) {
             <div class="col-12">
                 <div class="card shadow-lg rounded-5">
                     <div class="card-body">
+                        <p><b>Information&nbsp;:</b></p>
+                        <ul class="text-danger">
+                            <li><b>Carousel Photo canvas size must be 600 x 800 pixels</b></li>
+                        </ul>
+                        <hr>
                         <form method="POST" autocomplete="off">
                             <div class="row">
                                 <div class="col-12">
