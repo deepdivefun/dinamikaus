@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2024 at 03:09 PM
+-- Generation Time: Nov 04, 2024 at 02:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -115,6 +115,20 @@ CREATE TABLE `tbl_ourclient` (
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_ourclient`
+--
+
+INSERT INTO `tbl_ourclient` (`OurClientID`, `StatusID`, `OurClientName`, `OurClientPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Our Client', '6728af431c8f3-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:52:10', 'kevinarlo', '2024-11-04 11:25:55'),
+(2, 1, 'Our Client', '6728af4a2375b-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:54:22', 'kevinarlo', '2024-11-04 11:26:02'),
+(3, 1, 'Our Client', '6728af542095e-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:54:41', 'kevinarlo', '2024-11-04 11:26:12'),
+(4, 1, 'Our Client', '6728af5c200b5-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:54:58', 'kevinarlo', '2024-11-04 11:26:20'),
+(5, 1, 'Our Client', '6728af63f35cd-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:55:12', 'kevinarlo', '2024-11-04 11:26:28'),
+(6, 1, 'Our Client', '6728af6ecfb07-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:55:27', 'kevinarlo', '2024-11-04 11:26:39'),
+(7, 1, 'Our Client', '6728af78c9823-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:55:43', 'kevinarlo', '2024-11-04 11:26:49'),
+(8, 1, 'Our Client', '6728af814d14b-2024-11-04-Our Client 200x200.jpg', 'kevinarlo', '2024-11-04 10:55:50', 'kevinarlo', '2024-11-04 11:26:57');
+
 -- --------------------------------------------------------
 
 --
@@ -162,6 +176,15 @@ CREATE TABLE `tbl_product` (
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`ProductID`, `ProductCategoryID`, `StatusID`, `ProductName`, `ProductDescription`, `ProductPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 1, 'Laptop 1', 'Laptop 1', '6728bb76f151e-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:40:13', 'kevinarlo', '2024-11-04 12:17:59'),
+(2, 2, 1, 'Dekstop 1', 'Dekstop 1', '6728bb94290e3-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:41:57', 'kevinarlo', '2024-11-04 12:18:28'),
+(3, 1, 1, 'Laptop 2', 'Laptop 2', '6728bbaa91396-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 12:18:50', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +202,18 @@ CREATE TABLE `tbl_product_category` (
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_product_category`
+--
+
+INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `ProductCategoryCatalog`, `ProductCategoryPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Laptop / Notebook', '', '67286da5c6be5-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:39:49', 'kevinarlo', '2024-11-04 11:21:42'),
+(2, 1, 'Dekstop', '', '67286dae7ff98-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:41:42', 'kevinarlo', '2024-11-04 11:22:05'),
+(3, 1, 'Monitor', '', '6728a8fb9c879-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 10:59:07', 'kevinarlo', '2024-11-04 11:22:19'),
+(4, 1, 'Printer', NULL, '6728ae80ed43d-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 11:22:41', NULL, NULL),
+(5, 1, 'Proyektor', NULL, '6728ae99f0b31-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 11:23:07', NULL, NULL),
+(6, 1, 'Aksesoris', NULL, '6728aeaad5197-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 11:23:23', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -254,7 +289,7 @@ INSERT INTO `tbl_settings_logo` (`SettingsLogoID`, `StatusID`, `SettingsLogoName
 (1, 1, 'Logo Header or Navbar', '6720bb6b1c4d9-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 09:16:40', 'kevinarlo', '2024-10-29 10:39:40'),
 (2, 1, 'Logo Footer', '6720bb7930d63-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 10:20:19', 'kevinarlo', '2024-10-29 10:39:53'),
 (3, 1, 'Logo Login Page', '67222c78b36f9-2024-10-30-logo.png', 'kevinarlo', '2024-10-30 12:54:17', NULL, NULL),
-(4, 1, 'Carousel Photo', NULL, 'kevinarlo', '2024-10-30 13:20:33', NULL, NULL);
+(4, 1, 'Carousel Photo', '6728823d3917e-2024-11-04-Carousel Photo 600x800.jpg', 'kevinarlo', '2024-10-30 13:20:33', 'kevinarlo', '2024-11-04 08:13:50');
 
 -- --------------------------------------------------------
 
@@ -322,6 +357,18 @@ CREATE TABLE `tbl_team` (
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_team`
+--
+
+INSERT INTO `tbl_team` (`TeamID`, `StatusID`, `FullName`, `Position`, `Linkedin`, `Instagram`, `TeamPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 'Kevin Arlo', 'IT', '', '', '6728cb9a3c4fd-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 13:26:50', NULL, NULL),
+(2, 1, 'Kevin Arlo', 'IT', '', '', '6728cc1763041-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 13:28:56', NULL, NULL),
+(3, 1, 'Kevin Arlo', 'IT', '', '', '6728cc2138335-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 13:29:05', NULL, NULL),
+(4, 1, 'Kevin Arlo', 'IT', '', '', '6728cc2ccf140-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 13:29:17', NULL, NULL),
+(5, 1, 'Kevin Arlo', 'IT', '', '', '6728cc3d1c5aa-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 13:29:33', NULL, NULL),
+(6, 1, 'Kevin Arlo', 'IT', '', '', '6728cc4b3c0ee-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 13:29:47', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -340,6 +387,14 @@ CREATE TABLE `tbl_testimonial` (
   `UpdateBy` varchar(20) DEFAULT NULL,
   `UpdateTime` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_testimonial`
+--
+
+INSERT INTO `tbl_testimonial` (`TestimonialID`, `TestimonialStatusID`, `FullName`, `Company`, `TestimonialRating`, `TestimonialDescription`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 2, 'Kevin Arlo', '', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'kevinarlo', '2024-11-04 12:45:21', 'kevinarlo', '2024-11-04 12:46:10'),
+(2, 2, 'Bestian', 'PT. Dinamika Utama Saka', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'kevinarlo', '2024-11-04 12:46:01', 'kevinarlo', '2024-11-04 12:46:15');
 
 -- --------------------------------------------------------
 
@@ -532,7 +587,7 @@ ALTER TABLE `tbl_meta`
 -- AUTO_INCREMENT for table `tbl_ourclient`
 --
 ALTER TABLE `tbl_ourclient`
-  MODIFY `OurClientID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OurClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment`
@@ -544,13 +599,13 @@ ALTER TABLE `tbl_payment`
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_category`
 --
 ALTER TABLE `tbl_product_category`
-  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`
@@ -586,13 +641,13 @@ ALTER TABLE `tbl_status`
 -- AUTO_INCREMENT for table `tbl_team`
 --
 ALTER TABLE `tbl_team`
-  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_testimonial`
 --
 ALTER TABLE `tbl_testimonial`
-  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_testimonial_status`

@@ -15,87 +15,53 @@ class Product
         return $this->conn;
     }
 
-    public function fetchProductNavbar($StatusName = "Active")
+    // Product Category Navbar
+    public function fetchProductNavbar($StatusName = 'Active')
     {
         global $conn;
 
-        $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, b.ProductCategoryPhoto, 
-                    c.StatusID, c.StatusName FROM tbl_product a 
-                    LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
-                    LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
-                    WHERE c.StatusName = ? GROUP BY a.ProductCategoryID ORDER BY a.ProductCategoryID ASC";
-        $stmt   = $conn->prepare($query);
-        $stmt->bind_param("s", $StatusName);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result(
-            $ProductID,
-            $ProductCategoryID,
-            $ProductCategoryName,
-            $ProductCategoryPhoto,
-            $StatusID,
-            $StatusName
-        );
+        try {
+            if (empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
 
-        $result = [];
+                $query  = "SELECT a.ProductCategoryID, b.StatusID, b.StatusName, a.ProductCategoryName, 
+                            a.ProductCategoryPhoto FROM tbl_product_category a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ? ORDER BY a.ProductCategoryID ASC";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('s', $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $ProductCategoryID,
+                    $StatusID,
+                    $StatusName,
+                    $ProductCategoryName,
+                    $ProductCategoryPhoto
+                );
 
-        while ($stmt->fetch()) {
-            $result[]   = [
-                'ProductID'             => $ProductID,
-                'ProductCategoryID'     => $ProductCategoryID,
-                'ProductCategoryName'   => $ProductCategoryName,
-                'ProductCategoryPhoto'  => $ProductCategoryPhoto,
-                'StatusID'              => $StatusID,
-                'StatusName'            => $StatusName
-            ];
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'ProductCategoryID'     => $ProductCategoryID,
+                        'StatusID'              => $StatusID,
+                        'StatusName'            => $StatusName,
+                        'ProductCategoryName'   => $ProductCategoryName,
+                        'ProductCategoryPhoto'  => $ProductCategoryPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
         }
 
         return $result;
-        $stmt->close();
-        $conn->close();
-    }
-
-    public function fetchProductByCategoryID($ProductCategoryID, $StatusName = 'Active')
-    {
-        global $conn;
-
-        $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.StatusID, 
-                    c.StatusName, a.ProductName, a.ProductDescription, a.ProductPhoto FROM tbl_product a 
-                    LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
-                    LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
-                    WHERE a.ProductCategoryID = ? AND c.StatusName = ?";
-        $stmt   = $conn->prepare($query);
-        $stmt->bind_param("is", $ProductCategoryID, $StatusName);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result(
-            $ProductID,
-            $ProductCategoryID,
-            $ProductCategoryName,
-            $StatusID,
-            $StatusName,
-            $ProductName,
-            $ProductDescription,
-            $ProductPhoto
-        );
-
-        $result = [];
-
-        while ($stmt->fetch()) {
-            $result[]   = [
-                'ProductID'             => $ProductID,
-                'ProductCategoryID'     => $ProductCategoryID,
-                'ProductCategoryName'   => $ProductCategoryName,
-                'StatusID'              => $StatusID,
-                'StatusName'            => $StatusName,
-                'ProductName'           => $ProductName,
-                'ProductDescription'    => $ProductDescription,
-                'ProductPhoto'          => $ProductPhoto
-            ];
-        }
-
-        return $result;
-        $stmt->close();
         $conn->close();
     }
 
@@ -147,47 +113,158 @@ class Product
         $conn->close();
     }
 
+    // E-Catalogue
+    public function fetchProductECatalogue($StatusName = 'Active')
+    {
+        global $conn;
+
+        try {
+            if (empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.ProductCategoryID, b.StatusID, b.StatusName, a.ProductCategoryName, 
+                            a.ProductCategoryPhoto FROM tbl_product_category a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('s', $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $ProductCategoryID,
+                    $StatusID,
+                    $StatusName,
+                    $ProductCategoryName,
+                    $ProductCategoryPhoto
+                );
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'ProductCategoryID'     => $ProductCategoryID,
+                        'StatusID'              => $StatusID,
+                        'StatusName'            => $StatusName,
+                        'ProductCategoryName'   => $ProductCategoryName,
+                        'ProductCategoryPhoto'  => $ProductCategoryPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
+    // Product By Category ID Navbar
+    public function fetchProductByCategoryID($ProductCategoryID, $StatusName = 'Active')
+    {
+        global $conn;
+
+        try {
+            if (empty($ProductCategoryID) and empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.ProductID, b.ProductCategoryID, c.StatusID, c.StatusName, a.ProductName, 
+                            a.ProductPhoto FROM tbl_product a 
+                            LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
+                            LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
+                            WHERE b.ProductCategoryID = ? AND c.StatusName = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('is', $ProductCategoryID, $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $ProductID,
+                    $ProductCategoryID,
+                    $StatusID,
+                    $StatusName,
+                    $ProductName,
+                    $ProductPhoto
+                );
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'ProductID'             => $ProductID,
+                        'ProductCategoryID'     => $ProductCategoryID,
+                        'StatusID'              => $StatusID,
+                        'StatusName'            => $StatusName,
+                        'ProductName'           => $ProductName,
+                        'ProductPhoto'          => $ProductPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
+    // Product By ID
     public function fetchProductByID($ProductID, $StatusName = 'Active')
     {
         global $conn;
 
-        $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.StatusID, 
-                    c.StatusName, a.ProductName, a.ProductDescription, a.ProductPhoto FROM tbl_product a 
-                    LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
-                    LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
-                    WHERE a.ProductID = ? AND c.StatusName = ?";
-        $stmt   = $conn->prepare($query);
-        $stmt->bind_param("is", $ProductID, $StatusName);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result(
-            $ProductID,
-            $ProductCategoryID,
-            $ProductCategoryName,
-            $StatusID,
-            $StatusName,
-            $ProductName,
-            $ProductDescription,
-            $ProductPhoto
-        );
+        try {
+            if (empty($ProductID) and empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
 
-        $result = [];
+                $query  = "SELECT a.ProductID, b.StatusID, b.StatusName, a.ProductName, a.ProductDescription, 
+                            a.ProductPhoto FROM tbl_product a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE a.ProductID = ? AND b.StatusName = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("is", $ProductID, $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $ProductID,
+                    $StatusID,
+                    $StatusName,
+                    $ProductName,
+                    $ProductDescription,
+                    $ProductPhoto
+                );
 
-        while ($stmt->fetch()) {
-            $result[]   = [
-                'ProductID'             => $ProductID,
-                'ProductCategoryID'     => $ProductCategoryID,
-                'ProductCategoryName'   => $ProductCategoryName,
-                'StatusID'              => $StatusID,
-                'StatusName'            => $StatusName,
-                'ProductName'           => $ProductName,
-                'ProductDescription'    => $ProductDescription,
-                'ProductPhoto'          => $ProductPhoto
-            ];
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'ProductID'             => $ProductID,
+                        'StatusID'              => $StatusID,
+                        'StatusName'            => $StatusName,
+                        'ProductName'           => $ProductName,
+                        'ProductDescription'    => $ProductDescription,
+                        'ProductPhoto'          => $ProductPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
         }
 
         return $result;
-        $stmt->close();
         $conn->close();
     }
 }

@@ -19,36 +19,48 @@ class OurClient
     {
         global $conn;
 
-        $query  = "SELECT a.OurClientID, b.StatusID, b.StatusName, a.OurClientName, a.OurClientPhoto 
-                    FROM tbl_ourclient a 
-                    LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
-                    WHERE b.StatusName = ?";
-        $stmt   = $conn->prepare($query);
-        $stmt->bind_param("s", $StatusName);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result(
-            $OurClientID,
-            $StatusID,
-            $StatusName,
-            $OurClientName,
-            $OurClientPhoto
-        );
+        try {
+            if (empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
 
-        $result = [];
+                $query  = "SELECT a.OurClientID, b.StatusID, b.StatusName, a.OurClientName, a.OurClientPhoto 
+                            FROM tbl_ourclient a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param("s", $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $OurClientID,
+                    $StatusID,
+                    $StatusName,
+                    $OurClientName,
+                    $OurClientPhoto
+                );
 
-        while ($stmt->fetch()) {
-            $result[]   = [
-                'OurClientID'       => $OurClientID,
-                'StatusID'          => $StatusID,
-                'StatusName'        => $StatusName,
-                'OurClientName'     => $OurClientName,
-                'OurClientPhoto'    => $OurClientPhoto
-            ];
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'OurClientID'       => $OurClientID,
+                        'StatusID'          => $StatusID,
+                        'StatusName'        => $StatusName,
+                        'OurClientName'     => $OurClientName,
+                        'OurClientPhoto'    => $OurClientPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
         }
 
         return $result;
-        $stmt->close();
         $conn->close();
     }
 }

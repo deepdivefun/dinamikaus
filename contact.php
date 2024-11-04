@@ -1,13 +1,17 @@
 <?php
-$Title  = "Contact";
+$Title          = "Contact Us";
 require_once('includes/helpers/WebRootPath.php');
+require_once('includes/class/MetaClass.php');
+$Meta           = new Meta();
 require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
-$Product    = new Product();
+$Product        = new Product();
+require_once('includes/class/SettingsClass.php');
+$SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
-require_once('includes/component/SidebarMenu.php');
 require_once('includes/class/ContactClass.php');
-$Contact    = new Contact();
+$Contact        = new Contact();
+require_once('includes/component/SidebarMenu.php');
 ?>
 
 <div class='mx-8 my-6'>

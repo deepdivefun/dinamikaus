@@ -1,10 +1,16 @@
 <?php
-$Title  = "About";
+$Title          = "About Us";
 require_once('includes/helpers/WebRootPath.php');
+require_once('includes/class/MetaClass.php');
+$Meta           = new Meta();
 require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
-$Product    = new Product();
+$Product        = new Product();
+require_once('includes/class/SettingsClass.php');
+$SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
+require_once('includes/class/TeamClass.php');
+$Team           = new Team();
 require_once('includes/component/SidebarMenu.php');
 ?>
 <div class='lg:mx-8 mx-6 mt-6'>
@@ -32,7 +38,13 @@ require_once('includes/component/SidebarMenu.php');
 
 
         <div class='mt-6 grid lg:grid-cols-6 grid-cols-2 gap-3'>
-            <div class='grid'>
+            <?php foreach ($Team->fetchTeam() as $row) : ?>
+                <div class='grid'>
+                    <img class='w-36 h-36' src="<?= WebRootPath(); ?>admin/assets/img/teamphoto/<?= $row['TeamPhoto']; ?>" alt="<?= $row['TeamPhoto']; ?>">
+                    <h3 class='text-center'><?= $row['FullName']; ?></h3>
+                </div>
+            <?php endforeach; ?>
+            <!-- <div class='grid'>
                 <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
                 <h3 class='text-center'>Keps</h3>
             </div>
@@ -51,11 +63,7 @@ require_once('includes/component/SidebarMenu.php');
             <div class='grid'>
                 <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
                 <h3 class='text-center'>Keps</h3>
-            </div>
-            <div class='grid'>
-                <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
-                <h3 class='text-center'>Keps</h3>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

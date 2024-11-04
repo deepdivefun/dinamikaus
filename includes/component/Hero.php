@@ -7,13 +7,14 @@
     <?php endforeach; ?>
   </div>
   <div class='columns-2 gap-4 mt-4 hidden lg:block'>
-    <div class='flex rounded-md gap-6 p-3 bg-slate-100'>
-      <img class='w-52 h-52' src="<?= WebRootPath(); ?>assets/img/image1.jpg" alt="">
-      <span class='text-xl font-semibold'>E-Catalog</span>
-    </div>
-    <div class='flex rounded-md gap-6 p-3 bg-slate-100'>
-      <img class='w-52 h-52' src="<?= WebRootPath(); ?>assets/img/image1.jpg" alt="">
-      <span class='text-xl font-semibold'>E-Catalog</span>
-    </div>
+    <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
+      <a href="">
+        <div class='flex rounded-md gap-6 p-3 bg-slate-100'>
+          <img class='w-52 h-52' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+          <span class='text-xl font-semibold'>E-Catalogue</span>
+          <span class='text-xl font-semibold'><?= $row['ProductCategoryName']; ?></span>
+        </div>
+      </a>
+    <?php endforeach; ?>
   </div>
 </div>
