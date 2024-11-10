@@ -1,9 +1,16 @@
-    <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- swipper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Aos -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Main JS -->
     <script src="<?= WebRootPath(); ?>assets/js/main.js"></script>
 
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/4.0.0-alpha.24/lib.min.js" integrity="sha512-z/dvZbFZhHCi5/4UoyNwhidEOFbiN93Um+DWoaMZsH6zqifGGo0zA4bUwdf1SgV7KIPMQgiGs+05PNl8ytxweQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Google Recaptcha V3 -->
     <script>
         grecaptcha.ready(function() {
@@ -12,5 +19,19 @@
             }).then(function(GToken) {
                 document.getElementById("GToken").value = GToken;
             })
+        });
+
+        var swiper = new Swiper(".swipper2", {
+            loop: true,
+            autoplay: {
+                delay: 4000, // delay antara setiap slide (dalam milidetik)
+                disableOnInteraction: false, // supaya autoplay tetap berjalan saat interaksi
+            },
+            slidesPerView: 2,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
         });
     </script>

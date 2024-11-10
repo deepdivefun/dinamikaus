@@ -12,11 +12,11 @@
                 <li><button onmouseover="mouseOver()" onmouseout="mouseOut()">
                         <a href="javascript:void(0)">Product</a>
                         <div class="dropdown-content" id="dropdown-content">
-                            <div class="dropdown-content-div">
+                            <div class="flex gap-12 justify-center my-6">
                                 <?php foreach ($Product->fetchProductNavbar() as $row) : ?>
                                     <div class='grid'>
                                         <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
-                                            <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                                            <img class='w-32' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
                                             <p class="text-sm mt-5"><?= $row['ProductCategoryName']; ?></p>
                                         </a>
                                     </div>

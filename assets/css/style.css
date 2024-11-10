@@ -1,27 +1,25 @@
+* {
+  box-sizing: border-box;
+  /* Pastikan padding dihitung di dalam lebar elemen */
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: black;
   left: 0;
-  min-width: 100vw;
+  width: 100%;
+  min-height: max-content;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  margin-bottom: 16px;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-}
-
-.dropdown-content-div {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  margin: 10px;
-}
-
-.dropdown-content a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
 }

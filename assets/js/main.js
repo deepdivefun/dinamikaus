@@ -1,22 +1,14 @@
 function mouseOver() {
   document.getElementById("dropdown-content").style.display = "block";
+  document.getElementById("dropdown-content").style.width = "100vw - 10px";
 }
 
 function mouseOut() {
   document.getElementById("dropdown-content").style.display = "none";
 }
 
-// Slider
-document.addEventListener("DOMContentLoaded", function () {
-  const slider = document.getElementById("slider");
-  const next = document.getElementById("next");
-  const prev = document.getElementById("prev");
-
-  next.addEventListener("click", () => {
-    slider.scrollBy({ left: 100, behavior: "smooth" });
-  });
-
-  prev.addEventListener("click", () => {
-    slider.scrollBy({ left: -100, behavior: "smooth" });
-  });
+// Initialize AOS
+AOS.init({
+  duration: 1000, // Duration of the animation (in ms)
+  // once: true, // Trigger animation only once
 });

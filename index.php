@@ -9,50 +9,72 @@ $Product        = new Product();
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
-require_once('includes/component/Hero.php');
+// require_once('includes/component/Hero.php');
 require_once('includes/class/OurClientClass.php');
 $OurClient      = new OurClient();
 require_once('includes/class/TestimonialClass.php');
 $Testimonial    = new Testimonial();
 require_once('includes/component/SidebarMenu.php');
 ?>
-
+<!-- Hero -->
 <section>
-    <div class='mt-8 mx-6'>
-        <h2 class='font-semibold text-2xl text-center'>Explore Popular Categories</h2>
-        <div class='mt-6 relative'>
-            <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 text-black p-2">
-                &#10094;
-            </button>
-            <div class="overflow-hidden">
-                <div id="slider" style="overflow:hidden;" class='slider slider-custom flex space-x-4 overflow-x-auto scroll-smooth'>
-                    <?php foreach ($Product->fetchProductCategory() as $row) : ?>
-                        <div class='w-32 h-32 flex-shrink-0'>
-                            <img class='w-full h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+    <div class='min-h-[406px] mx-6'>
+        <div class='grid bg-gray-200 pb-3 place-items-center min-h-[406px] '>
+            <h1 class='text-3xl font-semibold'>Your Premium Store</h1>
+            <h2 class='text-xl'>Coming Soon</h2>
+            <?php foreach ($SettingsLogo->fetchCarouselPhoto() as $row) : ?>
+                <img class='lg:w-1/4 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" alt="<?= $row['SettingsLogoValue']; ?>">
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<div class="swiper swipper2 mx-6">
+    <div class="swiper-wrapper">
+        <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
+            <div class="swiper-slide">
+                <div class='lg:columns-2 gap-3 mt-6 bg-gray-100'>
+                    <div class='grid justify-items-center p-3 rounded-md gap-3'>
+                        <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                        <div class="grid justify-self-center">
+                            <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
+                            <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
-                <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 text-black p-2">
-                    &#10095;
-                </button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<section data-aos="fade-up">
+    <div class='mt-6 mx-6'>
+        <h2 class='font-semibold text-2xl text-center'>Explore Popular Categories</h2>
+        <div class='mt-3'>
+            <div class='flex gap-3 justify-center'>
+                <?php foreach ($Product->fetchProductCategory() as $row) : ?>
+                    <div class='border'>
+                        <img class='w-1/2 h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 </section>
 
 <section class='mt-6'>
-    <div class='min-h-[300px] bg-slate-100 grid place-items-center'>
+    <div class='min-h-[300px] bg-gray-100 grid place-items-center'>
         <h1 class='text-xl lg:text-3xl'>Are You Looking For Professional Advice</h1>
         <a class='button bg-white p-3 rounded-md' href="<?= WebRootPath(); ?>contact.php">Contact Us</a>
     </div>
 </section>
 
-<section class='our client mt-6'>
+<section class='our client mt-6' data-aos="fade-up">
     <div class='mt-8 mx-6'>
-        <h2 class='font-semibold text-2xl text-center'>Our Client</h2>
-        <div class='grid grid-cols-2 lg:flex mt-6 gap-3'>
+        <h2 class='font-semibold text-2xl text-center mb-3'>Our Client</h2>
+        <div class='lg:columns-8 columns-4 gap-3 justify-center'>
             <?php foreach ($OurClient->fetchOurClient() as $row) : ?>
-                <div>
+                <div class="border mb-3">
                     <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" alt="<?= $row['OurClientPhoto']; ?>">
                 </div>
             <?php endforeach; ?>
@@ -60,13 +82,13 @@ require_once('includes/component/SidebarMenu.php');
     </div>
 </section>
 
-<section class='mt-6 mx-3 lg:mx-6'>
+<section class='swiper swipper2 mt-6 mx-3 lg:mx-6' data-aos="fade-up">
     <div class='min-h-[300px]'>
         <h2 class='font-semibold text-2xl text-center'>Testimonial</h2>
         <div class='grid grid-cols-2 gap-1 lg:gap-6 mt-3'>
             <?php foreach ($Testimonial->fetchTestimonial() as $row) : ?>
                 <div class='rounded-md grid gap-3 p-3'>
-                    <div class='flex'>
+                    <div class='lg:flex'>
                         <img class='w-16 h-16 rounded-full' src="https://eu.ui-avatars.com/api/?name=<?= $row['FullName'] ?>">
                         <!-- <img class='w-16 h-16 rounded-full' src="<?= WebRootPath(); ?>assets/img/sundar_pichay.jpg" alt=""> -->
                         <h3 class='m-3'><?= $row['FullName']; ?></h3>
