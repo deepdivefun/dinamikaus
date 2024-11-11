@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2024 at 08:44 AM
+-- Generation Time: Nov 11, 2024 at 11:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -82,7 +82,13 @@ INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `
 (9, '2024-11-11 07:12:37', 'kevinarlo', 'Create Our Client Our Client'),
 (10, '2024-11-11 07:12:46', 'kevinarlo', 'Create Our Client Our Client'),
 (11, '2024-11-11 07:14:08', 'kevinarlo', 'Create Testimonial from Billy Romero'),
-(12, '2024-11-11 07:14:23', 'kevinarlo', 'Create Testimonial from Faisal');
+(12, '2024-11-11 07:14:23', 'kevinarlo', 'Create Testimonial from Faisal'),
+(13, '2024-11-11 08:08:46', 'kevinarlo', 'kevinarlo is logged in'),
+(14, '2024-11-11 08:09:09', 'kevinarlo', 'Update Shipping Logo Grab'),
+(15, '2024-11-11 09:38:51', 'kevinarlo', 'kevinarlo is logged in'),
+(16, '2024-11-11 10:06:57', 'kevinarlo', 'Update Settings About Us'),
+(17, '2024-11-11 10:07:16', 'kevinarlo', 'Update Settings Address'),
+(18, '2024-11-11 10:21:20', 'kevinarlo', 'Create Settings Email 2');
 
 -- --------------------------------------------------------
 
@@ -284,11 +290,12 @@ CREATE TABLE `tbl_settings` (
 --
 
 INSERT INTO `tbl_settings` (`SettingsID`, `StatusID`, `SettingsName`, `SettingsValue`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'About Us', 'Test', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-10-29 08:18:14'),
+(1, 1, 'About Us', 'PT Dinamika Utama Saka dikenal sebagai perusahaan yang menjunjung tinggi kepuasan pelanggan, kualitas produk, dengan harga terbaik. Konsultasikan kebutuhan anda langsung dengan tim product specialist kami', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-11-11 10:06:59'),
 (2, 1, 'Phone Number', '0213160118', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-10-09 09:35:57'),
 (3, 1, 'Whatsapp Number', '6281389055595', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-10-09 09:38:25'),
-(4, 1, 'Address', 'Jl. Dr. Kusuma Atmaja, S.H No.83 Menteng. Jakarta Pusat', 'kevinarlo', '2024-10-29 08:32:44', NULL, NULL),
-(5, 1, 'Email', 'sales@dinamikaus.com', 'kevinarlo', '2024-10-29 08:33:44', NULL, NULL);
+(4, 1, 'Address', 'Jl. DR. Kusuma Atmaja, S.H. No. 83. Menteng. Jakarta Pusat', 'kevinarlo', '2024-10-29 08:32:44', 'kevinarlo', '2024-11-11 10:07:16'),
+(5, 1, 'Email 1', 'sales@dinamikaus.com', 'kevinarlo', '2024-10-29 08:33:44', NULL, NULL),
+(6, 1, 'Email 2', 'jakarta@dinamikaus.com ', 'kevinarlo', '2024-11-11 10:21:20', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -341,7 +348,7 @@ CREATE TABLE `tbl_shipping` (
 INSERT INTO `tbl_shipping` (`ShippingID`, `StatusID`, `ShippingName`, `ShippingPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 1, 'JNE Express', '672238b94bc11-2024-10-30-logo-jne-express.png', 'kevinarlo', '2024-10-30 13:46:33', NULL, NULL),
 (2, 1, 'Gosend', '672239087fa0c-2024-10-30-logo-gosend.png', 'kevinarlo', '2024-10-30 13:47:54', NULL, NULL),
-(3, 1, 'Grab Express', '6722396402663-2024-10-30-logo-grab-express.png', 'kevinarlo', '2024-10-30 13:48:10', 'kevinarlo', '2024-10-30 13:49:24'),
+(3, 1, 'Grab Express', '6722396402663-2024-10-30-logo-grab-express.png', 'kevinarlo', '2024-10-30 13:48:10', 'kevinarlo', '2024-11-11 08:09:09'),
 (4, 1, 'J&T Express', '672239261de0f-2024-10-30-logo-jnt-express.png', 'kevinarlo', '2024-10-30 13:48:22', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -603,7 +610,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -645,7 +652,7 @@ ALTER TABLE `tbl_role`
 -- AUTO_INCREMENT for table `tbl_settings`
 --
 ALTER TABLE `tbl_settings`
-  MODIFY `SettingsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `SettingsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_settings_logo`
