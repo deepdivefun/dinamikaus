@@ -9,6 +9,10 @@ $Product        = new Product();
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
+require_once('includes/class/PaymentLogoClass.php');
+$PaymentLogo    = new PaymentLogo();
+require_once('includes/class/ShippingLogoClass.php');
+$ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 ?>
 

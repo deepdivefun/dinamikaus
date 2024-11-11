@@ -80,30 +80,18 @@
             <div class='grid'>
                 <!-- <span>Icon</span> -->
                 <div class=''>
-                    <p class='font-semibold'>Parthership</p>
+                    <p class='font-semibold'>Payment Method</p>
                     <div class="columns-3">
-                        <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
-                        <?php endforeach; ?>
-                        <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
-                        <?php endforeach; ?>
-                        <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
+                        <?php foreach ($PaymentLogo->fetchPaymentLogo() as $row) : ?>
+                            <img src="<?= WebRootPath(); ?>admin/assets/img/paymentlogo/<?= $row['PaymentPhoto']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['PaymentPhoto']; ?>">
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class=''>
-                    <p class='font-semibold'>Jasa Pengiriman</p>
+                    <p class='font-semibold'>Shipping</p>
                     <div class="columns-3">
-                        <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
-                        <?php endforeach; ?>
-                        <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
-                        <?php endforeach; ?>
-                        <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
+                        <?php foreach ($ShippingLogo->fetchShippingLogo() as $row) : ?>
+                            <img src="<?= WebRootPath(); ?>admin/assets/img/shippinglogo/<?= $row['ShippingPhoto']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['ShippingPhoto']; ?>">
                         <?php endforeach; ?>
                     </div>
                 </div>

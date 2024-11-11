@@ -11,6 +11,10 @@ $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
 require_once('includes/class/TeamClass.php');
 $Team           = new Team();
+require_once('includes/class/PaymentLogoClass.php');
+$PaymentLogo    = new PaymentLogo();
+require_once('includes/class/ShippingLogoClass.php');
+$ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 ?>
 <div class='lg:mx-8 mx-6 mt-6'>

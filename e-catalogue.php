@@ -1,5 +1,5 @@
 <?php
-$Title          = "Product View";
+$Title          = "E-Catalogue";
 require_once('includes/helpers/WebRootPath.php');
 require_once('includes/class/MetaClass.php');
 $Meta           = new Meta();

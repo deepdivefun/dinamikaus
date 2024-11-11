@@ -14,6 +14,10 @@ require_once('includes/class/OurClientClass.php');
 $OurClient      = new OurClient();
 require_once('includes/class/TestimonialClass.php');
 $Testimonial    = new Testimonial();
+require_once('includes/class/PaymentLogoClass.php');
+$PaymentLogo    = new PaymentLogo();
+require_once('includes/class/ShippingLogoClass.php');
+$ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 ?>
 <!-- Hero -->
@@ -35,11 +39,13 @@ require_once('includes/component/SidebarMenu.php');
             <div class="swiper-slide">
                 <div class='lg:columns-2 gap-3 mt-6 bg-gray-100'>
                     <div class='grid justify-items-center p-3 rounded-md gap-3'>
-                        <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
-                        <div class="grid justify-self-center">
-                            <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
-                            <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
-                        </div>
+                        <a href="<?= WebRootPath(); ?>e-catalogue.php?page=<?= $row['ProductCategoryID']; ?>">
+                            <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                            <div class="grid justify-self-center">
+                                <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
+                                <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -54,7 +60,9 @@ require_once('includes/component/SidebarMenu.php');
             <div class='flex gap-3 justify-center'>
                 <?php foreach ($Product->fetchProductCategory() as $row) : ?>
                     <div class='border'>
-                        <img class='w-1/2 h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                        <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
+                            <img class='w-1/2 h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                        </a>
                     </div>
                 <?php endforeach; ?>
             </div>
