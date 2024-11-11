@@ -20,7 +20,7 @@ class ShippingLogo
         global $conn;
 
         try {
-            if ($StatusName) {
+            if (empty($StatusName)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
