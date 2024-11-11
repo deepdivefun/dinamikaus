@@ -46,8 +46,10 @@
             <div class='grid justify-items-center'>
                 <!-- <span>Dinamika</span> -->
                 <div class='grid lg:gap-3'>
-                    <p class='font-semibold text-4xl'>Dinamika US</p>
-                    <p class='text-xs mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsam vero obcaecati. Sit, harum.</p>
+                    <p class='font-semibold text-4xl'>LOGO</p>
+                    <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
+                        <p class='text-xs mt-3'><?= $row['SettingsValue']; ?></p>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

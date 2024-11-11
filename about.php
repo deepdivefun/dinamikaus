@@ -23,18 +23,29 @@ require_once('includes/component/SidebarMenu.php');
         <li>About</li>
     </ul>
     <div class='mt-6 mb-12 text-justify'>
-        <h2 class='font-bold'>Tentang Dinamika US</h2>
+        <h2 class='font-bold'>About Dinamika Utama Saka</h2>
         <div class='w-12/12 mx-6 mt-6'>
-            <p class='mt-3'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quo ratione repellendus asperiores, hic tenetur cumque vero blanditiis maiores accusantium labore sequi, unde sapiente velit possimus delectus, sunt inventore a?</p>
-            <p class='mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur delectus quibusdam et ut nobis consectetur quas, quasi provident! Ad explicabo ipsum eius veritatis fuga ducimus iste dolorum possimus mollitia.</p>
-
+            <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
+                <p class='mt-3'><?= $row['SettingsValue']; ?></p>
+            <?php endforeach; ?>
             <div class='mt-3'>
-                <span>PT Dinamika US</span>
+                <!-- <span>PT Dinamika US</span> -->
                 <ul>
-                    <li>Bekasi</li>
-                    <li>Jl Raya Galaxy</li>
-                    <li>Tlp 0812</li>
-                    <li>Email : dinamika@gmail.com</li>
+                    <?php foreach ($SettingsLogo->fetchAddress() as $row) : ?>
+                        <li><?= $row['SettingsValue']; ?></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchHuntingNumber() as $row) : ?>
+                        <li><a href="tel:<?= $row['SettingsValue']; ?>"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
+                    <!-- <?php foreach ($SettingsLogo->fetchWhatsappNumber() as $row) : ?>
+                        <li><a href="tel:<?= $row['SettingsValue']; ?>"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?> -->
+                    <?php foreach ($SettingsLogo->fetchEmailSales() as $row) : ?>
+                        <li><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchEmailJakarta() as $row) : ?>
+                        <li><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
 
