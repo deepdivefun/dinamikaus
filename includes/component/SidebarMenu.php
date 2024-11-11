@@ -13,7 +13,7 @@
                       <div class="">
                           <?php foreach ($Product->fetchProductNavbar() as $row) : ?>
                               <div class='grid'>
-                                  <a href="<?= WebRootPath(); ?>products.php?id=<?= $row['ProductCategoryID']; ?>">
+                                  <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
                                       <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
                                       <p class="text-sm mt-5"><?= $row['ProductCategoryName']; ?></p>
                                   </a>
