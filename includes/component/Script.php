@@ -21,11 +21,49 @@
             })
         });
 
-        var swiper = new Swiper(".swipper2", {
+        var swiper = new Swiper(".swipper", {
             loop: true,
             autoplay: {
-                delay: 4000, // delay antara setiap slide (dalam milidetik)
-                disableOnInteraction: false, // supaya autoplay tetap berjalan saat interaksi
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 2,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+        var swiper2 = new Swiper(".swipper2", {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 8,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                // Pengaturan untuk layar di bawah 430px
+                0: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 8,
+                },
+            },
+        });
+
+        var swiper3 = new Swiper(".swipper3", {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
             },
             slidesPerView: 2,
             spaceBetween: 30,

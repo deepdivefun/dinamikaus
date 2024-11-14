@@ -16,9 +16,32 @@ $ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 ?>
 
-<?php
-require_once('includes/component/Footer.php');
-require_once('includes/component/GRecaptcha.php');
-require_once('includes/component/Script.php');
-require_once('includes/component/EndFooter.php');
-?>
+<section>
+    <div class='lg:mx-8 mx-6 mt-6 mb-12'>
+        <ul class='flex gap-3'>
+            <li>Home /</li>
+            <li>Product /</li>
+            <li>Product View</li>
+        </ul>
+        <div class="lg:grid grid-cols-12">
+            <div class="col-span-8 justify-items-center">
+                <img class="w-96 h-96" src="./assets/img/image1.jpg" alt="">
+            </div>
+            <div class="col-span-4 items-center">
+                <div class="grid gap-3">
+                    <h2 class="text-2xl font-semibold">Apple Watch SE with Sport Band</h2>
+                    <h3 class="font-thin">Rp 3.599.000
+                        [20%]</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores soluta corporis ab dolor, in quo voluptatibus culpa odio id voluptates eaque laboriosam delectus tempore illum commodi cupiditate numquam, consectetur voluptatum?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <?php
+    require_once('includes/component/Footer.php');
+    require_once('includes/component/GRecaptcha.php');
+    require_once('includes/component/Script.php');
+    require_once('includes/component/EndFooter.php');
+    ?>

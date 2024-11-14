@@ -83,17 +83,17 @@
                 <!-- <span>Icon</span> -->
                 <div class=''>
                     <p class='font-semibold'>Payment Method</p>
-                    <div class="columns-3">
+                    <div class="grid grid-cols-3">
                         <?php foreach ($PaymentLogo->fetchPaymentLogo() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/paymentlogo/<?= $row['PaymentPhoto']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['PaymentPhoto']; ?>">
+                            <img class="w-12 h-12" src="<?= WebRootPath(); ?>admin/assets/img/paymentlogo/<?= $row['PaymentPhoto']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['PaymentPhoto']; ?>">
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class=''>
                     <p class='font-semibold'>Shipping</p>
-                    <div class="columns-3">
+                    <div class="grid grid-cols-3">
                         <?php foreach ($ShippingLogo->fetchShippingLogo() as $row) : ?>
-                            <img src="<?= WebRootPath(); ?>admin/assets/img/shippinglogo/<?= $row['ShippingPhoto']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['ShippingPhoto']; ?>">
+                            <img class="w-12 h-12" src="<?= WebRootPath(); ?>admin/assets/img/shippinglogo/<?= $row['ShippingPhoto']; ?>" class='w-20 h-20 mr-3' alt="<?= $row['ShippingPhoto']; ?>">
                         <?php endforeach; ?>
                     </div>
                 </div>

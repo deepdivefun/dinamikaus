@@ -33,7 +33,7 @@ require_once('includes/component/SidebarMenu.php');
     </div>
 </section>
 
-<div class="swiper swipper2 mx-6">
+<div class="swiper swipper mx-6">
     <div class="swiper-wrapper">
         <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
             <div class="swiper-slide">
@@ -41,7 +41,7 @@ require_once('includes/component/SidebarMenu.php');
                     <div class='grid justify-items-center p-3 rounded-md gap-3'>
                         <a href="<?= WebRootPath(); ?>e-catalogue.php?page=<?= $row['ProductCategoryID']; ?>">
                             <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
-                            <div class="grid justify-self-center">
+                            <div class="grid pt-6">
                                 <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
                                 <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
                             </div>
@@ -80,46 +80,57 @@ require_once('includes/component/SidebarMenu.php');
 <section class='our client mt-6' data-aos="fade-up">
     <div class='mt-8 mx-6'>
         <h2 class='font-semibold text-2xl text-center mb-3'>Our Client</h2>
-        <div class='lg:columns-8 columns-4 gap-3 justify-center'>
-            <?php foreach ($OurClient->fetchOurClient() as $row) : ?>
-                <div class="border mb-3">
-                    <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" alt="<?= $row['OurClientPhoto']; ?>">
-                </div>
-            <?php endforeach; ?>
+        <div class="swiper swipper2 mx-6">
+            <div class="swiper-wrapper">
+                <?php foreach ($OurClient->fetchOurClient() as $row) : ?>
+                    <div class="swiper-slide">
+                        <div class="border mb-3">
+                            <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" alt="<?= $row['OurClientPhoto']; ?>">
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </section>
 
-<section class='swiper swipper2 mt-6 mx-3 lg:mx-6' data-aos="fade-up">
-    <div class='min-h-[300px]'>
+<section class='mt-6 mx-3 lg:mx-6' data-aos="fade-up">
+    <div class=''>
         <h2 class='font-semibold text-2xl text-center'>Testimonial</h2>
-        <div class='grid grid-cols-2 gap-1 lg:gap-6 mt-3'>
-            <?php foreach ($Testimonial->fetchTestimonial() as $row) : ?>
-                <div class='rounded-md grid gap-3 p-3'>
-                    <div class='lg:flex'>
-                        <img class='w-16 h-16 rounded-full' src="https://eu.ui-avatars.com/api/?name=<?= $row['FullName'] ?>">
-                        <!-- <img class='w-16 h-16 rounded-full' src="<?= WebRootPath(); ?>assets/img/sundar_pichay.jpg" alt=""> -->
-                        <h3 class='m-3'><?= $row['FullName']; ?></h3>
-                        <h3 class='m-3'><?= $row['Company']; ?></h3>
-                    </div>
-                    <span>
-                        <?php
-                        if ($row['TestimonialRating'] == 5) {
-                            echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
-                        } elseif ($row['TestimonialRating'] == 4) {
-                            echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
-                        } elseif ($row['TestimonialRating'] == 3) {
-                            echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
-                        } elseif ($row['TestimonialRating'] == 2) {
-                            echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
-                        } else {
-                            echo    '<i class="fa-solid fa-star"></i>';
-                        }
-                        ?>
-                    </span>
-                    <span class=''>"<?= $row['TestimonialDescription']; ?>"</span>
+        <div class='mt-3'>
+            <div class="swiper swipper3">
+                <div class="swiper-wrapper">
+                    <?php foreach ($Testimonial->fetchTestimonial() as $row) : ?>
+                        <div class="swiper-slide">
+                            <div class='rounded-md grid gap-3 p-3'>
+                                <div class='lg:flex'>
+                                    <img class='w-16 h-16 rounded-full' src=" https://eu.ui-avatars.com/api/?name=<?= $row['FullName'] ?>">
+                                    <!-- <img class='w-16 h-16 rounded-full' src="<?= WebRootPath(); ?>assets/img/sundar_pichay.jpg" alt=""> -->
+                                    <h3 class='m-3'><?= $row['FullName']; ?></h3>
+                                    <h3 class='m-3'><?= $row['Company']; ?></h3>
+                                </div>
+                                <span>
+                                    <?php
+                                    if ($row['TestimonialRating'] == 5) {
+                                        echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
+                                    } elseif ($row['TestimonialRating'] == 4) {
+                                        echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
+                                    } elseif ($row['TestimonialRating'] == 3) {
+                                        echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
+                                    } elseif ($row['TestimonialRating'] == 2) {
+                                        echo    '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
+                                    } else {
+                                        echo    '<i class="fa-solid fa-star"></i>';
+                                    }
+                                    ?>
+                                </span>
+                                <span class=''>"<?= $row['TestimonialDescription']; ?>"</span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </section>
