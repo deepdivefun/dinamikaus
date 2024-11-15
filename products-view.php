@@ -24,17 +24,18 @@ require_once('includes/component/SidebarMenu.php');
             <li>Product View</li>
         </ul>
         <div class="lg:grid grid-cols-12">
-            <div class="col-span-8 justify-items-center">
-                <img class="w-96 h-96" src="./assets/img/image1.jpg" alt="">
-            </div>
-            <div class="col-span-4 items-center">
-                <div class="grid gap-3">
-                    <h2 class="text-2xl font-semibold">Apple Watch SE with Sport Band</h2>
-                    <h3 class="font-thin">Rp 3.599.000
-                        [20%]</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores soluta corporis ab dolor, in quo voluptatibus culpa odio id voluptates eaque laboriosam delectus tempore illum commodi cupiditate numquam, consectetur voluptatum?</p>
+            <?php foreach ($Product->fetchProductByID($_GET['page']) as $row) : ?>
+                <div class="col-span-8 justify-items-center">
+                    <img class="w-96 h-96" src="<?= WebRootPath() ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>" alt="<?= $row['ProductName']; ?>">
                 </div>
-            </div>
+                <div class="col-span-4 items-center">
+                    <div class="grid gap-3">
+                        <h2 class="text-2xl font-semibold"><?= $row['ProductName']; ?></h2>
+                        <h3 class="font-thin">Rp 3.599.000 [20%]</h3>
+                        <p style="text-align: justify;"><?= $row['ProductDescription']; ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
     </div>
