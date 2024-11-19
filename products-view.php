@@ -31,7 +31,7 @@ require_once('includes/component/SidebarMenu.php');
                 <div class="col-span-4 items-center">
                     <div class="grid gap-3">
                         <h2 class="text-2xl font-semibold"><?= $row['ProductName']; ?></h2>
-                        <h3 class="font-thin">Rp 3.599.000 [20%]</h3>
+                        <h3 class="font-semibold">Rp <?= number_format($row['ProductPrice'], 0, ',', '.'); ?></h3>
                         <p style="text-align: justify;"><?= $row['ProductDescription']; ?></p>
                     </div>
                 </div>

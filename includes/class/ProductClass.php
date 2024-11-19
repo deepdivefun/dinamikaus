@@ -229,8 +229,8 @@ class Product
             } else {
                 $conn->begin_transaction();
 
-                $query  = "SELECT a.ProductID, b.StatusID, b.StatusName, a.ProductName, a.ProductDescription, 
-                            a.ProductPhoto FROM tbl_product a 
+                $query  = "SELECT a.ProductID, b.StatusID, b.StatusName, a.ProductName, a.ProductPrice, 
+                            a.ProductDescription, a.ProductPhoto FROM tbl_product a 
                             LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
                             WHERE a.ProductID = ? AND b.StatusName = ?";
                 $stmt   = $conn->prepare($query);
@@ -242,6 +242,7 @@ class Product
                     $StatusID,
                     $StatusName,
                     $ProductName,
+                    $ProductPrice,
                     $ProductDescription,
                     $ProductPhoto
                 );
@@ -255,6 +256,7 @@ class Product
                         'StatusID'              => $StatusID,
                         'StatusName'            => $StatusName,
                         'ProductName'           => $ProductName,
+                        'ProductPrice'          => $ProductPrice,
                         'ProductDescription'    => $ProductDescription,
                         'ProductPhoto'          => $ProductPhoto
                     ];
