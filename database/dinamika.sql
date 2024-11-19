@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2024 at 02:07 PM
+-- Generation Time: Nov 19, 2024 at 05:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,35 +65,6 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogUser` text NOT NULL,
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_eventlog`
---
-
-INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
-(1, '2024-11-11 07:09:59', 'kevinarlo', 'kevinarlo is logged in'),
-(2, '2024-11-11 07:10:34', 'kevinarlo', 'Create Our Client Our Client'),
-(3, '2024-11-11 07:11:01', 'kevinarlo', 'Create Our Client Our Client'),
-(4, '2024-11-11 07:11:12', 'kevinarlo', 'Create Our Client Our Client'),
-(5, '2024-11-11 07:11:39', 'kevinarlo', 'Create Our Client Our Client'),
-(6, '2024-11-11 07:11:51', 'kevinarlo', 'Create Our Client Our Client'),
-(7, '2024-11-11 07:12:07', 'kevinarlo', 'Create Our Client Our Client'),
-(8, '2024-11-11 07:12:24', 'kevinarlo', 'Create Our Client Our Client'),
-(9, '2024-11-11 07:12:37', 'kevinarlo', 'Create Our Client Our Client'),
-(10, '2024-11-11 07:12:46', 'kevinarlo', 'Create Our Client Our Client'),
-(11, '2024-11-11 07:14:08', 'kevinarlo', 'Create Testimonial from Billy Romero'),
-(12, '2024-11-11 07:14:23', 'kevinarlo', 'Create Testimonial from Faisal'),
-(13, '2024-11-11 08:08:46', 'kevinarlo', 'kevinarlo is logged in'),
-(14, '2024-11-11 08:09:09', 'kevinarlo', 'Update Shipping Logo Grab'),
-(15, '2024-11-11 09:38:51', 'kevinarlo', 'kevinarlo is logged in'),
-(16, '2024-11-11 10:06:57', 'kevinarlo', 'Update Settings About Us'),
-(17, '2024-11-11 10:07:16', 'kevinarlo', 'Update Settings Address'),
-(18, '2024-11-11 10:21:20', 'kevinarlo', 'Create Settings Email 2'),
-(19, '2024-11-19 10:58:57', 'kevinarlo', 'kevinarlo is logged in'),
-(20, '2024-11-19 10:59:13', 'kevinarlo', 'Update Settings About Us'),
-(21, '2024-11-19 10:59:20', 'kevinarlo', 'kevinarlo has logged out'),
-(22, '2024-11-19 11:41:28', 'kevinarlo', 'kevinarlo is logged in'),
-(23, '2024-11-19 11:42:02', 'kevinarlo', 'Update Settings Logo Logo Footer');
 
 -- --------------------------------------------------------
 
@@ -205,6 +176,7 @@ CREATE TABLE `tbl_product` (
   `ProductCategoryID` int(11) NOT NULL,
   `StatusID` int(11) NOT NULL,
   `ProductName` text NOT NULL,
+  `ProductPrice` decimal(15,2) DEFAULT NULL,
   `ProductDescription` text DEFAULT NULL,
   `ProductPhoto` varchar(255) DEFAULT NULL,
   `CreateBy` varchar(20) DEFAULT NULL,
@@ -217,10 +189,12 @@ CREATE TABLE `tbl_product` (
 -- Dumping data for table `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`ProductID`, `ProductCategoryID`, `StatusID`, `ProductName`, `ProductDescription`, `ProductPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 1, 'Laptop 1', 'Laptop 1', '6728bb76f151e-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:40:13', 'kevinarlo', '2024-11-04 12:17:59'),
-(2, 2, 1, 'Dekstop 1', 'Dekstop 1', '6728bb94290e3-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:41:57', 'kevinarlo', '2024-11-04 12:18:28'),
-(3, 1, 1, 'Laptop 2', 'Laptop 2', '6728bbaa91396-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 12:18:50', NULL, NULL);
+INSERT INTO `tbl_product` (`ProductID`, `ProductCategoryID`, `StatusID`, `ProductName`, `ProductPrice`, `ProductDescription`, `ProductPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
+(1, 1, 1, 'ROG Zephyrus G16', 42500000.00, 'AMD Ryzen™ AI 9 HX 370 Processor 2.0GHz\r\nNVIDIA® GeForce RTX™ 4060 Laptop GPU\r\n16GB*2 LPDDR5X on board\r\n1TB PCIe® 4.0 NVMe™ M.2 SSD\r\nNebula OLED-QHD240Hz\r\nWindows 11 Home', '673cb786c0aa0-2024-11-19-ROG Zephyrus G16 (PICT 1).png', 'kevinarlo', '2024-11-01 07:40:13', 'kevinarlo', '2024-11-19 16:31:44'),
+(2, 2, 1, 'Dekstop 1', NULL, 'Dekstop 1', '6728bb94290e3-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:41:57', 'kevinarlo', '2024-11-04 12:18:28'),
+(3, 1, 1, 'ROG FLOW X13', 36500000.00, 'AMD Ryzen™ 9 7940HS Mobile Processor\r\nNVIDIA® GeForce RTX™ 4050 Laptop GPU\r\n8GB*2 LPDDR5 on board\r\n1TB PCIe® 4.0 NVMe™ M.2 SSD\r\nWindows 11 Home', '673cbed0007fe-2024-11-19-ROG FLOW X13 (PICT 2).png', 'kevinarlo', '2024-11-04 12:18:50', 'kevinarlo', '2024-11-19 16:37:36'),
+(4, 1, 1, 'ROG STRIX SCAR 16', 68500000.00, '13th Gen Intel® Core™ i9-13980HX Processor\r\nNVIDIA® GeForce RTX™ 4080 Laptop GPU\r\n16GB DDR5-4800 SO-DIMM *2\r\n2TB PCIe® 4.0 NVMe™ M.2 Performance SSD\r\nNebHDR-MiniLED-QHD240Hz\r\nWindows 11 Home', '673cbf6e42aee-2024-11-19-ROG STRIX SCAR 16 (PICT 3).png', 'kevinarlo', '2024-11-19 16:40:16', NULL, NULL),
+(5, 1, 1, 'ROG STRIX SCAR 16', 73500000.00, '13th Gen Intel® Core™ i9-13980HX Processor\r\nNVIDIA® GeForce RTX™ 4090 Laptop GPU\r\n16GB DDR5-4800 SO-DIMM *2\r\n2TB PCIe® 4.0 NVMe™ M.2 Performance SSD\r\nNebHDR-MiniLED-QHD240Hz\r\nWindows 11 Home', '673cc01a0554a-2024-11-19-ROG STRIX SCAR 16 (PICT 3).png', 'kevinarlo', '2024-11-19 16:43:06', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -245,12 +219,12 @@ CREATE TABLE `tbl_product_category` (
 --
 
 INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `ProductCategoryCatalog`, `ProductCategoryPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Laptop / Notebook', '', '67286da5c6be5-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:39:49', 'kevinarlo', '2024-11-04 11:21:42'),
-(2, 1, 'Dekstop', '', '67286dae7ff98-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-01 07:41:42', 'kevinarlo', '2024-11-04 11:22:05'),
-(3, 1, 'Monitor', '', '6728a8fb9c879-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 10:59:07', 'kevinarlo', '2024-11-04 11:22:19'),
-(4, 1, 'Printer', NULL, '6728ae80ed43d-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 11:22:41', NULL, NULL),
-(5, 1, 'Proyektor', NULL, '6728ae99f0b31-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 11:23:07', NULL, NULL),
-(6, 1, 'Aksesoris', NULL, '6728aeaad5197-2024-11-04-Telusuri Kategori Produk 500x500.jpg', 'kevinarlo', '2024-11-04 11:23:23', NULL, NULL);
+(1, 1, 'Laptop / Notebook', '', '673caf6092052-2024-11-19-LAPTOP.png', 'kevinarlo', '2024-11-01 07:39:49', 'kevinarlo', '2024-11-19 15:31:45'),
+(2, 1, 'Dekstop', '', '673caf79a6ae6-2024-11-19-PC-DESKTOP.png', 'kevinarlo', '2024-11-01 07:41:42', 'kevinarlo', '2024-11-19 15:32:10'),
+(3, 1, 'Monitor', '', '673cafd635667-2024-11-19-MONITOR.png', 'kevinarlo', '2024-11-04 10:59:07', 'kevinarlo', '2024-11-19 15:33:42'),
+(4, 1, 'Printer', '', '673cb2a37c533-2024-11-19-PRINTER.png', 'kevinarlo', '2024-11-04 11:22:41', 'kevinarlo', '2024-11-19 15:45:39'),
+(5, 1, 'Proyektor', '', '673cb31404122-2024-11-19-PROYEKTOR.png', 'kevinarlo', '2024-11-04 11:23:07', 'kevinarlo', '2024-11-19 15:47:32'),
+(6, 1, 'Aksesoris', '', '673cb373e5453-2024-11-19-ACCESORIS.png', 'kevinarlo', '2024-11-04 11:23:23', 'kevinarlo', '2024-11-19 15:49:08');
 
 -- --------------------------------------------------------
 
@@ -615,7 +589,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -639,7 +613,7 @@ ALTER TABLE `tbl_payment`
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_category`
