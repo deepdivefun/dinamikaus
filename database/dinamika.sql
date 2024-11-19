@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2024 at 11:38 AM
+-- Generation Time: Nov 19, 2024 at 02:07 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -88,7 +88,12 @@ INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `
 (15, '2024-11-11 09:38:51', 'kevinarlo', 'kevinarlo is logged in'),
 (16, '2024-11-11 10:06:57', 'kevinarlo', 'Update Settings About Us'),
 (17, '2024-11-11 10:07:16', 'kevinarlo', 'Update Settings Address'),
-(18, '2024-11-11 10:21:20', 'kevinarlo', 'Create Settings Email 2');
+(18, '2024-11-11 10:21:20', 'kevinarlo', 'Create Settings Email 2'),
+(19, '2024-11-19 10:58:57', 'kevinarlo', 'kevinarlo is logged in'),
+(20, '2024-11-19 10:59:13', 'kevinarlo', 'Update Settings About Us'),
+(21, '2024-11-19 10:59:20', 'kevinarlo', 'kevinarlo has logged out'),
+(22, '2024-11-19 11:41:28', 'kevinarlo', 'kevinarlo is logged in'),
+(23, '2024-11-19 11:42:02', 'kevinarlo', 'Update Settings Logo Logo Footer');
 
 -- --------------------------------------------------------
 
@@ -290,7 +295,7 @@ CREATE TABLE `tbl_settings` (
 --
 
 INSERT INTO `tbl_settings` (`SettingsID`, `StatusID`, `SettingsName`, `SettingsValue`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'About Us', 'PT Dinamika Utama Saka dikenal sebagai perusahaan yang menjunjung tinggi kepuasan pelanggan, kualitas produk, dengan harga terbaik. Konsultasikan kebutuhan anda langsung dengan tim product specialist kami', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-11-11 10:06:59'),
+(1, 1, 'About Us', 'PT Dinamika Utama Saka telah lama dikenal sebagai perusahaan yang berkomitmen untuk selalu mengutamakan kepuasan pelanggan dengan menyediakan produk berkualitas tinggi, didukung oleh layanan profesional yang tidak hanya memahami, tetapi juga mampu menjawab setiap kebutuhan Anda dengan solusi yang tepat dan efisien. Kami menawarkan harga terbaik yang tetap terjaga, tanpa mengorbankan kualitas, karena kami percaya bahwa kepercayaan Anda adalah aset utama. Untuk konsultasi lebih lanjut mengenai produk dan layanan kami, jangan ragu untuk menghubungi langsung tim product specialist kami yang siap memberikan informasi serta solusi yang paling sesuai dengan kebutuhan Anda', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-11-19 10:59:13'),
 (2, 1, 'Phone Number', '0213160118', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-10-09 09:35:57'),
 (3, 1, 'Whatsapp Number', '6281389055595', 'kevinarlo', '2024-10-29 08:07:53', 'kevinarlo', '2024-10-09 09:38:25'),
 (4, 1, 'Address', 'Jl. DR. Kusuma Atmaja, S.H. No. 83. Menteng. Jakarta Pusat', 'kevinarlo', '2024-10-29 08:32:44', 'kevinarlo', '2024-11-11 10:07:16'),
@@ -320,7 +325,7 @@ CREATE TABLE `tbl_settings_logo` (
 
 INSERT INTO `tbl_settings_logo` (`SettingsLogoID`, `StatusID`, `SettingsLogoName`, `SettingsLogoValue`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 1, 'Logo Header or Navbar', '6720bb6b1c4d9-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 09:16:40', 'kevinarlo', '2024-10-29 10:39:40'),
-(2, 1, 'Logo Footer', '6720bb7930d63-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 10:20:19', 'kevinarlo', '2024-10-29 10:39:53'),
+(2, 1, 'Logo Footer', '673c798a3e475-2024-11-19-logo_1.png', 'kevinarlo', '2024-10-29 10:20:19', 'kevinarlo', '2024-11-19 11:42:02'),
 (3, 1, 'Logo Login Page', '67222c78b36f9-2024-10-30-logo.png', 'kevinarlo', '2024-10-30 12:54:17', NULL, NULL),
 (4, 1, 'Carousel Photo', '6728823d3917e-2024-11-04-Carousel Photo 600x800.jpg', 'kevinarlo', '2024-10-30 13:20:33', 'kevinarlo', '2024-11-04 08:13:50');
 
@@ -610,7 +615,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
