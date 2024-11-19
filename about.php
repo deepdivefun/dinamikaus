@@ -23,7 +23,7 @@ require_once('includes/component/SidebarMenu.php');
         <li>About</li>
     </ul>
     <div class='mt-6 mb-12 text-justify'>
-        <h2 class='font-bold'>About Dinamika Utama Saka</h2>
+        <h2 class='font-bold'>About PT. Dinamika Utama Saka</h2>
         <div class='w-12/12 mx-6 mt-6'>
             <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
                 <p class='mt-3'><?= $row['SettingsValue']; ?></p>
@@ -56,7 +56,8 @@ require_once('includes/component/SidebarMenu.php');
             <?php foreach ($Team->fetchTeam() as $row) : ?>
                 <div class='grid justify-center'>
                     <img class='w-36 h-36' src="<?= WebRootPath(); ?>admin/assets/img/teamphoto/<?= $row['TeamPhoto']; ?>" alt="<?= $row['TeamPhoto']; ?>">
-                    <h3 class='text-center'><?= $row['FullName']; ?></h3>
+                    <h3 class='text-center mb-1'><?= $row['FullName']; ?></h3>
+                    <h3 class='text-center'><?= $row['Position']; ?></h3>
                 </div>
             <?php endforeach; ?>
             <!-- <div class='grid'>
