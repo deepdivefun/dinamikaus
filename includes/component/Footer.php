@@ -46,7 +46,7 @@
             <div class='grid justify-items-center'>
                 <!-- <span>Dinamika</span> -->
                 <div class='grid lg:gap-3'>
-                    <p class='font-semibold text-4xl'>LOGO</p>
+                    <img src="./assets/img/logo/logo_1.png" alt="">
                     <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
                         <p class='text-xs mt-3'><?= $row['SettingsValue']; ?></p>
                     <?php endforeach; ?>

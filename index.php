@@ -95,7 +95,22 @@ require_once('includes/component/SidebarMenu.php');
     </div>
 </section>
 
+<div id="myModal" class="modal z-30">
+    <div class="modal-content">
+        <button id="closeModal" class="close-btn">&times;</button>
+        <h2>Testimonial</h2>
+        <form class="mt-3" id="descriptionForm">
+            <textarea id="descriptionInput" rows="4" cols="40" placeholder="..."></textarea>
+            <br />
+            <button class="border p-3" type="submit">Kirim</button>
+        </form>
+    </div>
+</div>
+
+
+
 <section class='mt-6 mx-3 lg:mx-6' data-aos="fade-up">
+    <button class="border lg:p-3 p-1 bg-orange-500 rounded-md text-white hover:bg-orange-700" id="openModal">Isi Testimoni</button>
     <div class=''>
         <h2 class='font-semibold text-2xl text-center'>Testimonial</h2>
         <div class='mt-3'>
@@ -107,8 +122,10 @@ require_once('includes/component/SidebarMenu.php');
                                 <div class='lg:flex'>
                                     <img class='w-16 h-16 rounded-full' src=" https://eu.ui-avatars.com/api/?name=<?= $row['FullName'] ?>">
                                     <!-- <img class='w-16 h-16 rounded-full' src="<?= WebRootPath(); ?>assets/img/sundar_pichay.jpg" alt=""> -->
-                                    <h3 class='m-3'><?= $row['FullName']; ?></h3>
-                                    <h3 class='m-3'><?= $row['Company']; ?></h3>
+                                    <div class="grid">
+                                        <h3 class='m-3'><?= $row['FullName']; ?></h3>
+                                        <h3 class='m-3'><?= $row['Company']; ?></h3>
+                                    </div>
                                 </div>
                                 <span>
                                     <?php
