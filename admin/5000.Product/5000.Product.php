@@ -70,9 +70,19 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 </select>
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="ProductName">Product Name</label>
-                                <input type="text" class="form-control" name="ProductName" id="ProductName" required>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="ProductName">Product Name</label>
+                                        <input type="text" class="form-control" name="ProductName" id="ProductName" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="ProductPrice">Product Price</label>
+                                        <input type="number" class="form-control" name="ProductPrice" id="ProductPrice">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group mb-3">
@@ -112,7 +122,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
         <!-- Edit Modal -->
         <div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title" id="staticBackdropLabel">Edit Product</h1>
@@ -139,9 +149,19 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 </select>
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="EditProductName">Product Name</label>
-                                <input type="text" class="form-control" name="EditProductName" id="EditProductName" required>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="EditProductName">Product Name</label>
+                                        <input type="text" class="form-control" name="EditProductName" id="EditProductName" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="EditProductPrice">Product Price</label>
+                                        <input type="number" class="form-control" name="EditProductPrice" id="EditProductPrice">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group mb-3">

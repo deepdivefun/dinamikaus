@@ -46,6 +46,7 @@ if (isset($_FILES['ProductPhoto']) != null) {
 $ProductCategoryID          = filter_input(INPUT_POST, 'ProductCategoryID');
 $StatusID                   = filter_input(INPUT_POST, 'StatusID');
 $ProductName                = filter_input(INPUT_POST, 'ProductName');
+$ProductPrice               = filter_input(INPUT_POST, 'ProductPrice');
 $ProductDescription         = filter_input(INPUT_POST, 'ProductDescription');
 $UpdateBy                   = filter_input(INPUT_POST, 'UpdateBy');
 $EventLogUser               = $UpdateBy;
@@ -72,6 +73,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ProductCategoryID,
                 $StatusID,
                 $ProductName,
+                $ProductPrice,
                 $ProductDescription,
                 $ProductPhotoConvert,
                 $UpdateBy
