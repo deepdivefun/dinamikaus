@@ -62,6 +62,7 @@ require_once('includes/component/SidebarMenu.php');
                     <div class='border'>
                         <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
                             <img class='w-1/2 h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                            <p class="text-center font-bold"><?= $row['ProductCategoryName']; ?></p>
                         </a>
                     </div>
                 <?php endforeach; ?>
