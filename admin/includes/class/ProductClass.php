@@ -16,7 +16,7 @@ class Product
         return $this->conn;
     }
 
-    public function createProduct($ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhotoConvert, $CreateBy)
+    public function createProduct($ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $CreateBy)
     {
         global $conn;
 
@@ -24,10 +24,10 @@ class Product
             if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($CreateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
-                $query  = "INSERT INTO tbl_product (ProductCategoryID, StatusID, ProductName, ProductDescription, ProductPhoto, CreateBy) 
-                            VALUES (?, ?, ?, ?, ?, ?)";
+                $query  = "INSERT INTO tbl_product (ProductCategoryID, StatusID, ProductName, ProductPrice, ProductDescription, ProductPhoto, CreateBy) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("iissss", $ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhotoConvert, $CreateBy);
+                $stmt->bind_param("iisssss", $ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
@@ -44,7 +44,7 @@ class Product
         }
     }
 
-    public function updateProduct($ProductID, $ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhotoConvert, $UpdateBy)
+    public function updateProduct($ProductID, $ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $UpdateBy)
     {
         global $conn;
 
@@ -58,13 +58,14 @@ class Product
                             ProductCategoryID = ?,
                             StatusID = ?,
                             ProductName = ?,
+                            ProductPrice = ?,
                             ProductDescription = ?,
                             ProductPhoto = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW() 
                             WHERE ProductID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("iissssi", $ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhotoConvert, $UpdateBy, $ProductID);
+                $stmt->bind_param("iisssssi", $ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $UpdateBy, $ProductID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {

@@ -65,6 +65,7 @@ async function createProduct() {
   var PRODUCTCATEGORYID = $("#ProductCategoryID").val();
   var STATUSID = $("#StatusID").val();
   var PRODUCTNAME = $("#ProductName").val();
+  var PRODUCTPRICE = $("#ProductPrice").val();
   var PRODUCTDESCRIPTION = $("#ProductDescription").val();
   var PRODUCTPHOTO = $("#ProductPhoto")[0].files[0];
   var CREATEBY = $("#CreateBy").val();
@@ -73,6 +74,7 @@ async function createProduct() {
   FD.append("ProductCategoryID", PRODUCTCATEGORYID);
   FD.append("StatusID", STATUSID);
   FD.append("ProductName", PRODUCTNAME);
+  FD.append("ProductPrice", PRODUCTPRICE);
   FD.append("ProductDescription", PRODUCTDESCRIPTION);
   FD.append("ProductPhoto", PRODUCTPHOTO);
   FD.append("CreateBy", CREATEBY);
@@ -123,6 +125,7 @@ $(document).on("click", ".editProduct", function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   var STATUSID = $(this).attr("StatusID");
   var PRODUCTNAME = $(this).attr("ProductName");
+  var PRODUCTPRICE = $(this).attr("ProductPrice");
   var PRODUCTDESCRIPTION = $(this).attr("ProductDescription");
   var PRODUCTPHOTO = $(this).attr("ProductPhoto");
 
@@ -130,6 +133,7 @@ $(document).on("click", ".editProduct", function () {
   $("#EditProductCategoryID").val(PRODUCTCATEGORYID);
   $("#EditStatusID").val(STATUSID);
   $("#EditProductName").val(PRODUCTNAME);
+  $("#EditProductPrice").val(PRODUCTPRICE);
   $("#EditProductDescription").val(PRODUCTDESCRIPTION);
   $("#EditProductPhotoBeforeConvert").val(PRODUCTPHOTO);
 
@@ -151,6 +155,7 @@ async function updateProduct() {
   var PRODUCTCATEGORYID = $("#EditProductCategoryID").val();
   var STATUSID = $("#EditStatusID").val();
   var PRODUCTNAME = $("#EditProductName").val();
+  var PRODUCTPRICE = $("#EditProductPrice").val();
   var PRODUCTDESCRIPTION = $("#EditProductDescription").val();
   var PRODUCTPHOTO = $("#EditProductPhoto")[0].files[0];
   var PRODUCTPHOTOBEFORECONVERT = $("#EditProductPhotoBeforeConvert").val();
@@ -161,6 +166,7 @@ async function updateProduct() {
   FD.append("ProductCategoryID", PRODUCTCATEGORYID);
   FD.append("StatusID", STATUSID);
   FD.append("ProductName", PRODUCTNAME);
+  FD.append("ProductPrice", PRODUCTPRICE);
   FD.append("ProductDescription", PRODUCTDESCRIPTION);
   FD.append("ProductPhoto", PRODUCTPHOTO);
   FD.append("ProductPhotoBeforeConvert", PRODUCTPHOTOBEFORECONVERT);
