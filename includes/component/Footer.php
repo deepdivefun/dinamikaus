@@ -46,7 +46,9 @@
             <div class='grid justify-items-center'>
                 <!-- <span>Dinamika</span> -->
                 <div class='grid lg:gap-3'>
-                    <img src="./assets/img/logo/logo_1.png" alt="">
+                    <?php foreach ($SettingsLogo->fetchLogoFooter() as $row) : ?>
+                        <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" alt="<?= $row['SettingsLogoValue']; ?>">
+                    <?php endforeach; ?>
                     <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
                         <p class='text-xs mt-3' style="text-align: justify;"><?= $row['SettingsValue']; ?></p>
                     <?php endforeach; ?>
