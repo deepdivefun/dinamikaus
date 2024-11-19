@@ -87,7 +87,6 @@ require_once('includes/component/SidebarMenu.php');
                         <div class="border mb-3">
                             <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" alt="<?= $row['OurClientPhoto']; ?>">
                         </div>
-
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -98,22 +97,43 @@ require_once('includes/component/SidebarMenu.php');
 <div id="myModal" class="modal z-30">
     <div class="modal-content">
         <button id="closeModal" class="close-btn">&times;</button>
-        <h2>Testimonial</h2>
-        <form class="mt-3" id="descriptionForm">
-            <textarea id="descriptionInput" rows="4" cols="40" placeholder="..."></textarea>
-            <br />
-            <button class="border p-3" type="submit">Kirim</button>
+        <h2 class="mb-3">Give Testimonial</h2>
+        <form method="POST" id="descriptionForm">
+            <div class="mb-3">
+                <label for="FullName">Full Name</label>
+                <input type="text" name="FullName" id="FullName" required>
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="Company">Company</label>
+                <input type="text" name="Company" id="Company">
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="TestimonialRating">Testimonial Rating</label>
+                <input type="number" name="TestimonialRating" id="TestimonialRating" min="1" max="5" maxlength="1" required>
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="TestimonialDescription">Testimonial Description</label>
+                <textarea name="TestimonialDescription" id="TestimonialDescription" rows="4" cols="40" required></textarea>
+            </div>
+            <br>
+            <div class="">
+                <input type="hidden" name="GToken" id="GToken" readonly required>
+            </div>
+            <div>
+                <button type="submit" class="border px-2">Send</button>
+            </div>
         </form>
     </div>
 </div>
 
-
-
 <section class='mt-6 mx-3 lg:mx-6' data-aos="fade-up">
-    <button class="border lg:p-3 p-1 bg-orange-500 rounded-md text-white hover:bg-orange-700" id="openModal">Isi Testimoni</button>
     <div class=''>
         <h2 class='font-semibold text-2xl text-center'>Testimonial</h2>
-        <div class='mt-3'>
+        <button class="border lg:px-3 p-1 bg-gray-200 rounded-md text-black hover:bg-gray-400" id="openModal">Isi Testimoni</button>
+        <div class='mt-5'>
             <div class="swiper swipper3">
                 <div class="swiper-wrapper">
                     <?php foreach ($Testimonial->fetchTestimonial() as $row) : ?>

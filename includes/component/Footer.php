@@ -48,7 +48,7 @@
                 <div class='grid lg:gap-3'>
                     <img src="./assets/img/logo/logo_1.png" alt="">
                     <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
-                        <p class='text-xs mt-3'><?= $row['SettingsValue']; ?></p>
+                        <p class='text-xs mt-3' style="text-align: justify;"><?= $row['SettingsValue']; ?></p>
                     <?php endforeach; ?>
                 </div>
             </div>
