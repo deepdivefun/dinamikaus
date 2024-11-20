@@ -25,9 +25,9 @@ require_once('includes/component/SidebarMenu.php');
     <div class='min-h-[406px] mx-6'>
         <div class='grid bg-gray-200 pb-3 place-items-center min-h-[406px] '>
             <h1 class='text-3xl font-semibold'>Your Premium Store</h1>
-            <h2 class='text-xl'>Coming Soon</h2>
+            <!-- <h2 class='text-xl'>Coming Soon</h2> -->
             <?php foreach ($SettingsLogo->fetchCarouselPhoto() as $row) : ?>
-                <img class='lg:w-1/4 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" alt="<?= $row['SettingsLogoValue']; ?>">
+                <img class='lg:w-1/2 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" alt="<?= $row['SettingsLogoValue']; ?>">
             <?php endforeach; ?>
         </div>
     </div>
@@ -74,7 +74,7 @@ require_once('includes/component/SidebarMenu.php');
 <section class='mt-6'>
     <div class='min-h-[300px] bg-gray-100 grid place-items-center'>
         <h1 class='text-xl lg:text-3xl'>Are You Looking For Professional Advice</h1>
-        <a class='button bg-white p-3 rounded-md' href="<?= WebRootPath(); ?>contact.php">Contact Us</a>
+        <a class='button border-2 px-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>contact.php">Contact Us</a>
     </div>
 </section>
 

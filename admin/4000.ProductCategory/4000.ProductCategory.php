@@ -200,9 +200,11 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                 <div class="card shadow-lg rounded-5">
                     <div class="card-body">
                         <p><b>Information&nbsp;:</b></p>
-                        <ul class="text-danger">
-                            <li><b>Photo canvas size must be 500 x 500 pixels</b></li>
-                        </ul>
+                        <small class="text-danger">
+                            <ul>
+                                <li><b>Photo canvas size must be 500 x 500 pixels</b></li>
+                            </ul>
+                        </small>
                         <hr>
                         <form method="POST">
                             <div class="row">

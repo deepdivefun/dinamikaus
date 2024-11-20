@@ -146,9 +146,14 @@ if (!SYSAdmin() and !AppAdmin()) {
                 <div class="card shadow-lg rounded-5">
                     <div class="card-body">
                         <p><b>Information&nbsp;:</b></p>
-                        <ul class="text-danger">
-                            <li><b>Carousel Photo canvas size must be 600 x 800 pixels</b></li>
-                        </ul>
+                        <small class="text-danger">
+                            <ul>
+                                <li><b>Carousel Photo canvas size must be 600 x 800 pixels</b></li>
+                                <li><b>Logo Header or Navbar canvas size must be 300 x 300 pixels</b></li>
+                                <li><b>Logo Footer canvas size must be 300 x 100 pixels</b></li>
+                                <li><b>Logo Login page canvas size must be 632 x 395 pixels</b></li>
+                            </ul>
+                        </small>
                         <hr>
                         <form method="POST" autocomplete="off">
                             <div class="row">

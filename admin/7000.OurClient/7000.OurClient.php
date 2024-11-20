@@ -68,12 +68,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 <input type="file" class="form-control" name="OurClientPhoto" id="OurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
-                            <small class="text-danger">
-                                <ul>
-                                    <li>Photo size must be 500 x 400 pixels</li>
-                                </ul>
-                            </small>
-
                             <div class="form-group mb-3">
                                 <img src="#" id="PreviewOurClientPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
@@ -95,7 +89,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
         <!-- Edit Modal -->
         <div class="modal fade" id="editOurClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title" id="staticBackdropLabel">Edit Our Client</h1>
@@ -123,12 +117,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 <input type="file" class="form-control" name="EditOurClientPhoto" id="EditOurClientPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                                 <input type="hidden" class="form-control" name="EditOurClientPhotoBeforeConvert" id="EditOurClientPhotoBeforeConvert" readonly>
                             </div>
-
-                            <small class="text-danger">
-                                <ul>
-                                    <li>Photo size must be 500 x 400 pixels</li>
-                                </ul>
-                            </small>
 
                             <div class="form-group mb-3">
                                 <img src="#" id="PreviewEditOurClientPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
@@ -158,6 +146,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
             <div class="col-12">
                 <div class="card shadow-lg rounded-5">
                     <div class="card-body">
+                        <p><b>Information&nbsp;:</b></p>
+                        <small class="text-danger">
+                            <ul>
+                                <li><b>Photo canvas size must be 200 x 200 pixels</b></li>
+                            </ul>
+                        </small>
+                        <hr>
                         <form method="POST">
                             <div class="row">
                                 <div class="col-6">

@@ -1,7 +1,7 @@
 <Footer class='bg-slate-100'>
     <div class='grid place-items-center pt-12'>
-        <h3>Tentang Kami</h3>
-        <a class='button border p-3 mt-3 rounded-md' href="<?= WebRootPath(); ?>about.php">Selengkapnya</a>
+        <h3>About Us</h3>
+        <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about.php">Read more</a>
     </div>
     <div class='grid lg:grid-cols-4 grid-cols-2 lg:gap-3 gap-1 bg-zinc-800 text-white mt-12 lg:px-6 px-3 py-8'>
         <div class=''>

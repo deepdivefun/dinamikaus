@@ -238,7 +238,7 @@ class Settings
         $conn->close();
     }
 
-    public function fetchAddress($StatusName = 'Active', $SettingsID = 4)
+    public function fetchAddressJakarta($StatusName = 'Active', $SettingsID = 4)
     {
         global $conn;
 
@@ -284,7 +284,7 @@ class Settings
         $conn->close();
     }
 
-    public function fetchEmailSales($StatusName = 'Active', $SettingsID = 5)
+    public function fetchEmailJakarta($StatusName = 'Active', $SettingsID = 5)
     {
         global $conn;
 
@@ -330,7 +330,7 @@ class Settings
         $conn->close();
     }
 
-    public function fetchEmailJakarta($StatusName = 'Active', $SettingsID = 6)
+    public function fetchEmailBekasi($StatusName = 'Active', $SettingsID = 6)
     {
         global $conn;
 
@@ -423,6 +423,144 @@ class Settings
     }
 
     public function fetchWhatsappNumber($StatusName = 'Active', $SettingsID = 3)
+    {
+        global $conn;
+
+        try {
+            if (empty($SettingsID) and empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.SettingsID, b.StatusID, b.StatusName, a.SettingsValue 
+                            FROM tbl_settings a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ? AND a.SettingsID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('si', $StatusName, $SettingsID);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $SettingsID,
+                    $StatusID,
+                    $StatusName,
+                    $SettingsValue
+                );
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'SettingsID'    => $SettingsID,
+                        'StatusID'      => $StatusID,
+                        'StatusName'    => $StatusName,
+                        'SettingsValue' => $SettingsValue
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
+    public function fetchHeaderJakarta($StatusName = 'Active', $SettingsID = 7)
+    {
+        global $conn;
+
+        try {
+            if (empty($SettingsID) and empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.SettingsID, b.StatusID, b.StatusName, a.SettingsValue 
+                            FROM tbl_settings a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ? AND a.SettingsID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('si', $StatusName, $SettingsID);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $SettingsID,
+                    $StatusID,
+                    $StatusName,
+                    $SettingsValue
+                );
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'SettingsID'    => $SettingsID,
+                        'StatusID'      => $StatusID,
+                        'StatusName'    => $StatusName,
+                        'SettingsValue' => $SettingsValue
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
+    public function fetchHeaderBekasi($StatusName = 'Active', $SettingsID = 8)
+    {
+        global $conn;
+
+        try {
+            if (empty($SettingsID) and empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.SettingsID, b.StatusID, b.StatusName, a.SettingsValue 
+                            FROM tbl_settings a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE b.StatusName = ? AND a.SettingsID = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('si', $StatusName, $SettingsID);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $SettingsID,
+                    $StatusID,
+                    $StatusName,
+                    $SettingsValue
+                );
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'SettingsID'    => $SettingsID,
+                        'StatusID'      => $StatusID,
+                        'StatusName'    => $StatusName,
+                        'SettingsValue' => $SettingsValue
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
+    public function fetchAddressBekasi($StatusName = 'Active', $SettingsID = 9)
     {
         global $conn;
 

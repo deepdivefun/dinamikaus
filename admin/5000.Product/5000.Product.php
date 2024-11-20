@@ -95,12 +95,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 <input type="file" class="form-control" name="ProductPhoto" id="ProductPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
-                            <small class="text-danger">
-                                <ul>
-                                    <li>Photo size must be 500 x 400 pixels</li>
-                                </ul>
-                            </small>
-
                             <div class="form-group mb-3">
                                 <img src="#" id="PreviewProductPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
@@ -130,7 +124,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                     </div>
                     <div class="modal-body">
                         <form method="POST" enctype="multipart/form-data">
-
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditProductCategoryID">Product Category</label>
                                 <select class="form-control form-select" name="EditProductCategoryID" id="EditProductCategoryID" required>
@@ -175,12 +168,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                 <input type="hidden" class="form-control" name="EditProductPhotoBeforeConvert" id="EditProductPhotoBeforeConvert" readonly>
                             </div>
 
-                            <small class="text-danger">
-                                <ul>
-                                    <li>Photo size must be 500 x 400 pixels</li>
-                                </ul>
-                            </small>
-
                             <div class="form-group mb-3">
                                 <img src="#" id="PreviewEditProductPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
@@ -209,6 +196,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
             <div class="col-12">
                 <div class="card shadow-lg rounded-5">
                     <div class="card-body">
+                        <p><b>Information&nbsp;:</b></p>
+                        <small class="text-danger">
+                            <ul>
+                                <li><b>Photo canvas size must be 500 x 500 pixels</b></li>
+                            </ul>
+                        </small>
+                        <hr>
                         <form method="POST">
                             <div class="row">
                                 <div class="col-6">

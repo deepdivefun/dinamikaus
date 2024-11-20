@@ -23,12 +23,11 @@ require_once('includes/component/SidebarMenu.php');
     </ul>
     <div class='grid lg:grid-cols-4 grid-cols-2 gap-6 my-6'>
         <?php foreach ($Product->fetchProductByCategoryID($_GET['page']) as $row) : ?>
-            <div class="flex flex-col gap-6 items-center justify-center text-center">
+            <div class="flex flex-col gap-6 justify-center items-center text-center">
                 <a href="<?= WebRootPath(); ?>products-view.php?page=<?= $row['ProductID']; ?>">
                     <img class="w-32 h-32" src="<?= WebRootPath(); ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>" alt="<?= $row['ProductPhoto']; ?>">
                     <h2><?= $row['ProductName']; ?></h2>
-                    <!-- <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</span> -->
-                    <a class='p-3 border-2 border-green-400' href="<?= WebRootPath(); ?>products-view.php?page=<?= $row['ProductID']; ?>">Read more</a>
+                    <a class='mt-3 px-3 rounded-lg border-2 border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>products-view.php?page=<?= $row['ProductID']; ?>">Read more</a>
                 </a>
             </div>
         <?php endforeach; ?>

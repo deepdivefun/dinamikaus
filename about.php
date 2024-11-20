@@ -28,58 +28,45 @@ require_once('includes/component/SidebarMenu.php');
             <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
                 <p class='mt-3'><?= $row['SettingsValue']; ?></p>
             <?php endforeach; ?>
-            <div class='mt-3'>
-                <!-- <span>PT Dinamika US</span> -->
+            <div class='mt-5'>
                 <ul>
-                    <?php foreach ($SettingsLogo->fetchAddress() as $row) : ?>
+                    <?php foreach ($SettingsLogo->fetchHeaderJakarta() as $row) : ?>
+                        <li class="font-semibold"><?= $row['SettingsValue']; ?></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchAddressJakarta() as $row) : ?>
                         <li><?= $row['SettingsValue']; ?></li>
                     <?php endforeach; ?>
-                    <?php foreach ($SettingsLogo->fetchHuntingNumber() as $row) : ?>
-                        <li><a href="tel:<?= $row['SettingsValue']; ?>"><?= $row['SettingsValue']; ?></a></li>
-                    <?php endforeach; ?>
-                    <!-- <?php foreach ($SettingsLogo->fetchWhatsappNumber() as $row) : ?>
-                        <li><a href="tel:<?= $row['SettingsValue']; ?>"><?= $row['SettingsValue']; ?></a></li>
-                    <?php endforeach; ?> -->
-                    <?php foreach ($SettingsLogo->fetchEmailSales() as $row) : ?>
-                        <li><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
-                    <?php endforeach; ?>
                     <?php foreach ($SettingsLogo->fetchEmailJakarta() as $row) : ?>
-                        <li><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                        <li class="font-medium"><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchHuntingNumber() as $row) : ?>
+                        <li class="font-medium"><a href="tel:<?= $row['SettingsValue']; ?>"><?= $row['SettingsValue']; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
-
+            <div class='mt-5'>
+                <ul>
+                    <?php foreach ($SettingsLogo->fetchHeaderBekasi() as $row) : ?>
+                        <li class="font-semibold"><?= $row['SettingsValue']; ?></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchAddressBekasi() as $row) : ?>
+                        <li><?= $row['SettingsValue']; ?></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchEmailBekasi() as $row) : ?>
+                        <li class="font-medium"><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         </div>
 
-
-        <div class='mt-6 grid lg:grid-cols-6 grid-cols-2 gap-3'>
+        <div class='mt-7 grid lg:grid-cols-6 grid-cols-2 gap-3'>
             <?php foreach ($Team->fetchTeam() as $row) : ?>
                 <div class='grid justify-center'>
                     <img class='w-36 h-36' src="<?= WebRootPath(); ?>admin/assets/img/teamphoto/<?= $row['TeamPhoto']; ?>" alt="<?= $row['TeamPhoto']; ?>">
-                    <h3 class='text-center mb-1'><?= $row['FullName']; ?></h3>
-                    <h3 class='text-center'><?= $row['Position']; ?></h3>
+                    <h3 class='text-center mt-2 font-semibold'><?= $row['FullName']; ?></h3>
+                    <h3 class='text-center mt-1 font-medium'><?= $row['Position']; ?></h3>
                 </div>
             <?php endforeach; ?>
-            <!-- <div class='grid'>
-                <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
-                <h3 class='text-center'>Keps</h3>
-            </div>
-            <div class='grid'>
-                <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
-                <h3 class='text-center'>Keps</h3>
-            </div>
-            <div class='grid'>
-                <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
-                <h3 class='text-center'>Keps</h3>
-            </div>
-            <div class='grid'>
-                <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
-                <h3 class='text-center'>Keps</h3>
-            </div>
-            <div class='grid'>
-                <img class='w-36 h-36' src="./assets/img/sundar_pichay.jpg" alt="">
-                <h3 class='text-center'>Keps</h3>
-            </div> -->
         </div>
     </div>
 </div>

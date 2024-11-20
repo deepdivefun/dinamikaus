@@ -68,12 +68,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                                 <input type="file" class="form-control" name="ShippingPhoto" id="ShippingPhoto" accept="image/png, image/jpeg, image/jpg, image/webp">
                             </div>
 
-                            <small class="text-danger">
-                                <ul>
-                                    <li>Photo size must be 150 x 150 pixels</li>
-                                </ul>
-                            </small>
-
                             <div class="form-group mb-3">
                                 <img src="#" id="PreviewShippingPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
@@ -123,12 +117,6 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                                 <input type="hidden" class="form-control" name="EditShippingPhotoBeforeConvert" id="EditShippingPhotoBeforeConvert" readonly>
                             </div>
 
-                            <small class="text-danger">
-                                <ul>
-                                    <li>Photo size must be 150 x 150 pixels</li>
-                                </ul>
-                            </small>
-
                             <div class="form-group mb-3">
                                 <img src="#" id="PreviewEditShippingPhoto" class="rounded mx-auto d-block w-50 h-50" alt="Preview Image">
                             </div>
@@ -157,6 +145,13 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
             <div class="col-12">
                 <div class="card shadow-lg rounded-5">
                     <div class="card-body">
+                        <p><b>Information&nbsp;:</b></p>
+                        <small class="text-danger">
+                            <ul>
+                                <li><b>Photo canvas size must be 150 x 150 pixels</b></li>
+                            </ul>
+                        </small>
+                        <hr>
                         <form method="POST">
                             <div class="row">
                                 <div class="col-6">
