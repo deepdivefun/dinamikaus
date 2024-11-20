@@ -54,15 +54,18 @@ require_once('includes/component/SidebarMenu.php');
 </div>
 
 <section data-aos="fade-up">
-    <div class='mt-6 mx-6'>
-        <h2 class='font-semibold text-2xl text-center'>Explore Popular Categories</h2>
-        <div class='mt-3'>
-            <div class='flex gap-3 justify-center'>
+    <div class="my-6 mx-6">
+        <h2 class="font-semibold text-2xl text-center">Explore Popular Categories</h2>
+        <div class="mt-6">
+            <div class="grid grid-cols-3 lg:grid-cols-6 gap-6 justify-items-center">
                 <?php foreach ($Product->fetchProductCategory() as $row) : ?>
-                    <div class='border'>
+                    <div class="border rounded-lg p-3 text-center shadow-md hover:shadow-lg transition">
                         <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
-                            <img class='w-1/2 h-full' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
-                            <p class="text-center font-bold"><?= $row['ProductCategoryName']; ?></p>
+                            <img
+                                class="w-1/2 h-ful mx-auto mb-3"
+                                src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>"
+                                alt="<?= $row['ProductCategoryPhoto']; ?>">
+                            <p class="text-center font-bold text-sm"><?= $row['ProductCategoryName']; ?></p>
                         </a>
                     </div>
                 <?php endforeach; ?>
@@ -71,7 +74,8 @@ require_once('includes/component/SidebarMenu.php');
     </div>
 </section>
 
-<section class='mt-6'>
+
+<section class='mt-12'>
     <div class='min-h-[300px] bg-gray-100 grid place-items-center'>
         <h1 class='text-xl lg:text-3xl'>Are You Looking For Professional Advice</h1>
         <a class='button border-2 px-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>contact.php">Contact Us</a>
@@ -96,37 +100,62 @@ require_once('includes/component/SidebarMenu.php');
 </section>
 
 <div id="myModal" class="modal z-30">
-    <div class="modal-content">
+    <div class="modal-content grid bg-gray-100">
         <button id="closeModal" class="close-btn">&times;</button>
         <h2 class="mb-3">Give Testimonial</h2>
-        <form method="POST" id="descriptionForm">
-            <div class="mb-3">
-                <label for="FullName">Full Name</label>
-                <input type="text" name="FullName" id="FullName" required>
+        <form method="POST" class="grid gap-1" id="descriptionForm">
+            <div class="mb-1">
+                <label for="FullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input
+                    type="text"
+                    name="FullName"
+                    id="FullName"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
-            <br>
-            <div class="mb-3">
-                <label for="Company">Company</label>
-                <input type="text" name="Company" id="Company">
+
+            <div class="mb-1">
+                <label for="Company" class="block text-sm font-medium text-gray-700">Company</label>
+                <input
+                    type="text"
+                    name="Company"
+                    id="Company"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-            <br>
-            <div class="mb-3">
-                <label for="TestimonialRating">Testimonial Rating</label>
-                <input type="number" name="TestimonialRating" id="TestimonialRating" min="1" max="5" maxlength="1" required>
+
+            <div class="mb-1">
+                <label for="TestimonialRating" class="block text-sm font-medium text-gray-700">Testimonial Rating</label>
+                <input
+                    type="number"
+                    name="TestimonialRating"
+                    id="TestimonialRating"
+                    min="1"
+                    max="5"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
-            <br>
-            <div class="mb-3">
-                <label for="TestimonialDescription">Testimonial Description</label>
-                <textarea name="TestimonialDescription" id="TestimonialDescription" rows="4" cols="40" required></textarea>
+
+            <div class="mb-1">
+                <label for="TestimonialDescription" class="block text-sm font-medium text-gray-700">Testimonial Description</label>
+                <textarea
+                    name="TestimonialDescription"
+                    id="TestimonialDescription"
+                    rows="4"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required></textarea>
             </div>
-            <br>
-            <div class="">
-                <input type="hidden" name="GToken" id="GToken" readonly required>
-            </div>
+
+            <input type="hidden" name="GToken" id="GToken" readonly required>
+
             <div>
-                <button type="submit" class="border px-2">Send</button>
+                <button
+                    type="submit"
+                    class="w-full inline-flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Send
+                </button>
             </div>
         </form>
+
     </div>
 </div>
 

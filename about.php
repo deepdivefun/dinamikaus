@@ -61,7 +61,7 @@ require_once('includes/component/SidebarMenu.php');
 
         <div class='mt-7 grid lg:grid-cols-6 grid-cols-2 gap-3'>
             <?php foreach ($Team->fetchTeam() as $row) : ?>
-                <div class='grid justify-center'>
+                <div data-aos="flip-right" class='grid justify-center'>
                     <img class='w-36 h-36' src="<?= WebRootPath(); ?>admin/assets/img/teamphoto/<?= $row['TeamPhoto']; ?>" alt="<?= $row['TeamPhoto']; ?>">
                     <h3 class='text-center mt-2 font-semibold'><?= $row['FullName']; ?></h3>
                     <h3 class='text-center mt-1 font-medium'><?= $row['Position']; ?></h3>

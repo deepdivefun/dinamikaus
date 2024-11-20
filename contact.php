@@ -29,7 +29,7 @@ require_once('includes/component/SidebarMenu.php');
     <div>
         <div class="grid lg:grid-cols-3 grid-cols-1 justify-items-start gap-4">
             <?php foreach ($Contact->fetchContact() as $row) : ?>
-                <div class='p-6'>
+                <div data-aos="fade-up" class='p-6'>
                     <h4 class='font-semibold mb-3'><?= $row['ContactNameArea']; ?></h4>
                     <a href="<?= $row['ContactLinkGmaps']; ?>" target="_blank" rel="nofollow">
                         <p><?= $row['ContactAddress']; ?></p>
