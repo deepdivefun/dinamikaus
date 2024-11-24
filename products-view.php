@@ -19,11 +19,24 @@ require_once('includes/component/SidebarMenu.php');
 
 <section>
     <div class='lg:mx-8 mx-6 mt-6 mb-12'>
-        <ul class='flex gap-3'>
-            <li>Home /</li>
-            <li>Product /</li>
-            <li>Product View</li>
-        </ul>
+        <nav class="bg-grey-light w-full rounded-md">
+            <ol class="list-reset flex gap-1 text-sm/[20px]">
+                <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index.php" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
+                <li><span class="mx-2 text-neutral-400">></span></li>
+                <li class="hover:text-yellow-500">
+                    <?php foreach ($Product->fetchProductByIDBreadcumb(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
+                        <a href="products.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400"><?= $row['ProductCategoryName']; ?></a>
+                    <?php endforeach; ?>
+                </li>
+                <li><span class="mx-2 text-neutral-400">></span></li>
+                <li>
+                    <?php foreach ($Product->fetchProductByIDBreadcumb(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
+                        <a href="javascript:void(0)" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400"><?= $row['ProductName']; ?></a>
+                    <?php endforeach; ?>
+                </li>
+            </ol>
+        </nav>
+
         <div class="lg:grid grid-cols-12">
             <?php foreach ($Product->fetchProductByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
                 <div class="col-span-8 justify-items-center">

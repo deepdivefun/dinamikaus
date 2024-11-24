@@ -19,10 +19,14 @@ $ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 ?>
 <div class='lg:mx-8 mx-6 mt-6'>
-    <ul class='flex gap-3'>
-        <li>Home /</li>
-        <li>About</li>
-    </ul>
+    <nav class="bg-grey-light w-full rounded-md">
+        <ol class="list-reset flex gap-1 text-sm/[20px]">
+            <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index.php" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
+            <li><span class="mx-2 text-neutral-400">></span></li>
+            <li><a href="javascript:void(0)" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">About</a></li>
+        </ol>
+    </nav>
+
     <div class='mt-6 mb-12 text-justify'>
         <h2 class='font-bold'>About PT. Dinamika Utama Saka</h2>
         <div class='w-12/12 mx-6 mt-6'>

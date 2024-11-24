@@ -18,10 +18,18 @@ require_once('includes/component/SidebarMenu.php');
 ?>
 
 <div class='mx-8 mt-6'>
-    <ul class='flex gap-3'>
-        <li>Home /</li>
-        <li>Product</li>
-    </ul>
+    <nav class="bg-grey-light w-full rounded-md">
+        <ol class="list-reset flex gap-1 text-sm/[20px]">
+            <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index.php" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
+            <li><span class="mx-2 text-neutral-400">></span></li>
+            <li>
+                <?php foreach ($Product->fetchProductByCategoryIDBreadcumb(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
+                    <a href="javascript:void(0)" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400"><?= $row['ProductCategoryName']; ?></a>
+                <?php endforeach; ?>
+            </li>
+        </ol>
+    </nav>
+
     <div class="grid lg:grid-cols-4 grid-cols-2 gap-6 my-6 justify-items-center">
         <?php foreach ($Product->fetchProductByCategoryID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
             <div data-aos="fade-up" class="grid gap-3 text-center justify-items-center">
