@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2024 at 09:46 AM
+-- Generation Time: Nov 24, 2024 at 11:08 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -258,12 +258,12 @@ CREATE TABLE `tbl_product_category` (
 --
 
 INSERT INTO `tbl_product_category` (`ProductCategoryID`, `StatusID`, `ProductCategoryName`, `ProductCategoryCatalog`, `ProductCategoryPhoto`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Laptop / Notebook', '', '673caf6092052-2024-11-19-LAPTOP.png', 'kevinarlo', '2024-11-01 07:39:49', 'kevinarlo', '2024-11-19 15:31:45'),
-(2, 1, 'Dekstop', '', '673caf79a6ae6-2024-11-19-PC-DESKTOP.png', 'kevinarlo', '2024-11-01 07:41:42', 'kevinarlo', '2024-11-19 15:32:10'),
-(3, 1, 'Monitor', '', '673cafd635667-2024-11-19-MONITOR.png', 'kevinarlo', '2024-11-04 10:59:07', 'kevinarlo', '2024-11-19 15:33:42'),
-(4, 1, 'Printer', '', '673cb2a37c533-2024-11-19-PRINTER.png', 'kevinarlo', '2024-11-04 11:22:41', 'kevinarlo', '2024-11-19 15:45:39'),
-(5, 1, 'Proyektor', '', '673cb31404122-2024-11-19-PROYEKTOR.png', 'kevinarlo', '2024-11-04 11:23:07', 'kevinarlo', '2024-11-19 15:47:32'),
-(6, 1, 'Aksesoris', '', '673cb373e5453-2024-11-19-ACCESORIS.png', 'kevinarlo', '2024-11-04 11:23:23', 'kevinarlo', '2024-11-19 15:49:08');
+(1, 1, 'Laptop / Notebook', '6742f3685ad65-2024-11-24-Test.pdf', '673caf6092052-2024-11-19-LAPTOP.png', 'kevinarlo', '2024-11-01 07:39:49', 'kevinarlo', '2024-11-24 09:35:36'),
+(2, 1, 'Dekstop', '6742f3969fc9a-2024-11-24-Test.pdf', '673caf79a6ae6-2024-11-19-PC-DESKTOP.png', 'kevinarlo', '2024-11-01 07:41:42', 'kevinarlo', '2024-11-24 09:36:23'),
+(3, 1, 'Monitor', '6742f3a00bd47-2024-11-24-Test.pdf', '673cafd635667-2024-11-19-MONITOR.png', 'kevinarlo', '2024-11-04 10:59:07', 'kevinarlo', '2024-11-24 09:36:32'),
+(4, 1, 'Printer', '6742f3a98c645-2024-11-24-Test.pdf', '673cb2a37c533-2024-11-19-PRINTER.png', 'kevinarlo', '2024-11-04 11:22:41', 'kevinarlo', '2024-11-24 09:36:41'),
+(5, 1, 'Proyektor', '6742f3b3d9fb6-2024-11-24-Test.pdf', '673cb31404122-2024-11-19-PROYEKTOR.png', 'kevinarlo', '2024-11-04 11:23:07', 'kevinarlo', '2024-11-24 09:36:52'),
+(6, 1, 'Aksesoris', '6742f38cf20d3-2024-11-24-Test.pdf', '673cb373e5453-2024-11-19-ACCESORIS.png', 'kevinarlo', '2024-11-04 11:23:23', 'kevinarlo', '2024-11-24 09:36:13');
 
 -- --------------------------------------------------------
 
@@ -449,8 +449,10 @@ CREATE TABLE `tbl_testimonial` (
 INSERT INTO `tbl_testimonial` (`TestimonialID`, `TestimonialStatusID`, `FullName`, `Company`, `TestimonialRating`, `TestimonialDescription`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
 (1, 2, 'Kevin Arlo', '', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'kevinarlo', '2024-11-04 12:45:21', 'kevinarlo', '2024-11-04 12:46:10'),
 (2, 2, 'Bestian', 'PT. Dinamika Utama Saka', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'kevinarlo', '2024-11-04 12:46:01', 'kevinarlo', '2024-11-04 12:46:15'),
-(3, 2, 'Billy Romero', '', '5', '\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus\"', 'kevinarlo', '2024-11-11 07:14:08', NULL, NULL),
-(4, 2, 'Faisal', '', '5', '\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus\"', 'kevinarlo', '2024-11-11 07:14:23', NULL, NULL);
+(3, 2, 'Billy Romero', '', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'kevinarlo', '2024-11-11 07:14:08', NULL, NULL),
+(4, 2, 'Faisal', '', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'kevinarlo', '2024-11-11 07:14:23', NULL, NULL),
+(5, 1, 'Fachrul', 'Personal', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'Fachrul', '2024-11-24 09:54:51', NULL, NULL),
+(6, 1, 'Satrio', 'Personal', '5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium itaque harum temporibus', 'Satrio', '2024-11-24 09:57:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -703,7 +705,7 @@ ALTER TABLE `tbl_team`
 -- AUTO_INCREMENT for table `tbl_testimonial`
 --
 ALTER TABLE `tbl_testimonial`
-  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `TestimonialID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_testimonial_status`
