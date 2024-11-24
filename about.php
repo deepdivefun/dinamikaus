@@ -6,6 +6,7 @@ $Meta           = new Meta();
 require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
 $Product        = new Product();
+require_once('includes/function/EncryptFunction.php');
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
