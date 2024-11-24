@@ -48,7 +48,6 @@ require_once('includes/component/SidebarMenu.php');
             </div>
         <?php endforeach; ?>
     </div>
-
 </div>
 
 <?php
