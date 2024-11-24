@@ -6,10 +6,10 @@ $Meta           = new Meta();
 require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
 $Product        = new Product();
+require_once('includes/function/EncryptFunction.php');
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
-// require_once('includes/component/Hero.php');
 require_once('includes/class/OurClientClass.php');
 $OurClient      = new OurClient();
 require_once('includes/class/TestimonialClass.php');
@@ -20,6 +20,7 @@ require_once('includes/class/ShippingLogoClass.php');
 $ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 ?>
+
 <!-- Hero -->
 <section>
     <div class='min-h-[406px] mx-6'>
@@ -39,7 +40,7 @@ require_once('includes/component/SidebarMenu.php');
             <div class="swiper-slide">
                 <div class='lg:columns-2 gap-3 mt-6 bg-gray-100'>
                     <div class='grid justify-items-center p-3 rounded-md gap-3'>
-                        <a href="<?= WebRootPath(); ?>e-catalogue.php?page=<?= $row['ProductCategoryID']; ?>">
+                        <a href="<?= WebRootPath(); ?>e-catalogue.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
                             <div class="grid pt-6">
                                 <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
@@ -60,7 +61,7 @@ require_once('includes/component/SidebarMenu.php');
             <div class="grid grid-cols-3 lg:grid-cols-6 gap-6 justify-items-center">
                 <?php foreach ($Product->fetchProductCategory() as $row) : ?>
                     <div class="border rounded-lg p-3 text-center shadow-md hover:shadow-lg transition">
-                        <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
+                        <a href="<?= WebRootPath(); ?>products.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img
                                 class="w-1/2 h-ful mx-auto mb-3"
                                 src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>"
@@ -103,7 +104,7 @@ require_once('includes/component/SidebarMenu.php');
     <div class="modal-content grid bg-gray-100">
         <button id="closeModal" class="close-btn">&times;</button>
         <h2 class="mb-3">Give Testimonial</h2>
-        <form method="POST" class="grid gap-1" id="descriptionForm">
+        <form action="<?= WebRootPath(); ?>utilities/6000.Testimonial/6010.TestimonialCreate.php" method="POST" class="grid gap-1" id="descriptionForm">
             <div class="mb-1">
                 <label for="FullName" class="block text-sm font-medium text-gray-700">Full Name</label>
                 <input
@@ -145,11 +146,14 @@ require_once('includes/component/SidebarMenu.php');
                     required></textarea>
             </div>
 
-            <input type="hidden" name="GToken" id="GToken" readonly required>
+            <div>
+                <input type="hidden" name="GToken" id="GToken" readonly required>
+            </div>
 
             <div>
                 <button
                     type="submit"
+                    name="createTestimonial"
                     class="w-full inline-flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Send
                 </button>
@@ -162,7 +166,7 @@ require_once('includes/component/SidebarMenu.php');
 <section class='mt-6 mx-3 lg:mx-6' data-aos="fade-up">
     <div class=''>
         <h2 class='font-semibold text-2xl text-center'>Testimonial</h2>
-        <button class="border lg:px-3 p-1 bg-gray-200 rounded-md text-black hover:bg-gray-400" id="openModal">Isi Testimoni</button>
+        <button class="border lg:px-3 p-1 bg-gray-200 rounded-md text-black hover:bg-gray-400" id="openModal">Give Testimonial</button>
         <div class='mt-5'>
             <div class="swiper swipper3">
                 <div class="swiper-wrapper">

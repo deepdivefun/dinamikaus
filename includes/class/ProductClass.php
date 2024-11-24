@@ -165,6 +165,58 @@ class Product
         $conn->close();
     }
 
+    // E-Catalogue By ID
+    public function fetchProductECatalogueByID($ProductCategoryID, $StatusName = 'Active')
+    {
+        global $conn;
+
+        try {
+            if (empty($ProductCategoryID) and empty($StatusName)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "SELECT a.ProductCategoryID, b.StatusID, b.StatusName, a.ProductCategoryName, 
+                            a.ProductCategoryCatalog ,a.ProductCategoryPhoto FROM tbl_product_category a 
+                            LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
+                            WHERE a.ProductCategoryID = ? AND b.StatusName = ?";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('is', $ProductCategoryID, $StatusName);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $ProductCategoryID,
+                    $StatusID,
+                    $StatusName,
+                    $ProductCategoryName,
+                    $ProductCategoryCatalog,
+                    $ProductCategoryPhoto
+                );
+
+                $result = [];
+
+                while ($stmt->fetch()) {
+                    $conn->commit();
+                    $result[]   = [
+                        'ProductCategoryID'         => $ProductCategoryID,
+                        'StatusID'                  => $StatusID,
+                        'StatusName'                => $StatusName,
+                        'ProductCategoryName'       => $ProductCategoryName,
+                        'ProductCategoryCatalog'    => $ProductCategoryCatalog,
+                        'ProductCategoryPhoto'      => $ProductCategoryPhoto
+                    ];
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+
+        return $result;
+        $conn->close();
+    }
+
     // Product By Category ID Navbar
     public function fetchProductByCategoryID($ProductCategoryID, $StatusName = 'Active')
     {

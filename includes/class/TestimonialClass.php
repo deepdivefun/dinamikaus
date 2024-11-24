@@ -68,4 +68,40 @@ class Testimonial
         return $result;
         $conn->close();
     }
+
+    public function createTestimonial($TestimonialStatusID, $FullName, $Company, $TestimonialRating, $TestimonialDescription, $CreateBy)
+    {
+        global $conn;
+
+        try {
+            if (empty($TestimonialStatusID) and empty($FullName) and empty($TestimonialRating) and empty($TestimonialDescription) and empty($CreateBy)) {
+                throw new Exception("Error Processing Request");
+            } else {
+                $conn->begin_transaction();
+
+                $query  = "INSERT INTO tbl_testimonial (TestimonialStatusID, FullName, Company, TestimonialRating, TestimonialDescription, CreateBy) 
+                            VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt   = $conn->prepare($query);
+                $stmt->bind_param('isssss', $TestimonialStatusID, $FullName, $Company, $TestimonialRating, $TestimonialDescription, $CreateBy);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $conn->commit();
+                    echo    "<script>
+                                alert('Thank you for providing testimony!');
+                                document.location = '../../index.php'; 
+                            </script>";
+                } else {
+                    echo    "<script>
+                                alert('Testimonials failed to create');
+                                document.location = '../../index.php'; 
+                            </script>";
+                }
+            }
+            $stmt->close();
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo 'Message: ' . $e->getMessage();
+        }
+    }
 }

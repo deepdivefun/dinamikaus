@@ -13,7 +13,7 @@
                       <div class="bg-black">
                           <?php foreach ($Product->fetchProductNavbar() as $row) : ?>
                               <div class='grid justify-items-center text-white p-3 text-center'>
-                                  <a href="<?= WebRootPath(); ?>products.php?page=<?= $row['ProductCategoryID']; ?>">
+                                  <a href="<?= WebRootPath(); ?>products.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                                       <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
                                       <p class="text-sm mt-5"><?= $row['ProductCategoryName']; ?></p>
                                   </a>

@@ -6,6 +6,7 @@ $Meta           = new Meta();
 require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
 $Product        = new Product();
+require_once('includes/function/EncryptFunction.php');
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
@@ -22,12 +23,14 @@ require_once('includes/component/SidebarMenu.php');
         <li>E-Catalogue</li>
     </ul>
     <div class="my-6 grid place-content-center">
-        <h1 class="text-center mb-3 text-xl font-semibold">Tittle</h1>
-        <object class="pdf"
-            data="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf"
-            width="800"
-            height="500">
-        </object>
+        <?php foreach ($Product->fetchProductECatalogueByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
+            <h1 class="text-center mb-3 text-xl font-semibold">E-Catalogue <?= $row['ProductCategoryName']; ?></h1>
+            <object class="pdf"
+                data="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>"
+                width="800"
+                height="500">
+            </object>
+        <?php endforeach; ?>
     </div>
 
 </div>

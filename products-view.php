@@ -6,6 +6,7 @@ $Meta           = new Meta();
 require_once('includes/component/Header.php');
 require_once('includes/class/ProductClass.php');
 $Product        = new Product();
+require_once('includes/function/EncryptFunction.php');
 require_once('includes/class/SettingsClass.php');
 $SettingsLogo   = new Settings();
 require_once('includes/component/Navbar.php');
@@ -24,7 +25,7 @@ require_once('includes/component/SidebarMenu.php');
             <li>Product View</li>
         </ul>
         <div class="lg:grid grid-cols-12">
-            <?php foreach ($Product->fetchProductByID($_GET['page']) as $row) : ?>
+            <?php foreach ($Product->fetchProductByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
                 <div class="col-span-8 justify-items-center">
                     <img class="w-96 h-96" src="<?= WebRootPath() ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>" alt="<?= $row['ProductName']; ?>">
                 </div>
