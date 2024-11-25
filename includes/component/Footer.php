@@ -1,4 +1,4 @@
-<Footer class='bg-slate-100'>
+<Footer class='bg-[#e9e9e9]'>
     <div class='grid place-items-center pt-12'>
         <h3>About Us</h3>
         <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about.php">Read more</a>

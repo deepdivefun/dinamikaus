@@ -24,7 +24,7 @@ require_once('includes/component/SidebarMenu.php');
 <!-- Hero -->
 <section>
     <div class='min-h-[406px] mx-6'>
-        <div class='grid bg-gray-200 pb-3 place-items-center min-h-[406px] '>
+        <div class='grid bg-[#e9e9e9] pb-3 place-items-center min-h-[406px] '>
             <h1 class='text-3xl font-semibold'>Your Premium Store</h1>
             <!-- <h2 class='text-xl'>Coming Soon</h2> -->
             <?php foreach ($SettingsLogo->fetchCarouselPhoto() as $row) : ?>
@@ -38,11 +38,11 @@ require_once('includes/component/SidebarMenu.php');
     <div class="swiper-wrapper">
         <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
             <div class="swiper-slide">
-                <div class='lg:columns-2 gap-3 mt-6 bg-gray-100'>
-                    <div class='grid justify-items-center p-3 rounded-md gap-3'>
+                <div class='lg:columns-2 gap-3 mt-6 bg-[#e9e9e9]'>
+                    <div class='grid justify-items-center p-3 rounded-md gap-6'>
                         <a href="<?= WebRootPath(); ?>e-catalogue.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
-                            <div class="grid pt-6">
+                            <div class="grid lg:pt-20 lg:text-left text-center">
                                 <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
                                 <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
                             </div>
@@ -76,10 +76,10 @@ require_once('includes/component/SidebarMenu.php');
 </section>
 
 
-<section class='mt-12'>
-    <div class='min-h-[300px] bg-gray-100 grid place-items-center'>
+<section class='mt-12 custom-bg'>
+    <div class='min-h-[600px] grid place-items-center'>
         <h1 class='text-xl lg:text-3xl'>Are You Looking For Professional Advice</h1>
-        <a class='button border-2 px-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>contact.php">Contact Us</a>
+        <a class='button border-2 px-3 rounded-lg bg-[#e9e9e9] hover:border-yellow-500' href="<?= WebRootPath(); ?>contact.php">Contact Us</a>
     </div>
 </section>
 
@@ -101,7 +101,7 @@ require_once('includes/component/SidebarMenu.php');
 </section>
 
 <div id="myModal" class="modal z-30">
-    <div class="modal-content grid bg-gray-100">
+    <div class="modal-content grid bg-[#e9e9e9]">
         <button id="closeModal" class="close-btn">&times;</button>
         <h2 class="mb-3">Give Testimonial</h2>
         <form action="<?= WebRootPath(); ?>utilities/6000.Testimonial/6010.TestimonialCreate.php" method="POST" class="grid gap-1" id="descriptionForm">
