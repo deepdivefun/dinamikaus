@@ -9,7 +9,7 @@
                 <i class="fa fa-shield text-3xl" aria-hidden="true"></i>
                 <div class=''>
                     <p class='font-semibold'>Garansi Resmi</p>
-                    <p>Produk Bergaransi Resmi / Garansi TAM</p>
+                    <p>Produk Bergaransi Resmi</p>
                 </div>
             </div>
         </div>
@@ -44,14 +44,26 @@
     <div class='grid lg:grid-cols-4 grid-cols-1 gap-4 px-6 py-6'>
         <div class=''>
             <div class='grid justify-items-center'>
-                <!-- <span>Dinamika</span> -->
                 <div class='grid lg:gap-3'>
                     <?php foreach ($SettingsLogo->fetchLogoFooter() as $row) : ?>
                         <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" alt="<?= $row['SettingsLogoValue']; ?>">
                     <?php endforeach; ?>
-                    <?php foreach ($SettingsLogo->fetchAboutUs() as $row) : ?>
-                        <p class='text-xs mt-3' style="text-align: justify;"><?= $row['SettingsValue']; ?></p>
-                    <?php endforeach; ?>
+                    <p class='text-xs mt-3' style="text-align: justify;">PT Dinamika Utama Saka berkomitmen memberikan produk berkualitas dan layanan efisien dengan harga terbaik. Hubungi tim Product Specialist kami untuk solusi yang tepat sesuai kebutuhan Anda. Jika Anda ingin bantuan atau memiliki masukan silahkan hubungi kami :</p>
+                    <p class='text-xs mt-3 font-bold' style="text-align: justify;">PT Dinamika Utama Saka</p>
+                    <a href="https://maps.app.goo.gl/7MVpG87aU6zeAB4D9" target="_blank" rel="nofollow">
+                        <p class='text-xs' style="text-align: justify;">Jl. DR. Kusuma Atmaja S,H No. 83 Menteng. Jakarta Pusat</p>
+                    </a>
+                    <p class='text-xs font-bold' style="text-align: justify;">Jam Operasional :</p>
+                    <p class='text-xs' style="text-align: justify;">08.00 s.d 17.00 WIB</p>
+                    <a href="mailto:sales@dinamikaus.com" target="_blank" rel="nofollow">
+                        <p class='text-xs' style="text-align: justify;">sales@dinamikaus.com</p>
+                    </a>
+                    <a href="tel:0213160118" target="_blank" rel="nofollow">
+                        <p class='text-xs' style="text-align: justify;">021 3160118 (Hunting)</p>
+                    </a>
+                    <a href="https://wa.me/6281389055595" target="_blank" rel="nofollow">
+                        <p class='text-xs' style="text-align: justify;">0813 8905 5595 (Whatsapp)</p>
+                    </a>
                 </div>
             </div>
         </div>

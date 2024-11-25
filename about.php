@@ -44,6 +44,9 @@ require_once('includes/component/SidebarMenu.php');
                     <?php foreach ($SettingsLogo->fetchEmailJakarta() as $row) : ?>
                         <li class="font-medium"><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
                     <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchEmailSales() as $row) : ?>
+                        <li class="font-medium"><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
                     <?php foreach ($SettingsLogo->fetchHuntingNumber() as $row) : ?>
                         <li class="font-medium"><a href="tel:<?= $row['SettingsValue']; ?>"><?= $row['SettingsValue']; ?></a></li>
                     <?php endforeach; ?>
@@ -58,6 +61,9 @@ require_once('includes/component/SidebarMenu.php');
                         <li><?= $row['SettingsValue']; ?></li>
                     <?php endforeach; ?>
                     <?php foreach ($SettingsLogo->fetchEmailBekasi() as $row) : ?>
+                        <li class="font-medium"><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
+                    <?php endforeach; ?>
+                    <?php foreach ($SettingsLogo->fetchEmailSales() as $row) : ?>
                         <li class="font-medium"><a href="mailto:<?= $row['SettingsValue']; ?>" target="_blank" rel="nofollow"><?= $row['SettingsValue']; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
