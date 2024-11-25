@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2024 at 11:08 AM
+-- Generation Time: Nov 25, 2024 at 08:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,6 +65,15 @@ CREATE TABLE `tbl_eventlog` (
   `EventLogUser` text NOT NULL,
   `EventLogData` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_eventlog`
+--
+
+INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `EventLogData`) VALUES
+(1, '2024-11-25 07:16:56', 'kevinarlo', 'kevinarlo is logged in'),
+(2, '2024-11-25 07:17:36', 'kevinarlo', 'Create Settings Email 3'),
+(3, '2024-11-25 07:22:42', 'kevinarlo', 'kevinarlo has logged out');
 
 -- --------------------------------------------------------
 
@@ -316,7 +325,8 @@ INSERT INTO `tbl_settings` (`SettingsID`, `StatusID`, `SettingsName`, `SettingsV
 (6, 1, 'Email 2', 'bekasi@dinamikaus.com', 'kevinarlo', '2024-11-11 10:21:20', 'kevinarlo', '2024-11-20 04:20:09'),
 (7, 1, 'Header 1', 'Jakarta (HEADQUARTER)', 'kevinarlo', '2024-11-20 04:15:17', 'kevinarlo', '2024-11-20 05:07:53'),
 (8, 1, 'Header 2', 'Bekasi (REPRESENTATIVE OFFICE)', 'kevinarlo', '2024-11-20 04:17:52', 'kevinarlo', '2024-11-20 05:08:04'),
-(9, 1, 'Address Bekasi', 'Jl. Cipete Raya No.83 Mustika Jaya. Kota Bekasi', 'kevinarlo', '2024-11-20 04:19:32', NULL, NULL);
+(9, 1, 'Address Bekasi', 'Jl. Cipete Raya No.83 Mustika Jaya. Kota Bekasi', 'kevinarlo', '2024-11-20 04:19:32', NULL, NULL),
+(10, 1, 'Email 3', 'sales@dinamikaus.com', 'kevinarlo', '2024-11-25 07:17:36', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -633,7 +643,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
@@ -675,7 +685,7 @@ ALTER TABLE `tbl_role`
 -- AUTO_INCREMENT for table `tbl_settings`
 --
 ALTER TABLE `tbl_settings`
-  MODIFY `SettingsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `SettingsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_settings_logo`
