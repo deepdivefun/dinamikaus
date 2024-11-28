@@ -17,6 +17,7 @@ $PaymentLogo    = new PaymentLogo();
 require_once('includes/class/ShippingLogoClass.php');
 $ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
+require_once('includes/component/WhatsAppWidget.php');
 ?>
 
 <div class='mx-8 my-6'>
