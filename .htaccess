@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+
+RewriteRule ^index?$ index.php [NC,L]
+RewriteRule ^products/([a-zA-Z0-9]+) products.php?page=$1 [NC,L]
+RewriteRule ^products-view/([a-zA-Z0-9]+) products-view.php?page=$1 [NC,L]
+RewriteRule ^about?$ about.php [NC,L]
+RewriteRule ^contact?$ contact.php [NC,L]
+RewriteRule ^e-catalogue/([a-zA-Z0-9]+) e-catalogue.php?page=$1 [NC,L]
+RewriteRule ^login?$ login.php [NC,L]
+
+Options All -Indexes

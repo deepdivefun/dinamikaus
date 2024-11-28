@@ -29,20 +29,20 @@ session_start([
 ]);
 session_regenerate_id();
 if (!isset($_SESSION['Login'])) {
-    header('Location: ../../index.php');
+    header('Location: ../../index');
 }
 if (!isset($_SESSION['UserID'])) {
-    header('Location: ../../index.php');
+    header('Location: ../../index');
 }
 if (!isset($_SESSION['StatusID']) == 1) {
-    header('Location: ../../index.php');
+    header('Location: ../../index');
 }
 if (!isset($_SESSION['RoleID'])) {
-    header('Location: ../../index.php');
+    header('Location: ../../index');
 }
 if (!isset($_SESSION['Username'])) {
-    header('Location: ../../index.php');
+    header('Location: ../../index');
 }
 if (!isset($_SESSION['Email'])) {
-    header('Location: ../../index.php');
+    header('Location: ../../index');
 }

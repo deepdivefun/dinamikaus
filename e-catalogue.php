@@ -21,7 +21,7 @@ require_once('includes/component/WhatsAppWidget.php');
 <div class='lg:mx-8 mx-6 mt-6'>
     <nav class="bg-grey-light w-full rounded-md">
         <ol class="list-reset flex gap-1 text-sm/[20px]">
-            <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index.php" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
+            <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
             <li><span class="mx-2 text-neutral-400">></span>
             </li>
             <li>

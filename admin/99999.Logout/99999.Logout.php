@@ -33,5 +33,5 @@ session_destroy();
 setcookie('ID', '', time() - 1800);
 setcookie('Key', '', time() - 1800);
 
-header("Location: ../../index.php");
+header("Location: ../../index");
 exit;

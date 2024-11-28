@@ -41,7 +41,7 @@ require_once('includes/component/WhatsAppWidget.php');
             <div class="swiper-slide">
                 <div class='lg:columns-2 gap-3 mt-6 bg-[#e9e9e9]'>
                     <div class='grid justify-items-center p-3 rounded-md gap-6'>
-                        <a href="<?= WebRootPath(); ?>e-catalogue.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
+                        <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
                             <div class="grid lg:pt-20 lg:text-left text-center">
                                 <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
@@ -62,7 +62,7 @@ require_once('includes/component/WhatsAppWidget.php');
             <div class="grid grid-cols-3 lg:grid-cols-6 gap-6 justify-items-center">
                 <?php foreach ($Product->fetchProductCategory() as $row) : ?>
                     <div class="border rounded-lg p-3 text-center shadow-md hover:shadow-lg transition">
-                        <a href="<?= WebRootPath(); ?>products.php?page=<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
+                        <a href="<?= WebRootPath(); ?>products/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img
                                 class="w-1/2 h-ful mx-auto mb-3"
                                 src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>"
@@ -84,7 +84,7 @@ require_once('includes/component/WhatsAppWidget.php');
         </h1>
         <a
             class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition"
-            href="<?= WebRootPath(); ?>contact.php">
+            href="<?= WebRootPath(); ?>contact">
             Contact Us
         </a>
     </div>
@@ -218,7 +218,7 @@ require_once('includes/component/WhatsAppWidget.php');
         <h1 class="text-xl lg:text-3xl mb-4">
             About Us
         </h1>
-        <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about.php">Read more</a>
+        <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about">Read more</a>
     </div>
 </section>
 

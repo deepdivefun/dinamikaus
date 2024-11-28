@@ -91,7 +91,7 @@ class SessionManagement
                 } else {
                     echo    "<script>
                                 alert('Username or Password is wrong!');
-                                document.location.href = 'index.php';
+                                document.location.href = 'index';
                             </script>";
                 }
 
@@ -102,13 +102,13 @@ class SessionManagement
             } else {
                 echo    "<script>
                             alert('Username or Password is wrong!');
-                            document.location.href = 'index.php';
+                            document.location.href = 'index';
                         </script>";
             }
         } else {
             echo    "<script>
                         alert('Username or Password is wrong!');
-                        document.location.href = 'index.php';
+                        document.location.href = 'index';
                     </script>";
 
             session_start([
@@ -146,7 +146,7 @@ class SessionManagement
             setcookie('ID', '', time() - 1800);
             setcookie('Key', '', time() - 1800);
 
-            header('Location: index.php');
+            header('Location: index');
 
             $stmt->close();
         }
