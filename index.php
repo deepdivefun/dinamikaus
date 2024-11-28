@@ -213,6 +213,15 @@ require_once('includes/component/WhatsAppWidget.php');
     </div>
 </section>
 
+<section data-aos="fade-up">
+    <div class="min-h-[600px] custom-bg flex flex-col justify-center items-center text-center">
+        <h1 class="text-xl lg:text-3xl mb-4">
+            About Us
+        </h1>
+        <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about.php">Read more</a>
+    </div>
+</section>
+
 <?php
 require_once('includes/component/Footer.php');
 require_once('includes/component/GRecaptcha.php');

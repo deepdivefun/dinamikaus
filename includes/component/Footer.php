@@ -1,11 +1,3 @@
-    <section data-aos="fade-up">
-        <div class="min-h-[600px] custom-bg flex flex-col justify-center items-center text-center">
-            <h1 class="text-xl lg:text-3xl mb-4">
-                About Us
-            </h1>
-            <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about.php">Read more</a>
-        </div>
-    </section>
     <Footer data-aos="fade-up">
         <div class='grid lg:grid-cols-4 grid-cols-2 lg:gap-3 gap-1 bg-zinc-800 text-white lg:px-6 px-3 py-8'>
             <div class=''>
