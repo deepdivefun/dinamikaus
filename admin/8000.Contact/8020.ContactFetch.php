@@ -35,8 +35,8 @@ if (VerifyRecaptchaToken($GToken) == null) {
             $conn->begin_transaction();
 
             $query  = "SELECT a.ContactID, b.StatusID, b.StatusName, a.ContactNameArea, a.ContactAddress, 
-                        a.ContactLinkGmaps, a.ContactNumber, a.ContactEmail, a.CreateBy, a.CreateTime, a.UpdateBy, 
-                        a.UpdateTime FROM tbl_contact a 
+                        a.ContactLinkGmaps, a.ContactNumber, a.ContactEmail, a.ContactEmailAlternative, 
+                        a.CreateBy, a.CreateTime, a.UpdateBy, a.UpdateTime FROM tbl_contact a 
                         LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
                         WHERE a.StatusID = ? AND a.ContactNameArea LIKE CONCAT('%', ?, '%')";
             $stmt   = $conn->prepare($query);
@@ -52,6 +52,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ContactLinkGmaps,
                 $ContactNumber,
                 $ContactEmail,
+                $ContactEmailAlternative,
                 $CreateBy,
                 $CreateTime,
                 $UpdateBy,
@@ -70,10 +71,10 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 }
 
                 if ($StatusID == 1) {
-                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' ContactEmail='$ContactEmail' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' ContactEmail='$ContactEmail' ContactEmailAlternative='$ContactEmailAlternative' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteContact' title='DELETE' ContactID='$ContactID'><i class='fa-solid fa-trash'></i></button>";
                     if (SYSAdmin()) {
-                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' ContactEmail='$ContactEmail' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editContact' title='EDIT' ContactID='$ContactID' StatusID='$StatusID' ContactNameArea='$ContactNameArea' ContactAddress='$ContactAddress' ContactLinkGmaps='$ContactLinkGmaps' ContactNumber='$ContactNumber' ContactEmail='$ContactEmail' ContactEmailAlternative='$ContactEmailAlternative' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteContact' title='DELETE' ContactID='$ContactID'><i class='fa-solid fa-trash'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugContact' title='DEBUG' ContactID='$ContactID'><i class='fa-solid fa-eye'></i></button>";
                     }

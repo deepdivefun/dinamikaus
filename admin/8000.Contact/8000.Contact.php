@@ -83,6 +83,11 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                                 <input type="email" class="form-control" name="ContactEmail" id="ContactEmail" required>
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="ContactEmailAlternative">Contact Email Alternative</label>
+                                <input type="email" class="form-control" name="ContactEmailAlternative" id="ContactEmailAlternative">
+                            </div>
+
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="CreateBy" id="CreateBy" value="<?= $_SESSION['Username']; ?>" readonly required>
                                 <input type="hidden" class="form-control" name="GToken" id="GToken" readonly required>
@@ -140,6 +145,11 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
                             <div class="form-group mb-3">
                                 <label class="form-label" for="EditContactEmail">Contact Email</label>
                                 <input type="email" class="form-control" name="EditContactEmail" id="EditContactEmail" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="EditContactEmailAlternative">Contact Email Alternative</label>
+                                <input type="email" class="form-control" name="EditContactEmailAlternative" id="EditContactEmailAlternative">
                             </div>
 
                             <div class="form-group">

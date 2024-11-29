@@ -21,16 +21,17 @@ if (!SYSAdmin() and !AppAdmin() and !Admin()) {
     die();
 }
 
-$StatusID           = filter_input(INPUT_POST, 'StatusID');
-$ContactNameArea    = filter_input(INPUT_POST, 'ContactNameArea');
-$ContactAddress     = filter_input(INPUT_POST, 'ContactAddress');
-$ContactLinkGmaps   = filter_input(INPUT_POST, 'ContactLinkGmaps');
-$ContactNumber      = filter_input(INPUT_POST, 'ContactNumber');
-$ContactEmail       = filter_input(INPUT_POST, 'ContactEmail');
-$CreateBy           = filter_input(INPUT_POST, 'CreateBy');
-$EventLogUser       = $CreateBy;
-$EventLogData       = 'Create Contact For Area ' . $ContactNameArea;
-$GToken             = filter_input(INPUT_POST, 'GToken');
+$StatusID                   = filter_input(INPUT_POST, 'StatusID');
+$ContactNameArea            = filter_input(INPUT_POST, 'ContactNameArea');
+$ContactAddress             = filter_input(INPUT_POST, 'ContactAddress');
+$ContactLinkGmaps           = filter_input(INPUT_POST, 'ContactLinkGmaps');
+$ContactNumber              = filter_input(INPUT_POST, 'ContactNumber');
+$ContactEmail               = filter_input(INPUT_POST, 'ContactEmail');
+$ContactEmailAlternative    = filter_input(INPUT_POST, 'ContactEmailAlternative');
+$CreateBy                   = filter_input(INPUT_POST, 'CreateBy');
+$EventLogUser               = $CreateBy;
+$EventLogData               = 'Create Contact For Area ' . $ContactNameArea;
+$GToken                     = filter_input(INPUT_POST, 'GToken');
 
 if (VerifyRecaptchaToken($GToken) == null) {
     echo    "You are spammer! Get out";
@@ -54,6 +55,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ContactLinkGmaps,
                 $ContactNumber,
                 $ContactEmail,
+                $ContactEmailAlternative,
                 $CreateBy
             );
         }

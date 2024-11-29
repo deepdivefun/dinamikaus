@@ -54,6 +54,9 @@ async function createContact() {
   var CONTACTLINKGMAPS = document.getElementById("ContactLinkGmaps").value;
   var CONTACTNUMBER = document.getElementById("ContactNumber").value;
   var CONTACTEMAIL = document.getElementById("ContactEmail").value;
+  var CONTACTEMAILALTERNATIVE = document.getElementById(
+    "ContactEmailAlternative"
+  ).value;
   var CREATEBY = document.getElementById("CreateBy").value;
   var GTOKEN = document.getElementById("GToken").value;
 
@@ -82,6 +85,7 @@ async function createContact() {
       ContactLinkGmaps: CONTACTLINKGMAPS,
       ContactNumber: CONTACTNUMBER,
       ContactEmail: CONTACTEMAIL,
+      ContactEmailAlternative: CONTACTEMAILALTERNATIVE,
       CreateBy: CREATEBY,
       GToken: GTOKEN,
     },
@@ -114,6 +118,7 @@ $(document).on("click", ".editContact", function () {
   var CONTACTLINKGMAPS = $(this).attr("ContactLinkGmaps");
   var CONTACTNUMBER = $(this).attr("ContactNumber");
   var CONTACTEMAIL = $(this).attr("ContactEmail");
+  var CONTACTEMAILALTERNATIVE = $(this).attr("ContactEmailAlternative");
 
   $("#EditContactID").val(CONTACTID);
   $("#EditStatusID").val(STATUSID);
@@ -122,6 +127,7 @@ $(document).on("click", ".editContact", function () {
   $("#EditContactLinkGmaps").val(CONTACTLINKGMAPS);
   $("#EditContactNumber").val(CONTACTNUMBER);
   $("#EditContactEmail").val(CONTACTEMAIL);
+  $("#EditContactEmailAlternative").val(CONTACTEMAILALTERNATIVE);
 
   $("#editContact").modal("show");
 });
@@ -134,6 +140,9 @@ async function updateContact() {
   var CONTACTLINKGMAPS = document.getElementById("EditContactLinkGmaps").value;
   var CONTACTNUMBER = document.getElementById("EditContactNumber").value;
   var CONTACTEMAIL = document.getElementById("EditContactEmail").value;
+  var CONTACTEMAILALTERNATIVE = document.getElementById(
+    "EditContactEmailAlternative"
+  ).value;
   var UPDATEBY = document.getElementById("UpdateBy").value;
   var GTOKEN = document.getElementById("GToken").value;
 
@@ -168,6 +177,7 @@ async function updateContact() {
       ContactLinkGmaps: CONTACTLINKGMAPS,
       ContactNumber: CONTACTNUMBER,
       ContactEmail: CONTACTEMAIL,
+      ContactEmailAlternative: CONTACTEMAILALTERNATIVE,
       UpdateBy: UPDATEBY,
       GToken: GTOKEN,
     },

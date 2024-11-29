@@ -27,7 +27,8 @@ class Contact
                 $conn->begin_transaction();
 
                 $query  = "SELECT a.ContactID, b.StatusID, b.StatusName, a.ContactNameArea, a.ContactAddress, 
-                            a.ContactLinkGmaps, a.ContactEmail, a.ContactNumber FROM tbl_contact a 
+                            a.ContactLinkGmaps, a.ContactEmail, a.ContactEmailAlternative, a.ContactNumber 
+                            FROM tbl_contact a 
                             LEFT OUTER JOIN tbl_status b ON a.StatusID = b.StatusID 
                             WHERE b.StatusName = ?";
                 $stmt   = $conn->prepare($query);
@@ -42,6 +43,7 @@ class Contact
                     $ContactAddress,
                     $ContactLinkGmaps,
                     $ContactEmail,
+                    $ContactEmailAlternative,
                     $ContactNumber
                 );
                 $result = [];
@@ -49,14 +51,15 @@ class Contact
                 while ($stmt->fetch()) {
                     $conn->commit();
                     $result[] = [
-                        'ContactID'      => $ContactID,
-                        'StatusID'      => $StatusID,
-                        'StatusName'    => $StatusName,
-                        'ContactNameArea'    => $ContactNameArea,
-                        'ContactAddress'    => $ContactAddress,
-                        'ContactLinkGmaps'    => $ContactLinkGmaps,
-                        'ContactEmail'    => $ContactEmail,
-                        'ContactNumber'    => $ContactNumber,
+                        'ContactID'                 => $ContactID,
+                        'StatusID'                  => $StatusID,
+                        'StatusName'                => $StatusName,
+                        'ContactNameArea'           => $ContactNameArea,
+                        'ContactAddress'            => $ContactAddress,
+                        'ContactLinkGmaps'          => $ContactLinkGmaps,
+                        'ContactEmail'              => $ContactEmail,
+                        'ContactEmailAlternative'   => $ContactEmailAlternative,
+                        'ContactNumber'             => $ContactNumber,
                     ];
                 }
             }

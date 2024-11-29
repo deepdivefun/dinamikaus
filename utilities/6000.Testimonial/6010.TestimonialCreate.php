@@ -4,10 +4,10 @@ require_once($WebRootPath . '/includes/helpers/WebRootPath.php');
 require_once($WebRootPath . '/includes/class/TestimonialClass.php');
 require_once($WebRootPath . '/includes/function/VerifyRecaptchaTokenFunction.php');
 
-if (strpos($_SERVER['HTTP_REFERER'], 'index.php') === FALSE) {
+if (strpos($_SERVER['HTTP_REFERER'], 'index') === FALSE) {
     echo    "<script>
                 alert('Invalid Caller');
-                document.location.href = '../../index.php';
+                document.location.href = '../../index';
             </script>";
     die;
 }

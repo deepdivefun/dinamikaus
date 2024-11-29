@@ -89,12 +89,12 @@ class Testimonial
                     $conn->commit();
                     echo    "<script>
                                 alert('Thank you for providing testimony!');
-                                document.location = '../../index.php'; 
+                                document.location = '../../index'; 
                             </script>";
                 } else {
                     echo    "<script>
                                 alert('Testimonials failed to create');
-                                document.location = '../../index.php'; 
+                                document.location = '../../index'; 
                             </script>";
                 }
             }

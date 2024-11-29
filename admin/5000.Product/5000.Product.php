@@ -200,6 +200,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                         <small class="text-danger">
                             <ul>
                                 <li><b>Photo canvas size must be 500 x 500 pixels</b></li>
+                                <li><b>Use tag < br> if you want the text to go down. (< br> Without spaces)</b></li>
                             </ul>
                         </small>
                         <hr>

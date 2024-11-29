@@ -16,7 +16,7 @@ class Contact
         return $this->conn;
     }
 
-    public function createContact($StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $CreateBy)
+    public function createContact($StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $ContactEmailAlternative, $CreateBy)
     {
         global $conn;
 
@@ -26,10 +26,10 @@ class Contact
             } else {
                 $conn->begin_transaction();
 
-                $query  = "INSERT INTO tbl_contact (StatusID, ContactNameArea, ContactAddress, ContactLinkGmaps, ContactNumber, ContactEmail, CreateBy) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $query  = "INSERT INTO tbl_contact (StatusID, ContactNameArea, ContactAddress, ContactLinkGmaps, ContactNumber, ContactEmail, ContactEmailAlternative, CreateBy) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("issssss", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $CreateBy);
+                $stmt->bind_param("isssssss", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $ContactEmailAlternative, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
@@ -46,7 +46,7 @@ class Contact
         }
     }
 
-    public function updateContact($ContactID, $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $UpdateBy)
+    public function updateContact($ContactID, $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $ContactEmailAlternative, $UpdateBy)
     {
         global $conn;
 
@@ -63,11 +63,12 @@ class Contact
                             ContactLinkGmaps = ?,
                             ContactNumber = ?,
                             ContactEmail = ?,
+                            ContactEmailAlternative = ?,
                             UpdateBy = ?,
                             UpdateTime = NOW() 
                             WHERE ContactID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("issssssi", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $UpdateBy, $ContactID);
+                $stmt->bind_param("isssssssi", $StatusID, $ContactNameArea, $ContactAddress, $ContactLinkGmaps, $ContactNumber, $ContactEmail, $ContactEmailAlternative, $UpdateBy, $ContactID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {

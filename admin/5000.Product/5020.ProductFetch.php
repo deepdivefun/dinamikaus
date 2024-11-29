@@ -36,7 +36,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
             $conn->begin_transaction();
 
             $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.StatusID, 
-                        c.StatusName, a.ProductName, a.ProductDescription, a.ProductPhoto, a.CreateBy, 
+                        c.StatusName, a.ProductName, a.ProductPrice, a.ProductDescription, a.ProductPhoto, a.CreateBy, 
                         a.CreateTime, a.UpdateBy, a.UpdateTime 
                         FROM tbl_product a 
                         LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
@@ -53,6 +53,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $StatusID,
                 $StatusName,
                 $ProductName,
+                $ProductPrice,
                 $ProductDescription,
                 $ProductPhoto,
                 $CreateBy,
@@ -75,10 +76,10 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ProductDescriptionConvert = trim(preg_replace('/\s+/', ' ', $ProductDescription));
 
                 if ($StatusID == 1) {
-                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProduct' title='DELETE' ProductID='$ProductID'><i class='fa-solid fa-trash'></i></button>";
                     if (SYSAdmin()) {
-                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProduct' title='DELETE' ProductID='$ProductID'><i class='fa-solid fa-trash'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugProduct' title='DEBUG' ProductID='$ProductID'><i class='fa-solid fa-eye'></i></button>";
                     }

@@ -42,6 +42,9 @@ require_once('includes/component/WhatsAppWidget.php');
                     <a href="mailto:<?= $row['ContactEmail']; ?>" target="_blank" rel="nofollow">
                         <p class="font-semibold"><?= $row['ContactEmail']; ?></p>
                     </a>
+                    <a href="mailto:<?= $row['ContactEmailAlternative']; ?>" target="_blank" rel="nofollow">
+                        <p class="font-semibold"><?= $row['ContactEmailAlternative']; ?></p>
+                    </a>
                     <a href="tel:<?= $row['ContactNumber']; ?>" target="_blank" rel="nofollow">
                         <p class="font-semibold"><?= $row['ContactNumber']; ?></p>
                     </a>
