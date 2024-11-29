@@ -9,8 +9,10 @@
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/4.0.0-alpha.24/lib.min.js" integrity="sha512-z/dvZbFZhHCi5/4UoyNwhidEOFbiN93Um+DWoaMZsH6zqifGGo0zA4bUwdf1SgV7KIPMQgiGs+05PNl8ytxweQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- Google Recaptcha V3 -->
     <script>
         grecaptcha.ready(function() {
