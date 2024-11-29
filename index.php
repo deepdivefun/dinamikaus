@@ -29,7 +29,7 @@ require_once('includes/component/WhatsAppWidget.php');
             <h1 class='text-3xl font-semibold'>Your Premium Store</h1>
             <!-- <h2 class='text-xl'>Coming Soon</h2> -->
             <?php foreach ($SettingsLogo->fetchCarouselPhoto() as $row) : ?>
-                <img class='lg:w-1/2 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" alt="<?= $row['SettingsLogoValue']; ?>">
+                <img loading="lazy" class='lg:w-1/2 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" decoding="async" alt="<?= $row['SettingsLogoValue']; ?>">
             <?php endforeach; ?>
         </div>
     </div>
@@ -42,7 +42,7 @@ require_once('includes/component/WhatsAppWidget.php');
                 <div class='lg:columns-2 gap-3 mt-6 bg-[#e9e9e9]'>
                     <div class='grid justify-items-center p-3 rounded-md gap-6'>
                         <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
-                            <img class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                            <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
                             <div class="grid lg:pt-20 lg:text-left text-center">
                                 <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
                                 <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
@@ -63,10 +63,7 @@ require_once('includes/component/WhatsAppWidget.php');
                 <?php foreach ($Product->fetchProductCategory() as $row) : ?>
                     <div class="border rounded-lg p-3 text-center shadow-md hover:shadow-lg transition">
                         <a href="<?= WebRootPath(); ?>products/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
-                            <img
-                                class="w-1/2 h-ful mx-auto mb-3"
-                                src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>"
-                                alt="<?= $row['ProductCategoryPhoto']; ?>">
+                            <img loading="lazy" class="w-1/2 h-ful mx-auto mb-3" src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
                             <p class="text-center font-bold text-sm"><?= $row['ProductCategoryName']; ?></p>
                         </a>
                     </div>
@@ -82,9 +79,7 @@ require_once('includes/component/WhatsAppWidget.php');
         <h1 class="text-xl lg:text-3xl mb-4">
             Are You Looking For Professional Advice
         </h1>
-        <a
-            class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition"
-            href="<?= WebRootPath(); ?>contact">
+        <a class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition" href="<?= WebRootPath(); ?>contact">
             Contact Us
         </a>
     </div>
@@ -98,7 +93,7 @@ require_once('includes/component/WhatsAppWidget.php');
                 <?php foreach ($OurClient->fetchOurClient() as $row) : ?>
                     <div class="swiper-slide">
                         <div class="border mb-3">
-                            <img class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" alt="<?= $row['OurClientPhoto']; ?>">
+                            <img loading="lazy" class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" decoding="async" alt="<?= $row['OurClientPhoto']; ?>">
                         </div>
                     </div>
                 <?php endforeach; ?>

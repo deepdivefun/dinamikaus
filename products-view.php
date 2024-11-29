@@ -41,7 +41,7 @@ require_once('includes/component/WhatsAppWidget.php');
         <div class="lg:grid grid-cols-12">
             <?php foreach ($Product->fetchProductByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
                 <div data-aos="flip-left" class="col-span-8 justify-items-center mt-5">
-                    <img class="w-96 h-96" src="<?= WebRootPath() ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>" alt="<?= $row['ProductName']; ?>">
+                    <img loading="lazy" class="w-96 h-96" src="<?= WebRootPath() ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>" decoding="async" alt="<?= $row['ProductName']; ?>">
                 </div>
                 <div class="col-span-4 items-center mt-5">
                     <div class="grid gap-3">

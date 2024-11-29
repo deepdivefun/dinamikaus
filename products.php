@@ -35,10 +35,7 @@ require_once('includes/component/WhatsAppWidget.php');
         <?php foreach ($Product->fetchProductByCategoryID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
             <div data-aos="fade-up" class="grid gap-3 text-center justify-items-center">
                 <a href="<?= WebRootPath(); ?>products-view/<?= Encryptor('encrypt', $row['ProductID']); ?>" class="block">
-                    <img
-                        class="w-32 h-32 mx-auto"
-                        src="<?= WebRootPath(); ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>"
-                        alt="<?= $row['ProductPhoto']; ?>">
+                    <img loading="lazy" class="w-32 h-32 mx-auto" src="<?= WebRootPath(); ?>admin/assets/img/productphoto/<?= $row['ProductPhoto']; ?>" decoding="async" alt="<?= $row['ProductPhoto']; ?>">
                     <h2 class="mt-2"><?= $row['ProductName']; ?></h2>
                 </a>
                 <a
