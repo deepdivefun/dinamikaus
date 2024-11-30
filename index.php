@@ -44,8 +44,8 @@ require_once('includes/component/WhatsAppWidget.php');
                         <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
                             <div class="grid lg:pt-20 lg:text-left text-center">
-                                <span class='lg:text-xl text-xs font-semibold'>E-Catalogue</span>
-                                <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
+                                <span class='lg:text-xl text-xs font-semibold'>e-Catalogue</span>
+                                <span class=''><?= $row['ProductCategoryName']; ?></span>
                             </div>
                         </a>
                     </div>
@@ -92,7 +92,7 @@ require_once('includes/component/WhatsAppWidget.php');
             <div class="swiper-wrapper">
                 <?php foreach ($OurClient->fetchOurClient() as $row) : ?>
                     <div class="swiper-slide">
-                        <div class="border mb-3">
+                        <div class="mb-3">
                             <img loading="lazy" class='w-32 h-32' src="<?= WebRootPath(); ?>admin/assets/img/ourclientphoto/<?= $row['OurClientPhoto']; ?>" decoding="async" alt="<?= $row['OurClientPhoto']; ?>">
                         </div>
                     </div>
