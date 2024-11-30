@@ -43,9 +43,9 @@ require_once('includes/component/WhatsAppWidget.php');
                     <div class='grid justify-items-center p-3 rounded-md gap-6'>
                         <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
-                            <div class="grid lg:pt-20 lg:text-left text-center">
+                            <div class="grid lg:pt-32 lg:text-left text-center">
                                 <span class='lg:text-xl text-xs font-semibold'>e-Catalogue</span>
-                                <span class=''><?= $row['ProductCategoryName']; ?></span>
+                                <span class='text-xs'><?= $row['ProductCategoryName']; ?></span>
                             </div>
                         </a>
                     </div>
