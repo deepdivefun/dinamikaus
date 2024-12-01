@@ -44,8 +44,8 @@ require_once('includes/component/WhatsAppWidget.php');
                         <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
                             <div class="grid lg:pt-32 lg:text-left text-center">
-                                <span class='lg:text-xl text-xs font-semibold'>e-Catalogue</span>
-                                <span class='text-xs'><?= $row['ProductCategoryName']; ?></span>
+                                <span class='lg:text-xl text-sm font-bold'>e-Catalogue</span>
+                                <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
                             </div>
                         </a>
                     </div>
