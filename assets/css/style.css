@@ -21,9 +21,8 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
 
 /* MODAL */
 .modal {
@@ -71,8 +70,22 @@ body {
   background: #ff2d2d;
 }
 
-.custom-bg {
-  background-image: url("../../assets/img/ARE\ YOU\ LOOKING\ FOR.png");
+.custom-bg-contact-us {
+  background-image: url("../../assets/img/background/ARE-YOU-LOOKING.png");
+  /* The image used */
+  background-color: #e9e9e9;
+  /* Used if the image is unavailable */
+  /* You must set a specified height */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
+}
+
+.custom-bg-about-us {
+  background-image: url("../../assets/img/background/ABOUT-US.jpg");
   /* The image used */
   background-color: #e9e9e9;
   /* Used if the image is unavailable */

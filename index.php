@@ -26,7 +26,7 @@ require_once('includes/component/WhatsAppWidget.php');
 <section>
     <div class='min-h-[406px] mx-6'>
         <div class='grid bg-[#e9e9e9] pb-3 place-items-center min-h-[406px] '>
-            <h1 class='text-3xl font-semibold'>Your Premium Store</h1>
+            <h1 class='text-3xl font-semibold'>&nbsp;</h1>
             <!-- <h2 class='text-xl'>Coming Soon</h2> -->
             <?php foreach ($SettingsLogo->fetchCarouselPhoto() as $row) : ?>
                 <img loading="lazy" class='lg:w-1/2 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" decoding="async" alt="<?= $row['SettingsLogoValue']; ?>">
@@ -74,7 +74,7 @@ require_once('includes/component/WhatsAppWidget.php');
 </section>
 
 
-<section data-aos="fade-up" class='mt-12 custom-bg'>
+<section data-aos="fade-up" class='mt-12 custom-bg-contact-us'>
     <div class="min-h-[600px] flex flex-col justify-center items-center text-center">
         <h1 class="text-xl lg:text-3xl mb-4">
             Are You Looking For Professional Advice
@@ -209,11 +209,14 @@ require_once('includes/component/WhatsAppWidget.php');
 </section>
 
 <section data-aos="fade-up">
-    <div class="min-h-[600px] custom-bg flex flex-col justify-center items-center text-center">
+    <div class="min-h-[600px] custom-bg-about-us flex flex-col justify-center items-center text-center">
         <h1 class="text-xl lg:text-3xl mb-4">
             About Us
         </h1>
-        <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about">Read more</a>
+        <a class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition" href="<?= WebRootPath(); ?>about">
+            Read more
+        </a>
+        <!-- <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about">Read more</a> -->
     </div>
 </section>
 
