@@ -1,6 +1,7 @@
 <?php
 $Title          = "Home";
 require_once('includes/helpers/WebRootPath.php');
+require_once('includes/component/HeaderCSP.php');
 require_once('includes/class/MetaClass.php');
 $Meta           = new Meta();
 require_once('includes/component/Header.php');
