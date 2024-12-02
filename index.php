@@ -25,12 +25,10 @@ require_once('includes/component/WhatsAppWidget.php');
 <!-- Hero -->
 <section>
     <div class='min-h-[406px] mx-6'>
-        <div class='grid bg-[#e9e9e9] pb-3 place-items-center min-h-[406px] '>
-            <h1 class='text-3xl font-semibold'>&nbsp;</h1>
+        <div class='grid bg-[#e9e9e9] py-6 place-items-center min-h-[406px] '>
+            <!-- <h1 class='text-3xl font-semibold'>&nbsp;</h1> -->
             <!-- <h2 class='text-xl'>Coming Soon</h2> -->
-            <?php foreach ($SettingsLogo->fetchCarouselPhoto() as $row) : ?>
-                <img loading="lazy" class='lg:w-1/2 w-64' src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" decoding="async" alt="<?= $row['SettingsLogoValue']; ?>">
-            <?php endforeach; ?>
+            <img loading="lazy" class='lg:w-1/2 w-64' src="assets/img/hero/CUSTOMER-BENNER-1.png" decoding="async" alt="Carousel">
         </div>
     </div>
 </section>
