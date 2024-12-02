@@ -36,12 +36,12 @@ require_once('includes/component/WhatsAppWidget.php');
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="lg:columns-1 bg-[#e9e9e9] py-6 place-items-center min-h-[406px] flex justify-center">
-                        <img loading="lazy" class="lg:w-1/2 w-64" src="assets/img/hero/CUSTOMER-BENNER-1.png" decoding="async" alt="Carousel Image 1">
+                        <img loading="lazy" class="lg:w-1/2 w-64" src="<?= WebRootPath(); ?>assets/img/hero/CUSTOMER-BENNER-1.png" decoding="async" alt="Carousel Image 1">
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="lg:columns-1 bg-[#e9e9e9] py-6 place-items-center min-h-[406px] flex justify-center">
-                        <img loading="lazy" class="lg:w-1/2 w-64" src="assets/img/hero/CUSTOMER-BENNER-2.png" decoding="async" alt="Carousel Image 2">
+                        <img loading="lazy" class="lg:w-1/2 w-64" src="<?= WebRootPath(); ?>assets/img/hero/CUSTOMER-BENNER-2.png" decoding="async" alt="Carousel Image 2">
                     </div>
                 </div>
             </div>
