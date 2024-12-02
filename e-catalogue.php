@@ -36,8 +36,8 @@ require_once('includes/component/WhatsAppWidget.php');
     <div class="my-6 grid place-content-center">
         <?php foreach ($Product->fetchProductECatalogueByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
             <h1 class="text-center mb-3 text-xl font-semibold">E-Catalogue <?= $row['ProductCategoryName']; ?></h1>
-            <object class="pdf" data="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" type="application/pdf" width="800" height="500">
-                <p>Your web browser doesn't have a PDF plugin. Instead you can <a href="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>">click here to download the PDF file.</a></p>
+            <object class="pdf" data="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" type="application/pdf" style="width: 50vw; height: 75vw;">
+                <p class="text-sm text-justify">Your web browser doesn't have a PDF plugin. Instead you can <a href="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" download>click here to download the PDF file.</a></p>
             </object>
         <?php endforeach; ?>
     </div>
