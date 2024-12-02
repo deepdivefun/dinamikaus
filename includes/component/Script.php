@@ -32,7 +32,7 @@
             slidesPerView: 2,
             spaceBetween: 30,
             pagination: {
-                el: ".swiper-pagination",
+                // el: ".swiper-pagination",
                 clickable: true,
             },
         });
@@ -46,7 +46,7 @@
             slidesPerView: 8,
             spaceBetween: 30,
             pagination: {
-                el: ".swiper-pagination",
+                // el: ".swiper-pagination",
                 clickable: true,
             },
             breakpoints: {
@@ -70,8 +70,26 @@
             slidesPerView: 2,
             spaceBetween: 30,
             pagination: {
-                el: ".swiper-pagination",
+                // el: ".swiper-pagination",
                 clickable: true,
+            },
+        });
+
+        const swiper4 = new Swiper('.swiper4', {
+            slidesPerView: 1,
+            spaceBetween: 20, // Jarak antar slide
+            loop: true, // Aktifkan looping
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
         });
     </script>

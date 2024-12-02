@@ -22,13 +22,30 @@ require_once('includes/component/SidebarMenu.php');
 require_once('includes/component/WhatsAppWidget.php');
 ?>
 
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
+
 <!-- Hero -->
 <section>
-    <div class='min-h-[406px] mx-6'>
-        <div class='grid bg-[#e9e9e9] py-6 place-items-center min-h-[406px] '>
-            <!-- <h1 class='text-3xl font-semibold'>&nbsp;</h1> -->
-            <!-- <h2 class='text-xl'>Coming Soon</h2> -->
-            <img loading="lazy" class='lg:w-1/2 w-64' src="assets/img/hero/CUSTOMER-BENNER-1.png" decoding="async" alt="Carousel">
+    <div class="min-h-[406px] mx-6">
+        <div class="swiper4 swiper4">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="lg:columns-1 bg-[#e9e9e9] py-6 place-items-center min-h-[406px] flex justify-center">
+                        <img loading="lazy" class="lg:w-1/2 w-64" src="assets/img/hero/CUSTOMER-BENNER-1.png" decoding="async" alt="Carousel Image 1">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="lg:columns-1 bg-[#e9e9e9] py-6 place-items-center min-h-[406px] flex justify-center">
+                        <img loading="lazy" class="lg:w-1/2 w-64" src="assets/img/hero/CUSTOMER-BENNER-2.png" decoding="async" alt="Carousel Image 2">
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination if needed -->
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>
