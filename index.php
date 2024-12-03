@@ -92,7 +92,7 @@ require_once('includes/component/WhatsAppWidget.php');
         <h1 class="text-xl lg:text-3xl mb-4 font-semibold">
             Are You Looking For Professional Advice
         </h1>
-        <a class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition" href="<?= WebRootPath(); ?>contact">
+        <a class="button border-2 px-3 py-1 rounded-lg bg-[#e9e9e9] hover:border-yellow-500 transition" href="<?= WebRootPath(); ?>contact">
             Contact Us
         </a>
     </div>
@@ -226,10 +226,9 @@ require_once('includes/component/WhatsAppWidget.php');
         <h1 class="text-xl lg:text-3xl mb-4">
             About Us
         </h1>
-        <a class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition" href="<?= WebRootPath(); ?>about">
+        <a class="button border-2 px-3 py-1 rounded-lg bg-[#e9e9e9] hover:border-yellow-500 transition" href="<?= WebRootPath(); ?>about">
             Read more
         </a>
-        <!-- <a class='button border-2 px-3 mt-3 rounded-lg border-gray-400 hover:border-yellow-500' href="<?= WebRootPath(); ?>about">Read more</a> -->
     </div>
 </section>
 
