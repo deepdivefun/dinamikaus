@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /assets/
+Disallow: /includes/
+Disallow: /log/
+Disallow: /utilities/
+Sitemap: https://dinamikaus.com/sitemap.xml

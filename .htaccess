@@ -1,3 +1,4 @@
+Options All -Indexes
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
@@ -12,5 +13,3 @@ RewriteRule ^login?$ login.php [NC,L]
 RewriteRule ^terms-and-conditions?$ terms-and-conditions.php [NC,L]
 RewriteRule ^privacy-policy?$ privacy-policy.php [NC,L]
 RewriteRule ^investor-relations?$ investor-relations.php [NC,L]
-
-Options All -Indexes
