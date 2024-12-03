@@ -67,7 +67,7 @@
             <div class='flex gap-6'>
                 <!-- <span>Icon</span> -->
                 <div class='gap-6'>
-                    <p class='font-semibold text-xl'>About PT Dinamika Utama Saka</p>
+                    <p class='font-semibold text-xl'>Our Company</p>
                     <ul class="grid gap-6 mt-3">
                         <li><a href="<?= WebRootPath(); ?>about">About Us</a></li>
                         <li><a href="<?= WebRootPath(); ?>contact">Contact Us</a></li>
@@ -80,7 +80,7 @@
         <div>
             <div class='flex gap-6'>
                 <div class='gap-6'>
-                    <p class='font-semibold text-xl'>Navigation</p>
+                    <p class='font-semibold text-xl'>Company Policy</p>
                     <ul class="grid gap-6 mt-3">
                         <li><a href="<?= WebRootPath(); ?>terms-and-conditions">Terms & Conditions</a></li>
                         <li><a href="<?= WebRootPath(); ?>privacy-policy">Privacy Policy</a></li>
