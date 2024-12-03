@@ -238,7 +238,6 @@ require_once('includes/component/WhatsAppWidget.php');
 
 <?php
 require_once('includes/component/Footer.php');
-require_once('includes/component/GRecaptcha.php');
 require_once('includes/component/Script.php');
 require_once('includes/component/EndFooter.php');
 ?>

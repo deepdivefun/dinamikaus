@@ -4,25 +4,14 @@
     <!-- Aos -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!-- Main JS -->
-    <script src="<?= WebRootPath(); ?>assets/js/main.js"></script>
-
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Google Recaptcha V3 -->
+    <!-- Swipper -->
     <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute("6Lco2AAjAAAAADY72bwy6ijVK9JYWkr_c6TmfRGC", {
-                action: "submit"
-            }).then(function(GToken) {
-                document.getElementById("GToken").value = GToken;
-            })
-        });
-
         var swiper = new Swiper(".swipper", {
             loop: true,
             autoplay: {
@@ -91,5 +80,33 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+        });
+    </script>
+
+    <!-- Cokkie Consent -->
+    <script type="text/javascript" src="https://cookieconsent.popupsmart.com/src/js/popper.js"></script>
+    <script>
+        window.start.init({
+            Palette: 'palette4',
+            Mode: 'floating right',
+            Theme: 'edgeless',
+            ButtonText: 'Accept All',
+            Message: 'We use cookies to enhance your browsing experience, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.',
+            Location: 'https://dinamikaus.com/',
+            Time: '5',
+        })
+    </script>
+
+    <!-- Main JS -->
+    <script src="<?= WebRootPath(); ?>assets/js/main.js"></script>
+
+    <!-- Google Recaptcha V3 -->
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute("6Lco2AAjAAAAADY72bwy6ijVK9JYWkr_c6TmfRGC", {
+                action: "submit"
+            }).then(function(GToken) {
+                document.getElementById("GToken").value = GToken;
+            })
         });
     </script>
