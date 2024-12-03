@@ -92,7 +92,7 @@ require_once('includes/component/WhatsAppWidget.php');
 
 <section data-aos="fade-up" class='mt-12 custom-bg-contact-us'>
     <div class="min-h-[600px] flex flex-col justify-center items-center text-center">
-        <h1 class="text-xl lg:text-3xl mb-4">
+        <h1 class="text-xl lg:text-3xl mb-4 font-semibold">
             Are You Looking For Professional Advice
         </h1>
         <a class="button border-2 px-3 py-2 rounded-lg bg-[#e9e9e9] hover:border-gray-500 transition" href="<?= WebRootPath(); ?>contact">

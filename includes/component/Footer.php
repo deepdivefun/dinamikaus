@@ -79,11 +79,10 @@
             <div>
                 <div class='flex gap-6'>
                     <div class=' gap-6 '>
-                        <p class='font-semibold text-xl'>Layanan</p>
+                        <p class='font-semibold text-xl'>Navigation</p>
                         <ul class="grid gap-6 mt-3">
-                            <li>layanan 1</li>
-                            <li>layanan 2</li>
-                            <li>layanan 3</li>
+                            <li><a href="terms-and-conditions">Terms & Conditions</a></li>
+                            <li><a href="privacy-policy">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -92,16 +91,16 @@
                 <div class='grid'>
                     <!-- <span>Icon</span> -->
                     <div class=''>
-                        <p class='font-semibold'>Payment Method</p>
-                        <div class="grid grid-cols-3">
+                        <p class='font-semibold text-xl'>Payment Method</p>
+                        <div class="grid grid-cols-3 mt-3">
                             <?php foreach ($PaymentLogo->fetchPaymentLogo() as $row) : ?>
                                 <img loading="lazy" class="w-12 h-12" src="<?= WebRootPath(); ?>admin/assets/img/paymentlogo/<?= $row['PaymentPhoto']; ?>" class='w-20 h-20 mr-3' decoding="async" alt="<?= $row['PaymentPhoto']; ?>">
                             <?php endforeach; ?>
                         </div>
                     </div>
                     <div class=''>
-                        <p class='font-semibold'>Shipping</p>
-                        <div class="grid grid-cols-3">
+                        <p class='font-semibold text-xl'>Shipping</p>
+                        <div class="grid grid-cols-3 mt-3">
                             <?php foreach ($ShippingLogo->fetchShippingLogo() as $row) : ?>
                                 <img loading="lazy" class="w-12 h-12" src="<?= WebRootPath(); ?>admin/assets/img/shippinglogo/<?= $row['ShippingPhoto']; ?>" class='w-20 h-20 mr-3' decoding="async" alt="<?= $row['ShippingPhoto']; ?>">
                             <?php endforeach; ?>

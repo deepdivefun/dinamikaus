@@ -9,5 +9,7 @@ RewriteRule ^about?$ about.php [NC,L]
 RewriteRule ^contact?$ contact.php [NC,L]
 RewriteRule ^e-catalogue/([a-zA-Z0-9]+) e-catalogue.php?page=$1 [NC,L]
 RewriteRule ^login?$ login.php [NC,L]
+RewriteRule ^terms-and-conditions?$ terms-and-conditions.php [NC,L]
+RewriteRule ^privacy-policy?$ privacy-policy.php [NC,L]
 
 Options All -Indexes
