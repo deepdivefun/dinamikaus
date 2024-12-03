@@ -31,19 +31,16 @@ require_once('includes/component/WhatsAppWidget.php');
 
 <!-- Hero -->
 <section>
-    <div class="min-h-[406px] mx-6">
+    <div class="lg:min-h-[406px] min-h-[300px]">
         <div class="swiper4 swiper4">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="lg:columns-1 bg-[#e9e9e9] py-6 place-items-center min-h-[406px] flex justify-center">
-                        <img loading="lazy" class="lg:w-1/2 w-64" src="<?= WebRootPath(); ?>assets/img/hero/CUSTOMER-BENNER-1.png" decoding="async" alt="Carousel Image 1">
-                    </div>
+                <div class="swiper-slide place-items-center min-h-[300px] flex justify-center">
+                    <img loading="lazy" class="h-[500px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS-FULL.png" decoding="async" alt="Carousel Image 1">
                 </div>
-                <div class="swiper-slide">
-                    <div class="lg:columns-1 bg-[#e9e9e9] py-6 place-items-center min-h-[406px] flex justify-center">
-                        <img loading="lazy" class="lg:w-1/2 w-64" src="<?= WebRootPath(); ?>assets/img/hero/CUSTOMER-BENNER-2.png" decoding="async" alt="Carousel Image 2">
-                    </div>
+                <div class="swiper-slide place-items-center min-h-[300px] flex justify-center">
+                    <img loading="lazy" class="h-[500px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS.png" decoding="async" alt="Carousel Image 2">
                 </div>
+
             </div>
             <!-- Add Pagination if needed -->
             <div class="swiper-pagination"></div>
@@ -51,11 +48,11 @@ require_once('includes/component/WhatsAppWidget.php');
     </div>
 </section>
 
-<div class="swiper swipper mx-6">
+<div class="swiper swipper mx-6 pt-3">
     <div class="swiper-wrapper">
         <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
             <div class="swiper-slide">
-                <div class='lg:columns-2 gap-3 mt-6 bg-[#e9e9e9]'>
+                <div class='lg:columns-2 gap-3 lg:mt-6 mt-0 bg-[#e9e9e9]'>
                     <div class='grid justify-items-center p-3 rounded-md gap-6'>
                         <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
                             <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">

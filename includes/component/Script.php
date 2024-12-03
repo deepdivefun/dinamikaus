@@ -77,7 +77,7 @@
 
         const swiper4 = new Swiper('.swiper4', {
             slidesPerView: 1,
-            spaceBetween: 20, // Jarak antar slide
+            spaceBetween: 25, // Jarak antar slide
             loop: true, // Aktifkan looping
             pagination: {
                 el: '.swiper-pagination',
