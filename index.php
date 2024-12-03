@@ -22,7 +22,6 @@ $ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 require_once('includes/component/WhatsAppWidget.php');
 ?>
-
 <style>
     body {
         overflow-x: hidden;
@@ -35,12 +34,11 @@ require_once('includes/component/WhatsAppWidget.php');
         <div class="swiper4 swiper4">
             <div class="swiper-wrapper">
                 <div class="swiper-slide place-items-center min-h-[300px] flex justify-center">
-                    <img loading="lazy" class="h-[500px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS-FULL.png" decoding="async" alt="Carousel Image 1">
+                    <img loading="lazy" class="h-[550px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS-FULL.png" decoding="async" alt="Carousel Image 1">
                 </div>
                 <div class="swiper-slide place-items-center min-h-[300px] flex justify-center">
-                    <img loading="lazy" class="h-[500px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS.png" decoding="async" alt="Carousel Image 2">
+                    <img loading="lazy" class="h-[550px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS.png" decoding="async" alt="Carousel Image 2">
                 </div>
-
             </div>
             <!-- Add Pagination if needed -->
             <div class="swiper-pagination"></div>
@@ -48,25 +46,27 @@ require_once('includes/component/WhatsAppWidget.php');
     </div>
 </section>
 
-<div class="swiper swipper mx-6 pt-3">
-    <div class="swiper-wrapper">
-        <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
-            <div class="swiper-slide">
-                <div class='lg:columns-2 gap-3 lg:mt-6 mt-0 bg-[#e9e9e9]'>
-                    <div class='grid justify-items-center p-3 rounded-md gap-6'>
-                        <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
-                            <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
-                            <div class="grid lg:pt-32 lg:text-left text-center">
-                                <span class='lg:text-xl text-sm font-bold'>e-Catalogue</span>
-                                <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
-                            </div>
-                        </a>
+<section>
+    <div class="swiper swipper mx-6 pt-3">
+        <div class="swiper-wrapper">
+            <?php foreach ($Product->fetchProductECatalogue() as $row) : ?>
+                <div class="swiper-slide">
+                    <div class='lg:columns-2 gap-3 lg:mt-6 mt-0 bg-[#e9e9e9]'>
+                        <div class='grid justify-items-center p-3 rounded-md gap-6'>
+                            <a href="<?= WebRootPath(); ?>e-catalogue/<?= Encryptor('encrypt', $row['ProductCategoryID']); ?>">
+                                <img loading="lazy" class='pb-3' src="<?= WebRootPath(); ?>admin/assets/img/productcategoryphoto/<?= $row['ProductCategoryPhoto']; ?>" decoding="async" alt="<?= $row['ProductCategoryPhoto']; ?>">
+                                <div class="grid lg:pt-32 lg:text-left text-center">
+                                    <span class='lg:text-xl text-sm font-bold'>e-Catalogue</span>
+                                    <span class='lg:text-xl text-xs'><?= $row['ProductCategoryName']; ?></span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
-</div>
+</section>
 
 <section data-aos="fade-up">
     <div class="my-6 mx-6">
@@ -85,7 +85,6 @@ require_once('includes/component/WhatsAppWidget.php');
         </div>
     </div>
 </section>
-
 
 <section data-aos="fade-up" class='mt-12 custom-bg-contact-us'>
     <div class="min-h-[600px] flex flex-col justify-center items-center text-center">
@@ -231,7 +230,6 @@ require_once('includes/component/WhatsAppWidget.php');
         </a>
     </div>
 </section>
-
 <?php
 require_once('includes/component/Footer.php');
 require_once('includes/component/Script.php');

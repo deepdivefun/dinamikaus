@@ -18,32 +18,31 @@ $ShippingLogo   = new ShippingLogo();
 require_once('includes/component/SidebarMenu.php');
 require_once('includes/component/WhatsAppWidget.php');
 ?>
+<section>
+    <div class='lg:mx-8 mx-6 mt-6'>
+        <nav class="bg-grey-light w-full rounded-md">
+            <ol class="list-reset flex gap-1 text-sm/[20px]">
+                <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
+                <li><span class="mx-2 text-neutral-400">></span>
+                </li>
+                <li>
+                    <?php foreach ($Product->fetchProductECatalogueByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
+                        <a href="javascript:void(0)" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">E-Catalogue <?= $row['ProductCategoryName']; ?></a>
+                    <?php endforeach; ?>
+                </li>
+            </ol>
+        </nav>
 
-<div class='lg:mx-8 mx-6 mt-6'>
-    <nav class="bg-grey-light w-full rounded-md">
-        <ol class="list-reset flex gap-1 text-sm/[20px]">
-            <li class="hover:text-yellow-500"><a href="<?= WebRootPath(); ?>index" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">Home</a></li>
-            <li><span class="mx-2 text-neutral-400">></span>
-            </li>
-            <li>
-                <?php foreach ($Product->fetchProductECatalogueByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
-                    <a href="javascript:void(0)" class="text-primary transition duration-150 ease-in-out hover:text-primary-accent-300 focus:text-primary-accent-300 active:text-primary-accent-300 motion-reduce:transition-none dark:text-primary-400">E-Catalogue <?= $row['ProductCategoryName']; ?></a>
-                <?php endforeach; ?>
-            </li>
-        </ol>
-    </nav>
-
-    <div class="my-6 grid place-content-center">
-        <?php foreach ($Product->fetchProductECatalogueByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
-            <h1 class="text-center mb-3 text-xl font-semibold">E-Catalogue <?= $row['ProductCategoryName']; ?></h1>
-            <object class="pdf" data="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" type="application/pdf" style="width: 50vw; height: 75vw;">
-                <p class="text-sm text-justify">Your web browser doesn't have a PDF plugin. Instead you can <a href="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" download>click here to download the PDF file.</a></p>
-            </object>
-        <?php endforeach; ?>
+        <div class="my-6 grid place-content-center">
+            <?php foreach ($Product->fetchProductECatalogueByID(Encryptor('decrypt', $_GET['page'])) as $row) : ?>
+                <h1 class="text-center mb-3 text-xl font-semibold">E-Catalogue <?= $row['ProductCategoryName']; ?></h1>
+                <object class="pdf" data="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" type="application/pdf" style="width: 50vw; height: 75vw;">
+                    <p class="text-sm text-justify">Your web browser doesn't have a PDF plugin. Instead you can <a href="<?= WebRootPath(); ?>admin/assets/catalog/<?= $row['ProductCategoryCatalog']; ?>" download>click here to download the PDF file.</a></p>
+                </object>
+            <?php endforeach; ?>
+        </div>
     </div>
-
-</div>
-
+</section>
 <?php
 require_once('includes/component/GRecaptcha.php');
 require_once('includes/component/Footer.php');
