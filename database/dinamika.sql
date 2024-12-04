@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2024 at 03:20 PM
+-- Generation Time: Dec 04, 2024 at 03:43 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -123,7 +123,19 @@ INSERT INTO `tbl_eventlog` (`EventLogID`, `EventLogTimeStamp`, `EventLogUser`, `
 (49, '2024-12-02 05:43:34', 'kevinarlo', 'Update Product Epson EcoTank L15180 A3 Wi-Fi Duplex'),
 (50, '2024-12-02 05:44:02', 'kevinarlo', 'Update Product Epson LX-310 Dot Matrix Printer'),
 (51, '2024-12-02 05:44:32', 'kevinarlo', 'Update Product Epson LQ-2190 Dot Matrix Printer'),
-(52, '2024-12-02 05:44:50', 'kevinarlo', 'Update Product Epson LQ-310 Dot Matrix Printer');
+(52, '2024-12-02 05:44:50', 'kevinarlo', 'Update Product Epson LQ-310 Dot Matrix Printer'),
+(53, '2024-12-04 12:17:20', 'kevinarlo', 'kevinarlo is logged in'),
+(54, '2024-12-04 12:17:29', 'kevinarlo', 'Update Meta google-site-verification'),
+(55, '2024-12-04 12:45:45', 'kevinarlo', 'Update Meta description'),
+(56, '2024-12-04 12:58:17', 'kevinarlo', 'Update Meta keywords'),
+(57, '2024-12-04 12:59:11', 'kevinarlo', 'Update Meta author'),
+(58, '2024-12-04 12:59:18', 'kevinarlo', 'Update Meta Title Tags'),
+(59, '2024-12-04 13:01:03', 'kevinarlo', 'kevinarlo has logged out'),
+(60, '2024-12-04 13:41:24', 'kevinarlo', 'kevinarlo is logged in'),
+(61, '2024-12-04 13:47:13', 'kevinarlo', 'kevinarlo has logged out'),
+(62, '2024-12-04 13:59:40', 'kevinarlo', 'kevinarlo is logged in'),
+(63, '2024-12-04 13:59:56', 'kevinarlo', 'Update Settings Logo Logo Header or Navbar'),
+(64, '2024-12-04 14:00:11', 'kevinarlo', 'kevinarlo has logged out');
 
 -- --------------------------------------------------------
 
@@ -147,14 +159,14 @@ CREATE TABLE `tbl_meta` (
 --
 
 INSERT INTO `tbl_meta` (`MetaID`, `StatusID`, `Name`, `Content`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'author', 'Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:33:09', NULL, NULL),
-(2, 1, 'description', '', 'kevinarlo', '2024-10-02 11:35:48', NULL, NULL),
+(1, 1, 'author', 'PT Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:33:09', 'kevinarlo', '2024-12-04 12:59:11'),
+(2, 1, 'description', 'PT Dinamika Utama Saka berkomitmen memberikan produk berkualitas dan layanan efisien dengan harga terbaik. Solusi yang tepat sesuai kebutuhan Anda.', 'kevinarlo', '2024-10-02 11:35:48', 'kevinarlo', '2024-12-04 12:45:46'),
 (3, 1, 'robots', 'index, follow', 'kevinarlo', '2024-10-02 11:36:13', NULL, NULL),
 (4, 1, 'googlebot', 'index, follow', 'kevinarlo', '2024-10-02 11:36:37', NULL, NULL),
 (5, 1, 'googlebot-news', 'nosnippet', 'kevinarlo', '2024-10-02 11:36:58', NULL, NULL),
-(6, 1, 'google-site-verification', '', 'kevinarlo', '2024-10-02 11:37:13', NULL, NULL),
-(7, 1, 'keywords', '', 'kevinarlo', '2024-10-02 11:37:25', NULL, NULL),
-(8, 1, 'Title Tags', 'Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:37:49', NULL, NULL),
+(6, 1, 'google-site-verification', 'WkjS9CnHnytOJ8LDJLUNcTuwudwwW0izE8Yw1MiRQHg', 'kevinarlo', '2024-10-02 11:37:13', 'kevinarlo', '2024-12-04 12:17:29'),
+(7, 1, 'keywords', 'harga lap top, laptop notebook, bagus laptop, monitor laptop, laptop kerja, printer, epson printer, canon printer, thermal printer, hp printer, proyektor, monitor pc, mouse, wireless mouse, logitech mouse, keyboard pc, pc gaming, mini pc gaming, case pc gaming, kursi gaming, harga kursi gaming, keyboard pc gaming, harga keyboard pc gaming, best keyboard pc gaming, wireless keyboard pc gaming', 'kevinarlo', '2024-10-02 11:37:25', 'kevinarlo', '2024-12-04 12:58:17'),
+(8, 1, 'Title Tags', 'PT Dinamika Utama Saka', 'kevinarlo', '2024-10-02 11:37:49', 'kevinarlo', '2024-12-04 12:59:19'),
 (9, 1, 'viewport', 'width=device-width, initial-scale=1.0', 'kevinarlo', '2024-10-02 11:38:10', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -543,7 +555,7 @@ CREATE TABLE `tbl_settings_logo` (
 --
 
 INSERT INTO `tbl_settings_logo` (`SettingsLogoID`, `StatusID`, `SettingsLogoName`, `SettingsLogoValue`, `CreateBy`, `CreateTime`, `UpdateBy`, `UpdateTime`) VALUES
-(1, 1, 'Logo Header or Navbar', '6720bb6b1c4d9-2024-10-29-logo.png', 'kevinarlo', '2024-10-29 09:16:40', 'kevinarlo', '2024-10-29 10:39:40'),
+(1, 1, 'Logo Header or Navbar', '6750605c050a9-2024-12-04-logo-dinamikaus.png', 'kevinarlo', '2024-10-29 09:16:40', 'kevinarlo', '2024-12-04 13:59:56'),
 (2, 1, 'Logo Footer', '673c798a3e475-2024-11-19-logo_1.png', 'kevinarlo', '2024-10-29 10:20:19', 'kevinarlo', '2024-11-19 11:42:02'),
 (3, 1, 'Logo Login Page', '67222c78b36f9-2024-10-30-logo.png', 'kevinarlo', '2024-10-30 12:54:17', NULL, NULL),
 (4, 1, 'Carousel Photo', '673d79ff4db9e-2024-11-20-Yours Premium Store.png', 'kevinarlo', '2024-10-30 13:20:33', 'kevinarlo', '2024-11-20 05:56:15');
@@ -834,7 +846,7 @@ ALTER TABLE `tbl_contact`
 -- AUTO_INCREMENT for table `tbl_eventlog`
 --
 ALTER TABLE `tbl_eventlog`
-  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `EventLogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `tbl_meta`
