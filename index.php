@@ -34,14 +34,12 @@ require_once('includes/component/WhatsAppWidget.php');
         <div class="swiper4 swiper4">
             <div class="swiper-wrapper">
                 <div class="swiper-slide place-items-center min-h-[300px] flex justify-center">
-                    <img loading="lazy" class="h-[550px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS-FULL.png" decoding="async" alt="Carousel Image 1">
+                    <img loading="lazy" class="lg:h-[550px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS-FULL.png" decoding="async" alt="Carousel Image 1">
                 </div>
                 <div class="swiper-slide place-items-center min-h-[300px] flex justify-center">
-                    <img loading="lazy" class="h-[550px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS.png" decoding="async" alt="Carousel Image 2">
+                    <img loading="lazy" class="lg:h-[550px] w-full" src="<?= WebRootPath(); ?>assets/img/hero/NEW-BANNER-ATAS.png" decoding="async" alt="Carousel Image 2">
                 </div>
             </div>
-            <!-- Add Pagination if needed -->
-            <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>
