@@ -1,12 +1,12 @@
       <div style="position: absolute; z-index: 11; " id="menu" class="menu">
           <div class="menu-content bg-white">
               <ul class="mx-6 my-6 gap-6 grid">
-                  <li class="flex justify-between"><a href="<?= WebRootPath(); ?>index">Home</a> <span> &#10095;</span> </li>
+                  <li class="flex justify-between"><a href="<?= WebRootPath(); ?>index">Home</a> <span><i class="fa-solid fa-chevron-right"></i></span></li>
                   <li class="flex justify-between">
                       <button onclick="toggleMenu()">
                           Product
                       </button>
-                      <span> &#10095;</span>
+                      <span> <i class="fa-solid fa-chevron-right"></i></span>
                   </li>
 
                   <div class="dropdown-content-sidebar" id="dropdown-content-sidebar">
@@ -21,13 +21,13 @@
                           <?php endforeach; ?>
                       </div>
                   </div>
-                  <li class="flex justify-between"><a href="<?= WebRootPath(); ?>about">About</a> <span> &#10095;</span> </li>
-                  <li class="flex justify-between"><a href="<?= WebRootPath(); ?>contact">Contact</a> <span> &#10095;</span> </li>
+                  <li class="flex justify-between"><a href="<?= WebRootPath(); ?>about">About</a> <span> <i class="fa-solid fa-chevron-right"></i></span> </li>
+                  <li class="flex justify-between"><a href="<?= WebRootPath(); ?>contact">Contact</a> <span> <i class="fa-solid fa-chevron-right"></i></span> </li>
               </ul>
           </div>
       </div>
 
-      <style>
+      <!-- <style>
           .menu {
               position: fixed;
               left: -100%;
@@ -71,9 +71,9 @@
               z-index: 15;
               /* On top */
           }
-      </style>
+      </style> -->
 
-      <script>
+      <!-- <script>
           const menuButton = document.getElementById("menuButton");
           const menu = document.getElementById("menu");
 
@@ -99,4 +99,4 @@
                   dropdown.style.display = "block";
               }
           }
-      </script>
+      </script> -->

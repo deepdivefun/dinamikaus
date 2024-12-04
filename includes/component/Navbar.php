@@ -1,5 +1,5 @@
 <div class='bg-black' style="position: relative;">
-    <div class='mx-6 hidden lg:block '>
+    <div class='mx-6 hidden lg:block'>
         <div class="flex justify-between">
             <a href="<?= WebRootPath(); ?>index">
                 <?php foreach ($SettingsLogo->fetchLogoHeaderorNavbar() as $row) : ?>
