@@ -178,7 +178,7 @@ require_once('includes/component/WhatsAppWidget.php');
 <section class='mt-6 mx-3 lg:mx-6' data-aos="fade-up">
     <div class=''>
         <h2 class='font-semibold text-2xl text-center'>Testimonial</h2>
-        <button class="border lg:px-3 p-1 bg-gray-200 rounded-md text-black hover:bg-gray-400" id="openModal">Give Testimonial</button>
+        <button class="border lg:px-3 p-1 bg-gray-200 rounded-md text-black hover:bg-gray-400 mt-3" id="openModal">Give Testimonial</button>
         <div class='mt-5'>
             <div class="swiper swipper3">
                 <div class="swiper-wrapper">
@@ -186,11 +186,10 @@ require_once('includes/component/WhatsAppWidget.php');
                         <div class="swiper-slide">
                             <div class='rounded-md grid gap-3 p-3'>
                                 <div class='lg:flex'>
-                                    <img class='w-16 h-16 rounded-full' src=" https://eu.ui-avatars.com/api/?name=<?= $row['FullName'] ?>">
-                                    <!-- <img class='w-16 h-16 rounded-full' src="<?= WebRootPath(); ?>assets/img/sundar_pichay.jpg" alt=""> -->
+                                    <img class='w-16 h-16 rounded-full me-3' src=" https://eu.ui-avatars.com/api/?name=<?= $row['FullName'] ?>">
                                     <div class="grid">
-                                        <h3 class='m-3'><?= $row['FullName']; ?></h3>
-                                        <h3 class='m-3'><?= $row['Company']; ?></h3>
+                                        <h3 class='mb-2'><?= $row['FullName']; ?></h3>
+                                        <h3 class='mb-0'><?= $row['Company']; ?></h3>
                                     </div>
                                 </div>
                                 <span>
