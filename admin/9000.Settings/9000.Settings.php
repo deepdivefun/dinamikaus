@@ -41,9 +41,6 @@ if (!SYSAdmin() and !AppAdmin()) {
             echo    '<button type="button" class="btn btn-outline-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addSettings">
                         Create Settings
                     </button>';
-        } else {
-            echo    'You do not have access rights to add settings';
-            die();
         }
 
         // Add Modal
@@ -83,9 +80,6 @@ if (!SYSAdmin() and !AppAdmin()) {
                             </div>
                         </div>
                     </div>';
-        } else {
-            echo    'You do not have access rights to add settings';
-            die();
         }
         ?>
 

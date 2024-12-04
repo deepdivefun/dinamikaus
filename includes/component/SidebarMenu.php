@@ -27,7 +27,7 @@
           </div>
       </div>
 
-      <!-- <style>
+      <style>
           .menu {
               position: fixed;
               left: -100%;
@@ -71,9 +71,9 @@
               z-index: 15;
               /* On top */
           }
-      </style> -->
+      </style>
 
-      <!-- <script>
+      <script>
           const menuButton = document.getElementById("menuButton");
           const menu = document.getElementById("menu");
 
@@ -99,4 +99,4 @@
                   dropdown.style.display = "block";
               }
           }
-      </script> -->
+      </script>
