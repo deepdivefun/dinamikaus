@@ -4,7 +4,7 @@ function VerifyRecaptchaToken($GToken)
 
     $Treshold = 0.5; // Score must be > threshold to pass captcha.
     // Default is 0.5, although the majority of users will get 0.9
-    $Sites  = ["localhost", "dev.dinamikaus.com"]; // Site names string, e.g. sub.domain.com:8080
+    $Sites  = ["localhost", "dev.dinamikaus.com", "dinamikaus.com"]; // Site names string, e.g. sub.domain.com:8080
 
     $Secret = "6Le51QAjAAAAADkbmRI3I6t27aiktAezv6ObrVAi";
     $URL    = "https://www.google.com/recaptcha/api/siteverify";
