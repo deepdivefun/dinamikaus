@@ -10,7 +10,7 @@
                 <li><a href="<?= WebRootPath(); ?>index">Home</a></li>
                 <li><button onmouseover="mouseOver()" onmouseout="mouseOut()">
                         <a href="javascript:void(0)">Products</a>
-                        <div class="dropdown-content" id="dropdown-content">
+                        <div class="dropdown-content mt-7" id="dropdown-content">
                             <div class="flex gap-12 justify-center my-6">
                                 <?php foreach ($Product->fetchProductNavbar() as $row) : ?>
                                     <div class='grid'>
@@ -22,7 +22,8 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                    </button></li>
+                    </button>
+                </li>
                 <li><a href="<?= WebRootPath(); ?>about">About</a></li>
                 <li><a href="<?= WebRootPath(); ?>contact">Contact</a></li>
             </ul>
