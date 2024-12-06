@@ -51,7 +51,7 @@ require_once('includes/component/SidebarMenu.php');
 </section>
 
 <section data-aos="fade-up">
-    <div class="min-h-[600px] custom-bg-investor flex flex-col justify-center items-center text-center">
+    <div class="lg:min-h-[600px] min-h-[300px] custom-bg-investor flex flex-col justify-center items-center text-center">
         <h1 class="text-xl lg:text-3xl mb-4 font-semibold">
             Investor
         </h1>
