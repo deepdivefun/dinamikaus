@@ -26,6 +26,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -103,17 +104,16 @@ async function createTeam() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
           fetch_data();
+          $("#addTeam").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addTeam").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -121,7 +121,7 @@ async function createTeam() {
   });
 }
 
-$(document).on("click", ".editTeam", function () {
+$(document).on("click", ".editTeam", async function () {
   var TEAMID = $(this).attr("TeamID");
   var STATUSID = $(this).attr("StatusID");
   var FULLNAME = $(this).attr("FullName");
@@ -204,17 +204,16 @@ async function updateTeam() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
           fetch_data();
+          $("#editTeam").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editTeam").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -222,7 +221,7 @@ async function updateTeam() {
   });
 }
 
-$(document).on("click", ".deleteTeam", function () {
+$(document).on("click", ".deleteTeam", async function () {
   var TEAMID = $(this).attr("TeamID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -241,14 +240,15 @@ $(document).on("click", ".deleteTeam", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -257,7 +257,7 @@ $(document).on("click", ".deleteTeam", function () {
   }
 });
 
-$(document).on("click", ".activeTeam", function () {
+$(document).on("click", ".activeTeam", async function () {
   var TEAMID = $(this).attr("TeamID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -276,14 +276,15 @@ $(document).on("click", ".activeTeam", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -292,7 +293,7 @@ $(document).on("click", ".activeTeam", function () {
   }
 });
 
-$(document).on("click", ".debugTeam", function () {
+$(document).on("click", ".debugTeam", async function () {
   var TEAMID = $(this).attr("TeamID");
   alert("DEBUG INFO\n\rTeamID : " + TEAMID);
 });

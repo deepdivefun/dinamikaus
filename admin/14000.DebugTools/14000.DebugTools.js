@@ -20,13 +20,14 @@ async function truncateEventLog() {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Truncate Success");
+            alert(data.replace("Truncate Success", ""));
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
+        window.location.reload();
       },
       error: function () {
         alert("Error");

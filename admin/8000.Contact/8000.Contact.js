@@ -24,6 +24,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -93,16 +94,16 @@ async function createContact() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addContact").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addContact").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -110,7 +111,7 @@ async function createContact() {
   });
 }
 
-$(document).on("click", ".editContact", function () {
+$(document).on("click", ".editContact", async function () {
   var CONTACTID = $(this).attr("ContactID");
   var STATUSID = $(this).attr("StatusID");
   var CONTACTNAMEAREA = $(this).attr("ContactNameArea");
@@ -185,16 +186,16 @@ async function updateContact() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
+          fetch_data();
+          $("#editContact").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editContact").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -202,7 +203,7 @@ async function updateContact() {
   });
 }
 
-$(document).on("click", ".deleteContact", function () {
+$(document).on("click", ".deleteContact", async function () {
   var CONTACTID = $(this).attr("ContactID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -221,14 +222,15 @@ $(document).on("click", ".deleteContact", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -237,7 +239,7 @@ $(document).on("click", ".deleteContact", function () {
   }
 });
 
-$(document).on("click", ".activeContact", function () {
+$(document).on("click", ".activeContact", async function () {
   var CONTACTID = $(this).attr("ContactID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -256,14 +258,15 @@ $(document).on("click", ".activeContact", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -272,7 +275,7 @@ $(document).on("click", ".activeContact", function () {
   }
 });
 
-$(document).on("click", ".debugContact", function () {
+$(document).on("click", ".debugContact", async function () {
   var CONTACTID = $(this).attr("ContactID");
   alert("DEBUG INFO\n\rContactID : " + CONTACTID);
 });

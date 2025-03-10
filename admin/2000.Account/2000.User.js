@@ -28,6 +28,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -120,16 +121,16 @@ async function createUser() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addUser").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addUser").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -137,7 +138,7 @@ async function createUser() {
   });
 }
 
-$(document).on("click", ".editUser", function () {
+$(document).on("click", ".editUser", async function () {
   var USERID = $(this).attr("UserID");
   var ROLEID = $(this).attr("RoleID");
   var STATUSID = $(this).attr("StatusID");
@@ -216,16 +217,16 @@ async function updateUser() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
+          fetch_data();
+          $("#editUser").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editUser").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -233,7 +234,7 @@ async function updateUser() {
   });
 }
 
-$(document).on("click", ".deleteUser", function () {
+$(document).on("click", ".deleteUser", async function () {
   var USERID = $(this).attr("UserID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -252,14 +253,15 @@ $(document).on("click", ".deleteUser", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -268,7 +270,7 @@ $(document).on("click", ".deleteUser", function () {
   }
 });
 
-$(document).on("click", ".activeUser", function () {
+$(document).on("click", ".activeUser", async function () {
   var USERID = $(this).attr("UserID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -287,14 +289,15 @@ $(document).on("click", ".activeUser", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -303,7 +306,7 @@ $(document).on("click", ".activeUser", function () {
   }
 });
 
-$(document).on("click", ".debugUser", function () {
+$(document).on("click", ".debugUser", async function () {
   var USERID = $(this).attr("UserID");
   alert("DEBUG INFO\n\rUserID : " + USERID);
 });

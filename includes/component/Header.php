@@ -11,8 +11,9 @@
 
     <title>PT. Dinamika Utama Saka - <?= $Title; ?></title>
 
-    <link rel="icon" type="image/x-icon" href="<?= WebRootPath(); ?>assets/img/favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="<?= WebRootPath(); ?>assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= WebRootPath(); ?>assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="<?= WebRootPath(); ?>assets/img/favicon/favicon.ico">
 
     <link rel="preconnect" href="https://www.google.com" />
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin />

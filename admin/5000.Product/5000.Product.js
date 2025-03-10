@@ -11,6 +11,7 @@ async function fetch_data() {
   var PRODUCTCATEGORYID = document.getElementById(
     "FilterProductCategoryID"
   ).value;
+  var PRODUCTBRANDID = document.getElementById("FilterProductBrandID").value;
   var PRODUCTNAME = document.getElementById("FilterProductName").value;
   var GTOKEN = document.getElementById("GToken").value;
 
@@ -20,6 +21,7 @@ async function fetch_data() {
     data: {
       StatusID: STATUSID,
       ProductCategoryID: PRODUCTCATEGORYID,
+      ProductBrandID: PRODUCTBRANDID,
       ProductName: PRODUCTNAME,
       GToken: GTOKEN,
     },
@@ -28,6 +30,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -63,6 +66,7 @@ async function createProduct() {
   var FD = new FormData();
 
   var PRODUCTCATEGORYID = $("#ProductCategoryID").val();
+  var PRODUCTBRANDID = $("#ProductBrandID").val();
   var STATUSID = $("#StatusID").val();
   var PRODUCTNAME = $("#ProductName").val();
   var PRODUCTPRICE = $("#ProductPrice").val();
@@ -72,6 +76,7 @@ async function createProduct() {
   var GTOKEN = $("#GToken").val();
 
   FD.append("ProductCategoryID", PRODUCTCATEGORYID);
+  FD.append("ProductBrandID", PRODUCTBRANDID);
   FD.append("StatusID", STATUSID);
   FD.append("ProductName", PRODUCTNAME);
   FD.append("ProductPrice", PRODUCTPRICE);
@@ -81,15 +86,23 @@ async function createProduct() {
   FD.append("GToken", GTOKEN);
 
   if (PRODUCTCATEGORYID == "") {
-    alert("Please select Status");
+    alert("Please select Product Category");
+    return;
+  }
+
+  if (PRODUCTBRANDID == "") {
+    alert("Please select Product Brand Name");
+    return;
   }
 
   if (STATUSID == "") {
     alert("Please select Status");
+    return;
   }
 
   if (PRODUCTNAME === "") {
     alert("Please enter Product Name");
+    return;
   }
 
   $.ajax({
@@ -102,17 +115,16 @@ async function createProduct() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
           fetch_data();
+          $("#addProduct").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addProduct").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -120,9 +132,10 @@ async function createProduct() {
   });
 }
 
-$(document).on("click", ".editProduct", function () {
+$(document).on("click", ".editProduct", async function () {
   var PRODUCTID = $(this).attr("ProductID");
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
+  var PRODUCTBRANDID = $(this).attr("ProductBrandID");
   var STATUSID = $(this).attr("StatusID");
   var PRODUCTNAME = $(this).attr("ProductName");
   var PRODUCTPRICE = $(this).attr("ProductPrice");
@@ -131,6 +144,7 @@ $(document).on("click", ".editProduct", function () {
 
   $("#EditProductID").val(PRODUCTID);
   $("#EditProductCategoryID").val(PRODUCTCATEGORYID);
+  $("#EditProductBrandID").val(PRODUCTBRANDID);
   $("#EditStatusID").val(STATUSID);
   $("#EditProductName").val(PRODUCTNAME);
   $("#EditProductPrice").val(PRODUCTPRICE);
@@ -153,6 +167,7 @@ async function updateProduct() {
 
   var PRODUCTID = $("#EditProductID").val();
   var PRODUCTCATEGORYID = $("#EditProductCategoryID").val();
+  var PRODUCTBRANDID = $("#EditProductBrandID").val();
   var STATUSID = $("#EditStatusID").val();
   var PRODUCTNAME = $("#EditProductName").val();
   var PRODUCTPRICE = $("#EditProductPrice").val();
@@ -164,6 +179,7 @@ async function updateProduct() {
 
   FD.append("ProductID", PRODUCTID);
   FD.append("ProductCategoryID", PRODUCTCATEGORYID);
+  FD.append("ProductBrandID", PRODUCTBRANDID);
   FD.append("StatusID", STATUSID);
   FD.append("ProductName", PRODUCTNAME);
   FD.append("ProductPrice", PRODUCTPRICE);
@@ -180,6 +196,11 @@ async function updateProduct() {
 
   if (PRODUCTCATEGORYID == "") {
     alert("Please select Product Category");
+    return;
+  }
+
+  if (PRODUCTBRANDID == "") {
+    alert("Please select Product Brand Name");
     return;
   }
 
@@ -203,16 +224,16 @@ async function updateProduct() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
+          fetch_data();
+          $("#editProduct").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editProduct").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -220,7 +241,7 @@ async function updateProduct() {
   });
 }
 
-$(document).on("click", ".deleteProduct", function () {
+$(document).on("click", ".deleteProduct", async function () {
   var PRODUCTID = $(this).attr("ProductID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -239,14 +260,15 @@ $(document).on("click", ".deleteProduct", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -255,7 +277,7 @@ $(document).on("click", ".deleteProduct", function () {
   }
 });
 
-$(document).on("click", ".activeProduct", function () {
+$(document).on("click", ".activeProduct", async function () {
   var PRODUCTID = $(this).attr("ProductID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -274,14 +296,15 @@ $(document).on("click", ".activeProduct", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -290,7 +313,7 @@ $(document).on("click", ".activeProduct", function () {
   }
 });
 
-$(document).on("click", ".debugProduct", function () {
+$(document).on("click", ".debugProduct", async function () {
   var PRODUCTID = $(this).attr("ProductID");
   alert("DEBUG INFO\n\rProductID : " + PRODUCTID);
 });

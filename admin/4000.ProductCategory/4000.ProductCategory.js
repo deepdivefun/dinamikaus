@@ -26,6 +26,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -94,16 +95,16 @@ async function createProductCategory() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addProductCategory").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addProductCategory").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -119,7 +120,7 @@ EditProductCategoryPhoto.onchange = (evt) => {
   }
 };
 
-$(document).on("click", ".editProductCategory", function () {
+$(document).on("click", ".editProductCategory", async function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   var STATUSID = $(this).attr("StatusID");
   var PRODUCTCATEGORYNAME = $(this).attr("ProductCategoryName");
@@ -193,16 +194,16 @@ async function updateProductCategory() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
+          fetch_data();
+          $("#editProductCategory").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editProductCategory").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -229,14 +230,15 @@ $(document).on("click", ".deleteProductCategory", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -245,7 +247,7 @@ $(document).on("click", ".deleteProductCategory", function () {
   }
 });
 
-$(document).on("click", ".activeProductCategory", function () {
+$(document).on("click", ".activeProductCategory", async function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -264,14 +266,15 @@ $(document).on("click", ".activeProductCategory", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -280,7 +283,7 @@ $(document).on("click", ".activeProductCategory", function () {
   }
 });
 
-$(document).on("click", ".viewPDF", function () {
+$(document).on("click", ".viewPDF", async function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   var PRODUCTCATEGORYCATALOG = $(this).attr("ProductCategoryCatalog");
 
@@ -298,7 +301,7 @@ $(document).on("click", ".viewPDF", function () {
   $("#viewPDF").modal("show");
 });
 
-$(document).on("click", ".debugProductCategory", function () {
+$(document).on("click", ".debugProductCategory", async function () {
   var PRODUCTCATEGORYID = $(this).attr("ProductCategoryID");
   alert("DEBUG INFO\n\rProductCategoryID : " + PRODUCTCATEGORYID);
 });

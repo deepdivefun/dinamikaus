@@ -6,11 +6,11 @@
                     <img src="<?= WebRootPath(); ?>admin/assets/img/settingslogo/<?= $row['SettingsLogoValue']; ?>" class='w-38 h-20 mr-3' alt="<?= $row['SettingsLogoValue']; ?>">
                 <?php endforeach; ?>
             </a>
-            <ul class='text-white flex -m-y-6 py-7 space-x-16 text-normal font-normal mr-3 hidden lg:flex'>
+            <ul class='text-white flex -m-y-6 py-9 space-x-16 text-normal font-normal mr-3 hidden lg:flex'>
                 <li><a href="<?= WebRootPath(); ?>index">Home</a></li>
                 <li><button onmouseover="mouseOver()" onmouseout="mouseOut()">
                         <a href="javascript:void(0)">Products</a>
-                        <div class="dropdown-content mt-7" id="dropdown-content">
+                        <div class="dropdown-content" id="dropdown-content">
                             <div class="flex gap-12 justify-center my-6">
                                 <?php foreach ($Product->fetchProductNavbar() as $row) : ?>
                                     <div class='grid'>

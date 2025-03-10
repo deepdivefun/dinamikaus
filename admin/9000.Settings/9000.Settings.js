@@ -24,6 +24,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -83,16 +84,16 @@ async function createSettings() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addSettings").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addSettings").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -100,7 +101,7 @@ async function createSettings() {
   });
 }
 
-$(document).on("click", ".editSettings", function () {
+$(document).on("click", ".editSettings", async function () {
   var SETTINGSID = $(this).attr("SettingsID");
   var STATUSID = $(this).attr("StatusID");
   var SETTINGSNAME = $(this).attr("SettingsName");
@@ -157,17 +158,16 @@ async function updateSettings() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
           fetch_data();
+          $("#editSettings").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editSettings").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -175,7 +175,7 @@ async function updateSettings() {
   });
 }
 
-$(document).on("click", ".debugSettings", function () {
+$(document).on("click", ".debugSettings", async function () {
   var SETTINGSID = $(this).attr("SettingsID");
   alert("DEBUG INFO\n\rSettingsID : " + SETTINGSID);
 });

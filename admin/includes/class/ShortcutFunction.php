@@ -111,6 +111,34 @@ function ShortcutProductCategory()
     }
 }
 
+function ShortcutProductBrand()
+{
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
+        echo    '';
+    } else {
+        echo    '<div class="col-sm-6 col-lg-3">
+                    <a href="' . WebRootPath() . '16000.ProductBrand/16000.ProductBrand.php">
+                        <div class="card card-sm rounded-5">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="btn btn-outline-primary avatar rounded-5">
+                                            <i class="fa-solid fa-box"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="fw-bold text-wrap">
+                                            Product Brand
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+    }
+}
+
 function ShortcutProduct()
 {
     if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {

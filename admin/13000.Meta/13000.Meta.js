@@ -25,6 +25,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -74,16 +75,16 @@ async function createMeta() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addMeta").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addMeta").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -91,7 +92,7 @@ async function createMeta() {
   });
 }
 
-$(document).on("click", ".editMeta", function () {
+$(document).on("click", ".editMeta", async function () {
   var METAID = $(this).attr("MetaID");
   var STATUSID = $(this).attr("StatusID");
   var NAME = $(this).attr("Name");
@@ -113,6 +114,11 @@ async function updateMeta() {
   var GTOKEN = document.getElementById("GToken").value;
   var UPDATEBY = document.getElementById("UpdateBy").value;
 
+  if (METAID == "") {
+    alert("MetaID Undefined");
+    return;
+  }
+
   if (STATUSID == "") {
     alert("Please select Status");
     return;
@@ -133,16 +139,16 @@ async function updateMeta() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
+          fetch_data();
+          $("#editMeta").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editMeta").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -150,7 +156,7 @@ async function updateMeta() {
   });
 }
 
-$(document).on("click", ".deleteMeta", function () {
+$(document).on("click", ".deleteMeta", async function () {
   var METAID = $(this).attr("MetaID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -169,14 +175,15 @@ $(document).on("click", ".deleteMeta", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -185,7 +192,7 @@ $(document).on("click", ".deleteMeta", function () {
   }
 });
 
-$(document).on("click", ".activeMeta", function () {
+$(document).on("click", ".activeMeta", async function () {
   var METAID = $(this).attr("MetaID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -204,14 +211,15 @@ $(document).on("click", ".activeMeta", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -220,7 +228,7 @@ $(document).on("click", ".activeMeta", function () {
   }
 });
 
-$(document).on("click", ".debugMeta", function () {
+$(document).on("click", ".debugMeta", async function () {
   var METAID = $(this).attr("MetaID");
   alert("DEBUG INFO\n\rMetaID : " + METAID);
 });

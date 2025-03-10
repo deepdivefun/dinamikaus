@@ -40,14 +40,14 @@ async function updateUserByID() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");

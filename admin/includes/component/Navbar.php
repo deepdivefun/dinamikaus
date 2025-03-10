@@ -26,6 +26,7 @@
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <?= ProductCategory(); ?>
+                                    <?= ProductBrand(); ?>
                                     <?= Product(); ?>
                                 </div>
                             </div>

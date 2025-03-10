@@ -22,6 +22,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 }
 
 $ProductCategoryID      = filter_input(INPUT_POST, 'ProductCategoryID');
+$ProductBrandID         = filter_input(INPUT_POST, 'ProductBrandID');
 $StatusID               = filter_input(INPUT_POST, 'StatusID');
 $ProductName            = filter_input(INPUT_POST, 'ProductName');
 $ProductPrice           = filter_input(INPUT_POST, 'ProductPrice');
@@ -47,7 +48,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
     die();
 } else {
     try {
-        if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($CreateBy)) {
+        if (empty($ProductCategoryID) and empty($ProductBrandID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($CreateBy)) {
             throw new Exception("Error Processing Request");
         } else {
             $EventLog = new EventLog();
@@ -59,6 +60,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
             $Product = new Product();
             $Product->createProduct(
                 $ProductCategoryID,
+                $ProductBrandID,
                 $StatusID,
                 $ProductName,
                 $ProductPrice,

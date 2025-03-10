@@ -48,3 +48,5 @@
 02/10/2024 21:47:59 Error: [2] Undefined variable $TestimonialsRatings in E:\xampp\htdocs\dinamikaus\admin\6000.Testimonial\6020.TestimonialFetch.php on line 112
 02/10/2024 21:48:05 Error: [2] Undefined variable $TestimonialsRatings in E:\xampp\htdocs\dinamikaus\admin\6000.Testimonial\6020.TestimonialFetch.php on line 112
 02/10/2024 21:48:09 Error: [2] Undefined variable $TestimonialsRatings in E:\xampp\htdocs\dinamikaus\admin\6000.Testimonial\6020.TestimonialFetch.php on line 112
+10/02/2025 15:32:03 Error: [2] Undefined array key "RoleID" in E:\xampp\htdocs\dinamikaus\admin\includes\class\SessionManagementClass.php on line 161
+10/02/2025 15:32:17 Error: [2] Undefined array key "UserID" in E:\xampp\htdocs\dinamikaus\admin\includes\component\Topbar.php on line 32

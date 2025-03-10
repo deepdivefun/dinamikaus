@@ -44,6 +44,7 @@ if (isset($_FILES['ProductPhoto']) != null) {
 }
 
 $ProductCategoryID          = filter_input(INPUT_POST, 'ProductCategoryID');
+$ProductBrandID             = filter_input(INPUT_POST, 'ProductBrandID');
 $StatusID                   = filter_input(INPUT_POST, 'StatusID');
 $ProductName                = filter_input(INPUT_POST, 'ProductName');
 $ProductPrice               = filter_input(INPUT_POST, 'ProductPrice');
@@ -58,7 +59,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
     die();
 } else {
     try {
-        if (empty($ProductID) and empty($ProductCategoryID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($UpdateBy)) {
+        if (empty($ProductID) and empty($ProductCategoryID) and empty($ProductBrandID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($UpdateBy)) {
             throw new Exception("Error Processing Request");
         } else {
             $EventLog = new EventLog();
@@ -71,6 +72,7 @@ if (VerifyRecaptchaToken($GToken) == null) {
             $Product->updateProduct(
                 $ProductID,
                 $ProductCategoryID,
+                $ProductBrandID,
                 $StatusID,
                 $ProductName,
                 $ProductPrice,

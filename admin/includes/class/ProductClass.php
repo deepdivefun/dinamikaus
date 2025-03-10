@@ -3,8 +3,8 @@ require_once('ConnectionClass.php');
 
 class Product
 {
-    public $ProductID, $ProductCategoryID, $StatusID, $ProductName, $ProductDescription, $ProductPhoto,
-        $CreateBy, $CreateTime, $UpdateBy, $UpdateTime;
+    public $ProductID, $ProductCategoryID, $ProductBrandID, $StatusID, $ProductName, $ProductDescription,
+        $ProductPhoto, $CreateBy, $CreateTime, $UpdateBy, $UpdateTime;
 
     private $conn;
 
@@ -16,18 +16,18 @@ class Product
         return $this->conn;
     }
 
-    public function createProduct($ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $CreateBy)
+    public function createProduct($ProductCategoryID, $ProductBrandID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $CreateBy)
     {
         global $conn;
 
         try {
-            if (empty($ProductCategoryID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($CreateBy)) {
+            if (empty($ProductCategoryID) and empty($ProductBrandID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($CreateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
-                $query  = "INSERT INTO tbl_product (ProductCategoryID, StatusID, ProductName, ProductPrice, ProductDescription, ProductPhoto, CreateBy) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $query  = "INSERT INTO tbl_product (ProductCategoryID, ProductBrandID, StatusID, ProductName, ProductPrice, ProductDescription, ProductPhoto, CreateBy) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("iisssss", $ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $CreateBy);
+                $stmt->bind_param("iiisssss", $ProductCategoryID, $ProductBrandID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $CreateBy);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {
@@ -44,18 +44,19 @@ class Product
         }
     }
 
-    public function updateProduct($ProductID, $ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $UpdateBy)
+    public function updateProduct($ProductID, $ProductCategoryID, $ProductBrandID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $UpdateBy)
     {
         global $conn;
 
         try {
-            if (empty($ProductID) and empty($ProductCategoryID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($UpdateBy)) {
+            if (empty($ProductID) and empty($ProductCategoryID) and empty($ProductBrandID) and empty($StatusID) and empty($ProductName) and empty($ProductPhotoConvert) and empty($UpdateBy)) {
                 throw new Exception("Error Processing Request");
             } else {
                 $conn->begin_transaction();
 
                 $query  = "UPDATE tbl_product SET 
                             ProductCategoryID = ?,
+                            ProductBrandID = ?,
                             StatusID = ?,
                             ProductName = ?,
                             ProductPrice = ?,
@@ -65,7 +66,7 @@ class Product
                             UpdateTime = NOW() 
                             WHERE ProductID = ?";
                 $stmt   = $conn->prepare($query);
-                $stmt->bind_param("iisssssi", $ProductCategoryID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $UpdateBy, $ProductID);
+                $stmt->bind_param("iiisssssi", $ProductCategoryID, $ProductBrandID, $StatusID, $ProductName, $ProductPrice, $ProductDescription, $ProductPhotoConvert, $UpdateBy, $ProductID);
                 $stmt->execute();
 
                 if ($stmt->affected_rows > 0) {

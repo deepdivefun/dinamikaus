@@ -24,6 +24,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -90,16 +91,16 @@ async function createShippingLogo() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addShippingLogo").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addShippingLogo").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -107,7 +108,7 @@ async function createShippingLogo() {
   });
 }
 
-$(document).on("click", ".editShippingLogo", function () {
+$(document).on("click", ".editShippingLogo", async function () {
   var SHIPPINGID = $(this).attr("ShippingID");
   var STATUSID = $(this).attr("StatusID");
   var SHIPPINGNAME = $(this).attr("ShippingName");
@@ -173,17 +174,16 @@ async function updateShippingLogo() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
           fetch_data();
+          $("#editPaymentLogo").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editPaymentLogo").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -191,7 +191,7 @@ async function updateShippingLogo() {
   });
 }
 
-$(document).on("click", ".deleteShippingLogo", function () {
+$(document).on("click", ".deleteShippingLogo", async function () {
   var SHIPPINGID = $(this).attr("ShippingID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -210,14 +210,15 @@ $(document).on("click", ".deleteShippingLogo", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -226,7 +227,7 @@ $(document).on("click", ".deleteShippingLogo", function () {
   }
 });
 
-$(document).on("click", ".activeShippingLogo", function () {
+$(document).on("click", ".activeShippingLogo", async function () {
   var SHIPPINGID = $(this).attr("ShippingID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -245,14 +246,15 @@ $(document).on("click", ".activeShippingLogo", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -261,7 +263,7 @@ $(document).on("click", ".activeShippingLogo", function () {
   }
 });
 
-$(document).on("click", ".debugShippingLogo", function () {
+$(document).on("click", ".debugShippingLogo", async function () {
   var SHIPPINGID = $(this).attr("ShippingID");
   alert("DEBUG INFO\n\rShippingID : " + SHIPPINGID);
 });

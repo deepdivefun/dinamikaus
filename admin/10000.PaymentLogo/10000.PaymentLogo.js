@@ -24,6 +24,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -90,16 +91,16 @@ async function createPaymentLogo() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addPaymentPhoto").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addPaymentPhoto").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -107,7 +108,7 @@ async function createPaymentLogo() {
   });
 }
 
-$(document).on("click", ".editPaymentLogo", function () {
+$(document).on("click", ".editPaymentLogo", async function () {
   var PAYMENTID = $(this).attr("PaymentID");
   var STATUSID = $(this).attr("StatusID");
   var PAYMENTNAME = $(this).attr("PaymentName");
@@ -173,17 +174,16 @@ async function updatePaymentLogo() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
           fetch_data();
+          $("#editPaymentLogo").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editPaymentLogo").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -191,7 +191,7 @@ async function updatePaymentLogo() {
   });
 }
 
-$(document).on("click", ".deletePaymentLogo", function () {
+$(document).on("click", ".deletePaymentLogo", async function () {
   var PAYMENTID = $(this).attr("PaymentID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
@@ -210,14 +210,15 @@ $(document).on("click", ".deletePaymentLogo", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Delete Success");
+            alert(data.replace("Delete Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -226,7 +227,7 @@ $(document).on("click", ".deletePaymentLogo", function () {
   }
 });
 
-$(document).on("click", ".activePaymentLogo", function () {
+$(document).on("click", ".activePaymentLogo", async function () {
   var PAYMENTID = $(this).attr("PaymentID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
@@ -245,14 +246,15 @@ $(document).on("click", ".activePaymentLogo", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Activate Success");
+            alert(data.replace("Activate Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -261,7 +263,7 @@ $(document).on("click", ".activePaymentLogo", function () {
   }
 });
 
-$(document).on("click", ".debugPaymentLogo", function () {
+$(document).on("click", ".debugPaymentLogo", async function () {
   var PAYMENTID = $(this).attr("PaymentID");
   alert("DEBUG INFO\n\rPaymentID : " + PAYMENTID);
 });

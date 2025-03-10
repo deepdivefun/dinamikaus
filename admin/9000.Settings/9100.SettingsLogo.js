@@ -26,6 +26,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -92,17 +93,16 @@ async function createSettingsLogo() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
           fetch_data();
+          $("#addSettingsLogo").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addSettingsLogo").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -110,7 +110,7 @@ async function createSettingsLogo() {
   });
 }
 
-$(document).on("click", ".editSettingsLogo", function () {
+$(document).on("click", ".editSettingsLogo", async function () {
   var SETTINGSLOGOID = $(this).attr("SettingsLogoID");
   var STATUSID = $(this).attr("StatusID");
   var SETTINGSLOGONAME = $(this).attr("SettingsLogoName");
@@ -178,17 +178,16 @@ async function updateSettingsLogo() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Update Success");
+          alert(data.replace("Update Success", ""));
           fetch_data();
+          $("#editSettingsLogo").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#editSettingsLogo").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -196,7 +195,7 @@ async function updateSettingsLogo() {
   });
 }
 
-$(document).on("click", ".debugSettingsLogo", function () {
+$(document).on("click", ".debugSettingsLogo", async function () {
   var SETTINGSLOGOID = $(this).attr("SettingsLogoID");
   alert("DEBUG INFO\n\rSettingsLogoID : " + SETTINGSLOGOID);
 });

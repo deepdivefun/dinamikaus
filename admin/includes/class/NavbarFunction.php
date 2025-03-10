@@ -88,6 +88,17 @@ function ProductCategory()
     }
 }
 
+function ProductBrand()
+{
+    if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
+        echo    '';
+    } else {
+        echo    '<a class=" dropdown-item" href="' . WebRootPath() . '16000.ProductBrand/16000.ProductBrand.php">
+                    Product Brand
+                </a>';
+    }
+}
+
 function Product()
 {
     if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {

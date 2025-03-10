@@ -18,6 +18,8 @@ require_once($WebRootPath . '/includes/class/StatusClass.php');
 $Status             = new Status();
 require_once($WebRootPath . '/includes/class/ProductCategoryClass.php');
 $ProductCategory    = new ProductCategory();
+require_once($WebRootPath . '/includes/class/ProductBrandClass.php');
+$ProductBrand       = new ProductBrand();
 
 if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
     echo    "You don't have access rights to this page";
@@ -56,6 +58,16 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                     <option disabled selected value>Select Product Category</option>
                                     <?php foreach ($ProductCategory->fetchProductCategory() as $row) : ?>
                                         <option value="<?= $row['ProductCategoryID']; ?>"><?= $row['ProductCategoryName']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="ProductBrandID">Product Brand Name</label>
+                                <select class="form-control form-select" name="ProductBrandID" id="ProductBrandID" required>
+                                    <option disabled selected value>Select Product Brand Name</option>
+                                    <?php foreach ($ProductBrand->fetchProductBrand() as $row) : ?>
+                                        <option value="<?= $row['ProductBrandID']; ?>"><?= $row['ProductBrandName']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -134,6 +146,15 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                             </div>
 
                             <div class="form-group mb-3">
+                                <label class="form-label" for="EditProductBrandID">Product Brand Name</label>
+                                <select class="form-control form-select" name="EditProductBrandID" id="EditProductBrandID" required>
+                                    <?php foreach ($ProductBrand->fetchProductBrand() as $row) : ?>
+                                        <option value="<?= $row['ProductBrandID']; ?>"><?= $row['ProductBrandName']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label class="form-label" for="EditStatusID">Status</label>
                                 <select class="form-control form-select" name="EditStatusID" id="EditStatusID" required>
                                     <?php foreach ($Status->fetchStatus() as $row) : ?>
@@ -205,24 +226,32 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                         </small>
                         <hr>
                         <form method="POST">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="FilterStatusID">Status</label>
+                                <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID">
+                                    <?php foreach ($Status->fetchStatus() as $row) : ?>
+                                        <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group mb-3">
-                                        <label class="form-label" for="FilterStatusID">Status</label>
-                                        <select class="form-control form-select" name="FilterStatusID" id="FilterStatusID">
-                                            <?php foreach ($Status->fetchStatus() as $row) : ?>
-                                                <option value="<?= $row['StatusID']; ?>"><?= $row['StatusName']; ?></option>
+                                        <label class="form-label" for="FilterProductCategoryID">Product Category</label>
+                                        <select class="form-control form-select" name="FilterProductCategoryID" id="FilterProductCategoryID">
+                                            <?php foreach ($ProductCategory->fetchProductCategory() as $row) : ?>
+                                                <option value="<?= $row['ProductCategoryID']; ?>"><?= $row['ProductCategoryName']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group mb-3">
-                                        <label class="form-label" for="FilterProductCategoryID">Product Category</label>
-                                        <select class="form-control form-select" name="FilterProductCategoryID" id="FilterProductCategoryID">
-                                            <option value="">&nbsp;</option>
-                                            <?php foreach ($ProductCategory->fetchProductCategory() as $row) : ?>
-                                                <option value="<?= $row['ProductCategoryID']; ?>"><?= $row['ProductCategoryName']; ?></option>
+                                        <label class="form-label" for="FilterProductBrandID">Product Brand Name</label>
+                                        <select class="form-control form-select" name="FilterProductBrandID" id="FilterProductBrandID">
+                                            <?php foreach ($ProductBrand->fetchProductBrand() as $row) : ?>
+                                                <option value="<?= $row['ProductBrandID']; ?>"><?= $row['ProductBrandName']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -245,6 +274,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
                                     <tr>
                                         <th>Product Name</th>
                                         <th>Product Category Name</th>
+                                        <th>Product Brand Name</th>
                                         <th>Product Photo</th>
                                         <th>Status</th>
                                         <th>Action</th>

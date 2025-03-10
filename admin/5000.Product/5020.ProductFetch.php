@@ -22,6 +22,7 @@ if (!SYSAdmin() and !AppAdmin() and !Admin() and !Staff()) {
 
 $StatusID               = filter_input(INPUT_POST, 'StatusID');
 $ProductCategoryID      = filter_input(INPUT_POST, 'ProductCategoryID');
+$ProductBrandID         = filter_input(INPUT_POST, 'ProductBrandID');
 $ProductName            = filter_input(INPUT_POST, 'ProductName');
 $GToken                 = filter_input(INPUT_POST, 'GToken');
 
@@ -32,15 +33,16 @@ if (VerifyRecaptchaToken($GToken) == null) {
     try {
         if (empty($StatusID) and empty($ProductCategoryID)) {
             throw new Exception("Error Processing Request");
-        } elseif (empty($ProductCategoryID)) {
+        } elseif (empty($ProductCategoryID) and empty($ProductBrandID)) {
             $conn->begin_transaction();
 
-            $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.StatusID, 
-                        c.StatusName, a.ProductName, a.ProductPrice, a.ProductDescription, a.ProductPhoto, a.CreateBy, 
-                        a.CreateTime, a.UpdateBy, a.UpdateTime 
-                        FROM tbl_product a 
+            $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.ProductBrandID, 
+                        c.ProductBrandName, d.StatusID, d.StatusName, a.ProductName, a.ProductPrice, 
+                        a.ProductDescription, a.ProductPhoto, a.CreateBy, a.CreateTime, a.UpdateBy, 
+                        a.UpdateTime FROM tbl_product a 
                         LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
-                        LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
+                        LEFT OUTER JOIN tbl_product_brand c ON a.ProductBrandID = c.ProductBrandID 
+                        LEFT OUTER JOIN tbl_status d ON a.StatusID = d.StatusID 
                         WHERE a.StatusID = ? AND a.ProductName LIKE CONCAT('%', ?, '%')";
             $stmt   = $conn->prepare($query);
             $stmt->bind_param("is", $StatusID, $ProductName);
@@ -50,6 +52,8 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ProductID,
                 $ProductCategoryID,
                 $ProductCategoryName,
+                $ProductBrandID,
+                $ProductBrandName,
                 $StatusID,
                 $StatusName,
                 $ProductName,
@@ -76,10 +80,10 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ProductDescriptionConvert = trim(preg_replace('/\s+/', ' ', $ProductDescription));
 
                 if ($StatusID == 1) {
-                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' ProductBrandID='$ProductBrandID' ProductBrandName ='$ProductBrandName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProduct' title='DELETE' ProductID='$ProductID'><i class='fa-solid fa-trash'></i></button>";
                     if (SYSAdmin()) {
-                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' ProductBrandID='$ProductBrandID' ProductBrandName ='$ProductBrandName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProduct' title='DELETE' ProductID='$ProductID'><i class='fa-solid fa-trash'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugProduct' title='DEBUG' ProductID='$ProductID'><i class='fa-solid fa-eye'></i></button>";
                     }
@@ -93,11 +97,11 @@ if (VerifyRecaptchaToken($GToken) == null) {
 
                 $ProductPhoto = "<img src='" . WebRootPath() . "assets/img/productphoto/" . $ProductPhoto . "' class='img-fluid h-25 w-25 rounded-5' alt='" . $ProductPhoto . "'>";
 
-                $JSONData .= '["' . $ProductName . '", "' . $ProductCategoryName . '", "' . $ProductPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
+                $JSONData .= '["' . $ProductName . '", "' . $ProductCategoryName . '", "' . $ProductBrandName . '", "' . $ProductPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
             }
 
             if ($JSONData == null) {
-                $JSONData = ["", "", "", "", ""];
+                $JSONData = ["", "", "", "", "", ""];
                 echo "[" . json_encode($JSONData) . "]";
             } else {
                 $conn->commit();
@@ -108,21 +112,25 @@ if (VerifyRecaptchaToken($GToken) == null) {
         } else {
             $conn->begin_transaction();
 
-            $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.StatusID, 
-                        c.StatusName, a.ProductName, a.ProductPrice, a.ProductDescription, a.ProductPhoto, 
-                        a.CreateBy, a.CreateTime, a.UpdateBy, a.UpdateTime 
-                        FROM tbl_product a 
+            $query  = "SELECT a.ProductID, b.ProductCategoryID, b.ProductCategoryName, c.ProductBrandID, 
+                        c.ProductBrandName, d.StatusID, d.StatusName, a.ProductName, a.ProductPrice, 
+                        a.ProductDescription, a.ProductPhoto, a.CreateBy, a.CreateTime, a.UpdateBy, 
+                        a.UpdateTime FROM tbl_product a 
                         LEFT OUTER JOIN tbl_product_category b ON a.ProductCategoryID = b.ProductCategoryID 
-                        LEFT OUTER JOIN tbl_status c ON a.StatusID = c.StatusID 
-                        WHERE a.StatusID = ? AND a.ProductCategoryID = ? AND a.ProductName LIKE CONCAT('%', ?, '%')";
+                        LEFT OUTER JOIN tbl_product_brand c ON a.ProductBrandID = c.ProductBrandID 
+                        LEFT OUTER JOIN tbl_status d ON a.StatusID = d.StatusID 
+                        WHERE a.StatusID = ? AND a.ProductCategoryID = ? 
+                        AND a.ProductBrandID = ? AND a.ProductName LIKE CONCAT('%', ?, '%')";
             $stmt   = $conn->prepare($query);
-            $stmt->bind_param("iis", $StatusID, $ProductCategoryID, $ProductName);
+            $stmt->bind_param("iiis", $StatusID, $ProductCategoryID, $ProductBrandID, $ProductName);
             $stmt->execute();
             $stmt->store_result();
             $stmt->bind_result(
                 $ProductID,
                 $ProductCategoryID,
                 $ProductCategoryName,
+                $ProductBrandID,
+                $ProductBrandName,
                 $StatusID,
                 $StatusName,
                 $ProductName,
@@ -149,10 +157,10 @@ if (VerifyRecaptchaToken($GToken) == null) {
                 $ProductDescriptionConvert = trim(preg_replace('/\s+/', ' ', $ProductDescription));
 
                 if ($StatusID == 1) {
-                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                    $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' ProductBrandID='$ProductBrandID' ProductBrandName ='$ProductBrandName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                     $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProduct' title='DELETE' ProductID='$ProductID'><i class='fa-solid fa-trash'></i></button>";
                     if (SYSAdmin()) {
-                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
+                        $Button = "<button type='button' class='btn btn-outline-info rounded-5 mx-1 editProduct' title='EDIT' ProductID='$ProductID' ProductCategoryID='$ProductCategoryID' ProductCategoryName='$ProductCategoryName' ProductBrandID='$ProductBrandID' ProductBrandName ='$ProductBrandName' StatusID='$StatusID' ProductName='$ProductName' ProductPrice='$ProductPrice' ProductDescription='$ProductDescriptionConvert' ProductPhoto='$ProductPhoto' CreateBy='$CreateBy' CreateTime='$CreateTime' UpdateBy='$UpdateBy' UpdateTime='$UpdateTime'><i class='fa-solid fa-pen'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-danger rounded-5 mx-1 deleteProduct' title='DELETE' ProductID='$ProductID'><i class='fa-solid fa-trash'></i></button>";
                         $Button .= "<button type='button' class='btn btn-outline-success rounded-5 mx-1 debugProduct' title='DEBUG' ProductID='$ProductID'><i class='fa-solid fa-eye'></i></button>";
                     }
@@ -166,11 +174,11 @@ if (VerifyRecaptchaToken($GToken) == null) {
 
                 $ProductPhoto = "<img src='" . WebRootPath() . "assets/img/productphoto/" . $ProductPhoto . "' class='img-fluid h-25 w-25 rounded-5' alt='" . $ProductPhoto . "'>";
 
-                $JSONData .= '["' . $ProductName . '", "' . $ProductCategoryName . '", "' . $ProductPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
+                $JSONData .= '["' . $ProductName . '", "' . $ProductCategoryName . '", "' . $ProductBrandName . '", "' . $ProductPhoto . '", "' . $StatusName . '", "' . $Button . '"]';
             }
 
             if ($JSONData == null) {
-                $JSONData = ["", "", "", "", ""];
+                $JSONData = ["", "", "", "", "", ""];
                 echo "[" . json_encode($JSONData) . "]";
             } else {
                 $conn->commit();

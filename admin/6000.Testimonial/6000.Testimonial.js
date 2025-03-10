@@ -26,6 +26,7 @@ async function fetch_data() {
         data = data.trim();
         if (data.includes("SWD_NOUSERROLE")) {
           window.location.href = "/";
+          return;
         } else {
           data = data.replace("SWD_OK", "");
           datatablearr = $.parseJSON(data);
@@ -98,16 +99,16 @@ async function createTestimonial() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Create Success");
+          alert(data.replace("Create Success", ""));
+          fetch_data();
+          $("#addTestimonial").modal("hide");
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
-      fetch_data();
-      $("#addTestimonial").modal("hide");
-      location.reload();
+      window.location.reload();
     },
     error: function () {
       alert("Error");
@@ -115,7 +116,7 @@ async function createTestimonial() {
   });
 }
 
-$(document).on("click", ".reviewTestimonial", function () {
+$(document).on("click", ".reviewTestimonial", async function () {
   var TESTIMONIALID = $(this).attr("TestimonialID");
   var FULLNAME = $(this).attr("FullName");
   var COMPANY = $(this).attr("Company");
@@ -129,7 +130,7 @@ $(document).on("click", ".reviewTestimonial", function () {
   $("#reviewTestimonial").modal("show");
 });
 
-$(document).on("click", ".approveTestimonial", function () {
+$(document).on("click", ".approveTestimonial", async function () {
   var TESTIMONIALID = $(this).attr("TestimonialID");
 
   let confirmApprove = prompt(
@@ -151,14 +152,15 @@ $(document).on("click", ".approveTestimonial", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Approve Success");
+            alert(data.replace("Approve Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -167,7 +169,7 @@ $(document).on("click", ".approveTestimonial", function () {
   }
 });
 
-$(document).on("click", ".notApproveTestimonial", function () {
+$(document).on("click", ".notApproveTestimonial", async function () {
   var TESTIMONIALID = $(this).attr("TestimonialID");
 
   let confirmApprove = prompt(
@@ -189,14 +191,15 @@ $(document).on("click", ".notApproveTestimonial", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Not Approve Success");
+            alert(data.replace("Not Approve Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -205,7 +208,7 @@ $(document).on("click", ".notApproveTestimonial", function () {
   }
 });
 
-$(document).on("click", ".reviewTestimonials", function () {
+$(document).on("click", ".reviewTestimonials", async function () {
   var TESTIMONIALSID = $(this).attr("TestimonialsID");
 
   let confirmBackToReview = prompt(
@@ -227,14 +230,15 @@ $(document).on("click", ".reviewTestimonials", function () {
         try {
           data = data.trim();
           if (data.includes("SWD_OK")) {
-            alert("Back To Review Success");
+            alert(data.replace("Back To Review Success", ""));
+            fetch_data();
           } else {
             alert(data);
           }
         } catch (err) {
           alert(err.message);
         }
-        fetch_data();
+        window.location.reload();
       },
       error: function () {
         alert("Error");
@@ -243,7 +247,7 @@ $(document).on("click", ".reviewTestimonials", function () {
   }
 });
 
-$(document).on("click", ".debugTestimonial", function () {
+$(document).on("click", ".debugTestimonial", async function () {
   var TESTIMONIALID = $(this).attr("TestimonialID");
   alert("DEBUG INFO\n\rTestimonialID : " + TESTIMONIALID);
 });

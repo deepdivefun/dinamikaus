@@ -1,6 +1,6 @@
 fetch_data();
 
-async function showButtonOurClientData() {
+async function showButtonProductBrandData() {
   fetch_data();
 }
 
@@ -8,16 +8,18 @@ async function fetch_data() {
   $("#dataTable").DataTable().clear().destroy();
 
   var STATUSID = document.getElementById("FilterStatusID").value;
-  var OURCLIENTNAME = document.getElementById("FilterOurClientName").value;
+  var PRODUCTBRANDNAME = document.getElementById(
+    "FilterProductBrandName"
+  ).value;
   var GTOKEN = document.getElementById("GToken").value;
 
   $.ajax({
     type: "POST",
-    url: "7020.OurClientFetch.php?id=" + Math.random(),
+    url: "16020.ProductBrandFetch.php?id=" + Math.random(),
     data: {
       StatusID: STATUSID,
-      OurClientName: OURCLIENTNAME,
-      GTOKEN: GTOKEN,
+      ProductBrandName: PRODUCTBRANDNAME,
+      GToken: GTOKEN,
     },
     success: function (data) {
       try {
@@ -48,52 +50,38 @@ async function fetch_data() {
   });
 }
 
-// Before Create
-OurClientPhoto.onchange = (evt) => {
-  const [file] = OurClientPhoto.files;
-  if (file) {
-    PreviewOurClientPhoto.src = URL.createObjectURL(file);
-  }
-};
-
-async function createOurClient() {
-  var FD = new FormData();
-
-  var STATUSID = $("#StatusID").val();
-  var OURCLIENTNAME = $("#OurClientName").val();
-  var OURCLIENTPHOTO = $("#OurClientPhoto")[0].files[0];
-  var CREATEBY = $("#CreateBy").val();
-  var GTOKEN = $("#GToken").val();
-
-  FD.append("StatusID", STATUSID);
-  FD.append("OurClientName", OURCLIENTNAME);
-  FD.append("OurClientPhoto", OURCLIENTPHOTO);
-  FD.append("CreateBy", CREATEBY);
-  FD.append("GToken", GTOKEN);
+async function createProductBrand() {
+  var STATUSID = document.getElementById("StatusID").value;
+  var PRODUCTBRANDNAME = document.getElementById("ProductBrandName").value;
+  var CREATEBY = document.getElementById("CreateBy").value;
+  var GTOKEN = document.getElementById("GToken").value;
 
   if (STATUSID == "") {
     alert("Please select Status");
     return;
   }
 
-  if (OURCLIENTNAME === "") {
-    alert("Please enter Our Client Name");
+  if (PRODUCTBRANDNAME === "") {
+    alert("Please input Product Brand Name");
     return;
   }
 
   $.ajax({
     type: "POST",
-    url: "7010.OurClientCreate.php?id=" + Math.random(),
-    data: FD,
-    contentType: false,
-    processData: false,
+    url: "16010.ProductBrandCreate.php?id=" + Math.random(),
+    data: {
+      StatusID: STATUSID,
+      ProductBrandName: PRODUCTBRANDNAME,
+      CreateBy: CREATEBY,
+      GToken: GTOKEN,
+    },
     success: function (data) {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
           alert(data.replace("Create Success", ""));
           fetch_data();
-          $("#addOurClient").modal("hide");
+          $("#addProductBrand").modal("hide");
         } else {
           alert(data);
         }
@@ -108,49 +96,27 @@ async function createOurClient() {
   });
 }
 
-$(document).on("click", ".editOurClient", async function () {
-  var OURCLIENTID = $(this).attr("OurClientID");
+$(document).on("click", ".editProductBrand", async function () {
+  var PRODUCTBRANDID = $(this).attr("ProductBrandID");
   var STATUSID = $(this).attr("StatusID");
-  var OURCLIENTNAME = $(this).attr("OurClientName");
-  var OURCLIENTPHOTO = $(this).attr("OurClientPhoto");
+  var PRODUCTBRANDNAME = $(this).attr("ProductBrandName");
 
-  $("#EditOurClientID").val(OURCLIENTID);
+  $("#EditProductBrandID").val(PRODUCTBRANDID);
   $("#EditStatusID").val(STATUSID);
-  $("#EditOurClientName").val(OURCLIENTNAME);
-  $("#EditOurClientPhotoBeforeConvert").val(OURCLIENTPHOTO);
+  $("#EditProductBrandName").val(PRODUCTBRANDNAME);
 
-  $("#editOurClient").modal("show");
+  $("#editProductBrand").modal("show");
 });
 
-// Before Edit
-EditOurClientPhoto.onchange = (evt) => {
-  const [file] = EditOurClientPhoto.files;
-  if (file) {
-    PreviewEditOurClientPhoto.src = URL.createObjectURL(file);
-  }
-};
+async function updateProductBrand() {
+  var PRODUCTBRANDID = document.getElementById("EditProductBrandID").value;
+  var STATUSID = document.getElementById("EditStatusID").value;
+  var PRODUCTBRANDNAME = document.getElementById("EditProductBrandName").value;
+  var UPDATEBY = document.getElementById("UpdateBy").value;
+  var GTOKEN = document.getElementById("GToken").value;
 
-async function updateOurClient() {
-  var FD = new FormData();
-
-  var OURCLIENTID = $("#EditOurClientID").val();
-  var STATUSID = $("#EditStatusID").val();
-  var OURCLIENTNAME = $("#EditOurClientName").val();
-  var OURCLIENTPHOTO = $("#EditOurClientPhoto")[0].files[0];
-  var OURCLIENTPHOTOBEFORECONVERT = $("#EditOurClientPhotoBeforeConvert").val();
-  var UPDATEBY = $("#UpdateBy").val();
-  var GTOKEN = $("#GToken").val();
-
-  FD.append("OurClientID", OURCLIENTID);
-  FD.append("StatusID", STATUSID);
-  FD.append("OurClientName", OURCLIENTNAME);
-  FD.append("OurClientPhoto", OURCLIENTPHOTO);
-  FD.append("OurClientPhotoBeforeConvert", OURCLIENTPHOTOBEFORECONVERT);
-  FD.append("UpdateBy", UPDATEBY);
-  FD.append("GToken", GTOKEN);
-
-  if (OURCLIENTID == "") {
-    alert("OurClientID Undefined");
+  if (PRODUCTBRANDID == "") {
+    alert("ProductBrandID Undefined");
     return;
   }
 
@@ -159,24 +125,28 @@ async function updateOurClient() {
     return;
   }
 
-  if (OURCLIENTNAME === "") {
-    alert("Please enter Our Client Name");
+  if (PRODUCTBRANDNAME === "") {
+    alert("Please input Product Brand Name");
     return;
   }
 
   $.ajax({
     type: "POST",
-    url: "7030.OurClientUpdate.php?id=" + Math.random(),
-    data: FD,
-    contentType: false,
-    processData: false,
+    url: "16030.ProductBrandUpdate.php?id=" + Math.random(),
+    data: {
+      ProductBrandID: PRODUCTBRANDID,
+      StatusID: STATUSID,
+      ProductBrandName: PRODUCTBRANDNAME,
+      UpdateBy: UPDATEBY,
+      GToken: GTOKEN,
+    },
     success: function (data) {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
           alert(data.replace("Update Success", ""));
           fetch_data();
-          $("#editOurClient").modal("hide");
+          $("#editProductBrand").modal("hide");
         } else {
           alert(data);
         }
@@ -191,8 +161,8 @@ async function updateOurClient() {
   });
 }
 
-$(document).on("click", ".deleteOurClient", async function () {
-  var OURCLIENTID = $(this).attr("OurClientID");
+$(document).on("click", ".deleteProductBrand", async function () {
+  var PRODUCTBRANDID = $(this).attr("ProductBrandID");
 
   let confirmDelete = prompt("Please input 'DELETE' to confirm delete", "");
 
@@ -202,9 +172,9 @@ $(document).on("click", ".deleteOurClient", async function () {
   } else {
     $.ajax({
       type: "POST",
-      url: "7040.OurClientDelete.php?id=" + Math.random(),
+      url: "16040.ProductBrandDelete.php?id=" + Math.random(),
       data: {
-        OurClientID: OURCLIENTID,
+        ProductBrandID: PRODUCTBRANDID,
       },
       success: function (data) {
         try {
@@ -227,8 +197,8 @@ $(document).on("click", ".deleteOurClient", async function () {
   }
 });
 
-$(document).on("click", ".activeOurClient", async function () {
-  var OURCLIENTID = $(this).attr("OurClientID");
+$(document).on("click", ".activeProductBrand", async function () {
+  var PRODUCTBRANDID = $(this).attr("ProductBrandID");
 
   let confirmActive = prompt("Please input 'ACTIVE' to confirm active", "");
 
@@ -238,9 +208,9 @@ $(document).on("click", ".activeOurClient", async function () {
   } else {
     $.ajax({
       type: "POST",
-      url: "7050.OurClientActive.php?id=" + Math.random(),
+      url: "16050.ProductBrandActive.php?id=" + Math.random(),
       data: {
-        OurClientID: OURCLIENTID,
+        ProductBrandID: PRODUCTBRANDID,
       },
       success: function (data) {
         try {
@@ -263,7 +233,7 @@ $(document).on("click", ".activeOurClient", async function () {
   }
 });
 
-$(document).on("click", ".debugOurClient", async function () {
-  var OURCLIENTID = $(this).attr("OurClientID");
-  alert("DEBUG INFO\n\rOurClientID : " + OURCLIENTID);
+$(document).on("click", ".debugProductBrand", async function () {
+  var PRODUCTBRANDID = $(this).attr("ProductBrandID");
+  alert("DEBUG INFO\n\rProductBrandID : " + PRODUCTBRANDID);
 });

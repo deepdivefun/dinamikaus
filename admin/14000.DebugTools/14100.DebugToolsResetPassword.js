@@ -30,13 +30,14 @@ async function resetPasswordTools() {
       try {
         data = data.trim();
         if (data.includes("SWD_OK")) {
-          alert("Reset Success");
+          alert(data.replace("Reset Success", ""));
         } else {
           alert(data);
         }
       } catch (err) {
         alert(err.message);
       }
+      window.location.reload();
     },
     error: function () {
       alert("Error");
