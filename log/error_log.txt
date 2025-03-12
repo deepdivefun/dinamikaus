@@ -50,3 +50,11 @@
 02/10/2024 21:48:09 Error: [2] Undefined variable $TestimonialsRatings in E:\xampp\htdocs\dinamikaus\admin\6000.Testimonial\6020.TestimonialFetch.php on line 112
 10/02/2025 15:32:03 Error: [2] Undefined array key "RoleID" in E:\xampp\htdocs\dinamikaus\admin\includes\class\SessionManagementClass.php on line 161
 10/02/2025 15:32:17 Error: [2] Undefined array key "UserID" in E:\xampp\htdocs\dinamikaus\admin\includes\component\Topbar.php on line 32
+11/03/2025 00:42:48 Error: [2] Undefined variable $ProductName in E:\xampp\htdocs\dinamikaus\admin\5000.Product\5060.ProductDownload.php on line 26
+11/03/2025 01:15:28 Error: [2] file_get_contents(): php_network_getaddresses: getaddrinfo for www.google.com failed: No such host is known.  in E:\xampp\htdocs\dinamikaus\admin\includes\class\VerifyRecaptchaTokenFunction.php on line 23
+11/03/2025 01:15:32 Error: [2] file_get_contents(): SSL: An existing connection was forcibly closed by the remote host in E:\xampp\htdocs\dinamikaus\admin\includes\class\VerifyRecaptchaTokenFunction.php on line 23
+11/03/2025 01:17:37 Error: [2] file_get_contents(): php_network_getaddresses: getaddrinfo for www.google.com failed: No such host is known.  in E:\xampp\htdocs\dinamikaus\admin\includes\class\VerifyRecaptchaTokenFunction.php on line 23
+11/03/2025 01:18:46 Error: [2] file_get_contents(): php_network_getaddresses: getaddrinfo for www.google.com failed: No such host is known.  in E:\xampp\htdocs\dinamikaus\admin\includes\class\VerifyRecaptchaTokenFunction.php on line 23
+12/03/2025 22:17:02 Error: [8192] preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in E:\xampp\htdocs\dinamikaus\admin\5000.Product\5020.ProductFetch.php on line 157
+12/03/2025 22:17:05 Error: [8192] preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in E:\xampp\htdocs\dinamikaus\admin\5000.Product\5020.ProductFetch.php on line 157
+12/03/2025 22:17:11 Error: [8192] preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in E:\xampp\htdocs\dinamikaus\admin\5000.Product\5020.ProductFetch.php on line 157

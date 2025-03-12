@@ -4,6 +4,7 @@ $Servername = "localhost";
 $Username   = "root";
 $Password   = "";
 $Database   = "dinamika";
+$TimeZone   = date_default_timezone_set('Asia/Jakarta');
 
 // Create connection
 try {

@@ -4,6 +4,7 @@ $Servername = "localhost";
 $Username   = "dinami28_dinamikaus";
 $Password   = "Dinamikautamasaka";
 $Database   = "dinami28_dinamikaus";
+$TimeZone   = date_default_timezone_set('Asia/Jakarta');
 
 // Create connection
 try {

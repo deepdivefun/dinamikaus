@@ -241,6 +241,43 @@ async function updateProduct() {
   });
 }
 
+async function uploadDataProduct() {
+  var FD = new FormData();
+
+  var UPLOADDATAPRODUCT = $("#UploadDataProduct")[0].files[0];
+  var UPDATEBY = $("#UpdateBy").val();
+  var GTOKEN = $("#GToken").val();
+
+  FD.append("UploadDataProduct", UPLOADDATAPRODUCT);
+  FD.append("UpdateBy", UPDATEBY);
+  FD.append("GToken", GTOKEN);
+
+  $.ajax({
+    type: "POST",
+    url: "5070.ProductUpload.php?id=" + Math.random(),
+    data: FD,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      try {
+        data = data.trim();
+        if (data.includes("SWD_OK")) {
+          alert("Upload Data Product Success");
+          fetch_data();
+        } else {
+          alert(data);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+      location.reload();
+    },
+    error: function () {
+      alert("Error");
+    },
+  });
+}
+
 $(document).on("click", ".deleteProduct", async function () {
   var PRODUCTID = $(this).attr("ProductID");
 
